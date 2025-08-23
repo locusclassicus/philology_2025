@@ -1,0 +1,991 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ru" xml:lang="ru"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.6.42">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>3&nbsp; Распознавание текста – Программирование на R для филологов</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./04_regex.html" rel="next">
+<link href="./02_tabular.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-626149efe8f5d16e1d391ba177679bf0.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "Поиск не дал результатов",
+    "search-matching-documents-text": "Результаты поиска",
+    "search-copy-link-title": "Скопировать ссылку",
+    "search-hide-matches-text": "Скрыть дополнительные результаты",
+    "search-more-match-text": "дополнительный результат в этом документе",
+    "search-more-matches-text": "дополнительных результата(-ов) в этом документе",
+    "search-clear-button-title": "Очистить",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Отменить",
+    "search-submit-button-title": "Найти",
+    "search-label": "Поиск"
+  }
+}</script>
+<link href="site_libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet">
+<script src="site_libs/pagedtable-1.1/js/pagedtable.js"></script>
+
+
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Переключить боковую панель навигации" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./03_ocr.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Распознавание текста</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Переключить боковую панель навигации" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Поиск" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Программирование на R для филологов</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Поиск"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Введение</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./01_start.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Начало работы</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02_tabular.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Тексты как данные</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./03_ocr.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Распознавание текста</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./04_regex.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Слова и числа</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./05_xml.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Основы работы с XML</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./06_tei.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">HTML верстка</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./07_llm.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Добавление разметки с LLM</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./08_share.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Публикационная система Quarto</span></span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Содержание</h2>
+   
+  <ul>
+  <li><a href="#что-такое-ocr-и-tesseract" id="toc-что-такое-ocr-и-tesseract" class="nav-link active" data-scroll-target="#что-такое-ocr-и-tesseract"><span class="header-section-number">3.1</span> Что такое OCR и tesseract</a></li>
+  <li><a href="#данные" id="toc-данные" class="nav-link" data-scroll-target="#данные"><span class="header-section-number">3.2</span> Данные</a></li>
+  <li><a href="#вырезать-страницы" id="toc-вырезать-страницы" class="nav-link" data-scroll-target="#вырезать-страницы"><span class="header-section-number">3.3</span> Вырезать страницы</a></li>
+  <li><a href="#извлечение-текста-из-pdf" id="toc-извлечение-текста-из-pdf" class="nav-link" data-scroll-target="#извлечение-текста-из-pdf"><span class="header-section-number">3.4</span> Извлечение текста из pdf</a></li>
+  <li><a href="#распознавание" id="toc-распознавание" class="nav-link" data-scroll-target="#распознавание"><span class="header-section-number">3.5</span> Распознавание</a></li>
+  <li><a href="#файн-тюнинг" id="toc-файн-тюнинг" class="nav-link" data-scroll-target="#файн-тюнинг"><span class="header-section-number">3.6</span> Файн-тюнинг</a>
+  <ul class="collapse">
+  <li><a href="#подготовка-обучающих-данных" id="toc-подготовка-обучающих-данных" class="nav-link" data-scroll-target="#подготовка-обучающих-данных"><span class="header-section-number">3.6.1</span> Подготовка обучающих данных</a></li>
+  <li><a href="#процесс-дообучения" id="toc-процесс-дообучения" class="nav-link" data-scroll-target="#процесс-дообучения"><span class="header-section-number">3.6.2</span> Процесс дообучения</a></li>
+  <li><a href="#установка-модели" id="toc-установка-модели" class="nav-link" data-scroll-target="#установка-модели"><span class="header-section-number">3.6.3</span> Установка модели</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Распознавание текста</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>В этом уроке мы освоим основной инструмент для распознавания печатного текста в R – пакет <code>tesseract</code>, а также научимся дообучать модели под конкретные задачи и шрифты.</p>
+<section id="что-такое-ocr-и-tesseract" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="что-такое-ocr-и-tesseract"><span class="header-section-number">3.1</span> Что такое OCR и tesseract</h2>
+<p>OCR (Optical Character Recognition) — это технология автоматического распознавания печатного текста на изображениях и преобразования его в машинно-читаемый формат. Эта технология позволяет “извлекать” текст из сканированных документов, фотографий, PDF-файлов и других графических форматов.</p>
+<p>Tesseract — это одна из самых популярных библиотек OCR с открытым исходным кодом, разработанная компанией Google. Tesseract поддерживает более 100 языков и может работать с различными типами изображений и форматами документов.</p>
+<p>Пакет <code>tesseract</code> в R представляет собой обертку для библиотеки Tesseract, которая позволяет:</p>
+<ul>
+<li>Распознавать текст с изображений различных форматов (PNG, JPEG, TIFF, PDF)</li>
+<li>Работать с многостраничными документами</li>
+<li>Использовать предобученные модели для разных языков (<a href="https://tesseract-ocr.github.io/tessdoc/Data-Files.html">список</a>)</li>
+<li>Настраивать параметры распознавания под конкретные задачи</li>
+<li>Дообучать модели для улучшения качества распознавания специфических шрифтов или типов документов</li>
+</ul>
+<p>В отличие от онлайн-сервисов OCR, пакет <code>tesseract</code> работает локально, что обеспечивает:</p>
+<ul>
+<li>Конфиденциальность — данные не передаются третьим лицам</li>
+<li>Скорость — нет задержек на передачу данных по сети</li>
+<li>Настраиваемость — возможность тонкой настройки под конкретные задачи</li>
+<li>Интеграция — seamless integration с экосистемой R для дальнейшего анализа данных</li>
+</ul>
+<p>Однако качество распознавания сильно зависит от качества исходного изображения, типа шрифта, языка документа и правильности настройки параметров. Именно поэтому важно уметь не только использовать готовые модели, но и дообучать их под специфические задачи.</p>
+</section>
+<section id="данные" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="данные"><span class="header-section-number">3.2</span> Данные</h2>
+<p>В качестве упражнения мы возьмем ч. 6 № 6 журнала “Невский зритель” за 1821 г. (<a href="http://lib.pushkinskijdom.ru/Default.aspx?tabid=11373">источник</a>).</p>
+<p>Журнал «Невский зритель» издавался в Петербурге ежемесячно с января 1820 г. по июнь 1821 г. Всего вышло 18 книжек журнала, составивших 6 частей. Все они доступны на сайте “Пушкинского дома”.</p>
+<p>Официальным издателем журнала был выпускник Московского университета Иван Матвеевич Сниткин (род. ок. 1792 г.). С января по апрель 1820 г. соиздателем «Невского зрителя» был В. К. Кюхельбекер; намеревался войти в число издателей и К. Ф. Рылеев (1797-1826), активный сотрудник журнала с октября 1820-го по февраль 1821 г.</p>
+<p>В научной литературе не сложилось единого взгляда на идеологическую и литературно-критическую направленность журнала.</p>
+<p>Разногласия в оценках объясняются противоречивостью статей, помещенных на страницах журнала за время его существования. Некоторые исследователи относят «Невский зритель» к кругу изданий декабристской ориентированности. «Невский зритель» оказался заметным явлением в журналистике 20-х гг. 19-го века, в нем печатались произведения Пушкина: стихотворения «Дориде» (№ 1. С. 96), «Дорида» (№ 2. С. 92), «Кюхельбекеру» («В последний раз, в сени уединенья»), «Прелестнице», «Мадригал М…ой» (все три: № 4. С. 66-68), отрывок из первой песни «Руслана и Людмилы», стихотворения Кюхельбекера, Жуковского, Баратынского, Дельвига, Рылеева, поместившего в октябрьской книжке 1820 г. острейшую сатиру на Аракчеева «К временщику».</p>
+<p>Современные исследователи «Невского зрителя» выделяют два периода в эволюции журнала. Первый - январь-апрель 1820 г. Ведущий сотрудник в разделах «Литература» и «Критика» - Кюхельбекер; активно печатаются Пушкин, Баратынский, Дельвиг. Второй период - май-сентябрь 1820 г. Полностью прекращается сотрудничество с журналом всей группы молодых литераторов. Журнал наводняется эпигонскими произведениями Д. Хвостова, Ф. Синельникова, Г. П. Кругликова и М. А. Яковлева. В разделе «Критика» звучат громкие дифирамбы Хвостову. В этот же период появляется статья о «Руслане и Людмиле» с резкими нападками на поэму. (<a href="https://www.gorkilib.ru/events/200-let-zhurnalu-nevskiy-zritel">Источник описания</a>.)</p>
+</section>
+<section id="вырезать-страницы" class="level2" data-number="3.3">
+<h2 data-number="3.3" class="anchored" data-anchor-id="вырезать-страницы"><span class="header-section-number">3.3</span> Вырезать страницы</h2>
+<p>Для упражнения мы возьмем пока лишь 2 страницы из всего выпуска. Легко вырезать их в R можно так:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(qpdf)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>my_files <span class="ot">&lt;-</span> <span class="fu">list.files</span>(<span class="st">"../ocr"</span>, <span class="at">pattern =</span> <span class="st">"pdf"</span>, <span class="at">full.names =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>my_files</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "../ocr/recognize_my_pdf.py"                       
+[2] "../ocr/Невский зритель. 1821. Ч. 6. № 6. Июнь.pdf"
+[3] "../ocr/НЗ1821_6_6[50-51].pdf"                     </code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pdf_subset</span>(<span class="at">input =</span> my_files[<span class="dv">2</span>],</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>           <span class="at">output =</span> <span class="st">"../ocr/НЗ1821_6_6[50-51].pdf"</span>,</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">pages =</span> <span class="dv">50</span><span class="sc">:</span><span class="dv">51</span>)</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div>
+
+</div>
+<div class="quarto-layout-panel" data-layout-ncol="2">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<p><img src="./images/rosalia1.png" class="img-fluid"></p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<p><img src="./images/rosalia2.png" class="img-fluid"></p>
+</div>
+</div>
+</div>
+</section>
+<section id="извлечение-текста-из-pdf" class="level2" data-number="3.4">
+<h2 data-number="3.4" class="anchored" data-anchor-id="извлечение-текста-из-pdf"><span class="header-section-number">3.4</span> Извлечение текста из pdf</h2>
+<p>Если вам повезло, то pdf хранит уже распознанный текст.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(pdftools)</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Using poppler version 23.04.0</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tesseract)</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>text1 <span class="ot">&lt;-</span> <span class="fu">pdf_text</span>(<span class="at">pdf =</span> <span class="st">"../ocr/НЗ1821_6_6[50-51].pdf"</span>)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(text1)</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>ЭЭСЮЭЭЭЭЭСКЮЭЭЭЭЭСЮС»ЭЭЭ&lt;Э&lt;ЗС&gt;Э(ІЭ(99ЭС933 э о э з о з э з э
+
+                   РАЗЛУКА.
+                     ( Э л е г і я ,)
+
+
+
+Розалія, мой спутникъ неизмѣнный
+     На полѣ радостей земныхъ!
+Розалія, мой другъ, хранитель несравненный!
+Когда я отдохну въ объятіяхъ твоихъ? . •.
+Съ тобою горестей душа моя незнаетъ,
+И сердцу скорбному не измѣнитъ покой!
+Надежда мрачный путь звѣздою озаряетъ,
+     И я мирюсь съ враждебною судьбой! . . •
+Теперь, за дальними, свирѣпыми морями
+  Твой сладкій гласъ не оживитъ меня!
+Взойдетъ заря надъ злачными холмами,
+  Появится въ лучахъ свѣтило дня —
+  Напрасно! все кругомъ покрыто мглою.
+  Неслышится мнѣ сладкій ігівой привѣтъ.
+  Всѣ радости, надежды всѣ съ тобою —
+     И опустѣлъ безъ милой свѣтъ!
+Подруга милая, скажи, что край прелестный,
+   Что мирныя, тѣнисты я поля,
+Что своенравныя судьбы привѣтъ мнѣ лестный,
+     Когда съ тобой въ разлукѣ я.
+     Но другъ мои! горесть отл етаетъ
+                     243
+
+    На быстрыхъ времени крылахъ,
+    И радость сердце посѣщ аетъ. . . .
+    Моя надежда — въ небесахъ!. . .
+  Когдажъ опять смягченными судьбами
+  Я въ радости къ подругѣ понесусь,
+Коснусь волшебныхъ струнъ волшебными пер
+                                       стами
+  И, съ рѣзвою мечтою примирюсь.
+
+                             А, Б   —   фЪ.</code></pre>
+</div>
+</div>
+<p>Текст распознан достаточно хорошо, есть мелкие ошибки, но их можно исправить (о чем речь пойдет в следующем уроке). Если необходимо сохранить извлеченный из pdf текст для дальнейшей работы, это делается так:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">writeLines</span>(text1, <span class="at">con =</span> <span class="st">"../ocr/rosalia.txt"</span>)</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="распознавание" class="level2" data-number="3.5">
+<h2 data-number="3.5" class="anchored" data-anchor-id="распознавание"><span class="header-section-number">3.5</span> Распознавание</h2>
+<p>Если текст не распознан (притворимся, что так и есть), то можно попробовать распознать при помощи tesseract. Однако есть нюанс: tesseract не знает дореформенного русского. Это значит, что все яти (ѣ), еры (ъ), фита (Ѳ) и десятеричное и (і) превратятся во что-то другое. А еще трудности бывают с буквой “т”, т.к. в XIX в. ее печатали по-другому.</p>
+<p>Проверим. Но прежде всего, надо скачать модель для русского языка. Это делается один раз. Кстати, тессеракт способен “читать” тексты на нескольких языках, для этого передаем значение аргументу language так: “rus+deu”.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># tesseract_download("rus")</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>text2 <span class="ot">&lt;-</span> <span class="fu">pdf_ocr_text</span>(<span class="st">"../ocr/НЗ1821_6_6[50-51].pdf"</span>, <span class="at">language =</span> <span class="st">"rus"</span>)</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Converting page 1 to НЗ1821_6_6[50-51]_1.png... done!
+Converting page 2 to НЗ1821_6_6[50-51]_2.png... done!</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(text2)</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>999939993993999999339993399999939939 9039303939
+РАЗЛУКА.
+(Элегтя.)
+————-
+Розамя, мой спушникъь неизмённый
+На полЪ радосшей земныхь!
+Розал!я, мой другь, хранишель несравненный!
+Когда я ошдохну въ объяпияхь швоихъ?...
+Съ шобою горестей душа моя незнаеть,
+И сердцу скорбному не измЪнить покой!
+Надежда мрачный пушь звЪздою озаряепть,
+И я мирюсь съ враждебною судьбой!...
+’Геперь, за дальними, свиофпыми морями
+Твой сладк!й гласъ не оживишьъ меня!
+Взойдеть заря надъ злачными холмами,
+Появишся въ лучахъ свЪшило дня —
+Напрасно! все кругомъ покрыпю мглою.
+Неслышишся мнЪ сладюй тивой привЪфить,
+ВсЪ5 радосши, надежды всЪ съ шобою —
+И опусш$ль безъ милой свЪзить’
+Подруга милая, скажи, чшо край прелесшный,
+Чпо мирвыя, тифвисптыя поля,
+Чтпо своенравныя судьбы привЪтьъ мн лесшный,
+Когда съ шобой въ разлук я.
+Но другь мой! горесмь ошленаепть
+ 245
+На бысшрыхь времени крылахь,
+И радосшь сердце посфщаеть....
+Моя надежда — въ небесахь!...
+Когдажъ опяшь смягченными судьбами
+Я въ радосши къ подругЪ понесусь,
+Коснусь волшебныхь сшрунь волшебными пер-
+сшами
+И, сь рфзвою мечтшою примирюсь.
+Я, Б — $5.</code></pre>
+</div>
+</div>
+<p>Что в таких случаях делать?</p>
+<ul>
+<li><p>Первое: проверить, нет ли обученных моделей, которые справятся с вашей задачей. Я попробовала, например, <a href="https://huggingface.co/Serovvans/trocr-prereform-orthography">модель</a> для распознавания дореформенной орфографии с Hugging Face, но результат оказался очень печальным, я даже не буду его показывать. Это может быть связано с тем, что шрифт в нашем журнале отличается от тех, на которых учили модель.</p></li>
+<li><p>Обученные модели можно также поискать в Транскрибусе (например, <a href="https://app.transkribus.org/models/public/text/russian-print-xviii-cent">здесь</a> и <a href="https://app.transkribus.org/models/public/text/44358">здесь</a>). Чтобы воспользоваться готовыми приложениями для распознавания шрифта, pdf надо преобразовать в картинку. Попробуйте.</p></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pdf_convert</span>(<span class="st">"../ocr/НЗ1821_6_6[50-51].pdf"</span>, </span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>            <span class="at">format =</span> <span class="st">"png"</span>, </span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>            <span class="at">dpi =</span> <span class="dv">300</span>,</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">pages =</span> <span class="cn">NULL</span>,  <span class="co"># все страницы, или c(1,3,5) для конкретных</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">filenames =</span> <span class="cn">NULL</span>)</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Результат неплохой, и для небольших проектов подойдет. Но у Транскрибуса есть ряд ограничений: модели нельзя использовать локально, расширенный функционал платный, и др.</p>
+<blockquote class="blockquote">
+<p>Transkribus — платформа для оцифровки и распознавания текста на основе технологии HTR (Handwritten Text Recognition), которая позволяет обучать специальные модули (англ. models) распознавания текста. Обученные модули способны распознавать рукописные, машинописные и печатные документы на самых разных языках, в частности, на классическом сирийском — одном из главных языков восточного христианства. (<a href="https://sysblok.ru/digital-heritage/transkribus-kak-kompjuternoe-zrenie-pomogaet-perevodit-teksty-sirijskih-mistikov/">Источник</a>)</p>
+</blockquote>
+<ul>
+<li>Наконец, можно дообучить уже существующую модель tesseract, как показано вот в этом <a href="https://arcruz0.github.io/posts/finetuning-tess/index.html">примере</a>.</li>
+</ul>
+</section>
+<section id="файн-тюнинг" class="level2" data-number="3.6">
+<h2 data-number="3.6" class="anchored" data-anchor-id="файн-тюнинг"><span class="header-section-number">3.6</span> Файн-тюнинг</h2>
+<p>Начиная с версии 4, Tesseract использует нейронную сеть для распознавания текста, что позволяет дообучать модель для конкретных задач.</p>
+<p>Для дообучения необходимы эталонные данные — фрагменты изображений с соответствующим им текстом.</p>
+<section id="подготовка-обучающих-данных" class="level3" data-number="3.6.1">
+<h3 data-number="3.6.1" class="anchored" data-anchor-id="подготовка-обучающих-данных"><span class="header-section-number">3.6.1</span> Подготовка обучающих данных</h3>
+<p><strong>Шаг 1: Подготовка изображений</strong></p>
+<p>Создайте папку с именем <code>{язык}-ground-truth/</code> (например, <code>orus-ground-truth/</code>) и поместите туда скриншоты текста. Названия файлов могут быть любыми.</p>
+<p>В моем случае – это все пять скриншотов, лучше сделать несколько десятков. Выглядят они так:</p>
+<p><img src="./images/ground_truth1.png" class="img-fluid"> <img src="./images/ground_truth2.png" class="img-fluid"></p>
+<p><strong>Шаг 2: Использование пакета tesseractgt</strong></p>
+<p>Теперь для каждого изображения добавим текст (файлы в формате <code>.gt.txt</code>). Для ускорения процесса создания эталонных файлов можно использовать специальный пакет:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages("remotes")</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>remotes<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">"arcruz0/tesseractgt"</span>)</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Для создание таких файлов используем базовую модель.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tesseractgt)</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">create_gt_txt</span>(</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">folder =</span> <span class="st">"../ocr/orus-ground-truth"</span>,</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">extension =</span> <span class="st">"png"</span>, </span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">engine =</span> tesseract<span class="sc">::</span><span class="fu">tesseract</span>(<span class="at">language =</span> <span class="st">"rus"</span>)</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Убедитесь, что файлы появились в директории.</p>
+<p><strong>Шаг 3: Корректировка текстовых файлов</strong></p>
+<p>Исправьте автоматически созданные файлы <code>.gt.txt</code> вручную:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">correct_gt_txt</span>() </span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><img src="https://arcruz0.github.io/posts/finetuning-tess/imgs/addin.gif" class="img-fluid"></p>
+<p>Если не видно папки с изображениями, смените рабочую директорию.</p>
+</section>
+<section id="процесс-дообучения" class="level3" data-number="3.6.2">
+<h3 data-number="3.6.2" class="anchored" data-anchor-id="процесс-дообучения"><span class="header-section-number">3.6.2</span> Процесс дообучения</h3>
+<p><strong>1. Клонируйте репозиторий <code>tesstrain</code></strong>:</p>
+<pre><code>git clone https://github.com/tesseract-ocr/tesstrain.git
+cd tesstrain
+make tesseract-langdata</code></pre>
+<p><strong>2. Переместите папку с данными</strong>:</p>
+<pre><code>mv ~/location/alg-ground-truth data</code></pre>
+<p><strong>3. Запуск дообучения</strong></p>
+<pre><code>make training MODEL_NAME=alg START_MODEL=eng FINETUNE_TYPE=Impact</code></pre>
+<p>На этом этапе у меня возникли сложности из-за того, что не был установлен <code>make</code>, также пришлось добавить аргумент LANG_TYPE.</p>
+<pre><code>gmake training MODEL_NAME=orus START_MODEL=rus FINETUNE_TYPE=Impact LANG_TYPE=Both</code></pre>
+<p>Дообучение занимает несколько минут.</p>
+</section>
+<section id="установка-модели" class="level3" data-number="3.6.3">
+<h3 data-number="3.6.3" class="anchored" data-anchor-id="установка-модели"><span class="header-section-number">3.6.3</span> Установка модели</h3>
+<p>Найдите системную папку Tesseract:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>tesseract<span class="sc">::</span><span class="fu">tesseract_info</span>()<span class="sc">$</span>datapath</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "/Users/olga/Library/Application Support/tesseract5/tessdata/"</code></pre>
+</div>
+</div>
+<p>Скопируйте сюда новую модель <code>orus.traindata</code>.</p>
+<p>Проверьте доступные модели:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>tesseract<span class="sc">::</span><span class="fu">tesseract_info</span>()<span class="sc">$</span>available</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "deu"  "eng"  "grc"  "lat"  "orus" "osd"  "rus"  "snum"</code></pre>
+</div>
+</div>
+<p>После дообучения можно использовать новую модель:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>text3 <span class="ot">&lt;-</span> <span class="fu">pdf_ocr_text</span>(<span class="st">"../ocr/НЗ1821_6_6[50-51].pdf"</span>, <span class="at">language =</span> <span class="st">"orus"</span>)</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Converting page 1 to НЗ1821_6_6[50-51]_1.png... done!
+Converting page 2 to НЗ1821_6_6[50-51]_2.png... done!</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(text3)</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>птт395$900990300&gt;9000093000ОВ9200080 900306080
+РАЗЛУК @ЧД,.
+(Эляегтля.)
+——-————
+Розамя, мой спутникъ неизмБнный
+На пол&amp; радостей земныхъ!
+Розамя, мой другъ, хранишель несравненный!
+Когда я отдохну въ объяпияхь тшвоихъ?...
+Съ тобою горестей душа моя незнаетъ,
+И сердцу скорбному не измЪнить покой!
+Надежда мрачный путь звБздою озаряеть,
+И я мирюсь съ враждебною судьбой!...
+Теперь, за дальними, свиръпыми морями
+Твой сладктй глась не оживишьъ меня!
+Взойдеть заря надь злачными холмами,
+Появится въ лучакъь свЪытило дня —
+Напрасно! ксе кругомъ покрыто мглою.
+Неслышится мнЪ сладкй тшвой привЪтьъ,
+ВсЪ радости, надежды всЪ сь тобою —
+И опустль безъ милой свЪътъ!
+Подруга милая, скажи, что край прелестный,
+Что мирныя, тФнистыя поля,
+Что своенравныя судьбы привЪтъ мнЪ лестный,
+Когда сь тобой въ разлукЪ я.
+Но другь мой! горесть отлетаетьъ
+ 242
+На быстрыхъ времени крылахьъ,
+И радость сердце посвбщаеть...,
+Моя надежда — въ небесахь!...
+Когдажь опять смятченными судьбами
+Я въ радости къ подругЪ понесусь,
+Коснусь волшебныхъь струнь волшебными пер-
+стами
+И, сь рБзвою мечтою примирюсь.
+А., Б — фё.</code></pre>
+</div>
+</div>
+<p>Таким образом, дообучение Tesseract позволяет улучшить качество распознавания специализированных текстов; для лучшего результата используйте больше обучающих данных (чем больше, тем лучше). Пакет <code>tesseractgt</code> существенно упрощает процесс подготовки обучающих данных.</p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Скопировано");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Скопировано");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./02_tabular.html" class="pagination-link" aria-label="Тексты как данные">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Тексты как данные</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./04_regex.html" class="pagination-link" aria-label="Слова и числа">
+        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Слова и числа</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
