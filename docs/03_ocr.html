@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>3&nbsp; Распознавание текста – Программирование на R для филологов</title>
+<title>3&nbsp; Распознавание изображений – Программирование на R для филологов</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -117,7 +117,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Переключить боковую панель навигации" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./03_ocr.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Распознавание текста</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./03_ocr.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Распознавание изображений</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Переключить боковую панель навигации" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Поиск" onclick="window.quartoOpenSearch();">
@@ -157,19 +157,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./02_tabular.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Тексты как данные</span></span></a>
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Табличные данные. Анализ датасета</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./03_ocr.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Распознавание текста</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Распознавание изображений</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./04_regex.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Слова и числа</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Нормализация. Регулярные выражение</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -225,7 +225,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Распознавание текста</span></h1>
+<h1 class="title"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Распознавание изображений</span></h1>
 </div>
 
 
@@ -445,7 +445,8 @@ Converting page 2 to НЗ1821_6_6[50-51]_2.png... done!</code></pre>
 <p><strong>Шаг 1: Подготовка изображений</strong></p>
 <p>Создайте папку с именем <code>{язык}-ground-truth/</code> (например, <code>orus-ground-truth/</code>) и поместите туда скриншоты текста. Названия файлов могут быть любыми.</p>
 <p>В моем случае – это все пять скриншотов, лучше сделать несколько десятков. Выглядят они так:</p>
-<p><img src="./images/ground_truth1.png" class="img-fluid"> <img src="./images/ground_truth2.png" class="img-fluid"></p>
+<p><img src="./images/ground_truth1.png" class="img-fluid"> <img src="./images/ground_truth2.png" class="img-fluid"> NB: Более продвинутый подход к нарезке изображений см. <a href="https://github.com/ukolshurika/finetune-ocr-sample">здесь</a>. Разрезать изображение на отдельные слова можно и в R – пример мы рассмотрим на занятии.</p>
+<p><img src="./images/words_view.png" class="img-fluid"></p>
 <p><strong>Шаг 2: Использование пакета tesseractgt</strong></p>
 <p>Теперь для каждого изображения добавим текст (файлы в формате <code>.gt.txt</code>). Для ускорения процесса создания эталонных файлов можно использовать специальный пакет:</p>
 <div class="cell">
@@ -481,7 +482,9 @@ make tesseract-langdata</code></pre>
 <p><strong>3. Запуск дообучения</strong></p>
 <pre><code>make training MODEL_NAME=alg START_MODEL=eng FINETUNE_TYPE=Impact</code></pre>
 <p>На этом этапе у меня возникли сложности из-за того, что не был установлен <code>make</code>, также пришлось добавить аргумент LANG_TYPE.</p>
-<pre><code>gmake training MODEL_NAME=orus START_MODEL=rus FINETUNE_TYPE=Impact LANG_TYPE=Both</code></pre>
+<pre><code>brew install make # для Mac
+
+gmake training MODEL_NAME=orus START_MODEL=rus FINETUNE_TYPE=Impact LANG_TYPE=Both</code></pre>
 <p>Дообучение занимает несколько минут.</p>
 </section>
 <section id="установка-модели" class="level3" data-number="3.6.3">
@@ -973,13 +976,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./02_tabular.html" class="pagination-link" aria-label="Тексты как данные">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Тексты как данные</span></span>
+      <a href="./02_tabular.html" class="pagination-link" aria-label="Табличные данные. Анализ датасета">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Табличные данные. Анализ датасета</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./04_regex.html" class="pagination-link" aria-label="Слова и числа">
-        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Слова и числа</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./04_regex.html" class="pagination-link" aria-label="Нормализация. Регулярные выражение">
+        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Нормализация. Регулярные выражение</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
