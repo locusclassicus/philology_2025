@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>4&nbsp; Нормализация. Регулярные выражение – Программирование на R для филологов</title>
+<title>4&nbsp; Нормализация. Регулярные выражения – Программирование на R для филологов</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -19,6 +19,40 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -68,6 +102,8 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Поиск"
   }
 }</script>
+<link href="site_libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet">
+<script src="site_libs/pagedtable-1.1/js/pagedtable.js"></script>
 
 
 </head>
@@ -81,7 +117,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Переключить боковую панель навигации" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./04_regex.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Нормализация. Регулярные выражение</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./04_regex.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Нормализация. Регулярные выражения</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Переключить боковую панель навигации" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Поиск" onclick="window.quartoOpenSearch();">
@@ -133,7 +169,7 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./04_regex.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Нормализация. Регулярные выражение</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Нормализация. Регулярные выражения</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -165,15 +201,34 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Содержание</h2>
+   
+  <ul>
+  <li><a href="#литералы-и-классы" id="toc-литералы-и-классы" class="nav-link active" data-scroll-target="#литералы-и-классы"><span class="header-section-number">4.1</span> Литералы и классы</a></li>
+  <li><a href="#якоря" id="toc-якоря" class="nav-link" data-scroll-target="#якоря"><span class="header-section-number">4.2</span> Якоря</a></li>
+  <li><a href="#метасимволы" id="toc-метасимволы" class="nav-link" data-scroll-target="#метасимволы"><span class="header-section-number">4.3</span> Метасимволы</a></li>
+  <li><a href="#экранирование" id="toc-экранирование" class="nav-link" data-scroll-target="#экранирование"><span class="header-section-number">4.4</span> Экранирование</a></li>
+  <li><a href="#квантификация" id="toc-квантификация" class="nav-link" data-scroll-target="#квантификация"><span class="header-section-number">4.5</span> Квантификация</a></li>
+  <li><a href="#жадная-и-ленивая-квантификация" id="toc-жадная-и-ленивая-квантификация" class="nav-link" data-scroll-target="#жадная-и-ленивая-квантификация"><span class="header-section-number">4.6</span> Жадная и ленивая квантификация</a></li>
+  <li><a href="#str_length-и-str_c" id="toc-str_length-и-str_c" class="nav-link" data-scroll-target="#str_length-и-str_c"><span class="header-section-number">4.7</span> str_length() и str_c()</a></li>
+  <li><a href="#str_sub-и-str_sub_all" id="toc-str_sub-и-str_sub_all" class="nav-link" data-scroll-target="#str_sub-и-str_sub_all"><span class="header-section-number">4.8</span> str_sub() и str_sub_all()</a></li>
+  <li><a href="#смена-регистра" id="toc-смена-регистра" class="nav-link" data-scroll-target="#смена-регистра"><span class="header-section-number">4.9</span> Смена регистра</a></li>
+  <li><a href="#сумма-и-среднее" id="toc-сумма-и-среднее" class="nav-link" data-scroll-target="#сумма-и-среднее"><span class="header-section-number">4.10</span> Сумма и среднее</a></li>
+  <li><a href="#отрицание" id="toc-отрицание" class="nav-link" data-scroll-target="#отрицание"><span class="header-section-number">4.11</span> Отрицание</a></li>
+  <li><a href="#str_extract-str_subset-и-str_match" id="toc-str_extract-str_subset-и-str_match" class="nav-link" data-scroll-target="#str_extract-str_subset-и-str_match"><span class="header-section-number">4.12</span> str_extract(), str_subset() и str_match()</a></li>
+  <li><a href="#диакритика" id="toc-диакритика" class="nav-link" data-scroll-target="#диакритика"><span class="header-section-number">4.13</span> Диакритика</a></li>
+  <li><a href="#str_split" id="toc-str_split" class="nav-link" data-scroll-target="#str_split"><span class="header-section-number">4.14</span> str_split</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Нормализация. Регулярные выражение</span></h1>
+<h1 class="title"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Нормализация. Регулярные выражения</span></h1>
 </div>
 
 
@@ -190,9 +245,884 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<p>Есть старая шутка, ее приписывают программисту Джейми Завински: если у вас есть проблема, и вы собираетесь ее решать при помощи регулярных выражений, то у вас две проблемы. Регулярные выражения – это формальный язык, который используется для того, чтобы находить, извлекать и заменять части текста.</p>
+<p>Регулярные выражения (regex, regexp) объединяют <em>буквальные символы</em> (литералы) и <em>метасимволы</em> (символы-джокеры, англ. wildcard characters).</p>
+<p>Для поиска используется строка-образец (англ. pattern, по-русски её часто называют “шаблоном”, “маской”), которая задает правило поиска. Строка замены также может содержать в себе специальные символы.</p>
+<p>Отличный путеводитель по миру регулярных выражений можно найти <a href="https://cran.r-project.org/web/packages/stringr/vignettes/regular-expressions.html">здесь</a>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="литералы-и-классы" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="литералы-и-классы"><span class="header-section-number">4.1</span> Литералы и классы</h2>
+<p>Буквальные символы – это то, что вы ожидаете увидеть (или не увидеть – для управляющих и пробельных символов); можно сказать, что это символы, которые ничего не “имеют в виду”. Их можно объединять в классы при помощи квадратных скобок, например, так: <code>[abc]</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(stringr)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>vec <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"a"</span>, <span class="st">"d"</span>, <span class="st">"c"</span>)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co"># возвращает TRUE/FALSE</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="fu">str_detect</span>(vec, <span class="st">"[abc]"</span>)</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1]  TRUE FALSE  TRUE</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># возвращает индексы совпадений  </span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str_which</span>(vec, <span class="st">"[abc]"</span>)</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1 3</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># возвращает сами совпадающие элементы</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str_subset</span>(vec, <span class="st">"[abc]"</span>)</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "a" "c"</code></pre>
+</div>
+</div>
+<p>Для некоторых классов есть специальные обозначения.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 29%">
+<col style="width: 41%">
+<col style="width: 29%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Класс</th>
+<th>Эквивалент</th>
+<th>Значение</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>[:upper:]</td>
+<td>[A-Z]</td>
+<td>Символы верхнего регистра</td>
+</tr>
+<tr class="even">
+<td>[:lower:]</td>
+<td>[a-z]</td>
+<td>Символы нижнего регистра</td>
+</tr>
+<tr class="odd">
+<td>[:alpha:]</td>
+<td>[[:upper:][:lower:]]</td>
+<td>Буквы</td>
+</tr>
+<tr class="even">
+<td>[:digit:]</td>
+<td>[0-9], т. е. \d</td>
+<td>Цифры</td>
+</tr>
+<tr class="odd">
+<td>[:alnum:]</td>
+<td>[[:alpha:][:digit:]]</td>
+<td>Буквы и цифры</td>
+</tr>
+<tr class="even">
+<td>[:word:]</td>
+<td>[[:alnum:]_], т. е. \w</td>
+<td>Символы, образующие «слово»</td>
+</tr>
+<tr class="odd">
+<td>[:punct:]</td>
+<td>[-!“#$%&amp;’()*+,./:;&lt;=&gt;?@[\]_`{|}~]</td>
+<td>Знаки пунктуации</td>
+</tr>
+<tr class="even">
+<td>[:blank:]</td>
+<td>[\s\t]</td>
+<td>Пробел и табуляция</td>
+</tr>
+<tr class="odd">
+<td>[:space:]</td>
+<td>[[:blank:]\v\r\n\f], т. е. \s</td>
+<td>Пробельные символы</td>
+</tr>
+<tr class="even">
+<td>[:cntrl:]</td>
+<td></td>
+<td>Управляющие символы (перевод строки, табуляция и т.п.)</td>
+</tr>
+<tr class="odd">
+<td>[:graph:]</td>
+<td></td>
+<td>Печатные символы</td>
+</tr>
+<tr class="even">
+<td>[:print:]</td>
+<td></td>
+<td>Печатные символы с пробелом</td>
+</tr>
+</tbody>
+</table>
+<p>Эти классы тоже можно задавать в качестве паттерна.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>vec <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"жираф"</span>, <span class="st">"верблюд1"</span>, <span class="st">"99зeбра"</span>)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="co"># заменяет все вхождения</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="fu">str_replace_all</span>(vec, <span class="st">"[[:digit:]]"</span>, <span class="st">""</span>)</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "жираф"   "верблюд" "зeбра"  </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># заменяет только первое вхождение</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str_replace</span>(vec, <span class="st">"[[:digit:]]"</span>, <span class="st">""</span>)</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "жираф"   "верблюд" "9зeбра" </code></pre>
+</div>
+</div>
+<p><br></p>
+<div class="callout callout-style-default callout-warning no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Задание
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>В пакете <code>stringr</code> есть небольшой датасет <code>words</code>. Найдите все слова с последовательностью символов wh. Сколько слов содержат два гласных после w?</p>
+</div>
+</div>
+<p><br></p>
+<p>В качестве классов можно рассматривать и следующие обозначения:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 41%">
+<col style="width: 29%">
+<col style="width: 29%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Представление</th>
+<th>Эквивалент</th>
+<th>Значение</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>\d</td>
+<td>[0-9]</td>
+<td>Цифра</td>
+</tr>
+<tr class="even">
+<td>\D</td>
+<td>[^\\d]</td>
+<td>Любой символ, кроме цифры</td>
+</tr>
+<tr class="odd">
+<td>\w</td>
+<td>[A-Za-zА-Яа-я0-9_]</td>
+<td>Символы, образующие «слово» (буквы, цифры и символ подчёркивания)</td>
+</tr>
+<tr class="even">
+<td>\W</td>
+<td>[^\\w]</td>
+<td>Символы, не образующие «слово»</td>
+</tr>
+<tr class="odd">
+<td>\s</td>
+<td>[ \t\v\r\n\f]</td>
+<td>Пробельный символ</td>
+</tr>
+<tr class="even">
+<td>\S</td>
+<td>[^\\s]</td>
+<td>Непробельный символ</td>
+</tr>
+</tbody>
+</table>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_replace_all</span>(vec, <span class="st">"</span><span class="sc">\\</span><span class="st">d"</span>,  <span class="st">""</span>) <span class="co"># вторая косая черта "экранирует" первую</span></span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "жираф"   "верблюд" "зeбра"  </code></pre>
+</div>
+</div>
+<p>Внутри квадратных скобор знак <code>^</code> означает отрицание:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_remove_all</span>(vec, <span class="st">"[^[:digit:]]"</span>) </span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] ""   "1"  "99"</code></pre>
+</div>
+</div>
+<p><br></p>
+<div class="callout callout-style-default callout-warning no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Задание
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Найдите все слова в <code>words</code>, в которых за w следует согласный. Замените всю пунктуацию в строке “tomorrow?and-tomorrow_and!tomorrow” на пробелы.</p>
+</div>
+</div>
+<p><br></p>
+</section>
+<section id="якоря" class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="якоря"><span class="header-section-number">4.2</span> Якоря</h2>
+<p>Якоря позволяют искать последовательности символов в начале или в конце строки. Знак <code>^</code> (вне квадратных скобок!) означает начало строки, а знак <code>$</code> – конец. Мнемоническое правило: <em>First you get the power (^) and then you get the money ($)</em>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>vec <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"The spring is a lovely time"</span>, </span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>         <span class="st">"Fall is a time of peace"</span>)</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="fu">str_which</span>(vec, <span class="st">"time$"</span>)</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1</code></pre>
+</div>
+</div>
+<p><br></p>
+<div class="callout callout-style-default callout-warning no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Задание
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Найдите все слова в <code>words</code>, которые заканчиваются на x. Найдите все слова, которые начинаются на b или на g.</p>
+</div>
+</div>
+<p><br></p>
+</section>
+<section id="метасимволы" class="level2" data-number="4.3">
+<h2 data-number="4.3" class="anchored" data-anchor-id="метасимволы"><span class="header-section-number">4.3</span> Метасимволы</h2>
+<p>Все метасимволы представлены в таблице ниже.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Описание</th>
+<th>Символ</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>открывающая квадратная скобка</td>
+<td>[</td>
+</tr>
+<tr class="even">
+<td>закрывающая квадратная скобка</td>
+<td>]</td>
+</tr>
+<tr class="odd">
+<td>обратная косая черта</td>
+<td>\</td>
+</tr>
+<tr class="even">
+<td>карет</td>
+<td>^</td>
+</tr>
+<tr class="odd">
+<td>знак доллара</td>
+<td>$</td>
+</tr>
+<tr class="even">
+<td>точка</td>
+<td>.</td>
+</tr>
+<tr class="odd">
+<td>вертикальная черта</td>
+<td>|</td>
+</tr>
+<tr class="even">
+<td>знак вопроса</td>
+<td>?</td>
+</tr>
+<tr class="odd">
+<td>астериск</td>
+<td>*</td>
+</tr>
+<tr class="even">
+<td>плюс</td>
+<td>+</td>
+</tr>
+<tr class="odd">
+<td>открывающая фигурная скобка</td>
+<td>{</td>
+</tr>
+<tr class="even">
+<td>закрывающая фигурная скобка</td>
+<td>}</td>
+</tr>
+<tr class="odd">
+<td>открывающая круглая скобка</td>
+<td>(</td>
+</tr>
+<tr class="even">
+<td>закрывающая круглая скобка</td>
+<td>)</td>
+</tr>
+</tbody>
+</table>
+<p>Квадратные скобки используются для создания классов, карет и знак доллара – это якоря, но карет внутри квадратных скобок может также быть отрицанием. Точка – это любой знак.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>vec <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"жираф"</span>, <span class="st">"верблюд1"</span>, <span class="st">"0зебра"</span>)</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str_subset</span>(vec, <span class="st">".б"</span>) </span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "верблюд1" "0зебра"  </code></pre>
+</div>
+</div>
+<p><br></p>
+<div class="callout callout-style-default callout-warning no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Задание
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Найдите все слова в <code>words</code>, в которых есть любые два символа между b и k.</p>
+</div>
+</div>
+<p><br></p>
+</section>
+<section id="экранирование" class="level2" data-number="4.4">
+<h2 data-number="4.4" class="anchored" data-anchor-id="экранирование"><span class="header-section-number">4.4</span> Экранирование</h2>
+<p>Если необходимо найти буквальную точку, буквальный знак вопроса и т.п., то используется экранирование: перед знаком ставится косая черта. Но так как сама косая черта – это метасимвол, но нужно две косые черты, первая из которых экранирует вторую.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>vec <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"жираф?"</span>, <span class="st">"верблюд."</span>, <span class="st">"зебра"</span>)</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str_subset</span>(vec, <span class="st">"</span><span class="sc">\\</span><span class="st">?"</span>) </span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "жираф?"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_subset</span>(vec, <span class="st">"</span><span class="sc">\\</span><span class="st">."</span>)</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "верблюд."</code></pre>
+</div>
+</div>
+<p><br></p>
+<div class="callout callout-style-default callout-warning no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Задание
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Узнайте, все ли предложения в sentences (входит в stringr) кончаются на точку.</p>
+</div>
+</div>
+<p><br></p>
+</section>
+<section id="квантификация" class="level2" data-number="4.5">
+<h2 data-number="4.5" class="anchored" data-anchor-id="квантификация"><span class="header-section-number">4.5</span> Квантификация</h2>
+<p>Квантификатор после символа, символьного класса или группы определяет, сколько раз предшествующее выражение может встречаться. Квантификатор может относиться более чем к одному символу в регулярном выражении, только если это символьный класс или группа.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Представление</th>
+<th>Число повторений</th>
+<th>Эквивалент</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>?</td>
+<td>Ноль или одно</td>
+<td>{0,1}</td>
+</tr>
+<tr class="even">
+<td>*</td>
+<td>Ноль или более</td>
+<td>{0,}</td>
+</tr>
+<tr class="odd">
+<td>+</td>
+<td>Одно или более</td>
+<td>{1,}</td>
+</tr>
+</tbody>
+</table>
+<p>Пример:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>vec <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"color"</span>, <span class="st">"colour"</span>, <span class="st">"colouur"</span>)</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str_detect</span>(vec, <span class="st">"ou?r"</span>) <span class="co"># ноль или одно </span></span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1]  TRUE  TRUE FALSE</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_detect</span>(vec, <span class="st">"ou+r"</span>) <span class="co"># одно или больше</span></span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] FALSE  TRUE  TRUE</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_detect</span>(vec, <span class="st">"ou*r"</span>) <span class="co"># ноль или больше</span></span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] TRUE TRUE TRUE</code></pre>
+</div>
+</div>
+<p>Точное число повторений (интервал) можно задать в фигурных скобках:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Представление</th>
+<th>Число повторений</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>{n}</td>
+<td>Ровно n раз</td>
+</tr>
+<tr class="even">
+<td>{m,n}</td>
+<td>От m до n включительно</td>
+</tr>
+<tr class="odd">
+<td>{m,}</td>
+<td>Не менее m</td>
+</tr>
+<tr class="even">
+<td>{,n}</td>
+<td>Не более n</td>
+</tr>
+</tbody>
+</table>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>vec <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"color"</span>, <span class="st">"colour"</span>, <span class="st">"colouur"</span>, <span class="st">"colouuuur"</span>)</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str_detect</span>(vec, <span class="st">"ou{1}r"</span>)</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] FALSE  TRUE FALSE FALSE</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_detect</span>(vec, <span class="st">"ou{1,2}r"</span>)</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] FALSE  TRUE  TRUE FALSE</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_detect</span>(vec, <span class="st">"ou{0,2}r"</span>) <span class="co"># это включает и ноль!</span></span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1]  TRUE  TRUE  TRUE FALSE</code></pre>
+</div>
+</div>
+<p>Часто используется последовательность <code>.*</code> для обозначения любого количества любых символов между двумя частями регулярного выражения.</p>
+<div class="callout callout-style-default callout-warning no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Задание
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Узнайте, в каких предложениях в <code>sentences</code> за пробелом следует ровно три согласных.</p>
+</div>
+</div>
+</section>
+<section id="жадная-и-ленивая-квантификация" class="level2" data-number="4.6">
+<h2 data-number="4.6" class="anchored" data-anchor-id="жадная-и-ленивая-квантификация"><span class="header-section-number">4.6</span> Жадная и ленивая квантификация</h2>
+<p>В регулярных выражениях квантификаторам соответствует максимально длинная строка из возможных (квантификаторы являются жадными, англ. greedy). Это может оказаться значительной проблемой. Например, часто ожидают, что выражение <code>&lt;.*&gt;</code> найдёт в тексте теги HTML. Однако если в тексте есть более одного HTML-тега, то этому выражению соответствует <em>целиком строка, содержащая множество тегов</em>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>vec <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"&lt;p&gt;&lt;b&gt;Википедия&lt;/b&gt; — свободная энциклопедия, в которой &lt;i&gt;каждый&lt;/i&gt; может изменить или дополнить любую статью.&lt;/p&gt;"</span>)</span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str_remove</span>(vec, <span class="st">"&lt;.*&gt;"</span>) <span class="co"># все исчезло!</span></span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] ""</code></pre>
+</div>
+</div>
+<p>Чтобы этого избежать, надо поставить после квантификатора знак вопроса. Это сделает его ленивым.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>regex</th>
+<th>значение</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>??</td>
+<td>0 или 1, лучше 0</td>
+</tr>
+<tr class="even">
+<td>*?</td>
+<td>0 или больше, как можно меньше</td>
+</tr>
+<tr class="odd">
+<td>+?</td>
+<td>1 или больше, как можно меньше</td>
+</tr>
+<tr class="even">
+<td>{n,m}?</td>
+<td>от n до m, как можно меньше</td>
+</tr>
+</tbody>
+</table>
+<p>Пример:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_remove_all</span>(vec, <span class="st">"&lt;.*?&gt;"</span>) <span class="co"># все получилось!</span></span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Википедия — свободная энциклопедия, в которой каждый может изменить или дополнить любую статью."</code></pre>
+</div>
+</div>
+<div class="callout callout-style-default callout-warning no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Задание
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Дана строка “tomorrow (and) tomorrow (and) tomorrow”. Необходимо удалить первые скобки с их содержанием.</p>
+</div>
+</div>
+</section>
+<section id="str_length-и-str_c" class="level2" data-number="4.7">
+<h2 data-number="4.7" class="anchored" data-anchor-id="str_length-и-str_c"><span class="header-section-number">4.7</span> str_length() и str_c()</h2>
+<p>Вот так можно узнать длину строки или объединить ее с другими строками:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>vec <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"жираф"</span>, <span class="st">"верблюд"</span>)</span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str_length</span>(vec)</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 5 7</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_c</span>(<span class="st">"красивый_"</span>, vec)</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "красивый_жираф"   "красивый_верблюд"</code></pre>
+</div>
+</div>
+<p>Элементы вектора можно объединить в одну строку:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_c</span>(vec, <span class="at">collapse =</span> <span class="st">", "</span>) <span class="co"># теперь у них общие кавычки</span></span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "жираф, верблюд"</code></pre>
+</div>
+</div>
+</section>
+<section id="str_sub-и-str_sub_all" class="level2" data-number="4.8">
+<h2 data-number="4.8" class="anchored" data-anchor-id="str_sub-и-str_sub_all"><span class="header-section-number">4.8</span> str_sub() и str_sub_all()</h2>
+<p>С помощью <code>str_sub()</code> и <code>str_sub_all()</code> можно выбрать часть строки<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>vec <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"жираф"</span>, <span class="st">"верблюд"</span>)</span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str_sub</span>(vec, <span class="dv">1</span>, <span class="dv">3</span>)</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "жир" "вер"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_sub</span>(vec, <span class="dv">1</span>, <span class="sc">-</span><span class="dv">2</span>)</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "жира"   "верблю"</code></pre>
+</div>
+</div>
+</section>
+<section id="смена-регистра" class="level2" data-number="4.9">
+<h2 data-number="4.9" class="anchored" data-anchor-id="смена-регистра"><span class="header-section-number">4.9</span> Смена регистра</h2>
+<p>Функции ниже меняют начертание с прописного на строчное или наоборот:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_to_upper</span>(vec)</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "ЖИРАФ"   "ВЕРБЛЮД"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_to_lower</span>(<span class="st">"HELP"</span>)</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "help"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_to_title</span>(vec)</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Жираф"   "Верблюд"</code></pre>
+</div>
+</div>
+<p>Одна из полезнейших функций в этом пакете – <code>str_view()</code>; она помогает увидеть, что поймало регулярное выражение – до того, как вы внесете какие-то изменения в строку.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_view</span>(<span class="fu">c</span>(<span class="st">"abc"</span>, <span class="st">"a.c"</span>, <span class="st">"bef"</span>), <span class="st">"a</span><span class="sc">\\</span><span class="st">.c"</span>)</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[2] │ &lt;a.c&gt;</code></pre>
+</div>
+</div>
+<p>Например, с помощью этой функции можно убедиться, что вертикальная черта выступает как логический оператор “или”:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_view</span>(<span class="fu">c</span>(<span class="st">"grey"</span>, <span class="st">"gray"</span>), <span class="st">"gr(e|a)y"</span>)</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] │ &lt;grey&gt;
+[2] │ &lt;gray&gt;</code></pre>
+</div>
+</div>
+<p><br></p>
+<div class="callout callout-style-default callout-warning no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Задание
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Создайте тиббл с двумя столбцами: letters и numbers (1:26). Преобразуйте, чтобы в третьем столбце появился результат соединения первых двух через подчеркивание, например a_1. Отфильтруйте, чтобы остались только ряды, где есть цифра 3 или буква x.</p>
+</div>
+</div>
+<p><br></p>
+</section>
+<section id="сумма-и-среднее" class="level2" data-number="4.10">
+<h2 data-number="4.10" class="anchored" data-anchor-id="сумма-и-среднее"><span class="header-section-number">4.10</span> Сумма и среднее</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rcorpora)</span>
+<span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">"fruit"</span>)</span>
+<span id="cb60-3"><a href="#cb60-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(fruit)</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "apple"       "apricot"     "avocado"     "banana"      "bell pepper"
+[6] "bilberry"   </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_detect</span>(<span class="fu">head</span>(fruit), <span class="st">"[aeiou]$"</span>)</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1]  TRUE FALSE  TRUE  TRUE FALSE FALSE</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb64"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="co"># какая доля слов заканчивается на гласный?</span></span>
+<span id="cb64-2"><a href="#cb64-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(<span class="fu">str_detect</span>(fruit, <span class="st">"[aeiou]$"</span>))</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.35</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb66"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a><span class="co"># сколько всего слов заканчивается на гласный?</span></span>
+<span id="cb66-2"><a href="#cb66-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">str_detect</span>(fruit, <span class="st">"[aeiou]$"</span>))</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 28</code></pre>
+</div>
+</div>
+</section>
+<section id="отрицание" class="level2" data-number="4.11">
+<h2 data-number="4.11" class="anchored" data-anchor-id="отрицание"><span class="header-section-number">4.11</span> Отрицание</h2>
+<p>Отрицание можно задать двумя способами:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb68"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">"words"</span>)</span>
+<span id="cb68-2"><a href="#cb68-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb68-3"><a href="#cb68-3" aria-hidden="true" tabindex="-1"></a>no_vowels1 <span class="ot">&lt;-</span> <span class="sc">!</span><span class="fu">str_detect</span>(words, <span class="st">"[aeiou]"</span>) <span class="co"># слова без гласных</span></span>
+<span id="cb68-4"><a href="#cb68-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb68-5"><a href="#cb68-5" aria-hidden="true" tabindex="-1"></a>no_vowels2 <span class="ot">&lt;-</span> <span class="fu">str_detect</span>(words, <span class="st">"^[^aeiou]+$"</span>) <span class="co"># слова без гласных</span></span>
+<span id="cb68-6"><a href="#cb68-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb68-7"><a href="#cb68-7" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(no_vowels1 <span class="sc">!=</span> no_vowels2)</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0</code></pre>
+</div>
+</div>
+<p>Логический вектор можно использовать для индексирования:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb70"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a>words[<span class="sc">!</span><span class="fu">str_detect</span>(words, <span class="st">"[aeiou]"</span>)]</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "by"  "dry" "fly" "mrs" "try" "why"</code></pre>
+</div>
+</div>
+<p>Эту функцию можно применять вместе с функцией filter() из пакета dplyr:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb72"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb72-1"><a href="#cb72-1" aria-hidden="true" tabindex="-1"></a>gods <span class="ot">&lt;-</span> <span class="fu">corpora</span>(<span class="at">which =</span> <span class="st">"mythology/greek_gods"</span>)</span>
+<span id="cb72-2"><a href="#cb72-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb72-3"><a href="#cb72-3" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">god =</span> <span class="fu">as.character</span>(gods<span class="sc">$</span>greek_gods), </span>
+<span id="cb72-4"><a href="#cb72-4" aria-hidden="true" tabindex="-1"></a>             <span class="at">i =</span> <span class="fu">seq_along</span>(god)</span>
+<span id="cb72-5"><a href="#cb72-5" aria-hidden="true" tabindex="-1"></a>             )</span>
+<span id="cb72-6"><a href="#cb72-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb72-7"><a href="#cb72-7" aria-hidden="true" tabindex="-1"></a>df <span class="sc">|&gt;</span> </span>
+<span id="cb72-8"><a href="#cb72-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">str_detect</span>(god, <span class="st">"s$"</span>))</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["god"],"name":[1],"type":["chr"],"align":["left"]},{"label":["i"],"name":[2],"type":["int"],"align":["right"]}],"data":[{"1":"Ares","2":"3"},{"1":"Artemis","2":"4"},{"1":"Dionysus","2":"7"},{"1":"Hades","2":"8"},{"1":"Hephaestus","2":"9"},{"1":"Hermes","2":"11"},{"1":"Zeus","2":"14"},{"1":"Chaos","2":"17"},{"1":"Chronos","2":"18"},{"1":"Erebus","2":"19"},{"1":"Eros","2":"20"},{"1":"Hypnos","2":"21"},{"1":"Uranus","2":"22"},{"1":"Phanes","2":"24"},{"1":"Pontus","2":"25"},{"1":"Tartarus","2":"26"},{"1":"Thanatos","2":"28"},{"1":"Nemesis","2":"31"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<p>Вариацией этой функции является <code>str_count()</code>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb73"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_count</span>(<span class="fu">as.character</span>(gods<span class="sc">$</span>greek_gods), <span class="st">"[Aa]"</span>)</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] 1 1 1 1 2 0 0 1 1 1 0 1 0 0 1 2 1 0 0 0 0 1 2 1 0 2 3 2 1 0 0</code></pre>
+</div>
+</div>
+<p>Эту функцию удобно использовать вместе с <code>mutate()</code> из <code>dplyr</code>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb75"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb75-1"><a href="#cb75-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">|&gt;</span> </span>
+<span id="cb75-2"><a href="#cb75-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb75-3"><a href="#cb75-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">vowels =</span> <span class="fu">str_count</span>(god, <span class="st">"[AEIOYaeiou]"</span>),</span>
+<span id="cb75-4"><a href="#cb75-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">consonants =</span> <span class="fu">str_count</span>(god, <span class="st">"[^AEIOYaeiou]"</span>)</span>
+<span id="cb75-5"><a href="#cb75-5" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["god"],"name":[1],"type":["chr"],"align":["left"]},{"label":["i"],"name":[2],"type":["int"],"align":["right"]},{"label":["vowels"],"name":[3],"type":["int"],"align":["right"]},{"label":["consonants"],"name":[4],"type":["int"],"align":["right"]}],"data":[{"1":"Aphrodite","2":"1","3":"4","4":"5"},{"1":"Apollo","2":"2","3":"3","4":"3"},{"1":"Ares","2":"3","3":"2","4":"2"},{"1":"Artemis","2":"4","3":"3","4":"4"},{"1":"Athena","2":"5","3":"3","4":"3"},{"1":"Demeter","2":"6","3":"3","4":"4"},{"1":"Dionysus","2":"7","3":"3","4":"5"},{"1":"Hades","2":"8","3":"2","4":"3"},{"1":"Hephaestus","2":"9","3":"4","4":"6"},{"1":"Hera","2":"10","3":"2","4":"2"},{"1":"Hermes","2":"11","3":"2","4":"4"},{"1":"Hestia","2":"12","3":"3","4":"3"},{"1":"Poseidon","2":"13","3":"4","4":"4"},{"1":"Zeus","2":"14","3":"2","4":"2"},{"1":"Aether","2":"15","3":"3","4":"3"},{"1":"Ananke","2":"16","3":"3","4":"3"},{"1":"Chaos","2":"17","3":"2","4":"3"},{"1":"Chronos","2":"18","3":"2","4":"5"},{"1":"Erebus","2":"19","3":"3","4":"3"},{"1":"Eros","2":"20","3":"2","4":"2"},{"1":"Hypnos","2":"21","3":"1","4":"5"},{"1":"Uranus","2":"22","3":"2","4":"4"},{"1":"Gaia","2":"23","3":"3","4":"1"},{"1":"Phanes","2":"24","3":"2","4":"4"},{"1":"Pontus","2":"25","3":"2","4":"4"},{"1":"Tartarus","2":"26","3":"3","4":"5"},{"1":"Thalassa","2":"27","3":"3","4":"5"},{"1":"Thanatos","2":"28","3":"3","4":"5"},{"1":"Hemera","2":"29","3":"3","4":"3"},{"1":"Nyx","2":"30","3":"0","4":"3"},{"1":"Nemesis","2":"31","3":"3","4":"4"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-warning no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Задание
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Преобразуйте sentences из пакета <code>stringr</code> в тиббл; в новом столбце сохраните количество пробелов в каждом предложении.</p>
+</div>
+</div>
+</section>
+<section id="str_extract-str_subset-и-str_match" class="level2" data-number="4.12">
+<h2 data-number="4.12" class="anchored" data-anchor-id="str_extract-str_subset-и-str_match"><span class="header-section-number">4.12</span> str_extract(), str_subset() и str_match()</h2>
+<p>Функция <code>str_extract()</code> извлекает совпадения<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>.</p>
+<p>Сначала зададим паттерн для поиска.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb76"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb76-1"><a href="#cb76-1" aria-hidden="true" tabindex="-1"></a>colours <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">" red"</span>, <span class="st">"orange"</span>, <span class="st">"yellow"</span>, <span class="st">"green"</span>, <span class="st">"blue"</span>, <span class="st">"purple"</span>)</span>
+<span id="cb76-2"><a href="#cb76-2" aria-hidden="true" tabindex="-1"></a>colour_match <span class="ot">&lt;-</span> <span class="fu">str_c</span>(colours, <span class="at">collapse =</span> <span class="st">"|"</span>)</span>
+<span id="cb76-3"><a href="#cb76-3" aria-hidden="true" tabindex="-1"></a>colour_match</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] " red|orange|yellow|green|blue|purple"</code></pre>
+</div>
+</div>
+<p>И применим к предложениями. Используем <code>str_extract_all()</code>, т.к. <code>str_extract()</code> возвращает только первое вхождение.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb78"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb78-1"><a href="#cb78-1" aria-hidden="true" tabindex="-1"></a>has_colour <span class="ot">&lt;-</span> <span class="fu">str_subset</span>(sentences, colour_match)</span>
+<span id="cb78-2"><a href="#cb78-2" aria-hidden="true" tabindex="-1"></a>matches <span class="ot">&lt;-</span> <span class="fu">str_extract_all</span>(has_colour, colour_match)</span>
+<span id="cb78-3"><a href="#cb78-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(<span class="fu">unlist</span>(matches))</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "blue"   "blue"   "blue"   "yellow" "green"  " red"  </code></pre>
+</div>
+</div>
+<p>Круглые скобки используются для группировки. Например, мы можем задать шаблон для поиска существительного или прилагательного с артиклем.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb80"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb80-1"><a href="#cb80-1" aria-hidden="true" tabindex="-1"></a>noun <span class="ot">&lt;-</span> <span class="st">"(a|the) ([^ ]+)"</span> <span class="co"># как минимум один непробельный символ после пробела</span></span>
+<span id="cb80-2"><a href="#cb80-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb80-3"><a href="#cb80-3" aria-hidden="true" tabindex="-1"></a>has_noun <span class="ot">&lt;-</span> sentences <span class="sc">|&gt;</span></span>
+<span id="cb80-4"><a href="#cb80-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">str_subset</span>(noun) <span class="sc">|&gt;</span></span>
+<span id="cb80-5"><a href="#cb80-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">10</span>)</span>
+<span id="cb80-6"><a href="#cb80-6" aria-hidden="true" tabindex="-1"></a>has_noun</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] "The birch canoe slid on the smooth planks."       
+ [2] "Glue the sheet to the dark blue background."      
+ [3] "It's easy to tell the depth of a well."           
+ [4] "These days a chicken leg is a rare dish."         
+ [5] "The box was thrown beside the parked truck."      
+ [6] "The boy was there when the sun rose."             
+ [7] "The source of the huge river is the clear spring."
+ [8] "Kick the ball straight and follow through."       
+ [9] "Help the woman get back to her feet."             
+[10] "A pot of tea helps to pass the evening."          </code></pre>
+</div>
+</div>
+<p>Дальше можно воспользоваться уже известной функцией <code>str_extract()</code> или применить <code>str_match</code>. Результат будет немного отличаться: вторая функция вернет матрицу, в которой хранится не только сочетание слов, но и каждый компонент отдельно.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb82"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb82-1"><a href="#cb82-1" aria-hidden="true" tabindex="-1"></a>has_noun <span class="sc">|&gt;</span> </span>
+<span id="cb82-2"><a href="#cb82-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">str_extract</span>(noun)</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] "the smooth" "the sheet"  "the depth"  "a chicken"  "the parked"
+ [6] "the sun"    "the huge"   "the ball"   "the woman"  "a helps"   </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb84"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb84-1"><a href="#cb84-1" aria-hidden="true" tabindex="-1"></a>has_noun <span class="sc">|&gt;</span> </span>
+<span id="cb84-2"><a href="#cb84-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">str_match</span>(noun)</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>      [,1]         [,2]  [,3]     
+ [1,] "the smooth" "the" "smooth" 
+ [2,] "the sheet"  "the" "sheet"  
+ [3,] "the depth"  "the" "depth"  
+ [4,] "a chicken"  "a"   "chicken"
+ [5,] "the parked" "the" "parked" 
+ [6,] "the sun"    "the" "sun"    
+ [7,] "the huge"   "the" "huge"   
+ [8,] "the ball"   "the" "ball"   
+ [9,] "the woman"  "the" "woman"  
+[10,] "a helps"    "a"   "helps"  </code></pre>
+</div>
+</div>
+<p><br></p>
+<div class="callout callout-style-default callout-warning no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Задание
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Найдите в sentences все предложения, где есть to, и выберите следующее за этим слово. Переведите в нижний регистр. Узнайте, сколько всего уникальных сочетаний.</p>
+</div>
+</div>
+<p><br></p>
+</section>
+<section id="диакритика" class="level2" data-number="4.13">
+<h2 data-number="4.13" class="anchored" data-anchor-id="диакритика"><span class="header-section-number">4.13</span> Диакритика</h2>
+<p>Мы уже знаем, что функции <code>str_replace()</code> и <code>str_replace_all()</code> позволяют заменять совпадения на новые символы. Этим можно воспользоваться, если вы хотите, например, удалить из текста все греческие символы. Для стандартного греческого алфавита хватит <code>[Α-Ωα-ω]</code>, но для древнегреческого этого, например, не хватит. Попробуем на отрывке из письма Цицерона Аттику, которое содержит греческий текст.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb86"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb86-1"><a href="#cb86-1" aria-hidden="true" tabindex="-1"></a>cicero <span class="ot">&lt;-</span> <span class="st">"nihil hāc sōlitūdine iūcundius, nisi paulum interpellāsset Amyntae fīlius. ὢ ἀπεραντολογίας ἀηδοῦς! "</span></span>
+<span id="cb86-2"><a href="#cb86-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb86-3"><a href="#cb86-3" aria-hidden="true" tabindex="-1"></a><span class="fu">str_replace_all</span>(cicero, <span class="st">"[Α-Ωα-ω]"</span>, <span class="st">""</span>)</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "nihil hāc sōlitūdine iūcundius, nisi paulum interpellāsset Amyntae fīlius. ὢ ἀί ἀῦ! "</code></pre>
+</div>
+</div>
+<p>ὢ ἀί ἀῦ! Не все у нас получилось гладко. Попробуем иначе:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb88"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb88-1"><a href="#cb88-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_replace_all</span>(cicero, <span class="st">"[\u0370-\u03FF]"</span>, <span class="st">""</span>)</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "nihil hāc sōlitūdine iūcundius, nisi paulum interpellāsset Amyntae fīlius. ὢ ἀ ἀῦ! "</code></pre>
+</div>
+</div>
+<p>Удалилась (буквально была заменена на пустое место) та диакритика, которая есть в новогреческом (ί). Но остались еще буквы со сложной диакритикой, которой современные греки не пользуются.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb90"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb90-1"><a href="#cb90-1" aria-hidden="true" tabindex="-1"></a>no_greek <span class="ot">&lt;-</span> <span class="fu">str_replace_all</span>(cicero, <span class="st">"[[\u0370-\u03FF][\U1F00-\U1FFF]]"</span>, <span class="st">""</span>)</span>
+<span id="cb90-2"><a href="#cb90-2" aria-hidden="true" tabindex="-1"></a>no_greek</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "nihil hāc sōlitūdine iūcundius, nisi paulum interpellāsset Amyntae fīlius.   ! "</code></pre>
+</div>
+</div>
+<p>! Мы молодцы. Избавились от этого непонятного греческого.</p>
+<p>На самом деле, конечно, <code>str_replace</code> хорош тем, что он позволяет производить осмысленные замены. Например, мы можем в оставшемся латинском текст заменить гласные с макроном (черточка, означающая долготу) на обычные гласные.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb92"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb92-1"><a href="#cb92-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_replace_all</span>(no_greek, <span class="fu">c</span>(<span class="st">"ā"</span> <span class="ot">=</span> <span class="st">"a"</span>, <span class="st">"ū"</span> <span class="ot">=</span> <span class="st">"u"</span>, <span class="st">"ī"</span> <span class="ot">=</span> <span class="st">"i"</span>, <span class="st">"ō"</span> <span class="ot">=</span> <span class="st">"o"</span>))</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "nihil hac solitudine iucundius, nisi paulum interpellasset Amyntae filius.   ! "</code></pre>
+</div>
+</div>
+</section>
+<section id="str_split" class="level2" data-number="4.14">
+<h2 data-number="4.14" class="anchored" data-anchor-id="str_split"><span class="header-section-number">4.14</span> str_split</h2>
+<p>Функция <code>str_split()</code> помогает разбить текст на предложения, слова или просто на бессмысленные наборы символов. Это важный этап подготовки текста для анализа, и проводится он нередко именно с применением регулярных выражений.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb94"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb94-1"><a href="#cb94-1" aria-hidden="true" tabindex="-1"></a>sentences <span class="sc">|&gt;</span></span>
+<span id="cb94-2"><a href="#cb94-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">2</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb94-3"><a href="#cb94-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">str_split</span>(<span class="st">" "</span>)</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[[1]]
+[1] "The"     "birch"   "canoe"   "slid"    "on"      "the"     "smooth" 
+[8] "planks."
+
+[[2]]
+[1] "Glue"        "the"         "sheet"       "to"          "the"        
+[6] "dark"        "blue"        "background."</code></pre>
+</div>
+</div>
+<p>Но можно обойтись и без регулярных выражений.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb96"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb96-1"><a href="#cb96-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="st">"This is a sentence.  This is another sentence."</span></span>
+<span id="cb96-2"><a href="#cb96-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str_view_all</span>(x, <span class="fu">boundary</span>(<span class="st">"word"</span>))</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] │ &lt;This&gt; &lt;is&gt; &lt;a&gt; &lt;sentence&gt;.  &lt;This&gt; &lt;is&gt; &lt;another&gt; &lt;sentence&gt;.</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb98"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb98-1"><a href="#cb98-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_view_all</span>(x, <span class="fu">boundary</span>(<span class="st">"sentence"</span>))</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] │ &lt;This is a sentence.  &gt;&lt;This is another sentence.&gt;</code></pre>
+</div>
+</div>
+<p>Очень удобно, но убедитесь, что в вашем языке границы слов и предложения выглядят как у людей. С древнегреческим эта штука не справится (как делить на предложения греческие и латинские тексты, я рассказывала <a href="https://vk.com/video-211800158_456239226">здесь</a>):</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb100"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb100-1"><a href="#cb100-1" aria-hidden="true" tabindex="-1"></a>apology <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"νῦν δ' ἐπειδὴ ἀνθρώπω ἐστόν, τίνα αὐτοῖν ἐν νῷ ἔχεις ἐπιστάτην λαβεῖν; τίς τῆς τοιαύτης ἀρετῆς, τῆς ἀνθρωπίνης τε καὶ πολιτικῆς, ἐπιστήμων ἐστίν; οἶμαι γάρ σε ἐσκέφθαι διὰ τὴν τῶν ὑέων κτῆσιν. ἔστιν τις,” ἔφην ἐγώ, “ἢ οὔ;” “Πάνυ γε,” ἦ δ' ὅς. “Τίς,” ἦν δ' ἐγώ, “καὶ ποδαπός, καὶ πόσου διδάσκει;"</span>)</span>
+<span id="cb100-2"><a href="#cb100-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb100-3"><a href="#cb100-3" aria-hidden="true" tabindex="-1"></a><span class="fu">str_view_all</span>(apology, <span class="fu">boundary</span>(<span class="st">"sentence"</span>))</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] │ &lt;νῦν δ' ἐπειδὴ ἀνθρώπω ἐστόν, τίνα αὐτοῖν ἐν νῷ ἔχεις ἐπιστάτην λαβεῖν; τίς τῆς τοιαύτης ἀρετῆς, τῆς ἀνθρωπίνης τε καὶ πολιτικῆς, ἐπιστήμων ἐστίν; οἶμαι γάρ σε ἐσκέφθαι διὰ τὴν τῶν ὑέων κτῆσιν. ἔστιν τις,” ἔφην ἐγώ, “ἢ οὔ;” “Πάνυ γε,” ἦ δ' ὅς. &gt;&lt;“Τίς,” ἦν δ' ἐγώ, “καὶ ποδαπός, καὶ πόσου διδάσκει;&gt;</code></pre>
+</div>
+</div>
+<p>Полный крах 💩</p>
 <p><a href="https://github.com/titoBouzout/Dictionaries" class="uri">https://github.com/titoBouzout/Dictionaries</a></p>
 
 
+</section>
+<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn1"><p>https://stringr.tidyverse.org/reference/str_sub.html<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>https://r4ds.had.co.nz/strings.html#extract-matches<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
