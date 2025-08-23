@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>3&nbsp; Визуализации – Программирование на R для филологов</title>
+<title>2&nbsp; Табличные данные. Анализ датасета – Программирование на R для филологов</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -19,6 +19,40 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 /* CSS for citations */
 div.csl-bib-body { }
@@ -50,8 +84,8 @@ div.csl-indent {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./tokenize.html" rel="next">
-<link href="./tabular.html" rel="prev">
+<link href="./03_ocr.html" rel="next">
+<link href="./01_start.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -88,6 +122,8 @@ div.csl-indent {
     "search-label": "Поиск"
   }
 }</script>
+<link href="site_libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet">
+<script src="site_libs/pagedtable-1.1/js/pagedtable.js"></script>
 
 
 </head>
@@ -101,7 +137,7 @@ div.csl-indent {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Переключить боковую панель навигации" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./plot.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Визуализации</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./02_tabular.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Табличные данные. Анализ датасета</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Переключить боковую панель навигации" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Поиск" onclick="window.quartoOpenSearch();">
@@ -134,49 +170,49 @@ div.csl-indent {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./start.html" class="sidebar-item-text sidebar-link">
+  <a href="./01_start.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Начало работы</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./tabular.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Таблицы</span></span></a>
+  <a href="./02_tabular.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Табличные данные. Анализ датасета</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./plot.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Визуализации</span></span></a>
+  <a href="./03_ocr.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Распознавание изображений</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./tokenize.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Слова и числа</span></span></a>
+  <a href="./04_regex.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Нормализация. Регулярные выражение</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./import.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Импорт изображений</span></span></a>
+  <a href="./05_xml.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Основы работы с XML</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./xml.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Основы работы с XML</span></span></a>
+  <a href="./06_tei.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">HTML верстка</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./llm.html" class="sidebar-item-text sidebar-link">
+  <a href="./07_llm.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Добавление разметки с LLM</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./share.html" class="sidebar-item-text sidebar-link">
+  <a href="./08_share.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Публикационная система Quarto</span></span></a>
   </div>
 </li>
@@ -190,7 +226,14 @@ div.csl-indent {
     <h2 id="toc-title">Содержание</h2>
    
   <ul>
-  <li><a href="#графические-системы" id="toc-графические-системы" class="nav-link active" data-scroll-target="#графические-системы"><span class="header-section-number">3.1</span> Графические системы</a></li>
+  <li><a href="#импорт-данных" id="toc-импорт-данных" class="nav-link active" data-scroll-target="#импорт-данных"><span class="header-section-number">3</span> Импорт данных</a></li>
+  <li><a href="#тиббл" id="toc-тиббл" class="nav-link" data-scroll-target="#тиббл"><span class="header-section-number">4</span> Тиббл</a>
+  <ul class="collapse">
+  <li><a href="#dplyr" id="toc-dplyr" class="nav-link" data-scroll-target="#dplyr"><span class="header-section-number">4.1</span> Dplyr</a></li>
+  <li><a href="#обобщение-данных" id="toc-обобщение-данных" class="nav-link" data-scroll-target="#обобщение-данных"><span class="header-section-number">4.2</span> Обобщение данных</a></li>
+  <li><a href="#визуализации" id="toc-визуализации" class="nav-link" data-scroll-target="#визуализации"><span class="header-section-number">4.3</span> Визуализации</a></li>
+  <li><a href="#для-самостоятельной-работы" id="toc-для-самостоятельной-работы" class="nav-link" data-scroll-target="#для-самостоятельной-работы"><span class="header-section-number">4.4</span> Для самостоятельной работы</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -199,7 +242,7 @@ div.csl-indent {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Визуализации</span></h1>
+<h1 class="title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Табличные данные. Анализ датасета</span></h1>
 </div>
 
 
@@ -216,17 +259,103 @@ div.csl-indent {
 </header>
 
 
-<section id="графические-системы" class="level2" data-number="3.1">
-<h2 data-number="3.1" class="anchored" data-anchor-id="графические-системы"><span class="header-section-number">3.1</span> Графические системы</h2>
-<p>Настоящая графическая сила R – это пакет <code>ggplot2</code>. В его основе лежит идея “грамматики графических элементов” Лиланда Уилкинсона <span class="citation" data-cites="мастицкий2017">(<a href="#ref-мастицкий2017" role="doc-biblioref">Мастицкий 2017</a>)</span> (отсюда “gg” в названии). С одной стороны, вы можете постепенно достраивать график, добавляя элемент за элементом (как в базовом R); с другой – множество параметров подбираются автоматически, как в Lattice.</p>
-<p>О различных видах графиков можно почитать по <a href="https://r-graph-gallery.com/l">ссылке</a>. В этом уроке мы научимся строить диаграмму рассеяния (scatter plot) и столбиковую диаграмму (bar chart).</p>
+<p>В этом уроке мы научимся работать с “прямоугольными”, т.е. табличными, данными на примере <a href="https://dataverse.pushdom.ru/dataset.xhtml?persistentId=doi:10.31860/openlit-2019.11-C001&amp;version=1.0">корпуса русской элегии 1815—1835 гг.</a>, собранного и опубликованного Антониной Мартыненко в 2020 г.</p>
+<p>Существуют два основных “диалекта” R, один из которых опирается главным образом на функции и структуры данных базового R, а другой пользуется синтаксисом tidyverse. Tidyverse – это семейство пакетов (<strong>метапакет</strong>), разработанных Хадли Уикхемом и др., которое включает в себя в том числе пакеты <code>dplyr</code>, <code>ggplot2</code> и многие другие.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="импорт-данных" class="level1" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> Импорт данных</h1>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>elegies_tbl <span class="ot">&lt;-</span> <span class="fu">read_tsv</span>(<span class="st">"../datasets/elegies/elegies_metadata.tab"</span>)</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="тиббл" class="level1" data-number="4">
+<h1 data-number="4"><span class="header-section-number">4</span> Тиббл</h1>
+<p>Основная структура данных в tidyverse – это <a href="https://r4ds.had.co.nz/tibbles.html">tibble</a>, современный вариант датафрейма. Тиббл, как говорят его разработчики, это <a href="https://tibble.tidyverse.org/">ленивые и недовольные</a> датафреймы: они делают меньше и жалуются больше. Это позволяет решать проблемы на более ранних этапах, что, как правило, приводит к созданию более чистого и выразительного кода.</p>
+<p>Основные отличия от обычного датафрейма:</p>
+<ul>
+<li>усовершенствованный метод <code>print()</code>, не нужно постоянно вызывать <code>head()</code>;</li>
+<li>нет имен рядов;</li>
+<li>допускает синтаксически “неправильные” имена столбцов;</li>
+<li>при индексировании не превращается в вектор.</li>
+</ul>
+<p>Преобразуем наш тиббл в датафрейм для сравнения</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>elegies_df <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(elegies_tbl)</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="dplyr" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="dplyr"><span class="header-section-number">4.1</span> Dplyr</h2>
+<p>“Грамматика манипуляции данных”, лежащая в основе <a href="https://dplyr.tidyverse.org/"><code>dplyr</code></a>, предоставляет последовательный набор глаголов, которые помогают решать наиболее распространенные задачи манипулирования данными:</p>
+<ul>
+<li><code>mutate()</code> добавляет новые переменные, которые являются функциями существующих переменных;</li>
+<li><code>select()</code> выбирает переменные (столбцы) на основе их имен;</li>
+<li><code>filter()</code> выбирает наблюдения (ряды) на основе их значений;</li>
+<li><code>summarise()</code> обобщает значения;</li>
+<li><code>arrange()</code> изменяет порядок следования строк.</li>
+</ul>
+<p>Все эти глаголы естественным образом сочетаются с функцией <code>group_by()</code>, которая позволяет выполнять любые операции “по группам”, и с оператором <strong>pipe</strong> <code>|&gt;</code> из пакета <code>magrittr</code>.</p>
+<p>В итоге получается более лаконичный и читаемый код. Узнаем, за какие года у нас есть элегии.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>elegies_tbl <span class="sc">|&gt;</span> </span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(Year) </span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["Year"],"name":[1],"type":["chr"],"align":["left"]},{"label":["n"],"name":[2],"type":["int"],"align":["right"]}],"data":[{"1":"1815","2":"5"},{"1":"1816","2":"8"},{"1":"1817","2":"33"},{"1":"1818","2":"13"},{"1":"1819","2":"15"},{"1":"1820","2":"33"},{"1":"1821","2":"37"},{"1":"1822","2":"29"},{"1":"1823","2":"25"},{"1":"1824","2":"31"},{"1":"1825","2":"28"},{"1":"1826","2":"42"},{"1":"1827","2":"60"},{"1":"1828","2":"11"},{"1":"1829","2":"22"},{"1":"1830","2":"41"},{"1":"1831","2":"15"},{"1":"1832","2":"9"},{"1":"1833","2":"15"},{"1":"1834","2":"17"},{"1":"1835","2":"9"},{"1":"1881","2":"1"},{"1":"1960 (Литературные памятники)","2":"10"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<p>Отберем элегии 1824 г. и выясним, какие авторы их писали.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>elegies_tbl <span class="sc">|&gt;</span> </span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Year <span class="sc">==</span> <span class="dv">1824</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(Author) <span class="sc">|&gt;</span> </span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="sc">-</span>n)</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["Author"],"name":[1],"type":["chr"],"align":["left"]},{"label":["n"],"name":[2],"type":["int"],"align":["right"]}],"data":[{"1":"Жуковский В.А.","2":"3"},{"1":"Бестужев-Рюмин М.А.","2":"2"},{"1":"Дмитриев М.А.","2":"2"},{"1":"Павлов Н.Ф.","2":"2"},{"1":"Туманский В.И.","2":"2"},{"1":"Языков Н.М.","2":"2"},{"1":"[**]","2":"1"},{"1":"[-й-]","2":"1"},{"1":"[2.17]","2":"1"},{"1":"[Без подписи]","2":"1"},{"1":"[В. С…ъ]","2":"1"},{"1":"[Г.]","2":"1"},{"1":"[Г…в]","2":"1"},{"1":"[Мотыльков]","2":"1"},{"1":"[С-н. П-о]","2":"1"},{"1":"[Савостьянов Н.]","2":"1"},{"1":"[…ий]","2":"1"},{"1":"Бакунин И.М.","2":"1"},{"1":"Волков А.А.","2":"1"},{"1":"Карниолин-Пинский М.М.","2":"1"},{"1":"Кобозев М.","2":"1"},{"1":"Лобанов М. Элегия, на кончину Софии Дмитриевны Нарышкиной","2":"1"},{"1":"Межаков П.А.","2":"1"},{"1":"Норов А.С.","2":"1"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+</section>
+<section id="обобщение-данных" class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="обобщение-данных"><span class="header-section-number">4.2</span> Обобщение данных</h2>
+<p>Попробуйте сформулировать новые вопросы и ответить на них при помощи этого датасета.</p>
+</section>
+<section id="визуализации" class="level2" data-number="4.3">
+<h2 data-number="4.3" class="anchored" data-anchor-id="визуализации"><span class="header-section-number">4.3</span> Визуализации</h2>
+<p>В <code>tidyverse</code> входит пакет <code>ggplot2</code> для визуализации данных. В его основе лежит идея “грамматики графических элементов” Лиланда Уилкинсона <span class="citation" data-cites="мастицкий2017">(<a href="#ref-мастицкий2017" role="doc-biblioref">Мастицкий 2017</a>)</span> (отсюда “gg” в названии).</p>
+<p>Функция <code>ggplot()</code> имеет два основных аргумента: <code>data</code> и <code>mapping</code>. Аргумент <code>mapping</code> задает эстетические атрибуты геометрических объектов. Обычно используется в виде <code>mapping = aes(x, y)</code>, где <code>aes()</code> означает aesthetics.</p>
+<p>Под “эстетикой” подразумеваются графические атрибуты, такие как размер, форма или цвет. Вы не увидите их на графике, пока не добавите какие-нибудь “геомы” – геометрические объекты (точки, линии, столбики и т.п.). Эти объекты могут слоями накладываться друг на друга <span class="citation" data-cites="wickham2016">(<a href="#ref-wickham2016" role="doc-biblioref">Wickham и Grolemund 2016</a>)</span>.</p>
+<ul>
+<li>Диаграмма рассеяния (scatter plot) подходит для отражения связи между двумя переменными и делается при помощи <code>geom_point()</code>.</li>
+<li>Для визуализации распределений качественных переменных подходит стобиковая диаграмма (barplot), которая наглядно показывает число наблюдений в каждой группе.</li>
+<li>Диаграмма размаха (boxplot) создается функцией <code>geom_boxplot()</code> и эффективно показывает распределение количественной переменной, включая медиану, квартили и выбросы.</li>
+<li>Линейные графики создаются с помощью <code>geom_line()</code> и подходят для отображения изменений во времени или зависимости одной переменной от другой.</li>
+<li>Гистограммы строятся функцией <code>geom_histogram()</code> и показывают распределение одной количественной переменной.</li>
+<li>Диаграммы плотности создаются при помощи geom_density() и представляют собой сглаженный вариант гистограммы.</li>
+</ul>
+<p>Важной особенностью <code>ggplot2</code> является возможность комбинирования различных слоев. Например, можно наложить линию тренда на диаграмму рассеяния.</p>
+<p>Каждый геометрический объект может иметь свои специфические параметры. Например, <code>geom_point()</code> может варьировать размер, цвет, форму и прозрачность точек, а <code>geom_line()</code> — тип, толщину и цвет линии. Эти параметры можно задавать как внутри <code>aes()</code> (когда они зависят от данных), так и вне её (когда задаются константы).</p>
+</section>
+<section id="для-самостоятельной-работы" class="level2" data-number="4.4">
+<h2 data-number="4.4" class="anchored" data-anchor-id="для-самостоятельной-работы"><span class="header-section-number">4.4</span> Для самостоятельной работы</h2>
+<p>Датасет “<a href="https://dataverse.pushdom.ru/dataset.xhtml?persistentId=doi:10.31860/openlit-2019.11-C003">Корпус русской песни</a>” 1800-1840 г., составитель Артем Шеля.</p>
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="ref-wickham2016" class="csl-entry" role="listitem">
+Wickham, Hadley, и Garrett Grolemund. 2016. <em><span>R for Data Science</span></em>. O’Reilly. <a href="https://r4ds.had.co.nz/index.html">https://r4ds.had.co.nz/index.html</a>.
+</div>
 <div id="ref-мастицкий2017" class="csl-entry" role="listitem">
 Мастицкий, Сергей. 2017. <em>Визуализация данных с помощью ggplot2</em>. ДМК.
 </div>
 </div>
+</section>
 </section>
 
 </main> <!-- /main -->
@@ -649,13 +778,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./tabular.html" class="pagination-link" aria-label="Таблицы">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Таблицы</span></span>
+      <a href="./01_start.html" class="pagination-link" aria-label="Начало работы">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Начало работы</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./tokenize.html" class="pagination-link" aria-label="Слова и числа">
-        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Слова и числа</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./03_ocr.html" class="pagination-link" aria-label="Распознавание изображений">
+        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Распознавание изображений</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

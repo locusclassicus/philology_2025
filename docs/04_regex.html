@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>4&nbsp; Слова и числа – Программирование на R для филологов</title>
+<title>4&nbsp; Нормализация. Регулярные выражение – Программирование на R для филологов</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,27 +20,7 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for citations */
-div.csl-bib-body { }
-div.csl-entry {
-  clear: both;
-  margin-bottom: 0em;
-}
-.hanging-indent div.csl-entry {
-  margin-left:2em;
-  text-indent:-2em;
-}
-div.csl-left-margin {
-  min-width:2em;
-  float:left;
-}
-div.csl-right-inline {
-  margin-left:2em;
-  padding-left:1em;
-}
-div.csl-indent {
-  margin-left: 2em;
-}</style>
+</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -50,8 +30,8 @@ div.csl-indent {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./import.html" rel="next">
-<link href="./plot.html" rel="prev">
+<link href="./05_xml.html" rel="next">
+<link href="./03_ocr.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -101,7 +81,7 @@ div.csl-indent {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Переключить боковую панель навигации" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./tokenize.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Слова и числа</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./04_regex.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Нормализация. Регулярные выражение</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Переключить боковую панель навигации" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Поиск" onclick="window.quartoOpenSearch();">
@@ -134,49 +114,49 @@ div.csl-indent {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./start.html" class="sidebar-item-text sidebar-link">
+  <a href="./01_start.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Начало работы</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./tabular.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Таблицы</span></span></a>
+  <a href="./02_tabular.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Табличные данные. Анализ датасета</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./plot.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Визуализации</span></span></a>
+  <a href="./03_ocr.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Распознавание изображений</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./tokenize.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Слова и числа</span></span></a>
+  <a href="./04_regex.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Нормализация. Регулярные выражение</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./import.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Импорт изображений</span></span></a>
+  <a href="./05_xml.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Основы работы с XML</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./xml.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Основы работы с XML</span></span></a>
+  <a href="./06_tei.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">HTML верстка</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./llm.html" class="sidebar-item-text sidebar-link">
+  <a href="./07_llm.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Добавление разметки с LLM</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./share.html" class="sidebar-item-text sidebar-link">
+  <a href="./08_share.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Публикационная система Quarto</span></span></a>
   </div>
 </li>
@@ -185,21 +165,15 @@ div.csl-indent {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">Содержание</h2>
-   
-  <ul>
-  <li><a href="#токенизация" id="toc-токенизация" class="nav-link active" data-scroll-target="#токенизация"><span class="header-section-number">4.1</span> Токенизация</a></li>
-  </ul>
-</nav>
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+        
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Слова и числа</span></h1>
+<h1 class="title"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Нормализация. Регулярные выражение</span></h1>
 </div>
 
 
@@ -216,25 +190,9 @@ div.csl-indent {
 </header>
 
 
-<p>Основные этапы NLP включают в себя токенизацию, морфологический и синтаксический анализ, а также анализ семантики и прагматики. В этом уроке речь пойдет про первые три этапа. Мы научимся разбивать текст на токены (слова), определять морфологические характеристики слов и находить их начальные формы (леммы), а также анализировать структуру предложения с использованием синтаксических парсеров.</p>
-<section id="токенизация" class="level2" data-number="4.1">
-<h2 data-number="4.1" class="anchored" data-anchor-id="токенизация"><span class="header-section-number">4.1</span> Токенизация</h2>
-<p>Токенизация — процесс разделения текста на составляющие (их называют «токенами»). Токенами могут быть слова, символьные или словесные <em>энграмы</em> (n-grams), то есть сочетания символов или слов, даже предложения или параграфы.</p>
-<p>Токенизировать можно в базовом R с использованием регулярных выражений, и <span class="citation" data-cites="jockers2014">Jockers (<a href="#ref-jockers2014" role="doc-biblioref">2014</a>)</span> прекрасно показывает, как это можно делать. Но мы воспользуемся двумя пакетами, которые предназначены специально для работы с текстовыми данными и разделяют идеологию <code>tidyverse</code>: <code>tidytext</code> <span class="citation" data-cites="textmining2017">(<a href="#ref-textmining2017" role="doc-biblioref">Silge и Robinson 2017</a>)</span> и <code>tokenizers</code> <span class="citation" data-cites="hvitfeldt2022">(<a href="#ref-hvitfeldt2022" role="doc-biblioref">Hvitfeldt и Silge 2022</a>)</span>.</p>
+<p><a href="https://github.com/titoBouzout/Dictionaries" class="uri">https://github.com/titoBouzout/Dictionaries</a></p>
 
 
-<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
-<div id="ref-hvitfeldt2022" class="csl-entry" role="listitem">
-Hvitfeldt, Emil, и Julia Silge. 2022. <em><span>Supervised Machine Learning for Text Analysis in R</span></em>. Taylor; Francis.
-</div>
-<div id="ref-jockers2014" class="csl-entry" role="listitem">
-Jockers, Matthew L. 2014. <em>Text Analysis with R for Students of Literature</em>. Springer.
-</div>
-<div id="ref-textmining2017" class="csl-entry" role="listitem">
-Silge, Julia, и David Robinson. 2017. <em>Text Mining with R</em>. O’Reilly. <a href="http://www.tidytextmining.com">http://www.tidytextmining.com</a>.
-</div>
-</div>
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -656,13 +614,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./plot.html" class="pagination-link" aria-label="Визуализации">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Визуализации</span></span>
+      <a href="./03_ocr.html" class="pagination-link" aria-label="Распознавание изображений">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Распознавание изображений</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./import.html" class="pagination-link" aria-label="Импорт изображений">
-        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Импорт изображений</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./05_xml.html" class="pagination-link" aria-label="Основы работы с XML">
+        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Основы работы с XML</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
