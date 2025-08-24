@@ -201,7 +201,7 @@ div.csl-indent {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./06_tei.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">HTML верстка</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Разметка TEI</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -234,7 +234,6 @@ div.csl-indent {
   <li><a href="#обход-дерева-узлов" id="toc-обход-дерева-узлов" class="nav-link" data-scroll-target="#обход-дерева-узлов"><span class="header-section-number">5.1.4</span> Обход дерева узлов</a></li>
   <li><a href="#синтаксис-xpath" id="toc-синтаксис-xpath" class="nav-link" data-scroll-target="#синтаксис-xpath"><span class="header-section-number">5.1.5</span> Синтаксис XPath</a></li>
   <li><a href="#от-дерева-к-таблице" id="toc-от-дерева-к-таблице" class="nav-link" data-scroll-target="#от-дерева-к-таблице"><span class="header-section-number">5.1.6</span> От дерева к таблице</a></li>
-  <li><a href="#разметка-tei" id="toc-разметка-tei" class="nav-link" data-scroll-target="#разметка-tei"><span class="header-section-number">5.1.7</span> Разметка TEI</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -508,32 +507,9 @@ div.csl-indent {
 </div>
 </div>
 </div>
-</section>
-<section id="разметка-tei" class="level3" data-number="5.1.7">
-<h3 data-number="5.1.7" class="anchored" data-anchor-id="разметка-tei"><span class="header-section-number">5.1.7</span> Разметка TEI</h3>
-<p>Большая часть размеченных литературных корпусов хранится именно в формате XML. Это очень удобно, и вот почему: документы в формате XML, как и документы в формате HTML, содержат данные, заключенные в теги, но если в формате HTML теги определяют оформление данных, то в формате XML теги нередко определяют структуру и смысл данных. С их помощью мы можем достать из документа именно то, что нам интересно: определенную главу, речи конкретных персонажей, слова на иностранных языках и т.п.</p>
-<p>Добавлять и удалять разметку может любой пользователь в редакторе XML кода или даже в простом текстовом редакторе. При этом в качестве универсального языка разметки в гуманитарных дисциплинах используется язык TEI <span class="citation" data-cites="skorinkin2016">(<a href="#ref-skorinkin2016" role="doc-biblioref">Скоринкин 2016</a>)</span>. Корневой элемент в документах TEI называется TEI, внутри него располагается элемент teiHeader с метаинформацией о документе и элемент text. Последний содержит текст документа с элементами, определяющими его структурное членение.</p>
-<pre><code>&lt;TEI&gt;
-  &lt;teiHeader&gt;&lt;/teiHeader&gt;
-  &lt;text&gt;&lt;/text&gt;
-&lt;/TEI&gt;</code></pre>
-<p>Пример оформления документа можно посмотреть <a href="https://github.com/dracor-org/rusdracor/blob/main/tei/fonvizin-nedorosl.xml">по ссылке</a>.</p>
-<p>У teiHeader есть четыре главных дочерних элемента:</p>
-<ul>
-<li><code>fileDesc</code> (описание документа c библиографической информацией)</li>
-<li><code>encodingDesc</code> (описание способа кодирование первоисточника)</li>
-<li><code>profileDesc</code> (“досье” на текст, например отправитель и получатель для писем, жанр, используемые языки, обстоятельства создания, место написания и т.п.)</li>
-<li><code>revisionDesc</code> (история изменений документа).</li>
-</ul>
-<p>В самом тексте язык TEI дает возможность представлять разные варианты (авторские, редакторские, корректорские и др.) Основным средством параллельного представления является элемент <code>choice</code>. Например, в <a href="https://github.com/PerseusDL/canonical-latinLit/blob/master/data/phi0550/phi001/phi0550.phi001.perseus-lat1.xml">тексте Лукреция</a> вы можете увидеть такое:</p>
-<pre><code>sic calor atque &lt;choice&gt;&lt;reg&gt;aer&lt;/reg&gt;&lt;orig&gt;aër&lt;/orig&gt;&lt;/choice&gt; et venti caeca potestas</code></pre>
-<p>Здесь reg указывает на нормализованное написание, а orig – на оригинальное.</p>
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
-<div id="ref-skorinkin2016" class="csl-entry" role="listitem">
-Скоринкин, Даниил. 2016. <span>«Электронное представление текста с помощью стандарта разметки TEI»</span>, 90–108.
-</div>
 <div id="ref-xml2004" class="csl-entry" role="listitem">
 Холзнер, Стивен. 2004. <em><span>Энциклопедия XML</span></em>. Питер.
 </div>
@@ -966,8 +942,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./06_tei.html" class="pagination-link" aria-label="HTML верстка">
-        <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">HTML верстка</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./06_tei.html" class="pagination-link" aria-label="Разметка TEI">
+        <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Разметка TEI</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
