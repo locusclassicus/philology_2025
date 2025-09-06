@@ -163,8 +163,8 @@
     "objectID": "01_start.html#контроль-версий",
     "href": "01_start.html#контроль-версий",
     "title": "1  Начало работы",
-    "section": "1.9 Контроль версий",
-    "text": "1.9 Контроль версий\nСначала надо создать учетную запись на GitHub. https://github.com/\nПотом поставить локально Git https://git-scm.com/downloads.\n\n1.9.1 Настройка Git (один раз)\n\nОткройте терминал (Git Bash на Windows или Terminal на macOS).\nУкажите имя, email (тот же, что на GitHub), и ветку по умолчанию.\n\ngit config --global user.name \"Ваше Имя\"\ngit config --global user.email your_email@example.com\ngit config --global init.defaultBranch main\ngit config --list\n\n\n1.9.2 Связь RStudio с Git\n\nВ RStudio: Tools &gt; Global Options &gt; Git/SVN.\nУбедитесь, что выбран Git и путь к git.exe (или git) корректен. Нажмите Apply/OK.\n\nУстановите связь RStudio с GitHub (SSH-ключ):\n\nВ RStudio: Tools &gt; Global Options &gt; Git/SVN &gt; Create RSA Key → дождитесь генерации → Close.\nНажмите View public key и скопируйте ключ.\nНа GitHub: Settings &gt; SSH and GPG keys &gt; New SSH key. Вставьте публичный ключ, дайте понятный Title, подтвердите.\n\n\n\n1.9.3 Создание репозитория и проекта RStudio\n\nНа GitHub: New repository → задайте имя и описание → Create repository. Скопируйте SSH-URL вида git@github.com:username/repo.git.\nВ RStudio: File &gt; New Project &gt; Version Control &gt; Git → вставьте URL, выберите папку → Create Project.\n\nRStudio создаст локальный проект, связанный с репозиторием на GitHub.\n\n\n1.9.4 Базовый рабочий цикл\n\nВнесите изменения в файлы проекта.\nВо вкладке Git в RStudio: отметьте (Stage) нужные файлы → Commit (введите сообщение) → Push (отправка на GitHub).\nДля получения изменений из GitHub используйте Pull.",
+    "section": "1.11 Контроль версий",
+    "text": "1.11 Контроль версий\nСначала надо создать учетную запись на GitHub. https://github.com/\nПотом поставить локально Git https://git-scm.com/downloads.\n\n1.11.1 Настройка Git (один раз)\n\nОткройте терминал (Git Bash на Windows или Terminal на macOS).\nУкажите имя, email (тот же, что на GitHub), и ветку по умолчанию.\n\ngit config --global user.name \"Ваше Имя\"\ngit config --global user.email your_email@example.com\ngit config --global init.defaultBranch main\ngit config --list\n\n\n1.11.2 Связь RStudio с Git\n\nВ RStudio: Tools &gt; Global Options &gt; Git/SVN.\nУбедитесь, что выбран Git и путь к git.exe (или git) корректен. Нажмите Apply/OK.\n\nУстановите связь RStudio с GitHub (SSH-ключ):\n\nВ RStudio: Tools &gt; Global Options &gt; Git/SVN &gt; Create RSA Key → дождитесь генерации → Close.\nНажмите View public key и скопируйте ключ.\nНа GitHub: Settings &gt; SSH and GPG keys &gt; New SSH key. Вставьте публичный ключ, дайте понятный Title, подтвердите.\n\n\n\n1.11.3 Создание репозитория и проекта RStudio\n\nНа GitHub: New repository → задайте имя и описание → Create repository. Скопируйте SSH-URL вида git@github.com:username/repo.git.\nВ RStudio: File &gt; New Project &gt; Version Control &gt; Git → вставьте URL, выберите папку → Create Project.\n\nRStudio создаст локальный проект, связанный с репозиторием на GitHub.\n\n\n1.11.4 Базовый рабочий цикл\n\nВнесите изменения в файлы проекта.\nВо вкладке Git в RStudio: отметьте (Stage) нужные файлы → Commit (введите сообщение) → Push (отправка на GitHub).\nДля получения изменений из GitHub используйте Pull.",
     "crumbs": [
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>Начало работы</span>"
     ]
@@ -173,8 +173,8 @@
     "objectID": "01_start.html#видео-к-этому-уроку-2024",
     "href": "01_start.html#видео-к-этому-уроку-2024",
     "title": "1  Начало работы",
-    "section": "1.10 Видео к этому уроку (2024)",
-    "text": "1.10 Видео к этому уроку (2024)\n\nНачало работы\nGit",
+    "section": "1.12 Видео к этому уроку (2024)",
+    "text": "1.12 Видео к этому уроку (2024)\n\nНачало работы\nGit",
     "crumbs": [
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>Начало работы</span>"
     ]
@@ -733,8 +733,8 @@
     "objectID": "01_start.html#домашнее-задание",
     "href": "01_start.html#домашнее-задание",
     "title": "1  Начало работы",
-    "section": "1.11 Домашнее задание",
-    "text": "1.11 Домашнее задание\nТут будет домашнее задание ✍️",
+    "section": "1.13 Домашнее задание",
+    "text": "1.13 Домашнее задание\nТут будет домашнее задание ✍️",
     "crumbs": [
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>Начало работы</span>"
     ]
@@ -817,6 +817,26 @@
     "text": "2.10 Домашняя работа\nДатасет “Корпус русской песни” 1800-1840 г., составитель Артем Шеля. Подробности позже.\n\n\n\n\nWickham, Hadley, и Garrett Grolemund. 2016. R for Data Science. O’Reilly. https://r4ds.had.co.nz/index.html.\n\n\nМастицкий, Сергей. 2017. Визуализация данных с помощью ggplot2. ДМК.",
     "crumbs": [
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>Табличные данные. Визуализации</span>"
+    ]
+  },
+  {
+    "objectID": "01_start.html#векторы",
+    "href": "01_start.html#векторы",
+    "title": "1  Начало работы",
+    "section": "1.9 Векторы",
+    "text": "1.9 Векторы\nВектор – это объект, предназначенный для хранения данных. К таким же объектам относятся также матрицы, списки, датафреймы и др. Заметим, что в языке R нет скаляров (отдельных чисел). Числа считаются векторами из одного элемента.\n\nx &lt;- 2\nclass(x) # числовой вектор\n\n[1] \"numeric\"\n\nlength(x) # длина вектора\n\n[1] 1\n\n\nКак вы уже поняли, функция c() позволяет собрать несколько элементов в единый вектор:\n\nx &lt;- c(3, 5, 7)\nx_mean &lt;- mean(x) \nx_mean\n\n[1] 5\n\n\n Над векторами можно совершать арифметические операции, но будьте внимательны, применяя операции к векторам разной длины: в этом случае более короткий вектор будет переработан, то есть повторен до тех пор, пока его длина не сравняется с длиной вектора большей длины.\n\nx &lt;- 2\ny &lt;- c(10, 20, 30)\ny / x \n\n[1]  5 10 15\n\nx + y \n\n[1] 12 22 32\n\n\nВекторы можно индексировать, то есть забирать из них какие-то элементы:\n\nx &lt;- seq(1, 5, 0.5)\nx[4:5] # индексы начинаются с 1 (в отличие от Python)\n\n[1] 2.5 3.0\n\n\nВектор может хранить данные разных типов:\n\nцелое число (integer);\nчисло с плавающей точкой (numeric, также называются double, то есть число двойной точности);\nстроку (character);\nлогическую переменную (logical);\nкатегориальную переменную, или фактор (factor).\n\n\n# проверить тип данных \nx &lt;- sqrt(2)\nclass(x)\n\n[1] \"numeric\"\n\nis.integer(x)\n\n[1] FALSE\n\nis.numeric(x)\n\n[1] TRUE\n\n\nСоздавать векторы можно не только при помощи c(). Вот еще два способа.\n\nseq(1, 5, 0.5)\n\n[1] 1.0 1.5 2.0 2.5 3.0 3.5 4.0 4.5 5.0\n\nrep(\"foo\", 5)\n\n[1] \"foo\" \"foo\" \"foo\" \"foo\" \"foo\"\n\n\n\nВажно: вектор может хранить данные только одного типа. При попытке объединить в единый вектор данные разных типов они будут принудительно приведены к одному типу:\n\nx &lt;- c(TRUE, 1, 3, FALSE)\nx # логические значения приведены к числовым\n\n[1] 1 1 3 0\n\ny &lt;- c(1, \"a\", 2, \"лукоморье\") \ny # числа превратились в строки\n\n[1] \"1\"         \"a\"         \"2\"         \"лукоморье\"\n\n\nЛогические векторы можно получить в результате применения логических операторов (== “равно”, != “не равно”, &lt;= “меньше или равно”) к данным других типов:\n\nx &lt;- 1:10 # числа от 1 до 10\ny &lt;- x &gt; 5\ny # значения TRUE соответствуют единице, поэтому их можно складывать\n\n [1] FALSE FALSE FALSE FALSE FALSE  TRUE  TRUE  TRUE  TRUE  TRUE\n\nsum(y)\n\n[1] 5\n\n\nФункции all() и any() также возвращают логические значения:\n\nx &lt;- 10:20 \nany(x == 15)\n\n[1] TRUE\n\nall(x &gt; 9)\n\n[1] TRUE",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Начало работы</span>"
+    ]
+  },
+  {
+    "objectID": "01_start.html#отсутствие-данных",
+    "href": "01_start.html#отсутствие-данных",
+    "title": "1  Начало работы",
+    "section": "1.10 Отсутствие данных",
+    "text": "1.10 Отсутствие данных\nОтсутствие данных любого типа в R передается двумя способами. NULL означает, что значение не существует. Например, если мы создадим пустой вектор, то при попытке распечатать его получим NULL. А вот длина пустого вектора равна нулю!\n\ny &lt;- c() \ny \n\nNULL\n\nlength(y) \n\n[1] 0\n\n\nNA (not available) указывает на то, что значение существует, но оно неизвестно. Любые операции с NA приводят к появлению новых NA! Сравните:\n\nx &lt;- c(1, NA, 2)\nmean(x)\n\n[1] NA\n\ny &lt;- c(1, NULL, 2)\nmean(y)\n\n[1] 1.5\n\n\nКак проверить, есть ли в данных NA или NULL? Знак == здесь не подойдет.\n\nx &lt;- NA\nx == NA\n\n[1] NA\n\ny &lt;- NULL\ny == NULL\n\nlogical(0)\n\n\nДля этого есть специальные функции.\n\nis.na(x)\n\n[1] TRUE\n\nis.null(y)\n\n[1] TRUE",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Начало работы</span>"
     ]
   }
 ]
