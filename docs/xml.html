@@ -202,13 +202,13 @@ div.csl-indent {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./tei.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Начало работы</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Разметка TEI</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./llm.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Начало работы</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Добавление разметки с LLM</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -496,13 +496,15 @@ div.csl-indent {
 <div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tibble</span>(<span class="at">title =</span> <span class="fu">xmlValue</span>(rootnode[[<span class="st">"title"</span>]]), </span>
 <span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">ingredients =</span> <span class="fu">map_chr</span>(<span class="fu">xmlChildren</span>(rootnode[[<span class="st">"composition"</span>]]), xmlValue),</span>
 <span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>       <span class="at">unit =</span> <span class="fu">map_chr</span>(<span class="fu">xmlChildren</span>(rootnode[[<span class="st">"composition"</span>]]), xmlGetAttr, <span class="st">"unit"</span>),</span>
-<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">amount =</span> <span class="fu">map_chr</span>(<span class="fu">xmlChildren</span>(rootnode[[<span class="st">"composition"</span>]]), xmlGetAttr, <span class="st">"amount"</span>))</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div data-pagedtable="false">
-  <script data-pagedtable-source="" type="application/json">
-{"columns":[{"label":["title"],"name":[1],"type":["chr"],"align":["left"]},{"label":["ingredients"],"name":[2],"type":["chr"],"align":["left"]},{"label":["unit"],"name":[3],"type":["chr"],"align":["left"]},{"label":["amount"],"name":[4],"type":["chr"],"align":["left"]}],"data":[{"1":"Простой хлеб","2":"Мука","3":"стакан","4":"3"},{"1":"Простой хлеб","2":"Дрожжи","3":"грамм","4":"0.25"},{"1":"Простой хлеб","2":"Тёплая вода","3":"стакан","4":"1.5"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
-  </script>
-</div>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">amount =</span> <span class="fu">map_chr</span>(<span class="fu">xmlChildren</span>(rootnode[[<span class="st">"composition"</span>]]), xmlGetAttr, <span class="st">"amount"</span>)) <span class="sc">|&gt;</span> </span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>()</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 4
+  title        ingredients unit   amount
+  &lt;chr&gt;        &lt;chr&gt;       &lt;chr&gt;  &lt;chr&gt; 
+1 Простой хлеб Мука        стакан 3     
+2 Простой хлеб Дрожжи      грамм  0.25  
+3 Простой хлеб Тёплая вода стакан 1.5   </code></pre>
 </div>
 </div>
 
@@ -1145,8 +1147,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./tei.html" class="pagination-link" aria-label="Начало работы">
-        <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Начало работы</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./tei.html" class="pagination-link" aria-label="Разметка TEI">
+        <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Разметка TEI</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
