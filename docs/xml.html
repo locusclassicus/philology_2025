@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>5&nbsp; Основы работы с XML – Программирование на R для филологов</title>
+<title>5&nbsp; Разметка XML – Программирование на R для филологов</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -84,8 +84,8 @@ div.csl-indent {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./06_tei.html" rel="next">
-<link href="./04_regex.html" rel="prev">
+<link href="./tei.html" rel="next">
+<link href="./regex.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -126,6 +126,7 @@ div.csl-indent {
 <script src="site_libs/pagedtable-1.1/js/pagedtable.js"></script>
 
 
+<link rel="stylesheet" href="include/webex.css">
 </head>
 
 <body class="nav-sidebar floating">
@@ -137,7 +138,7 @@ div.csl-indent {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Переключить боковую панель навигации" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./05_xml.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Основы работы с XML</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./xml.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Разметка XML</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Переключить боковую панель навигации" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Поиск" onclick="window.quartoOpenSearch();">
@@ -170,49 +171,49 @@ div.csl-indent {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./01_start.html" class="sidebar-item-text sidebar-link">
+  <a href="./start.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Начало работы</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./02_tabular.html" class="sidebar-item-text sidebar-link">
+  <a href="./tabular.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Табличные данные. Анализ датасета</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./03_ocr.html" class="sidebar-item-text sidebar-link">
+  <a href="./ocr.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Распознавание изображений</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./04_regex.html" class="sidebar-item-text sidebar-link">
+  <a href="./regex.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Нормализация. Регулярные выражения</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./05_xml.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Основы работы с XML</span></span></a>
+  <a href="./xml.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Разметка XML</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./06_tei.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Разметка TEI</span></span></a>
+  <a href="./tei.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Начало работы</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./07_llm.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Добавление разметки с LLM</span></span></a>
+  <a href="./llm.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Начало работы</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./08_share.html" class="sidebar-item-text sidebar-link">
+  <a href="./share.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Публикационная система Quarto</span></span></a>
   </div>
 </li>
@@ -226,15 +227,12 @@ div.csl-indent {
     <h2 id="toc-title">Содержание</h2>
    
   <ul>
-  <li><a href="#что-такое-xml" id="toc-что-такое-xml" class="nav-link active" data-scroll-target="#что-такое-xml"><span class="header-section-number">5.1</span> Что такое XML</a>
-  <ul class="collapse">
-  <li><a href="#библиотека-xml" id="toc-библиотека-xml" class="nav-link" data-scroll-target="#библиотека-xml"><span class="header-section-number">5.1.1</span> Библиотека <code>XML</code></a></li>
-  <li><a href="#выбор-элементов" id="toc-выбор-элементов" class="nav-link" data-scroll-target="#выбор-элементов"><span class="header-section-number">5.1.2</span> Выбор элементов</a></li>
-  <li><a href="#значения-узлов-и-атрибутов" id="toc-значения-узлов-и-атрибутов" class="nav-link" data-scroll-target="#значения-узлов-и-атрибутов"><span class="header-section-number">5.1.3</span> Значения узлов и атрибутов</a></li>
-  <li><a href="#обход-дерева-узлов" id="toc-обход-дерева-узлов" class="nav-link" data-scroll-target="#обход-дерева-узлов"><span class="header-section-number">5.1.4</span> Обход дерева узлов</a></li>
-  <li><a href="#синтаксис-xpath" id="toc-синтаксис-xpath" class="nav-link" data-scroll-target="#синтаксис-xpath"><span class="header-section-number">5.1.5</span> Синтаксис XPath</a></li>
-  <li><a href="#от-дерева-к-таблице" id="toc-от-дерева-к-таблице" class="nav-link" data-scroll-target="#от-дерева-к-таблице"><span class="header-section-number">5.1.6</span> От дерева к таблице</a></li>
-  </ul></li>
+  <li><a href="#библиотека-xml" id="toc-библиотека-xml" class="nav-link active" data-scroll-target="#библиотека-xml"><span class="header-section-number">5.1</span> Библиотека <code>XML</code></a></li>
+  <li><a href="#выбор-элементов" id="toc-выбор-элементов" class="nav-link" data-scroll-target="#выбор-элементов"><span class="header-section-number">5.2</span> Выбор элементов</a></li>
+  <li><a href="#значения-узлов-и-атрибутов" id="toc-значения-узлов-и-атрибутов" class="nav-link" data-scroll-target="#значения-узлов-и-атрибутов"><span class="header-section-number">5.3</span> Значения узлов и атрибутов</a></li>
+  <li><a href="#обход-дерева-узлов" id="toc-обход-дерева-узлов" class="nav-link" data-scroll-target="#обход-дерева-узлов"><span class="header-section-number">5.4</span> Обход дерева узлов</a></li>
+  <li><a href="#синтаксис-xpath" id="toc-синтаксис-xpath" class="nav-link" data-scroll-target="#синтаксис-xpath"><span class="header-section-number">5.5</span> Синтаксис XPath</a></li>
+  <li><a href="#от-дерева-к-таблице" id="toc-от-дерева-к-таблице" class="nav-link" data-scroll-target="#от-дерева-к-таблице"><span class="header-section-number">5.6</span> От дерева к таблице</a></li>
   </ul>
 </nav>
     </div>
@@ -243,7 +241,7 @@ div.csl-indent {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Основы работы с XML</span></h1>
+<h1 class="title"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Разметка XML</span></h1>
 </div>
 
 
@@ -260,53 +258,66 @@ div.csl-indent {
 </header>
 
 
-<section id="что-такое-xml" class="level2" data-number="5.1">
-<h2 data-number="5.1" class="anchored" data-anchor-id="что-такое-xml"><span class="header-section-number">5.1</span> Что такое XML</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+✔ dplyr     1.1.4     ✔ readr     2.1.5
+✔ forcats   1.0.0     ✔ stringr   1.5.1
+✔ ggplot2   3.5.2     ✔ tibble    3.2.1
+✔ lubridate 1.9.4     ✔ tidyr     1.3.1
+✔ purrr     1.0.4     
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
+</div>
+</div>
 <p>XML (от англ. eXtensible Markup Language) — расширяемый язык разметки. Слово “расширяемый” означает, что список тегов не зафиксирован раз и навсегда: пользователи могут вводить свои собственные теги и создавать так называемые <em>настраиваемые языки разметки</em> <span class="citation" data-cites="xml2004">(<a href="#ref-xml2004" role="doc-biblioref">Холзнер 2004, 29</a>)</span>. Один из таких настраиваемых языков – это TEI (Text Encoding Initiative), о котором будет сказано дальше.</p>
 <p>Назначение языков разметки заключается в описании структурированных документов. Структура документа представляется в виде набора вложенных в друг друга элементов (дерева XML). У элементов есть открывающие и закрывающие теги.</p>
 <p>Все составляющие части документа обобщаются в пролог и корневой элемент. Корневой элемент — обязательная часть документа, в которую вложены все остальные элементы. Пролог может включать объявления, инструкции обработки, комментарии.</p>
 <p>В правильно сформированном XML открывающий и закрывающий тег вложенного элемента всегда находятся внутри одного родительского элемента.</p>
 <p>Создадим простой XML из строки. Сначала идет инструкция по обработке XML (со знаком вопроса), за ней следует объявление типа документа (с восклицательным знаком) и открывающий тег корневого элемента. В этот корневой элемент вложены все остальные элементы.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>string_xml <span class="ot">&lt;-</span> <span class="st">'&lt;?xml version="1.0" encoding="utf-8"?&gt;</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="st">&lt;!DOCTYPE recipe&gt;</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="st">&lt;recipe name="хлеб" preptime="5min" cooktime="180min"&gt;</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="st">   &lt;title&gt;</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="st">      Простой хлеб</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="st">   &lt;/title&gt;</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="st">   &lt;composition&gt;</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="st">      &lt;ingredient amount="3" unit="стакан"&gt;Мука&lt;/ingredient&gt;</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="st">      &lt;ingredient amount="0.25" unit="грамм"&gt;Дрожжи&lt;/ingredient&gt;</span></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="st">      &lt;ingredient amount="1.5" unit="стакан"&gt;Тёплая вода&lt;/ingredient&gt;</span></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="st">   &lt;/composition&gt;</span></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="st">   &lt;instructions&gt;</span></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="st">     &lt;step&gt;</span></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="st">        Смешать все ингредиенты и тщательно замесить. </span></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="st">     &lt;/step&gt;</span></span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="st">     &lt;step&gt;</span></span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="st">        Закрыть тканью и оставить на один час в тёплом помещении. </span></span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="st">     &lt;/step&gt;</span></span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="st">     &lt;step&gt;</span></span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="st">        Замесить ещё раз, положить на противень и поставить в духовку.</span></span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="st">     &lt;/step&gt;</span></span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="st">   &lt;/instructions&gt;</span></span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="st">&lt;/recipe&gt;'</span></span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>string_xml <span class="ot">&lt;-</span> <span class="st">'&lt;?xml version="1.0" encoding="utf-8"?&gt;</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="st">&lt;!DOCTYPE recipe&gt;</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="st">&lt;recipe name="хлеб" preptime="5min" cooktime="180min"&gt;</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="st">   &lt;title&gt;</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="st">      Простой хлеб</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="st">   &lt;/title&gt;</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="st">   &lt;composition&gt;</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="st">      &lt;ingredient amount="3" unit="стакан"&gt;Мука&lt;/ingredient&gt;</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="st">      &lt;ingredient amount="0.25" unit="грамм"&gt;Дрожжи&lt;/ingredient&gt;</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="st">      &lt;ingredient amount="1.5" unit="стакан"&gt;Тёплая вода&lt;/ingredient&gt;</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="st">   &lt;/composition&gt;</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="st">   &lt;instructions&gt;</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="st">     &lt;step&gt;</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="st">        Смешать все ингредиенты и тщательно замесить. </span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a><span class="st">     &lt;/step&gt;</span></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a><span class="st">     &lt;step&gt;</span></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a><span class="st">        Закрыть тканью и оставить на один час в тёплом помещении. </span></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a><span class="st">     &lt;/step&gt;</span></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a><span class="st">     &lt;step&gt;</span></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a><span class="st">        Замесить ещё раз, положить на противень и поставить в духовку.</span></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a><span class="st">     &lt;/step&gt;</span></span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a><span class="st">   &lt;/instructions&gt;</span></span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a><span class="st">&lt;/recipe&gt;'</span></span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<section id="библиотека-xml" class="level3" data-number="5.1.1">
-<h3 data-number="5.1.1" class="anchored" data-anchor-id="библиотека-xml"><span class="header-section-number">5.1.1</span> Библиотека <code>XML</code></h3>
+<section id="библиотека-xml" class="level2" data-number="5.1">
+<h2 data-number="5.1" class="anchored" data-anchor-id="библиотека-xml"><span class="header-section-number">5.1</span> Библиотека <code>XML</code></h2>
 <p>Для работы с xml понадобится установить одноименную библиотеку. Функция <code>xmlTreeParse()</code> создаст R-структуру, представляющую дерево XML.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(XML)</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>doc <span class="ot">&lt;-</span> <span class="fu">xmlTreeParse</span>(string_xml)</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(doc)</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(XML)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>doc <span class="ot">&lt;-</span> <span class="fu">xmlTreeParse</span>(string_xml)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(doc)</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "XMLDocument"         "XMLAbstractDocument"</code></pre>
 </div>
 </div>
 <p>Функция <code>xmlRoot()</code> позволяет извлечь корневой элемент вместе со всеми детьми.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>rootnode <span class="ot">&lt;-</span> <span class="fu">xmlRoot</span>(doc)</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>rootnode</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>rootnode <span class="ot">&lt;-</span> <span class="fu">xmlRoot</span>(doc)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>rootnode</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>&lt;recipe name="хлеб" preptime="5min" cooktime="180min"&gt;
  &lt;title&gt;Простой хлеб&lt;/title&gt;
@@ -325,24 +336,24 @@ div.csl-indent {
 </div>
 <p>Если документ большой, бывает удобнее не распечатывать все дерево, а вывести имена дочерних элементов.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(<span class="fu">xmlChildren</span>(rootnode))</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(<span class="fu">xmlChildren</span>(rootnode))</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "title"        "composition"  "instructions"</code></pre>
 </div>
 </div>
 <p>Размер узла – это число вложенных в него “детей”. Его можно узнать, применив к узлу функцию <code>xmlSize()</code> – или посчитав число “детей”.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">xmlSize</span>(rootnode) <span class="sc">==</span> <span class="fu">length</span>(<span class="fu">xmlChildren</span>(rootnode))</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">xmlSize</span>(rootnode) <span class="sc">==</span> <span class="fu">length</span>(<span class="fu">xmlChildren</span>(rootnode))</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] TRUE</code></pre>
 </div>
 </div>
 </section>
-<section id="выбор-элементов" class="level3" data-number="5.1.2">
-<h3 data-number="5.1.2" class="anchored" data-anchor-id="выбор-элементов"><span class="header-section-number">5.1.2</span> Выбор элементов</h3>
+<section id="выбор-элементов" class="level2" data-number="5.2">
+<h2 data-number="5.2" class="anchored" data-anchor-id="выбор-элементов"><span class="header-section-number">5.2</span> Выбор элементов</h2>
 <p>Работать с xml можно как с обычным списком, то есть индексировать узлы по имени или по номеру элемента при помощи квадратных скобок. Так мы достаем узел по имени:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>rootnode[[<span class="st">"composition"</span>]]</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>rootnode[[<span class="st">"composition"</span>]]</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>&lt;composition&gt;
  &lt;ingredient amount="3" unit="стакан"&gt;Мука&lt;/ingredient&gt;
@@ -353,7 +364,7 @@ div.csl-indent {
 </div>
 <p>А так – по индексу:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>rootnode[[<span class="dv">2</span>]]</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>rootnode[[<span class="dv">2</span>]]</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>&lt;composition&gt;
  &lt;ingredient amount="3" unit="стакан"&gt;Мука&lt;/ingredient&gt;
@@ -364,25 +375,25 @@ div.csl-indent {
 </div>
 <p>Как и с обычными списками, мы можем использовать последовательности квадратных скобок:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>ingr_node <span class="ot">&lt;-</span> rootnode[[<span class="dv">2</span>]][[<span class="st">"ingredient"</span>]]</span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>ingr_node</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>ingr_node <span class="ot">&lt;-</span> rootnode[[<span class="dv">2</span>]][[<span class="st">"ingredient"</span>]]</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>ingr_node</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>&lt;ingredient amount="3" unit="стакан"&gt;Мука&lt;/ingredient&gt;</code></pre>
 </div>
 </div>
 </section>
-<section id="значения-узлов-и-атрибутов" class="level3" data-number="5.1.3">
-<h3 data-number="5.1.3" class="anchored" data-anchor-id="значения-узлов-и-атрибутов"><span class="header-section-number">5.1.3</span> Значения узлов и атрибутов</h3>
+<section id="значения-узлов-и-атрибутов" class="level2" data-number="5.3">
+<h2 data-number="5.3" class="anchored" data-anchor-id="значения-узлов-и-атрибутов"><span class="header-section-number">5.3</span> Значения узлов и атрибутов</h2>
 <p>Но обычно нам нужен не элемент как таковой, а его содержание (значение). Чтобы добраться до него, используем функцию <code>xmlValue()</code>:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">xmlValue</span>(ingr_node)</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">xmlValue</span>(ingr_node)</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "Мука"</code></pre>
 </div>
 </div>
 <p>Можно уточнить атрибуты узла при помощи <code>xmlAttrs()</code>:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">xmlAttrs</span>(ingr_node)</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">xmlAttrs</span>(ingr_node)</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  amount     unit 
      "3" "стакан" </code></pre>
@@ -390,40 +401,40 @@ div.csl-indent {
 </div>
 <p>Чтобы извлечь значение атрибута, используем функцию <code>xmlGetAttr()</code>. Первым аргументом функции передаем xml-узел, вторым – имя атрибута.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">xmlGetAttr</span>(ingr_node, <span class="st">"unit"</span>)</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">xmlGetAttr</span>(ingr_node, <span class="st">"unit"</span>)</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "стакан"</code></pre>
 </div>
 </div>
 </section>
-<section id="обход-дерева-узлов" class="level3" data-number="5.1.4">
-<h3 data-number="5.1.4" class="anchored" data-anchor-id="обход-дерева-узлов"><span class="header-section-number">5.1.4</span> Обход дерева узлов</h3>
+<section id="обход-дерева-узлов" class="level2" data-number="5.4">
+<h2 data-number="5.4" class="anchored" data-anchor-id="обход-дерева-узлов"><span class="header-section-number">5.4</span> Обход дерева узлов</h2>
 <p>Как насчет того, чтобы применить функцию к набору узлов – например, ко всем инредиентам? Вспоминаем функции для работы со списками – <code>sapply()</code> из базового R или <code>map()</code> из пакета <code>purrr</code>:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>ingr_nodes <span class="ot">&lt;-</span> <span class="fu">xmlChildren</span>(rootnode[[<span class="dv">2</span>]])</span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="fu">sapply</span>(ingr_nodes, xmlValue)</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>ingr_nodes <span class="ot">&lt;-</span> <span class="fu">xmlChildren</span>(rootnode[[<span class="dv">2</span>]])</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="fu">sapply</span>(ingr_nodes, xmlValue)</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   ingredient    ingredient    ingredient 
        "Мука"      "Дрожжи" "Тёплая вода" </code></pre>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sapply</span>(ingr_nodes, xmlGetAttr, <span class="st">"unit"</span>)</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sapply</span>(ingr_nodes, xmlGetAttr, <span class="st">"unit"</span>)</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>ingredient ingredient ingredient 
   "стакан"    "грамм"   "стакан" </code></pre>
 </div>
 </div>
 </section>
-<section id="синтаксис-xpath" class="level3" data-number="5.1.5">
-<h3 data-number="5.1.5" class="anchored" data-anchor-id="синтаксис-xpath"><span class="header-section-number">5.1.5</span> Синтаксис XPath</h3>
+<section id="синтаксис-xpath" class="level2" data-number="5.5">
+<h2 data-number="5.5" class="anchored" data-anchor-id="синтаксис-xpath"><span class="header-section-number">5.5</span> Синтаксис XPath</h2>
 <p>Добраться до узлов определенного уровня можно также при помощи синтаксиса <a href="https://ru.wikipedia.org/wiki/XPath">XPath</a>. XPath – это язык запросов к элементам XML-документа. С его помощью можно описать “путь” до нужного узла: <strong>абсолютный</strong> (начиная с корневого элемента) или <strong>относительный</strong>. В пакете <code>XML</code> синтаксис XPath поддерживает функция <code>getNodeSet()</code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># абсолютный путь</span></span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>ingr_nodes <span class="ot">&lt;-</span> <span class="fu">getNodeSet</span>(rootnode, <span class="st">"/recipe//composition//ingredient"</span>)</span>
-<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>ingr_nodes</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># абсолютный путь</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>ingr_nodes <span class="ot">&lt;-</span> <span class="fu">getNodeSet</span>(rootnode, <span class="st">"/recipe//composition//ingredient"</span>)</span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>ingr_nodes</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[[1]]
 &lt;ingredient amount="3" unit="стакан"&gt;Мука&lt;/ingredient&gt;
@@ -436,10 +447,10 @@ div.csl-indent {
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># относительный путь</span></span>
-<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>ingr_nodes <span class="ot">&lt;-</span> <span class="fu">getNodeSet</span>(rootnode, <span class="st">"//composition//ingredient"</span>)</span>
-<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>ingr_nodes</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># относительный путь</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>ingr_nodes <span class="ot">&lt;-</span> <span class="fu">getNodeSet</span>(rootnode, <span class="st">"//composition//ingredient"</span>)</span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>ingr_nodes</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[[1]]
 &lt;ingredient amount="3" unit="стакан"&gt;Мука&lt;/ingredient&gt;
@@ -468,7 +479,7 @@ div.csl-indent {
 <p><br></p>
 <p>Синтаксис XPath позволяет отбирать узлы с определенными атрибутами. Допустим, нам нужны только те узлы, где значение атрибута unit = “стакан”:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">getNodeSet</span>(rootnode, <span class="st">"//composition//ingredient[@unit='стакан']"</span>)</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">getNodeSet</span>(rootnode, <span class="st">"//composition//ingredient[@unit='стакан']"</span>)</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[[1]]
 &lt;ingredient amount="3" unit="стакан"&gt;Мука&lt;/ingredient&gt;
@@ -478,23 +489,10 @@ div.csl-indent {
 </div>
 </div>
 </section>
-<section id="от-дерева-к-таблице" class="level3" data-number="5.1.6">
-<h3 data-number="5.1.6" class="anchored" data-anchor-id="от-дерева-к-таблице"><span class="header-section-number">5.1.6</span> От дерева к таблице</h3>
+<section id="от-дерева-к-таблице" class="level2" data-number="5.6">
+<h2 data-number="5.6" class="anchored" data-anchor-id="от-дерева-к-таблице"><span class="header-section-number">5.6</span> От дерева к таблице</h2>
 <p>При работе с xml в большинстве случаев наша задача – извлечь значения определеннных узлов или их атрибутов и сохранить их в прямоугольном формате. Один из способов выглядит так.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
-✔ dplyr     1.1.4     ✔ readr     2.1.5
-✔ forcats   1.0.0     ✔ stringr   1.5.1
-✔ ggplot2   3.5.2     ✔ tibble    3.2.1
-✔ lubridate 1.9.4     ✔ tidyr     1.3.1
-✔ purrr     1.0.4     
-── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
-✖ dplyr::filter() masks stats::filter()
-✖ dplyr::lag()    masks stats::lag()
-ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
-</div>
 <div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tibble</span>(<span class="at">title =</span> <span class="fu">xmlValue</span>(rootnode[[<span class="st">"title"</span>]]), </span>
 <span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">ingredients =</span> <span class="fu">map_chr</span>(<span class="fu">xmlChildren</span>(rootnode[[<span class="st">"composition"</span>]]), xmlValue),</span>
 <span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>       <span class="at">unit =</span> <span class="fu">map_chr</span>(<span class="fu">xmlChildren</span>(rootnode[[<span class="st">"composition"</span>]]), xmlGetAttr, <span class="st">"unit"</span>),</span>
@@ -515,9 +513,214 @@ div.csl-indent {
 </div>
 </div>
 </section>
-</section>
 
 </main> <!-- /main -->
+<script>
+
+/* update total correct if #webex-total_correct exists */
+update_total_correct = function() {
+  console.log("webex: update total_correct");
+
+  var t = document.getElementsByClassName("webex-total_correct");
+  for (var i = 0; i < t.length; i++) {
+    p = t[i].parentElement;
+    var correct = p.getElementsByClassName("webex-correct").length;
+    var solvemes = p.getElementsByClassName("webex-solveme").length;
+    var radiogroups = p.getElementsByClassName("webex-radiogroup").length;
+    var selects = p.getElementsByClassName("webex-select").length;
+
+    t[i].innerHTML = correct + " of " + (solvemes + radiogroups + selects) + " correct";
+  }
+}
+
+/* webex-solution button toggling function */
+b_func = function() {
+  console.log("webex: toggle hide");
+
+  var cl = this.parentElement.classList;
+  if (cl.contains('open')) {
+    cl.remove("open");
+  } else {
+    cl.add("open");
+  }
+}
+
+/* check answers */
+check_func = function() {
+  console.log("webex: check answers");
+
+  var cl = this.parentElement.classList;
+  if (cl.contains('unchecked')) {
+    cl.remove("unchecked");
+    this.innerHTML = "Hide Answers";
+  } else {
+    cl.add("unchecked");
+    this.innerHTML = "Show Answers";
+  }
+}
+
+/* function for checking solveme answers */
+solveme_func = function(e) {
+  console.log("webex: check solveme");
+
+  var real_answers = JSON.parse(this.dataset.answer);
+  var my_answer = this.value;
+  var cl = this.classList;
+  if (cl.contains("ignorecase")) {
+    my_answer = my_answer.toLowerCase();
+  }
+  if (cl.contains("nospaces")) {
+    my_answer = my_answer.replace(/ /g, "")
+  }
+
+  if (my_answer == "") {
+    cl.remove("webex-correct");
+    cl.remove("webex-incorrect");
+  } else if (real_answers.includes(my_answer)) {
+    cl.add("webex-correct");
+    cl.remove("webex-incorrect");
+  } else {
+    cl.add("webex-incorrect");
+    cl.remove("webex-correct");
+  }
+
+  // match numeric answers within a specified tolerance
+  if(this.dataset.tol > 0){
+    var tol = JSON.parse(this.dataset.tol);
+    var matches = real_answers.map(x => Math.abs(x - my_answer) < tol)
+    if (matches.reduce((a, b) => a + b, 0) > 0) {
+      cl.add("webex-correct");
+    } else {
+      cl.remove("webex-correct");
+    }
+  }
+
+  // added regex bit
+  if (cl.contains("regex")){
+    answer_regex = RegExp(real_answers.join("|"))
+    if (answer_regex.test(my_answer)) {
+      cl.add("webex-correct");
+    }
+  }
+
+  update_total_correct();
+}
+
+/* function for checking select answers */
+select_func = function(e) {
+  console.log("webex: check select");
+
+  var cl = this.classList
+
+  /* add style */
+  cl.remove("webex-incorrect");
+  cl.remove("webex-correct");
+  if (this.value == "answer") {
+    cl.add("webex-correct");
+  } else if (this.value != "blank") {
+    cl.add("webex-incorrect");
+  }
+
+  update_total_correct();
+}
+
+/* function for checking radiogroups answers */
+radiogroups_func = function(e) {
+  console.log("webex: check radiogroups");
+
+  var checked_button = document.querySelector('input[name=' + this.id + ']:checked');
+  var cl = checked_button.parentElement.classList;
+  var labels = checked_button.parentElement.parentElement.children;
+
+  /* get rid of styles */
+  for (i = 0; i < labels.length; i++) {
+    labels[i].classList.remove("webex-incorrect");
+    labels[i].classList.remove("webex-correct");
+  }
+
+  /* add style */
+  if (checked_button.value == "answer") {
+    cl.add("webex-correct");
+  } else {
+    cl.add("webex-incorrect");
+  }
+
+  update_total_correct();
+}
+
+window.onload = function() {
+  console.log("webex onload");
+  /* set up solution buttons */
+  var buttons = document.getElementsByTagName("button");
+
+  for (var i = 0; i < buttons.length; i++) {
+    if (buttons[i].parentElement.classList.contains('webex-solution')) {
+      buttons[i].onclick = b_func;
+    }
+  }
+
+  var check_sections = document.getElementsByClassName("webex-check");
+  console.log("check:", check_sections.length);
+  for (var i = 0; i < check_sections.length; i++) {
+    check_sections[i].classList.add("unchecked");
+
+    let btn = document.createElement("button");
+    btn.innerHTML = "Show Answers";
+    btn.classList.add("webex-check-button");
+    btn.onclick = check_func;
+    check_sections[i].appendChild(btn);
+
+    let spn = document.createElement("span");
+    spn.classList.add("webex-total_correct");
+    check_sections[i].appendChild(spn);
+  }
+
+  /* set up webex-solveme inputs */
+  var solveme = document.getElementsByClassName("webex-solveme");
+
+  for (var i = 0; i < solveme.length; i++) {
+    /* make sure input boxes don't auto-anything */
+    solveme[i].setAttribute("autocomplete","off");
+    solveme[i].setAttribute("autocorrect", "off");
+    solveme[i].setAttribute("autocapitalize", "off");
+    solveme[i].setAttribute("spellcheck", "false");
+    solveme[i].value = "";
+
+    /* adjust answer for ignorecase or nospaces */
+    var cl = solveme[i].classList;
+    var real_answer = solveme[i].dataset.answer;
+    if (cl.contains("ignorecase")) {
+      real_answer = real_answer.toLowerCase();
+    }
+    if (cl.contains("nospaces")) {
+      real_answer = real_answer.replace(/ /g, "");
+    }
+    solveme[i].dataset.answer = real_answer;
+
+    /* attach checking function */
+    solveme[i].onkeyup = solveme_func;
+    solveme[i].onchange = solveme_func;
+
+    solveme[i].insertAdjacentHTML("afterend", " <span class='webex-icon'></span>")
+  }
+
+  /* set up radiogroups */
+  var radiogroups = document.getElementsByClassName("webex-radiogroup");
+  for (var i = 0; i < radiogroups.length; i++) {
+    radiogroups[i].onchange = radiogroups_func;
+  }
+
+  /* set up selects */
+  var selects = document.getElementsByClassName("webex-select");
+  for (var i = 0; i < selects.length; i++) {
+    selects[i].onchange = select_func;
+    selects[i].insertAdjacentHTML("afterend", " <span class='webex-icon'></span>")
+  }
+
+  update_total_correct();
+}
+
+</script>
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
@@ -937,13 +1140,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./04_regex.html" class="pagination-link" aria-label="Нормализация. Регулярные выражения">
+      <a href="./regex.html" class="pagination-link" aria-label="Нормализация. Регулярные выражения">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Нормализация. Регулярные выражения</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./06_tei.html" class="pagination-link" aria-label="Разметка TEI">
-        <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Разметка TEI</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./tei.html" class="pagination-link" aria-label="Начало работы">
+        <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Начало работы</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

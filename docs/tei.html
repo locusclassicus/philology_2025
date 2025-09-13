@@ -84,8 +84,8 @@ div.csl-indent {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./07_llm.html" rel="next">
-<link href="./05_xml.html" rel="prev">
+<link href="./llm.html" rel="next">
+<link href="./xml.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -122,8 +122,11 @@ div.csl-indent {
     "search-label": "Поиск"
   }
 }</script>
+<link href="site_libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet">
+<script src="site_libs/pagedtable-1.1/js/pagedtable.js"></script>
 
 
+<link rel="stylesheet" href="include/webex.css">
 </head>
 
 <body class="nav-sidebar floating">
@@ -135,7 +138,7 @@ div.csl-indent {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Переключить боковую панель навигации" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./06_tei.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Разметка TEI</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./tei.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Разметка TEI</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Переключить боковую панель навигации" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Поиск" onclick="window.quartoOpenSearch();">
@@ -168,49 +171,49 @@ div.csl-indent {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./01_start.html" class="sidebar-item-text sidebar-link">
+  <a href="./start.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Начало работы</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./02_tabular.html" class="sidebar-item-text sidebar-link">
+  <a href="./tabular.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Табличные данные. Анализ датасета</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./03_ocr.html" class="sidebar-item-text sidebar-link">
+  <a href="./ocr.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Распознавание изображений</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./04_regex.html" class="sidebar-item-text sidebar-link">
+  <a href="./regex.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Нормализация. Регулярные выражения</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./05_xml.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Основы работы с XML</span></span></a>
+  <a href="./xml.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Разметка XML</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./06_tei.html" class="sidebar-item-text sidebar-link active">
+  <a href="./tei.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Разметка TEI</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./07_llm.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Добавление разметки с LLM</span></span></a>
+  <a href="./llm.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Начало работы</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./08_share.html" class="sidebar-item-text sidebar-link">
+  <a href="./share.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Публикационная система Quarto</span></span></a>
   </div>
 </li>
@@ -227,15 +230,17 @@ div.csl-indent {
   <li><a href="#что-такое-tei" id="toc-что-такое-tei" class="nav-link active" data-scroll-target="#что-такое-tei"><span class="header-section-number">6.1</span> Что такое TEI</a></li>
   <li><a href="#структура-документа-tei" id="toc-структура-документа-tei" class="nav-link" data-scroll-target="#структура-документа-tei"><span class="header-section-number">6.2</span> Структура документа TEI</a>
   <ul class="collapse">
-  <li><a href="#заголовок-tei-teiheader" id="toc-заголовок-tei-teiheader" class="nav-link" data-scroll-target="#заголовок-tei-teiheader"><span class="header-section-number">6.2.1</span> Заголовок TEI (teiHeader)</a></li>
-  <li><a href="#описание-файла-filedesc" id="toc-описание-файла-filedesc" class="nav-link" data-scroll-target="#описание-файла-filedesc"><span class="header-section-number">6.2.2</span> Описание файла (fileDesc)</a></li>
-  <li><a href="#профиль-документа-profiledesc" id="toc-профиль-документа-profiledesc" class="nav-link" data-scroll-target="#профиль-документа-profiledesc"><span class="header-section-number">6.2.3</span> Профиль документа (profileDesc)</a></li>
+  <li><a href="#teiheader" id="toc-teiheader" class="nav-link" data-scroll-target="#teiheader"><span class="header-section-number">6.2.1</span> teiHeader</a></li>
+  <li><a href="#filedesc" id="toc-filedesc" class="nav-link" data-scroll-target="#filedesc"><span class="header-section-number">6.2.2</span> fileDesc</a></li>
+  <li><a href="#profiledesc" id="toc-profiledesc" class="nav-link" data-scroll-target="#profiledesc"><span class="header-section-number">6.2.3</span> profileDesc</a></li>
   </ul></li>
   <li><a href="#критический-аппарат-и-варианты-текста" id="toc-критический-аппарат-и-варианты-текста" class="nav-link" data-scroll-target="#критический-аппарат-и-варианты-текста"><span class="header-section-number">6.3</span> Критический аппарат и варианты текста</a></li>
   <li><a href="#исправления-и-нормализация" id="toc-исправления-и-нормализация" class="nav-link" data-scroll-target="#исправления-и-нормализация"><span class="header-section-number">6.4</span> Исправления и нормализация</a></li>
-  <li><a href="#разночтения-в-критическом-аппарате" id="toc-разночтения-в-критическом-аппарате" class="nav-link" data-scroll-target="#разночтения-в-критическом-аппарате"><span class="header-section-number">6.5</span> Разночтения в критическом аппарате</a></li>
-  <li><a href="#структурная-разметка" id="toc-структурная-разметка" class="nav-link" data-scroll-target="#структурная-разметка"><span class="header-section-number">6.6</span> Структурная разметка</a></li>
-  <li><a href="#преимущества-стандарта-tei" id="toc-преимущества-стандарта-tei" class="nav-link" data-scroll-target="#преимущества-стандарта-tei"><span class="header-section-number">6.7</span> Преимущества стандарта TEI</a></li>
+  <li><a href="#структурная-разметка" id="toc-структурная-разметка" class="nav-link" data-scroll-target="#структурная-разметка"><span class="header-section-number">6.5</span> Структурная разметка</a>
+  <ul class="collapse">
+  <li><a href="#преимущества-стандарта-tei" id="toc-преимущества-стандарта-tei" class="nav-link" data-scroll-target="#преимущества-стандарта-tei"><span class="header-section-number">6.5.1</span> Преимущества стандарта TEI</a></li>
+  <li><a href="#датасет-война-и-мир" id="toc-датасет-война-и-мир" class="nav-link" data-scroll-target="#датасет-война-и-мир"><span class="header-section-number">6.5.2</span> Датасет: “Война и мир”</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -269,107 +274,108 @@ div.csl-indent {
 </section>
 <section id="структура-документа-tei" class="level2" data-number="6.2">
 <h2 data-number="6.2" class="anchored" data-anchor-id="структура-документа-tei"><span class="header-section-number">6.2</span> Структура документа TEI</h2>
-<p>Корневой элемент в документах TEI называется <code>&lt;TEI&gt;</code>. Внутри него располагается элемент <code>&lt;teiHeader&gt;</code> с метаинформацией о документе и элемент <code>&lt;text&gt;</code>. Последний содержит текст документа с элементами, определяющими его структурное членение:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode xml code-with-copy"><code class="sourceCode xml"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>&lt;<span class="kw">TEI</span>&gt;</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  &lt;<span class="kw">teiHeader</span>&gt;&lt;/<span class="kw">teiHeader</span>&gt;</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  &lt;<span class="kw">text</span>&gt;&lt;/<span class="kw">text</span>&gt;</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>&lt;/<span class="kw">TEI</span>&gt;</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Корневой элемент в документах TEI называется TEI, внутри него располагается элемент teiHeader с метаинформацией о документе и элемент text. Последний содержит текст документа с элементами, определяющими его структурное членение.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&lt;</span>TEI<span class="sc">&gt;</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="er">&lt;</span>teiHeader<span class="sc">&gt;</span><span class="er">&lt;/</span>teiHeader<span class="sc">&gt;</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="er">&lt;</span>text<span class="sc">&gt;</span><span class="er">&lt;/</span>text<span class="sc">&gt;</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="er">&lt;/</span>TEI<span class="sc">&gt;</span></span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <p>Пример оформления документа можно посмотреть <a href="https://github.com/dracor-org/rusdracor/blob/main/tei/fonvizin-nedorosl.xml">по ссылке</a>.</p>
-<section id="заголовок-tei-teiheader" class="level3" data-number="6.2.1">
-<h3 data-number="6.2.1" class="anchored" data-anchor-id="заголовок-tei-teiheader"><span class="header-section-number">6.2.1</span> Заголовок TEI (teiHeader)</h3>
-<p>У <code>&lt;teiHeader&gt;</code> есть четыре главных дочерних элемента:</p>
+<section id="teiheader" class="level3" data-number="6.2.1">
+<h3 data-number="6.2.1" class="anchored" data-anchor-id="teiheader"><span class="header-section-number">6.2.1</span> teiHeader</h3>
+<p>У <code>teiHeader</code> есть четыре главных дочерних элемента:</p>
 <ul>
-<li><code>&lt;fileDesc&gt;</code> (описание документа c библиографической информацией)</li>
-<li><code>&lt;encodingDesc&gt;</code> (описание способа кодирование первоисточника)</li>
-<li><code>&lt;profileDesc&gt;</code> (“досье” на текст, например отправитель и получатель для писем, жанр, используемые языки, обстоятельства создания, место написания и т.п.)</li>
-<li><code>&lt;revisionDesc&gt;</code> (история изменений документа)</li>
+<li><code>fileDesc</code> (описание документа c библиографической информацией)</li>
+<li><code>encodingDesc</code> (описание способа кодирование первоисточника)</li>
+<li><code>profileDesc</code> (“досье” на текст, например отправитель и получатель для писем, жанр, используемые языки, обстоятельства создания, место написания и т.п.)</li>
+<li><code>revisionDesc</code> (история изменений документа).</li>
 </ul>
 </section>
-<section id="описание-файла-filedesc" class="level3" data-number="6.2.2">
-<h3 data-number="6.2.2" class="anchored" data-anchor-id="описание-файла-filedesc"><span class="header-section-number">6.2.2</span> Описание файла (fileDesc)</h3>
-<p>Элемент <code>&lt;fileDesc&gt;</code> должен содержать полную библиографическую информацию о первоисточнике. Пример для повести Л.Н. Толстого «Детство»:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode xml code-with-copy"><code class="sourceCode xml"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>&lt;<span class="kw">fileDesc</span>&gt;</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  &lt;<span class="kw">titleStmt</span>&gt;</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    &lt;<span class="kw">title</span>&gt;Повесть «Детство». Электронное издание.&lt;/<span class="kw">title</span>&gt;</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    &lt;<span class="kw">author</span>&gt;Толстой Л.Н.&lt;/<span class="kw">author</span>&gt;</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    &lt;<span class="kw">editor</span>&gt;Иванов И.И.&lt;/<span class="kw">editor</span>&gt;</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    &lt;<span class="kw">respStmt</span>&gt;</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>      &lt;<span class="kw">resp</span>&gt;Подготовка и разметка метаинформации для электронного издания&lt;/<span class="kw">resp</span>&gt;</span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>      &lt;<span class="kw">name</span>&gt;Иванов И.И.&lt;/<span class="kw">name</span>&gt;</span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    &lt;/<span class="kw">respStmt</span>&gt;</span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>  &lt;/<span class="kw">titleStmt</span>&gt;</span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>  &lt;<span class="kw">publicationStmt</span>&gt;</span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>    &lt;<span class="kw">publisher</span>&gt;Школа лингвистики &lt;<span class="kw">orgName</span>&gt;НИУ ВШЭ&lt;/<span class="kw">orgName</span>&gt;&lt;/<span class="kw">publisher</span>&gt;</span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>    &lt;<span class="kw">availability</span>&gt;</span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>      &lt;<span class="kw">p</span>&gt;Распространяется свободно&lt;/<span class="kw">p</span>&gt;</span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>    &lt;/<span class="kw">availability</span>&gt;</span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>  &lt;/<span class="kw">publicationStmt</span>&gt;</span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>  &lt;<span class="kw">sourceDesc</span>&gt;</span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>    &lt;<span class="kw">biblStruct</span>&gt;</span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>      &lt;<span class="kw">author</span>&gt;Толстой Л.Н.&lt;/<span class="kw">author</span>&gt;</span>
-<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>      &lt;<span class="kw">title</span><span class="ot"> level=</span><span class="st">"a"</span>&gt;Детство&lt;/<span class="kw">title</span>&gt;</span>
-<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>      &lt;<span class="kw">monogr</span>&gt;</span>
-<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>        &lt;<span class="kw">title</span><span class="ot"> level=</span><span class="st">"m"</span>&gt;Полное собрание сочинений. Том 1&lt;/<span class="kw">title</span>&gt;</span>
-<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>        &lt;<span class="kw">imprint</span>&gt;</span>
-<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>          &lt;<span class="kw">pubPlace</span>&gt;Москва&lt;/<span class="kw">pubPlace</span>&gt;</span>
-<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>          &lt;<span class="kw">publisher</span>&gt;Государственное издательство "Художественная литература"&lt;/<span class="kw">publisher</span>&gt;</span>
-<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>          &lt;<span class="kw">date</span><span class="ot"> when=</span><span class="st">"1935"</span>/&gt;</span>
-<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>        &lt;/<span class="kw">imprint</span>&gt;</span>
-<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>      &lt;/<span class="kw">monogr</span>&gt;</span>
-<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>    &lt;/<span class="kw">biblStruct</span>&gt;</span>
-<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>  &lt;/<span class="kw">sourceDesc</span>&gt;</span>
-<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>&lt;/<span class="kw">fileDesc</span>&gt;</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="filedesc" class="level3" data-number="6.2.2">
+<h3 data-number="6.2.2" class="anchored" data-anchor-id="filedesc"><span class="header-section-number">6.2.2</span> fileDesc</h3>
+<p>Элемент <filedesc> должен содержать полную библиографическую информацию о первоисточнике. Пример для повести Л.Н. Толстого «Детство»:</filedesc></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&lt;</span>fileDesc<span class="sc">&gt;</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="er">&lt;</span>titleStmt<span class="sc">&gt;</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="er">&lt;</span>title<span class="sc">&gt;</span>Повесть «Детство». Электронное издание.<span class="sc">&lt;</span><span class="er">/</span>title<span class="sc">&gt;</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    <span class="er">&lt;</span>author<span class="sc">&gt;</span>Толстой Л.Н.<span class="sc">&lt;</span><span class="er">/</span>author<span class="sc">&gt;</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    <span class="er">&lt;</span>editor<span class="sc">&gt;</span>Иванов И.И.<span class="sc">&lt;</span><span class="er">/</span>editor<span class="sc">&gt;</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    <span class="er">&lt;</span>respStmt<span class="sc">&gt;</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>      <span class="er">&lt;</span>resp<span class="sc">&gt;</span>Подготовка и разметка метаинформации для электронного издания<span class="sc">&lt;</span><span class="er">/</span>resp<span class="sc">&gt;</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>      <span class="er">&lt;</span>name<span class="sc">&gt;</span>Иванов И.И.<span class="sc">&lt;</span><span class="er">/</span>name<span class="sc">&gt;</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    <span class="er">&lt;/</span>respStmt<span class="sc">&gt;</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>  <span class="er">&lt;/</span>titleStmt<span class="sc">&gt;</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>  <span class="er">&lt;</span>publicationStmt<span class="sc">&gt;</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>    <span class="er">&lt;</span>publisher<span class="sc">&gt;</span>Школа лингвистики <span class="sc">&lt;</span>orgName<span class="sc">&gt;</span>НИУ ВШЭ<span class="sc">&lt;</span><span class="er">/</span>orgName<span class="sc">&gt;</span><span class="er">&lt;/</span>publisher<span class="sc">&gt;</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>    <span class="er">&lt;</span>availability<span class="sc">&gt;</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>      <span class="er">&lt;</span>p<span class="sc">&gt;</span>Распространяется свободно<span class="sc">&lt;</span><span class="er">/</span>p<span class="sc">&gt;</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>    <span class="er">&lt;/</span>availability<span class="sc">&gt;</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>  <span class="er">&lt;/</span>publicationStmt<span class="sc">&gt;</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>  <span class="er">&lt;</span>sourceDesc<span class="sc">&gt;</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>    <span class="er">&lt;</span>biblStruct<span class="sc">&gt;</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>      <span class="er">&lt;</span>author<span class="sc">&gt;</span>Толстой Л.Н.<span class="sc">&lt;</span><span class="er">/</span>author<span class="sc">&gt;</span></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>      <span class="er">&lt;</span>title level<span class="ot">=</span><span class="st">"a"</span><span class="sc">&gt;</span>Детство<span class="sc">&lt;</span><span class="er">/</span>title<span class="sc">&gt;</span></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>      <span class="er">&lt;</span>monogr<span class="sc">&gt;</span></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>        <span class="er">&lt;</span>title level<span class="ot">=</span><span class="st">"m"</span><span class="sc">&gt;</span>Полное собрание сочинений. Том <span class="dv">1</span><span class="sc">&lt;</span><span class="er">/</span>title<span class="sc">&gt;</span></span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>        <span class="er">&lt;</span>imprint<span class="sc">&gt;</span></span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>          <span class="er">&lt;</span>pubPlace<span class="sc">&gt;</span>Москва<span class="sc">&lt;</span><span class="er">/</span>pubPlace<span class="sc">&gt;</span></span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>          <span class="er">&lt;</span>publisher<span class="sc">&gt;</span>Государственное издательство <span class="st">"Художественная литература"</span><span class="sc">&lt;</span><span class="er">/</span>publisher<span class="sc">&gt;</span></span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>          <span class="er">&lt;</span>date when<span class="ot">=</span><span class="st">"1935"</span><span class="sc">/</span><span class="er">&gt;</span></span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>        <span class="er">&lt;/</span>imprint<span class="sc">&gt;</span></span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>      <span class="er">&lt;/</span>monogr<span class="sc">&gt;</span></span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>    <span class="er">&lt;/</span>biblStruct<span class="sc">&gt;</span></span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>  <span class="er">&lt;/</span>sourceDesc<span class="sc">&gt;</span></span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a><span class="er">&lt;/</span>fileDesc<span class="sc">&gt;</span></span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
-<section id="профиль-документа-profiledesc" class="level3" data-number="6.2.3">
-<h3 data-number="6.2.3" class="anchored" data-anchor-id="профиль-документа-profiledesc"><span class="header-section-number">6.2.3</span> Профиль документа (profileDesc)</h3>
+<section id="profiledesc" class="level3" data-number="6.2.3">
+<h3 data-number="6.2.3" class="anchored" data-anchor-id="profiledesc"><span class="header-section-number">6.2.3</span> profileDesc</h3>
 <p>Элемент <code>&lt;profileDesc&gt;</code> содержит метаданные, относящиеся непосредственно к тексту:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode xml code-with-copy"><code class="sourceCode xml"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>&lt;<span class="kw">profileDesc</span>&gt;</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  &lt;<span class="kw">creation</span>&gt;</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    &lt;<span class="kw">date</span><span class="ot"> when=</span><span class="st">"1852"</span>&gt;1852&lt;/<span class="kw">date</span>&gt;</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    &lt;<span class="kw">placeName</span>&gt;Москва&lt;/<span class="kw">placeName</span>&gt;</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    &lt;<span class="kw">placeName</span>&gt;станица Старогладковская&lt;/<span class="kw">placeName</span>&gt;</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    &lt;<span class="kw">placeName</span>&gt;Тифлис&lt;/<span class="kw">placeName</span>&gt;</span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  &lt;/<span class="kw">creation</span>&gt;</span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  &lt;<span class="kw">langUsage</span>&gt;</span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    &lt;<span class="kw">language</span><span class="ot"> ident=</span><span class="st">"rus"</span><span class="ot"> usage=</span><span class="st">"99"</span>&gt;Русский&lt;/<span class="kw">language</span>&gt;</span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>    &lt;<span class="kw">language</span><span class="ot"> ident=</span><span class="st">"fra"</span><span class="ot"> usage=</span><span class="st">"0,5"</span>&gt;Французский&lt;/<span class="kw">language</span>&gt;</span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>    &lt;<span class="kw">language</span><span class="ot"> ident=</span><span class="st">"deu"</span><span class="ot"> usage=</span><span class="st">"0,5"</span>&gt;Немецкий&lt;/<span class="kw">language</span>&gt;</span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>  &lt;/<span class="kw">langUsage</span>&gt;</span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>  &lt;<span class="kw">textClass</span>&gt;</span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>    &lt;<span class="kw">catRef</span><span class="ot"> type=</span><span class="st">"type"</span><span class="ot"> target=</span><span class="st">"#short_novel"</span>/&gt;</span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>  &lt;/<span class="kw">textClass</span>&gt;</span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>&lt;/<span class="kw">profileDesc</span>&gt;</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&lt;</span>profileDesc<span class="sc">&gt;</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="er">&lt;</span>creation<span class="sc">&gt;</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="er">&lt;</span>date when<span class="ot">=</span><span class="st">"1852"</span><span class="sc">&gt;</span><span class="dv">1852</span><span class="sc">&lt;</span><span class="er">/</span>date<span class="sc">&gt;</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="er">&lt;</span>placeName<span class="sc">&gt;</span>Москва<span class="sc">&lt;</span><span class="er">/</span>placeName<span class="sc">&gt;</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="er">&lt;</span>placeName<span class="sc">&gt;</span>станица Старогладковская<span class="sc">&lt;</span><span class="er">/</span>placeName<span class="sc">&gt;</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    <span class="er">&lt;</span>placeName<span class="sc">&gt;</span>Тифлис<span class="sc">&lt;</span><span class="er">/</span>placeName<span class="sc">&gt;</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  <span class="er">&lt;/</span>creation<span class="sc">&gt;</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  <span class="er">&lt;</span>langUsage<span class="sc">&gt;</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    <span class="er">&lt;</span>language ident<span class="ot">=</span><span class="st">"rus"</span> usage<span class="ot">=</span><span class="st">"99"</span><span class="sc">&gt;</span>Русский<span class="sc">&lt;</span><span class="er">/</span>language<span class="sc">&gt;</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>    <span class="er">&lt;</span>language ident<span class="ot">=</span><span class="st">"fra"</span> usage<span class="ot">=</span><span class="st">"0,5"</span><span class="sc">&gt;</span>Французский<span class="sc">&lt;</span><span class="er">/</span>language<span class="sc">&gt;</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>    <span class="er">&lt;</span>language ident<span class="ot">=</span><span class="st">"deu"</span> usage<span class="ot">=</span><span class="st">"0,5"</span><span class="sc">&gt;</span>Немецкий<span class="sc">&lt;</span><span class="er">/</span>language<span class="sc">&gt;</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>  <span class="er">&lt;/</span>langUsage<span class="sc">&gt;</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>  <span class="er">&lt;</span>textClass<span class="sc">&gt;</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>    <span class="er">&lt;</span>catRef type<span class="ot">=</span><span class="st">"type"</span> target<span class="ot">=</span><span class="st">"#short_novel"</span><span class="sc">/</span><span class="er">&gt;</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>  <span class="er">&lt;/</span>textClass<span class="sc">&gt;</span></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a><span class="er">&lt;/</span>profileDesc<span class="sc">&gt;</span></span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
 </section>
 <section id="критический-аппарат-и-варианты-текста" class="level2" data-number="6.3">
 <h2 data-number="6.3" class="anchored" data-anchor-id="критический-аппарат-и-варианты-текста"><span class="header-section-number">6.3</span> Критический аппарат и варианты текста</h2>
-<p>В самом тексте язык TEI дает возможность представлять разные варианты (авторские, редакторские, корректорские и др.). Основным средством параллельного представления является элемент <code>&lt;choice&gt;</code>. Например, в <a href="https://github.com/PerseusDL/canonical-latinLit/blob/master/data/phi0550/phi001/phi0550.phi001.perseus-lat1.xml">тексте Лукреция</a> вы можете увидеть такое:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode xml code-with-copy"><code class="sourceCode xml"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>sic calor atque &lt;<span class="kw">choice</span>&gt;&lt;<span class="kw">reg</span>&gt;aer&lt;/<span class="kw">reg</span>&gt;&lt;<span class="kw">orig</span>&gt;aër&lt;/<span class="kw">orig</span>&gt;&lt;/<span class="kw">choice</span>&gt; et venti caeca potestas</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Здесь <code>&lt;reg&gt;</code> указывает на нормализованное написание, а <code>&lt;orig&gt;</code> — на оригинальное.</p>
+<p>В самом тексте язык TEI дает возможность представлять разные варианты (авторские, редакторские, корректорские и др.) Основным средством параллельного представления является элемент <code>choice</code>. Например, в <a href="https://github.com/PerseusDL/canonical-latinLit/blob/master/data/phi0550/phi001/phi0550.phi001.perseus-lat1.xml">тексте Лукреция</a> вы можете увидеть такое:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>sic calor atque <span class="sc">&lt;</span>choice<span class="sc">&gt;</span><span class="er">&lt;</span>reg<span class="sc">&gt;</span>aer<span class="sc">&lt;</span><span class="er">/</span>reg<span class="sc">&gt;</span><span class="er">&lt;</span>orig<span class="sc">&gt;</span>aër<span class="sc">&lt;</span><span class="er">/</span>orig<span class="sc">&gt;</span><span class="er">&lt;/</span>choice<span class="sc">&gt;</span> et venti caeca potestas</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Здесь <code>reg</code> указывает на нормализованное написание, а <code>orig</code> – на оригинальное.</p>
 </section>
 <section id="исправления-и-нормализация" class="level2" data-number="6.4">
 <h2 data-number="6.4" class="anchored" data-anchor-id="исправления-и-нормализация"><span class="header-section-number">6.4</span> Исправления и нормализация</h2>
 <p>Для исправления ошибок используются элементы <code>&lt;sic&gt;</code> («так у автора») и <code>&lt;corr&gt;</code> («исправленное написание»):</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode xml code-with-copy"><code class="sourceCode xml"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>&lt;<span class="kw">choice</span>&gt;</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  &lt;<span class="kw">sic</span>&gt;вихремъ&lt;/<span class="kw">sic</span>&gt;</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  &lt;<span class="kw">corr</span><span class="ot"> resp=</span><span class="st">"#editor1"</span>&gt;верхомъ&lt;/<span class="kw">corr</span>&gt;</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>&lt;/<span class="kw">choice</span>&gt;</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Атрибут <code>@resp</code> содержит ссылку на идентификатор редактора.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&lt;</span>choice<span class="sc">&gt;</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="er">&lt;</span>sic<span class="sc">&gt;</span>вихремъ<span class="sc">&lt;</span><span class="er">/</span>sic<span class="sc">&gt;</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="er">&lt;</span>corr resp<span class="ot">=</span><span class="st">"#editor1"</span><span class="sc">&gt;</span>верхомъ<span class="sc">&lt;</span><span class="er">/</span>corr<span class="sc">&gt;</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="er">&lt;/</span>choice<span class="sc">&gt;</span></span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Атрибут <code>resp</code> содержит ссылку на идентификатор редактора.</p>
 </section>
-<section id="разночтения-в-критическом-аппарате" class="level2" data-number="6.5">
-<h2 data-number="6.5" class="anchored" data-anchor-id="разночтения-в-критическом-аппарате"><span class="header-section-number">6.5</span> Разночтения в критическом аппарате</h2>
-<p>Для различных прочтений неоднозначного текста используется элемент <code>&lt;app&gt;</code>:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode xml code-with-copy"><code class="sourceCode xml"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>по &lt;<span class="kw">app</span>&gt;</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  &lt;<span class="kw">lemma</span><span class="ot"> wit=</span><span class="st">"#w1 #w2"</span>&gt;бѣлѣи&lt;/<span class="kw">lemma</span>&gt;</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  &lt;<span class="kw">rdg</span><span class="ot"> wit=</span><span class="st">"#w3"</span>&gt;бѣлѣ и&lt;/<span class="kw">rdg</span>&gt;</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>&lt;/<span class="kw">app</span>&gt; вѣверицѣ ѿдыма</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Здесь <code>&lt;lemma&gt;</code> содержит предпочтительное прочтение, а <code>&lt;rdg&gt;</code> — альтернативные варианты.</p>
-</section>
-<section id="структурная-разметка" class="level2" data-number="6.6">
-<h2 data-number="6.6" class="anchored" data-anchor-id="структурная-разметка"><span class="header-section-number">6.6</span> Структурная разметка</h2>
+<section id="структурная-разметка" class="level2" data-number="6.5">
+<h2 data-number="6.5" class="anchored" data-anchor-id="структурная-разметка"><span class="header-section-number">6.5</span> Структурная разметка</h2>
 <p>TEI предоставляет богатый набор элементов для разметки структуры текста:</p>
 <ul>
-<li><code>&lt;text&gt;</code> — цельный текст</li>
+<li><code>&lt;text&gt;</code> — текст целиком</li>
 <li><code>&lt;body&gt;</code> — основное содержание текста</li>
 <li><code>&lt;div&gt;</code> — структурное деление (глава, часть, раздел)</li>
 <li><code>&lt;p&gt;</code> — параграф</li>
@@ -379,17 +385,18 @@ div.csl-indent {
 <li><code>&lt;stage&gt;</code> — ремарка</li>
 </ul>
 <p>Пример разметки поэзии:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode xml code-with-copy"><code class="sourceCode xml"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>&lt;<span class="kw">lg</span><span class="ot"> type=</span><span class="st">"quatrain"</span>&gt;</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  &lt;<span class="kw">l</span><span class="ot"> met=</span><span class="st">"+-|+-|+-|+-"</span>&gt;Дар напрасный, дар случайный,&lt;/<span class="kw">l</span>&gt;</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  &lt;<span class="kw">l</span><span class="ot"> met=</span><span class="st">"+-|+-|+-|+"</span>&gt;Жизнь, зачем ты мне дана?&lt;/<span class="kw">l</span>&gt;</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  &lt;<span class="kw">l</span><span class="ot"> met=</span><span class="st">"+-|+-|+-|+-"</span>&gt;Иль зачем судьбою тайной&lt;/<span class="kw">l</span>&gt;</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  &lt;<span class="kw">l</span><span class="ot"> met=</span><span class="st">"+-|+-|--|+"</span>&gt;Ты на казнь осуждена?&lt;/<span class="kw">l</span>&gt;</span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>&lt;/<span class="kw">lg</span>&gt;</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="преимущества-стандарта-tei" class="level2" data-number="6.7">
-<h2 data-number="6.7" class="anchored" data-anchor-id="преимущества-стандарта-tei"><span class="header-section-number">6.7</span> Преимущества стандарта TEI</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&lt;</span>lg type<span class="ot">=</span><span class="st">"quatrain"</span><span class="sc">&gt;</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="er">&lt;</span>l met<span class="ot">=</span><span class="st">"+-|+-|+-|+-"</span><span class="sc">&gt;</span>Дар напрасный, дар случайный,<span class="sc">&lt;</span><span class="er">/</span>l<span class="sc">&gt;</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="er">&lt;</span>l met<span class="ot">=</span><span class="st">"+-|+-|+-|+"</span><span class="sc">&gt;</span>Жизнь, зачем ты мне дана?<span class="sc">&lt;</span><span class="er">/</span>l<span class="sc">&gt;</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="er">&lt;</span>l met<span class="ot">=</span><span class="st">"+-|+-|+-|+-"</span><span class="sc">&gt;</span>Иль зачем судьбою тайной<span class="sc">&lt;</span><span class="er">/</span>l<span class="sc">&gt;</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="er">&lt;</span>l met<span class="ot">=</span><span class="st">"+-|+-|--|+"</span><span class="sc">&gt;</span>Ты на казнь осуждена?<span class="sc">&lt;</span><span class="er">/</span>l<span class="sc">&gt;</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="er">&lt;/</span>lg<span class="sc">&gt;</span></span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="преимущества-стандарта-tei" class="level3" data-number="6.5.1">
+<h3 data-number="6.5.1" class="anchored" data-anchor-id="преимущества-стандарта-tei"><span class="header-section-number">6.5.1</span> Преимущества стандарта TEI</h3>
 <p>Использование TEI обеспечивает:</p>
-<ol type="1">
+<ul>
 <li>Сохранение текста без потери значимой информации</li>
 <li>Хранение богатой метаинформации о тексте и его носителях</li>
 <li>Кодирование структуры текста и лингвистической разметки</li>
@@ -397,18 +404,249 @@ div.csl-indent {
 <li>Гибкость и адаптируемость под различные задачи</li>
 <li>Открытость для доработки и расширения</li>
 <li>Оптимизацию для автоматической обработки</li>
-</ol>
+</ul>
 <p>Добавлять и удалять разметку может любой пользователь в редакторе XML кода или даже в простом текстовом редакторе. Стандарт TEI предоставляет исследователям универсальный метаязык для обмена текстологической информацией и встраивает документы в мировую коллекцию машиночитаемых текстов.</p>
+</section>
+<section id="датасет-война-и-мир" class="level3" data-number="6.5.2">
+<h3 data-number="6.5.2" class="anchored" data-anchor-id="датасет-война-и-мир"><span class="header-section-number">6.5.2</span> Датасет: “Война и мир”</h3>
+<p>Раздел будет добавлен позже.</p>
+<div class="callout callout-style-default callout-warning no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Задание
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Скачайте по <a href="https://raw.githubusercontent.com/dracor-org/rusdracor/main/tei/griboyedov-gore-ot-uma.xml">ссылке</a> “Горе от ума” Грибоедова и преобразуйте xml в прямоугольный формат таким образом, чтобы для каждой реплики был указан акт, сцена и действующее лицо.</p>
+</div>
+</div>
+<p>Подбробнее о структуре XML документов и способах работы с ними вы можете прочитать в книгах: <span class="citation" data-cites="nolan2014">(<a href="#ref-nolan2014" role="doc-biblioref">Nolan и Lang 2014</a>)</span> и <span class="citation" data-cites="xml2004">(<a href="#ref-xml2004" role="doc-biblioref">Холзнер 2004</a>)</span>.</p>
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="ref-nolan2014" class="csl-entry" role="listitem">
+Nolan, D., и D. T. Lang. 2014. <em>XML and Web Technologies for Data Science with R</em>. Springer.
+</div>
 <div id="ref-skorinkin2016" class="csl-entry" role="listitem">
 Скоринкин, Даниил. 2016. <span>«Электронное представление текста с помощью стандарта разметки TEI»</span>, 90–108.
 </div>
+<div id="ref-xml2004" class="csl-entry" role="listitem">
+Холзнер, Стивен. 2004. <em><span>Энциклопедия XML</span></em>. Питер.
 </div>
+</div>
+</section>
 </section>
 
 </main> <!-- /main -->
+<script>
+
+/* update total correct if #webex-total_correct exists */
+update_total_correct = function() {
+  console.log("webex: update total_correct");
+
+  var t = document.getElementsByClassName("webex-total_correct");
+  for (var i = 0; i < t.length; i++) {
+    p = t[i].parentElement;
+    var correct = p.getElementsByClassName("webex-correct").length;
+    var solvemes = p.getElementsByClassName("webex-solveme").length;
+    var radiogroups = p.getElementsByClassName("webex-radiogroup").length;
+    var selects = p.getElementsByClassName("webex-select").length;
+
+    t[i].innerHTML = correct + " of " + (solvemes + radiogroups + selects) + " correct";
+  }
+}
+
+/* webex-solution button toggling function */
+b_func = function() {
+  console.log("webex: toggle hide");
+
+  var cl = this.parentElement.classList;
+  if (cl.contains('open')) {
+    cl.remove("open");
+  } else {
+    cl.add("open");
+  }
+}
+
+/* check answers */
+check_func = function() {
+  console.log("webex: check answers");
+
+  var cl = this.parentElement.classList;
+  if (cl.contains('unchecked')) {
+    cl.remove("unchecked");
+    this.innerHTML = "Hide Answers";
+  } else {
+    cl.add("unchecked");
+    this.innerHTML = "Show Answers";
+  }
+}
+
+/* function for checking solveme answers */
+solveme_func = function(e) {
+  console.log("webex: check solveme");
+
+  var real_answers = JSON.parse(this.dataset.answer);
+  var my_answer = this.value;
+  var cl = this.classList;
+  if (cl.contains("ignorecase")) {
+    my_answer = my_answer.toLowerCase();
+  }
+  if (cl.contains("nospaces")) {
+    my_answer = my_answer.replace(/ /g, "")
+  }
+
+  if (my_answer == "") {
+    cl.remove("webex-correct");
+    cl.remove("webex-incorrect");
+  } else if (real_answers.includes(my_answer)) {
+    cl.add("webex-correct");
+    cl.remove("webex-incorrect");
+  } else {
+    cl.add("webex-incorrect");
+    cl.remove("webex-correct");
+  }
+
+  // match numeric answers within a specified tolerance
+  if(this.dataset.tol > 0){
+    var tol = JSON.parse(this.dataset.tol);
+    var matches = real_answers.map(x => Math.abs(x - my_answer) < tol)
+    if (matches.reduce((a, b) => a + b, 0) > 0) {
+      cl.add("webex-correct");
+    } else {
+      cl.remove("webex-correct");
+    }
+  }
+
+  // added regex bit
+  if (cl.contains("regex")){
+    answer_regex = RegExp(real_answers.join("|"))
+    if (answer_regex.test(my_answer)) {
+      cl.add("webex-correct");
+    }
+  }
+
+  update_total_correct();
+}
+
+/* function for checking select answers */
+select_func = function(e) {
+  console.log("webex: check select");
+
+  var cl = this.classList
+
+  /* add style */
+  cl.remove("webex-incorrect");
+  cl.remove("webex-correct");
+  if (this.value == "answer") {
+    cl.add("webex-correct");
+  } else if (this.value != "blank") {
+    cl.add("webex-incorrect");
+  }
+
+  update_total_correct();
+}
+
+/* function for checking radiogroups answers */
+radiogroups_func = function(e) {
+  console.log("webex: check radiogroups");
+
+  var checked_button = document.querySelector('input[name=' + this.id + ']:checked');
+  var cl = checked_button.parentElement.classList;
+  var labels = checked_button.parentElement.parentElement.children;
+
+  /* get rid of styles */
+  for (i = 0; i < labels.length; i++) {
+    labels[i].classList.remove("webex-incorrect");
+    labels[i].classList.remove("webex-correct");
+  }
+
+  /* add style */
+  if (checked_button.value == "answer") {
+    cl.add("webex-correct");
+  } else {
+    cl.add("webex-incorrect");
+  }
+
+  update_total_correct();
+}
+
+window.onload = function() {
+  console.log("webex onload");
+  /* set up solution buttons */
+  var buttons = document.getElementsByTagName("button");
+
+  for (var i = 0; i < buttons.length; i++) {
+    if (buttons[i].parentElement.classList.contains('webex-solution')) {
+      buttons[i].onclick = b_func;
+    }
+  }
+
+  var check_sections = document.getElementsByClassName("webex-check");
+  console.log("check:", check_sections.length);
+  for (var i = 0; i < check_sections.length; i++) {
+    check_sections[i].classList.add("unchecked");
+
+    let btn = document.createElement("button");
+    btn.innerHTML = "Show Answers";
+    btn.classList.add("webex-check-button");
+    btn.onclick = check_func;
+    check_sections[i].appendChild(btn);
+
+    let spn = document.createElement("span");
+    spn.classList.add("webex-total_correct");
+    check_sections[i].appendChild(spn);
+  }
+
+  /* set up webex-solveme inputs */
+  var solveme = document.getElementsByClassName("webex-solveme");
+
+  for (var i = 0; i < solveme.length; i++) {
+    /* make sure input boxes don't auto-anything */
+    solveme[i].setAttribute("autocomplete","off");
+    solveme[i].setAttribute("autocorrect", "off");
+    solveme[i].setAttribute("autocapitalize", "off");
+    solveme[i].setAttribute("spellcheck", "false");
+    solveme[i].value = "";
+
+    /* adjust answer for ignorecase or nospaces */
+    var cl = solveme[i].classList;
+    var real_answer = solveme[i].dataset.answer;
+    if (cl.contains("ignorecase")) {
+      real_answer = real_answer.toLowerCase();
+    }
+    if (cl.contains("nospaces")) {
+      real_answer = real_answer.replace(/ /g, "");
+    }
+    solveme[i].dataset.answer = real_answer;
+
+    /* attach checking function */
+    solveme[i].onkeyup = solveme_func;
+    solveme[i].onchange = solveme_func;
+
+    solveme[i].insertAdjacentHTML("afterend", " <span class='webex-icon'></span>")
+  }
+
+  /* set up radiogroups */
+  var radiogroups = document.getElementsByClassName("webex-radiogroup");
+  for (var i = 0; i < radiogroups.length; i++) {
+    radiogroups[i].onchange = radiogroups_func;
+  }
+
+  /* set up selects */
+  var selects = document.getElementsByClassName("webex-select");
+  for (var i = 0; i < selects.length; i++) {
+    selects[i].onchange = select_func;
+    selects[i].insertAdjacentHTML("afterend", " <span class='webex-icon'></span>")
+  }
+
+  update_total_correct();
+}
+
+</script>
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
@@ -828,13 +1066,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./05_xml.html" class="pagination-link" aria-label="Основы работы с XML">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Основы работы с XML</span></span>
+      <a href="./xml.html" class="pagination-link" aria-label="Разметка XML">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Разметка XML</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./07_llm.html" class="pagination-link" aria-label="Добавление разметки с LLM">
-        <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Добавление разметки с LLM</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./llm.html" class="pagination-link" aria-label="Начало работы">
+        <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Начало работы</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

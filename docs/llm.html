@@ -64,8 +64,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./08_share.html" rel="next">
-<link href="./06_tei.html" rel="prev">
+<link href="./share.html" rel="next">
+<link href="./tei.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -106,6 +106,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/pagedtable-1.1/js/pagedtable.js"></script>
 
 
+<link rel="stylesheet" href="include/webex.css">
 </head>
 
 <body class="nav-sidebar floating">
@@ -117,7 +118,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Переключить боковую панель навигации" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./07_llm.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Добавление разметки с LLM</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./llm.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Добавление разметки с LLM</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Переключить боковую панель навигации" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Поиск" onclick="window.quartoOpenSearch();">
@@ -150,49 +151,49 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./01_start.html" class="sidebar-item-text sidebar-link">
+  <a href="./start.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Начало работы</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./02_tabular.html" class="sidebar-item-text sidebar-link">
+  <a href="./tabular.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Табличные данные. Анализ датасета</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./03_ocr.html" class="sidebar-item-text sidebar-link">
+  <a href="./ocr.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Распознавание изображений</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./04_regex.html" class="sidebar-item-text sidebar-link">
+  <a href="./regex.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Нормализация. Регулярные выражения</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./05_xml.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Основы работы с XML</span></span></a>
+  <a href="./xml.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Разметка XML</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./06_tei.html" class="sidebar-item-text sidebar-link">
+  <a href="./tei.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Разметка TEI</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./07_llm.html" class="sidebar-item-text sidebar-link active">
+  <a href="./llm.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Добавление разметки с LLM</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./08_share.html" class="sidebar-item-text sidebar-link">
+  <a href="./share.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Публикационная система Quarto</span></span></a>
   </div>
 </li>
@@ -217,6 +218,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#как-улучшить-результат" id="toc-как-улучшить-результат" class="nav-link" data-scroll-target="#как-улучшить-результат"><span class="header-section-number">7.9</span> Как улучшить результат</a>
   <ul class="collapse">
   <li><a href="#доработка-промпта" id="toc-доработка-промпта" class="nav-link" data-scroll-target="#доработка-промпта"><span class="header-section-number">7.9.1</span> Доработка промпта</a></li>
+  <li><a href="#альтернативные-модели" id="toc-альтернативные-модели" class="nav-link" data-scroll-target="#альтернативные-модели"><span class="header-section-number">7.9.2</span> Альтернативные модели</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -248,8 +250,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li>Большая часть моделей требует денег за API =(</li>
 <li>Есть бесплатный пробный период у Gemini, но из России воспользоваться им не получится без VPN =/</li>
-<li>Есть полностью бесплатные локальные модели. Они тяжелые и не всегда умные. =<br>
-</li>
+<li>Есть полностью бесплатные локальные модели. Они тяжелые и не всегда умные.</li>
 <li>Копипаста через телеграм-чат - не наш метод.</li>
 <li>Разные хитрости.</li>
 </ul>
@@ -265,33 +266,34 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Или отредактируйте файл <code>.Renviron</code> в домашней директории:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>usethis<span class="sc">::</span><span class="fu">edit_r_environ</span>()</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>☐ Edit '/Users/olga/.Renviron'.</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>☐ Restart R for changes to take effect.</code></pre>
+</div>
 </div>
 <p>После чего добавьте строку в файл <code>OPENROUTER_API_KEY=ваш_ключ_api</code> и перезапустите сессию.</p>
 <p>Проверить:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">Sys.getenv</span>(<span class="st">"OPENROUTER_API_KEY"</span>)</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">Sys.getenv</span>(<span class="st">"OPENROUTER_API_KEY"</span>)</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="начало-работы" class="level2" data-number="7.3">
 <h2 data-number="7.3" class="anchored" data-anchor-id="начало-работы"><span class="header-section-number">7.3</span> Начало работы</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ellmer)</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">packageVersion</span>(<span class="st">"ellmer"</span>)</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ellmer)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">packageVersion</span>(<span class="st">"ellmer"</span>)</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] '0.3.0'</code></pre>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>chat <span class="ot">&lt;-</span> <span class="fu">chat_openrouter</span>(</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">system_prompt =</span> <span class="st">"You always reply in Latin"</span>,</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">api_key =</span> <span class="fu">Sys.getenv</span>(<span class="st">"OPENROUTER_API_KEY"</span>),</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">model =</span> <span class="cn">NULL</span></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Using model = "gpt-4o".</code></pre>
-</div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>chat <span class="ot">&lt;-</span> <span class="fu">chat_openrouter</span>(</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">system_prompt =</span> <span class="st">"You always reply in Latin"</span>,</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">api_key =</span> <span class="fu">Sys.getenv</span>(<span class="st">"OPENROUTER_API_KEY"</span>),</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">model =</span> <span class="cn">NULL</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>chat<span class="sc">$</span><span class="fu">chat</span>(<span class="st">"На сколько частей разделена Галлия?"</span>)</span>
@@ -358,99 +360,95 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>user_prompt <span class="ot">&lt;-</span> <span class="st">"Может быть, никто из живущих в Москве не знает так хорошо окрестностей города сего, как я, потому что никто чаще моего не бывает в поле, никто более моего не бродит пешком, без плана, без цели — куда глаза глядят — по лугам и рощам, по холмам и равнинам. Всякое лето нахожу новые приятные места или в старых новые красоты.</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="st">Но всего приятнее для меня то место, на котором возвышаются мрачные, готические башни Си...нова монастыря. Стоя на сей горе, видишь на правой стороне почти всю Москву, сию ужасную громаду домов и церквей, которая представляется глазам в образе величественного амфитеатра: великолепная картина, особливо когда светит на нее солнце, когда вечерние лучи его пылают на бесчисленных златых куполах, на бесчисленных крестах, к небу возносящихся! Внизу расстилаются тучные, густо-зеленые цветущие луга, а за ними, по желтым пескам, течет светлая река, волнуемая легкими веслами рыбачьих лодок или шумящая под рулем грузных стругов, которые плывут от плодоноснейших стран Российской империи и наделяют алчную Москву хлебом. На другой стороне реки видна дубовая роща, подле которой пасутся многочисленные стада; там молодые пастухи, сидя под тению дерев, поют простые, унылые песни и сокращают тем летние дни, столь для них единообразные. Подалее, в густой зелени древних вязов, блистает златоглавый Данилов монастырь; еще далее, почти на краю горизонта, синеются Воробьевы горы. На левой же стороне видны обширные, хлебом покрытые поля, лесочки, три или четыре деревеньки и вдали село Коломенское с высоким дворцом своим."</span></span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>chat <span class="ot">&lt;-</span> <span class="fu">chat_openrouter</span>(</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">system_prompt =</span> system_prompt,</span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">api_key =</span> <span class="fu">Sys.getenv</span>(<span class="st">"OPENROUTER_API_KEY"</span>),</span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">model =</span> <span class="st">"openai/gpt-oss-20b:free"</span></span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>response <span class="ot">&lt;-</span> chat<span class="sc">$</span><span class="fu">chat</span>(user_prompt)</span>
-<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Может быть, никто из живущих в &lt;place </span></span>
-<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a><span class="co"># type='settlement'&gt;Москву&lt;/place&gt; не знает так хорошо окрестностей </span></span>
-<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a><span class="co"># города сего, как я, потому что никто чаще моего не бывает в поле, </span></span>
-<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a><span class="co"># никто более моего не бродит пешком, без плана, без цели — куда </span></span>
-<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a><span class="co"># глаза глядят — по лугам и рощам, по холмам и равнинам. Всякое лето </span></span>
-<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a><span class="co"># нахожу новые приятные места или в старых новые красоты.</span></span>
-<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a><span class="co"># </span></span>
-<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Но всего приятнее для меня то место, на котором возвышаются </span></span>
-<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a><span class="co"># мрачные, готические башни &lt;place type='building'&gt;Си…нова </span></span>
-<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a><span class="co"># монастыря&lt;/place&gt;. Стоя на сей горе, видишь на правой стороне почти</span></span>
-<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a><span class="co"># всю &lt;place type='settlement'&gt;Москва&lt;/place&gt;, сию ужасную громаду </span></span>
-<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a><span class="co"># домов и церквей, которая представляется глазам в образе </span></span>
-<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a><span class="co"># величественного амфитеатра: великолепная картина, особливо когда </span></span>
-<span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a><span class="co"># светит на нее солнце, когда вечерние лучи его пылают на </span></span>
-<span id="cb13-22"><a href="#cb13-22" aria-hidden="true" tabindex="-1"></a><span class="co"># бесчисленных златых куполах, на бесчисленных крестах, к небу </span></span>
-<span id="cb13-23"><a href="#cb13-23" aria-hidden="true" tabindex="-1"></a><span class="co"># возносящихся! Внизу расстилаются тучные, густо-зеленые цветущие </span></span>
-<span id="cb13-24"><a href="#cb13-24" aria-hidden="true" tabindex="-1"></a><span class="co"># луга, а за ними, по желтым пескам, течет светлая река, волнуемая </span></span>
-<span id="cb13-25"><a href="#cb13-25" aria-hidden="true" tabindex="-1"></a><span class="co"># легкими веслами рыбачьих лодок или шумящая под рулем грузных </span></span>
-<span id="cb13-26"><a href="#cb13-26" aria-hidden="true" tabindex="-1"></a><span class="co"># стругов, которые плывут от плодоноснейших стран &lt;place </span></span>
-<span id="cb13-27"><a href="#cb13-27" aria-hidden="true" tabindex="-1"></a><span class="co"># type='region'&gt;Российской империи&lt;/place&gt; и наделяют алчную &lt;place </span></span>
-<span id="cb13-28"><a href="#cb13-28" aria-hidden="true" tabindex="-1"></a><span class="co"># type='settlement'&gt;Москву&lt;/place&gt; хлебом. На другой стороне реки </span></span>
-<span id="cb13-29"><a href="#cb13-29" aria-hidden="true" tabindex="-1"></a><span class="co"># видна дубовая роща, подле которой пасутся многочисленные стада; там</span></span>
-<span id="cb13-30"><a href="#cb13-30" aria-hidden="true" tabindex="-1"></a><span class="co"># молодые пастухи, сидя под тенью дерев, поют простые, унылые песни и</span></span>
-<span id="cb13-31"><a href="#cb13-31" aria-hidden="true" tabindex="-1"></a><span class="co"># сокращают тем летние дни, столь для них единообразные. Подалее, в </span></span>
-<span id="cb13-32"><a href="#cb13-32" aria-hidden="true" tabindex="-1"></a><span class="co"># густой зелени древних вязов, блистает златоглавый &lt;place </span></span>
-<span id="cb13-33"><a href="#cb13-33" aria-hidden="true" tabindex="-1"></a><span class="co"># type='building'&gt;Данилов монастырь&lt;/place&gt;; еще далее, почти на краю</span></span>
-<span id="cb13-34"><a href="#cb13-34" aria-hidden="true" tabindex="-1"></a><span class="co"># горизонта, синеются &lt;place type='mountain'&gt;Воробьевы горы&lt;/place&gt;. </span></span>
-<span id="cb13-35"><a href="#cb13-35" aria-hidden="true" tabindex="-1"></a><span class="co"># На левой же стороне видны обширные, хлебом покрытые поля, лесочки, </span></span>
-<span id="cb13-36"><a href="#cb13-36" aria-hidden="true" tabindex="-1"></a><span class="co"># три или четыре деревеньки и вдали село &lt;place </span></span>
-<span id="cb13-37"><a href="#cb13-37" aria-hidden="true" tabindex="-1"></a><span class="co"># type='settlement'&gt;Коломенское&lt;/place&gt; с высоким дворцом своим.</span></span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="st">Но всего приятнее для меня то место, на котором возвышаются мрачные, готические башни Си...нова монастыря. Стоя на сей горе, видишь на правой стороне почти всю Москву, сию ужасную громаду домов и церквей, которая представляется глазам в образе величественного амфитеатра: великолепная картина, особливо когда светит на нее солнце, когда вечерние лучи его пылают на бесчисленных златых куполах, на бесчисленных крестах, к небу возносящихся! Внизу расстилаются тучные, густо-зеленые цветущие луга, а за ними, по желтым пескам, течет светлая река, волнуемая легкими веслами рыбачьих лодок или шумящая под рулем грузных стругов, которые плывут от плодоноснейших стран Российской империи и наделяют алчную Москву хлебом. На другой стороне реки видна дубовая роща, подле которой пасутся многочисленные стада; там молодые пастухи, сидя под тению дерев, поют простые, унылые песни и сокращают тем летние дни, столь для них единообразные. Подалее, в густой зелени древних вязов, блистает златоглавый Данилов монастырь; еще далее, почти на краю горизонта, синеются Воробьевы горы. На левой же стороне видны обширные, хлебом покрытые поля, лесочки, три или четыре деревеньки и вдали село Коломенское с высоким дворцом своим."</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>chat <span class="ot">&lt;-</span> <span class="fu">chat_openrouter</span>(</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">system_prompt =</span> system_prompt,</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">api_key =</span> <span class="fu">Sys.getenv</span>(<span class="st">"OPENROUTER_API_KEY"</span>),</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">model =</span> <span class="st">"openai/gpt-oss-20b:free"</span></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>response <span class="ot">&lt;-</span> chat<span class="sc">$</span><span class="fu">chat</span>(user_prompt)</span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Может быть, никто из живущих в &lt;place </span></span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a><span class="co"># type='settlement'&gt;Москву&lt;/place&gt; не знает так хорошо окрестностей </span></span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a><span class="co"># города сего, как я, потому что никто чаще моего не бывает в поле, </span></span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a><span class="co"># никто более моего не бродит пешком, без плана, без цели — куда </span></span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a><span class="co"># глаза глядят — по лугам и рощам, по холмам и равнинам. Всякое лето </span></span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a><span class="co"># нахожу новые приятные места или в старых новые красоты.</span></span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a><span class="co"># </span></span>
+<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Но всего приятнее для меня то место, на котором возвышаются </span></span>
+<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a><span class="co"># мрачные, готические башни &lt;place type='building'&gt;Си…нова </span></span>
+<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a><span class="co"># монастыря&lt;/place&gt;. Стоя на сей горе, видишь на правой стороне почти</span></span>
+<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a><span class="co"># всю &lt;place type='settlement'&gt;Москва&lt;/place&gt;, сию ужасную громаду </span></span>
+<span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a><span class="co"># домов и церквей, которая представляется глазам в образе </span></span>
+<span id="cb12-24"><a href="#cb12-24" aria-hidden="true" tabindex="-1"></a><span class="co"># величественного амфитеатра: великолепная картина, особливо когда </span></span>
+<span id="cb12-25"><a href="#cb12-25" aria-hidden="true" tabindex="-1"></a><span class="co"># светит на нее солнце, когда вечерние лучи его пылают на </span></span>
+<span id="cb12-26"><a href="#cb12-26" aria-hidden="true" tabindex="-1"></a><span class="co"># бесчисленных златых куполах, на бесчисленных крестах, к небу </span></span>
+<span id="cb12-27"><a href="#cb12-27" aria-hidden="true" tabindex="-1"></a><span class="co"># возносящихся! Внизу расстилаются тучные, густо-зеленые цветущие </span></span>
+<span id="cb12-28"><a href="#cb12-28" aria-hidden="true" tabindex="-1"></a><span class="co"># луга, а за ними, по желтым пескам, течет светлая река, волнуемая </span></span>
+<span id="cb12-29"><a href="#cb12-29" aria-hidden="true" tabindex="-1"></a><span class="co"># легкими веслами рыбачьих лодок или шумящая под рулем грузных </span></span>
+<span id="cb12-30"><a href="#cb12-30" aria-hidden="true" tabindex="-1"></a><span class="co"># стругов, которые плывут от плодоноснейших стран &lt;place </span></span>
+<span id="cb12-31"><a href="#cb12-31" aria-hidden="true" tabindex="-1"></a><span class="co"># type='region'&gt;Российской империи&lt;/place&gt; и наделяют алчную &lt;place </span></span>
+<span id="cb12-32"><a href="#cb12-32" aria-hidden="true" tabindex="-1"></a><span class="co"># type='settlement'&gt;Москву&lt;/place&gt; хлебом. На другой стороне реки </span></span>
+<span id="cb12-33"><a href="#cb12-33" aria-hidden="true" tabindex="-1"></a><span class="co"># видна дубовая роща, подле которой пасутся многочисленные стада; там</span></span>
+<span id="cb12-34"><a href="#cb12-34" aria-hidden="true" tabindex="-1"></a><span class="co"># молодые пастухи, сидя под тенью дерев, поют простые, унылые песни и</span></span>
+<span id="cb12-35"><a href="#cb12-35" aria-hidden="true" tabindex="-1"></a><span class="co"># сокращают тем летние дни, столь для них единообразные. Подалее, в </span></span>
+<span id="cb12-36"><a href="#cb12-36" aria-hidden="true" tabindex="-1"></a><span class="co"># густой зелени древних вязов, блистает златоглавый &lt;place </span></span>
+<span id="cb12-37"><a href="#cb12-37" aria-hidden="true" tabindex="-1"></a><span class="co"># type='building'&gt;Данилов монастырь&lt;/place&gt;; еще далее, почти на краю</span></span>
+<span id="cb12-38"><a href="#cb12-38" aria-hidden="true" tabindex="-1"></a><span class="co"># горизонта, синеются &lt;place type='mountain'&gt;Воробьевы горы&lt;/place&gt;. </span></span>
+<span id="cb12-39"><a href="#cb12-39" aria-hidden="true" tabindex="-1"></a><span class="co"># На левой же стороне видны обширные, хлебом покрытые поля, лесочки, </span></span>
+<span id="cb12-40"><a href="#cb12-40" aria-hidden="true" tabindex="-1"></a><span class="co"># три или четыре деревеньки и вдали село &lt;place </span></span>
+<span id="cb12-41"><a href="#cb12-41" aria-hidden="true" tabindex="-1"></a><span class="co"># type='settlement'&gt;Коломенское&lt;/place&gt; с высоким дворцом своим.</span></span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>На первый взгляд, модель справилась неплохо. “Российскую империю” стоило тегировать как “страну”, а не “регион” (подобные случаи можно прописать в промпте).</p>
 </section>
 <section id="добавление-пролога" class="level2" data-number="7.6">
 <h2 data-number="7.6" class="anchored" data-anchor-id="добавление-пролога"><span class="header-section-number">7.6</span> Добавление пролога</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>add_tei_prologue <span class="ot">&lt;-</span> <span class="cf">function</span>(marked_text, </span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>                            <span class="at">title =</span> <span class="st">"Карамзин Н.М. Бедная Лиза"</span>, </span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>                            <span class="at">author =</span> <span class="st">"Карамзин, Николай Михайлович"</span>,</span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>                            <span class="at">date =</span> <span class="st">"1792"</span>) {</span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>  prologue <span class="ot">&lt;-</span> <span class="fu">sprintf</span>(<span class="st">'&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span></span>
-<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="st">&lt;TEI xmlns="http://www.tei-c.org/ns/1.0"&gt;</span></span>
-<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a><span class="st">  &lt;teiHeader&gt;</span></span>
-<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a><span class="st">    &lt;fileDesc&gt;</span></span>
-<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a><span class="st">      &lt;titleStmt&gt;</span></span>
-<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a><span class="st">        &lt;title&gt;%s&lt;/title&gt;</span></span>
-<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a><span class="st">        &lt;author&gt;%s&lt;/author&gt;</span></span>
-<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a><span class="st">      &lt;/titleStmt&gt;</span></span>
-<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a><span class="st">      &lt;publicationStmt&gt;</span></span>
-<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a><span class="st">        &lt;p&gt;Цифровое издание для исследовательских целей&lt;/p&gt;</span></span>
-<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a><span class="st">      &lt;/publicationStmt&gt;</span></span>
-<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a><span class="st">      &lt;sourceDesc&gt;</span></span>
-<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a><span class="st">        &lt;p&gt;Оригинальный текст %s года&lt;/p&gt;</span></span>
-<span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a><span class="st">      &lt;/sourceDesc&gt;</span></span>
-<span id="cb14-20"><a href="#cb14-20" aria-hidden="true" tabindex="-1"></a><span class="st">    &lt;/fileDesc&gt;</span></span>
-<span id="cb14-21"><a href="#cb14-21" aria-hidden="true" tabindex="-1"></a><span class="st">  &lt;/teiHeader&gt;</span></span>
-<span id="cb14-22"><a href="#cb14-22" aria-hidden="true" tabindex="-1"></a><span class="st">  &lt;text&gt;</span></span>
-<span id="cb14-23"><a href="#cb14-23" aria-hidden="true" tabindex="-1"></a><span class="st">    &lt;body&gt;</span></span>
-<span id="cb14-24"><a href="#cb14-24" aria-hidden="true" tabindex="-1"></a><span class="st">      &lt;p&gt;%s&lt;/p&gt;</span></span>
-<span id="cb14-25"><a href="#cb14-25" aria-hidden="true" tabindex="-1"></a><span class="st">    &lt;/body&gt;</span></span>
-<span id="cb14-26"><a href="#cb14-26" aria-hidden="true" tabindex="-1"></a><span class="st">  &lt;/text&gt;</span></span>
-<span id="cb14-27"><a href="#cb14-27" aria-hidden="true" tabindex="-1"></a><span class="st">&lt;/TEI&gt;'</span>, title, author, date, marked_text)</span>
-<span id="cb14-28"><a href="#cb14-28" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb14-29"><a href="#cb14-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(prologue)</span>
-<span id="cb14-30"><a href="#cb14-30" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>add_tei_prologue <span class="ot">&lt;-</span> <span class="cf">function</span>(marked_text, </span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>                            <span class="at">title =</span> <span class="st">"Карамзин Н.М. Бедная Лиза"</span>, </span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>                            <span class="at">author =</span> <span class="st">"Карамзин, Николай Михайлович"</span>,</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>                            <span class="at">date =</span> <span class="st">"1792"</span>) {</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>  prologue <span class="ot">&lt;-</span> <span class="fu">sprintf</span>(<span class="st">'&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="st">&lt;TEI xmlns="http://www.tei-c.org/ns/1.0"&gt;</span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a><span class="st">  &lt;teiHeader&gt;</span></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a><span class="st">    &lt;fileDesc&gt;</span></span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a><span class="st">      &lt;titleStmt&gt;</span></span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a><span class="st">        &lt;title&gt;%s&lt;/title&gt;</span></span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a><span class="st">        &lt;author&gt;%s&lt;/author&gt;</span></span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a><span class="st">      &lt;/titleStmt&gt;</span></span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a><span class="st">      &lt;publicationStmt&gt;</span></span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a><span class="st">        &lt;p&gt;Цифровое издание для исследовательских целей&lt;/p&gt;</span></span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a><span class="st">      &lt;/publicationStmt&gt;</span></span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a><span class="st">      &lt;sourceDesc&gt;</span></span>
+<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a><span class="st">        &lt;p&gt;Оригинальный текст %s года&lt;/p&gt;</span></span>
+<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a><span class="st">      &lt;/sourceDesc&gt;</span></span>
+<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a><span class="st">    &lt;/fileDesc&gt;</span></span>
+<span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a><span class="st">  &lt;/teiHeader&gt;</span></span>
+<span id="cb13-22"><a href="#cb13-22" aria-hidden="true" tabindex="-1"></a><span class="st">  &lt;text&gt;</span></span>
+<span id="cb13-23"><a href="#cb13-23" aria-hidden="true" tabindex="-1"></a><span class="st">    &lt;body&gt;</span></span>
+<span id="cb13-24"><a href="#cb13-24" aria-hidden="true" tabindex="-1"></a><span class="st">      &lt;p&gt;%s&lt;/p&gt;</span></span>
+<span id="cb13-25"><a href="#cb13-25" aria-hidden="true" tabindex="-1"></a><span class="st">    &lt;/body&gt;</span></span>
+<span id="cb13-26"><a href="#cb13-26" aria-hidden="true" tabindex="-1"></a><span class="st">  &lt;/text&gt;</span></span>
+<span id="cb13-27"><a href="#cb13-27" aria-hidden="true" tabindex="-1"></a><span class="st">&lt;/TEI&gt;'</span>, title, author, date, marked_text)</span>
+<span id="cb13-28"><a href="#cb13-28" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb13-29"><a href="#cb13-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(prologue)</span>
+<span id="cb13-30"><a href="#cb13-30" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Применяем к нашему тексту.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>tei_document <span class="ot">&lt;-</span> <span class="fu">add_tei_prologue</span>(response)</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>tei_document <span class="ot">&lt;-</span> <span class="fu">add_tei_prologue</span>(response)</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Сохраняем в файл.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">writeLines</span>(tei_document, <span class="st">"bednaya_liza_fragment.xml"</span>, <span class="at">useBytes =</span> <span class="cn">TRUE</span>)</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">writeLines</span>(tei_document, <span class="st">"bednaya_liza_fragment.xml"</span>, <span class="at">useBytes =</span> <span class="cn">TRUE</span>)</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Проверяем валидность XML.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(xml2)</span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>xml_doc <span class="ot">&lt;-</span> <span class="fu">read_xml</span>(<span class="st">"bednaya_liza_fragment.xml"</span>)</span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(xml_doc)</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] "xml_document" "xml_node"    </code></pre>
-</div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(xml2)</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>xml_doc <span class="ot">&lt;-</span> <span class="fu">read_xml</span>(<span class="st">"bednaya_liza_fragment.xml"</span>)</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(xml_doc)</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Прежде чем масштабировать, проверим, нет ли галлюцинаций в оригинале (такое, увы, бывает).</p>
 </section>
@@ -458,29 +456,24 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 data-number="7.7" class="anchored" data-anchor-id="сравнение-с-исходником"><span class="header-section-number">7.7</span> Сравнение с исходником</h2>
 <p>Извлекаем текст из параграфа.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>ns <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="at">tei =</span> <span class="st">"http://www.tei-c.org/ns/1.0"</span>)</span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>text_content <span class="ot">&lt;-</span> xml_doc <span class="sc">|&gt;</span> </span>
-<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">xml_find_all</span>(<span class="st">".//tei:body//tei:p"</span>, ns) <span class="sc">|&gt;</span> </span>
-<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">xml_text</span>() <span class="sc">|&gt;</span></span>
-<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">paste</span>(<span class="at">collapse =</span> <span class="st">"nn"</span>)</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>ns <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="at">tei =</span> <span class="st">"http://www.tei-c.org/ns/1.0"</span>)</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>text_content <span class="ot">&lt;-</span> xml_doc <span class="sc">|&gt;</span> </span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">xml_find_all</span>(<span class="st">".//tei:body//tei:p"</span>, ns) <span class="sc">|&gt;</span> </span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">xml_text</span>() <span class="sc">|&gt;</span></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">paste</span>(<span class="at">collapse =</span> <span class="st">"nn"</span>)</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Выводим результат.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(text_content)</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Может быть, никто из живущих в Москву не знает так хорошо окрестностей города сего, как я, потому что никто чаще моего не бывает в поле, никто более моего не бродит пешком, без плана, без цели — куда глаза глядят — по лугам и рощам, по холмам и равнинам. Всякое лето нахожу новые приятные места или в старых новые красоты.
-
-Но всего приятнее для меня то место, на котором возвышаются мрачные, готические башни Си…нова монастыря. Стоя на сей горе, видишь на правой стороне почти всю Москва, сию ужасную громаду домов и церквей, которая представляется глазам в образе величественного амфитеатра: великолепная картина, особливо когда светит на нее солнце, когда вечерние лучи его пылают на бесчисленных златых куполах, на бесчисленных крестах, к небу возносящихся! Внизу расстилаются тучные, густо-зеленые цветущие луга, а за ними, по желтым пескам, течет светлая река, волнуемая легкими веслами рыбачьих лодок или шумящая под рулем грузных стругов, которые плывут от плодоноснейших стран Российской империи и наделяют алчную Москву хлебом. На другой стороне реки видна дубовая роща, подле которой пасутся многочисленные стада; там молодые пастухи, сидя под тенью дерев, поют простые, унылые песни и сокращают тем летние дни, столь для них единообразные. Подалее, в густой зелени древних вязов, блистает златоглавый Данилов монастырь; еще далее, почти на краю горизонта, синеются Воробьевы горы. На левой же стороне видны обширные, хлебом покрытые поля, лесочки, три или четыре деревеньки и вдали село Коломенское с высоким дворцом своим.</code></pre>
-</div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(text_content)</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Теперь можно сравнивать.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(diffobj)</span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="fu">diffChr</span>(<span class="fu">trimws</span>(text), <span class="fu">trimws</span>(text_content), <span class="at">mode =</span> <span class="st">"sidebyside"</span>)</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(diffobj)</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="fu">diffChr</span>(<span class="fu">trimws</span>(text), <span class="fu">trimws</span>(text_content), <span class="at">mode =</span> <span class="st">"sidebyside"</span>)</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p><img src="./images/diffobj.png" class="img-fluid"></p>
+<p><img src="images/diffobj.png" class="img-fluid"></p>
 <p>Упс. Машинка действительно кое-что поправила, и не в лучшую сторону.</p>
 </section>
 <section id="метрики" class="level2" data-number="7.8">
@@ -488,35 +481,48 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><a href="https://digitalcommons.unl.edu/r-journal/415/" class="uri">https://digitalcommons.unl.edu/r-journal/415/</a></p>
 <p>Имеет смысл сравнить несколько моделей и выбрать лучшую.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(stringdist)</span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Sample data</span></span>
-<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>original_text <span class="ot">&lt;-</span> <span class="st">"The quick brown fox jumps over the lazy dog"</span></span>
-<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>model_outputs <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
-<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">model_A =</span> <span class="st">"The quikc brown fox jumps over the lazy dog"</span>, <span class="co"># one typo</span></span>
-<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">model_B =</span> <span class="st">"A brow fox jumped over  lazy dog"</span>,  <span class="co"># the worst</span></span>
-<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">model_C =</span> <span class="st">"The quick brown fox jumps over the lazy dog"</span> <span class="co"># exact match</span></span>
-<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(stringdist)</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+Attaching package: 'dplyr'</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following objects are masked from 'package:stats':
+
+    filter, lag</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following objects are masked from 'package:base':
+
+    intersect, setdiff, setequal, union</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Sample data</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>original_text <span class="ot">&lt;-</span> <span class="st">"The quick brown fox jumps over the lazy dog"</span></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>model_outputs <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">model_A =</span> <span class="st">"The quikc brown fox jumps over the lazy dog"</span>, <span class="co"># one typo</span></span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">model_B =</span> <span class="st">"A brow fox jumped over  lazy dog"</span>,  <span class="co"># the worst</span></span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">model_C =</span> <span class="st">"The quick brown fox jumps over the lazy dog"</span> <span class="co"># exact match</span></span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Считаем расстояние.</p>
 <p>Levenshtein distance - подсчитывает минимальное количество вставок, удалений и замен - Классическая метрика, широко используется</p>
 <p>Optimal String Alignment (OSA) - добавляет транспозиции смежных символов - Не удовлетворяет неравенству треугольника - Используется по умолчанию в stringdist</p>
 <p>Damerau-Levenshtein - полная версия с множественными транспозициями - Является настоящей метрикой (удовлетворяет всем свойствам)</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>compare_texts <span class="ot">&lt;-</span> <span class="cf">function</span>(original, outputs) {</span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>  results <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">model =</span> <span class="fu">names</span>(outputs),</span>
-<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">Levenshtein =</span> <span class="fu">sapply</span>(outputs, <span class="cf">function</span>(x) <span class="fu">stringdist</span>(original, x, <span class="at">method =</span> <span class="st">"lv"</span>)),</span>
-<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">DamerauLevenshtein =</span> <span class="fu">sapply</span>(outputs, <span class="cf">function</span>(x) <span class="fu">stringdist</span>(original, x, <span class="at">method =</span> <span class="st">"dl"</span>)),</span>
-<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">OptimalStringAlignment =</span> <span class="fu">sapply</span>(outputs, <span class="cf">function</span>(x) <span class="fu">stringdist</span>(original, x, <span class="at">method =</span> <span class="st">"osa"</span>))</span>
-<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(results)</span>
-<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-11"><a href="#cb24-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Compare all models</span></span>
-<span id="cb24-12"><a href="#cb24-12" aria-hidden="true" tabindex="-1"></a>comparison_results <span class="ot">&lt;-</span> <span class="fu">compare_texts</span>(original_text, model_outputs)</span>
-<span id="cb24-13"><a href="#cb24-13" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(comparison_results)</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>compare_texts <span class="ot">&lt;-</span> <span class="cf">function</span>(original, outputs) {</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>  results <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">model =</span> <span class="fu">names</span>(outputs),</span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">Levenshtein =</span> <span class="fu">sapply</span>(outputs, <span class="cf">function</span>(x) <span class="fu">stringdist</span>(original, x, <span class="at">method =</span> <span class="st">"lv"</span>)),</span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">DamerauLevenshtein =</span> <span class="fu">sapply</span>(outputs, <span class="cf">function</span>(x) <span class="fu">stringdist</span>(original, x, <span class="at">method =</span> <span class="st">"dl"</span>)),</span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">OptimalStringAlignment =</span> <span class="fu">sapply</span>(outputs, <span class="cf">function</span>(x) <span class="fu">stringdist</span>(original, x, <span class="at">method =</span> <span class="st">"osa"</span>))</span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(results)</span>
+<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-11"><a href="#cb25-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Compare all models</span></span>
+<span id="cb25-12"><a href="#cb25-12" aria-hidden="true" tabindex="-1"></a>comparison_results <span class="ot">&lt;-</span> <span class="fu">compare_texts</span>(original_text, model_outputs)</span>
+<span id="cb25-13"><a href="#cb25-13" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(comparison_results)</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>          model Levenshtein DamerauLevenshtein OptimalStringAlignment
 model_A model_A           2                  1                      1
@@ -532,29 +538,31 @@ model_C model_C           0                  0                      0</code></pr
 <h3 data-number="7.9.1" class="anchored" data-anchor-id="доработка-промпта"><span class="header-section-number">7.9.1</span> Доработка промпта</h3>
 <p>Добавьте четкие инструкции о сохранении исходного текста:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>system_prompt <span class="ot">&lt;-</span> <span class="st">"You are an experienced TEI encoder specializing in geographic markup. </span></span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="st">CRITICAL: You must preserve the original text EXACTLY as provided. Do not correct spelling, grammar, or punctuation. Do not modernize language or fix any perceived errors.</span></span>
-<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a><span class="st">Your task is to identify and tag all place references using proper TEI &lt;place&gt; elements WITHOUT changing the original text in any way.</span></span>
-<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a><span class="st">[остальные инструкции...]</span></span>
-<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a><span class="st">IMPORTANT: Return the text with ONLY the place tags added. Everything else must remain identical to the input."</span></span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>system_prompt <span class="ot">&lt;-</span> <span class="st">"You are an experienced TEI encoder specializing in geographic markup. </span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a><span class="st">CRITICAL: You must preserve the original text EXACTLY as provided. Do not correct spelling, grammar, or punctuation. Do not modernize language or fix any perceived errors.</span></span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a><span class="st">Your task is to identify and tag all place references using proper TEI &lt;place&gt; elements WITHOUT changing the original text in any way.</span></span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a><span class="st">[остальные инструкции...]</span></span>
+<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a><span class="st">IMPORTANT: Return the text with ONLY the place tags added. Everything else must remain identical to the input."</span></span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Альтернативные модели</p>
+</section>
+<section id="альтернативные-модели" class="level3" data-number="7.9.2">
+<h3 data-number="7.9.2" class="anchored" data-anchor-id="альтернативные-модели"><span class="header-section-number">7.9.2</span> Альтернативные модели</h3>
 <p>Попробуйте разные модели - некоторые лучше следуют инструкциям:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>models_to_test <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"anthropic/claude-3-haiku:beta"</span>,</span>
-<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">"meta-llama/llama-3.1-8b-instruct:free"</span>,</span>
-<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">"microsoft/wizardlm-2-8x22b"</span>,</span>
-<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>  <span class="st">"openai/gpt-oss-20b:free"</span></span>
-<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>models_to_test <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"anthropic/claude-3-haiku:beta"</span>,</span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">"meta-llama/llama-3.1-8b-instruct:free"</span>,</span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">"microsoft/wizardlm-2-8x22b"</span>,</span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>  <span class="st">"openai/gpt-oss-20b:free"</span></span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Тестируем на небольшом фрагменте.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>best_model <span class="ot">&lt;-</span> <span class="fu">test_models</span>(models_to_test, sample_text)</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>best_model <span class="ot">&lt;-</span> <span class="fu">test_models</span>(models_to_test, sample_text)</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 
 
@@ -562,6 +570,212 @@ model_C model_C           0                  0                      0</code></pr
 </section>
 
 </main> <!-- /main -->
+<script>
+
+/* update total correct if #webex-total_correct exists */
+update_total_correct = function() {
+  console.log("webex: update total_correct");
+
+  var t = document.getElementsByClassName("webex-total_correct");
+  for (var i = 0; i < t.length; i++) {
+    p = t[i].parentElement;
+    var correct = p.getElementsByClassName("webex-correct").length;
+    var solvemes = p.getElementsByClassName("webex-solveme").length;
+    var radiogroups = p.getElementsByClassName("webex-radiogroup").length;
+    var selects = p.getElementsByClassName("webex-select").length;
+
+    t[i].innerHTML = correct + " of " + (solvemes + radiogroups + selects) + " correct";
+  }
+}
+
+/* webex-solution button toggling function */
+b_func = function() {
+  console.log("webex: toggle hide");
+
+  var cl = this.parentElement.classList;
+  if (cl.contains('open')) {
+    cl.remove("open");
+  } else {
+    cl.add("open");
+  }
+}
+
+/* check answers */
+check_func = function() {
+  console.log("webex: check answers");
+
+  var cl = this.parentElement.classList;
+  if (cl.contains('unchecked')) {
+    cl.remove("unchecked");
+    this.innerHTML = "Hide Answers";
+  } else {
+    cl.add("unchecked");
+    this.innerHTML = "Show Answers";
+  }
+}
+
+/* function for checking solveme answers */
+solveme_func = function(e) {
+  console.log("webex: check solveme");
+
+  var real_answers = JSON.parse(this.dataset.answer);
+  var my_answer = this.value;
+  var cl = this.classList;
+  if (cl.contains("ignorecase")) {
+    my_answer = my_answer.toLowerCase();
+  }
+  if (cl.contains("nospaces")) {
+    my_answer = my_answer.replace(/ /g, "")
+  }
+
+  if (my_answer == "") {
+    cl.remove("webex-correct");
+    cl.remove("webex-incorrect");
+  } else if (real_answers.includes(my_answer)) {
+    cl.add("webex-correct");
+    cl.remove("webex-incorrect");
+  } else {
+    cl.add("webex-incorrect");
+    cl.remove("webex-correct");
+  }
+
+  // match numeric answers within a specified tolerance
+  if(this.dataset.tol > 0){
+    var tol = JSON.parse(this.dataset.tol);
+    var matches = real_answers.map(x => Math.abs(x - my_answer) < tol)
+    if (matches.reduce((a, b) => a + b, 0) > 0) {
+      cl.add("webex-correct");
+    } else {
+      cl.remove("webex-correct");
+    }
+  }
+
+  // added regex bit
+  if (cl.contains("regex")){
+    answer_regex = RegExp(real_answers.join("|"))
+    if (answer_regex.test(my_answer)) {
+      cl.add("webex-correct");
+    }
+  }
+
+  update_total_correct();
+}
+
+/* function for checking select answers */
+select_func = function(e) {
+  console.log("webex: check select");
+
+  var cl = this.classList
+
+  /* add style */
+  cl.remove("webex-incorrect");
+  cl.remove("webex-correct");
+  if (this.value == "answer") {
+    cl.add("webex-correct");
+  } else if (this.value != "blank") {
+    cl.add("webex-incorrect");
+  }
+
+  update_total_correct();
+}
+
+/* function for checking radiogroups answers */
+radiogroups_func = function(e) {
+  console.log("webex: check radiogroups");
+
+  var checked_button = document.querySelector('input[name=' + this.id + ']:checked');
+  var cl = checked_button.parentElement.classList;
+  var labels = checked_button.parentElement.parentElement.children;
+
+  /* get rid of styles */
+  for (i = 0; i < labels.length; i++) {
+    labels[i].classList.remove("webex-incorrect");
+    labels[i].classList.remove("webex-correct");
+  }
+
+  /* add style */
+  if (checked_button.value == "answer") {
+    cl.add("webex-correct");
+  } else {
+    cl.add("webex-incorrect");
+  }
+
+  update_total_correct();
+}
+
+window.onload = function() {
+  console.log("webex onload");
+  /* set up solution buttons */
+  var buttons = document.getElementsByTagName("button");
+
+  for (var i = 0; i < buttons.length; i++) {
+    if (buttons[i].parentElement.classList.contains('webex-solution')) {
+      buttons[i].onclick = b_func;
+    }
+  }
+
+  var check_sections = document.getElementsByClassName("webex-check");
+  console.log("check:", check_sections.length);
+  for (var i = 0; i < check_sections.length; i++) {
+    check_sections[i].classList.add("unchecked");
+
+    let btn = document.createElement("button");
+    btn.innerHTML = "Show Answers";
+    btn.classList.add("webex-check-button");
+    btn.onclick = check_func;
+    check_sections[i].appendChild(btn);
+
+    let spn = document.createElement("span");
+    spn.classList.add("webex-total_correct");
+    check_sections[i].appendChild(spn);
+  }
+
+  /* set up webex-solveme inputs */
+  var solveme = document.getElementsByClassName("webex-solveme");
+
+  for (var i = 0; i < solveme.length; i++) {
+    /* make sure input boxes don't auto-anything */
+    solveme[i].setAttribute("autocomplete","off");
+    solveme[i].setAttribute("autocorrect", "off");
+    solveme[i].setAttribute("autocapitalize", "off");
+    solveme[i].setAttribute("spellcheck", "false");
+    solveme[i].value = "";
+
+    /* adjust answer for ignorecase or nospaces */
+    var cl = solveme[i].classList;
+    var real_answer = solveme[i].dataset.answer;
+    if (cl.contains("ignorecase")) {
+      real_answer = real_answer.toLowerCase();
+    }
+    if (cl.contains("nospaces")) {
+      real_answer = real_answer.replace(/ /g, "");
+    }
+    solveme[i].dataset.answer = real_answer;
+
+    /* attach checking function */
+    solveme[i].onkeyup = solveme_func;
+    solveme[i].onchange = solveme_func;
+
+    solveme[i].insertAdjacentHTML("afterend", " <span class='webex-icon'></span>")
+  }
+
+  /* set up radiogroups */
+  var radiogroups = document.getElementsByClassName("webex-radiogroup");
+  for (var i = 0; i < radiogroups.length; i++) {
+    radiogroups[i].onchange = radiogroups_func;
+  }
+
+  /* set up selects */
+  var selects = document.getElementsByClassName("webex-select");
+  for (var i = 0; i < selects.length; i++) {
+    selects[i].onchange = select_func;
+    selects[i].insertAdjacentHTML("afterend", " <span class='webex-icon'></span>")
+  }
+
+  update_total_correct();
+}
+
+</script>
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
@@ -981,12 +1195,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./06_tei.html" class="pagination-link" aria-label="Разметка TEI">
+      <a href="./tei.html" class="pagination-link" aria-label="Разметка TEI">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Разметка TEI</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./08_share.html" class="pagination-link" aria-label="Публикационная система Quarto">
+      <a href="./share.html" class="pagination-link" aria-label="Публикационная система Quarto">
         <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Публикационная система Quarto</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
