@@ -1,0 +1,29 @@
+project:
+  type: book
+  output-dir: ../docs
+book:
+  title: Программирование на R для филологов
+  author: Ольга Алиева
+  date: today
+  abstract: Курс для магистерской программы НИУ ВШЭ ‘Русская литература и компаративистика’
+    (2025/26).
+  chapters:
+  - index.qmd
+  - start.qmd
+  - tabular.qmd
+  - ocr.qmd
+  - regex.qmd
+  - xml.qmd
+  - tei.qmd
+  - llm.qmd
+  - share.qmd
+bibliography: references.bib
+language: custom.yml
+lang: ru
+df-print: paged
+format:
+  html:
+    theme: cosmo
+    css: include/webex.css
+    include-after-body: include/webex.js
+prefer-html: true
