@@ -209,14 +209,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul>
   <li><a href="#что-такое-ocr-и-tesseract" id="toc-что-такое-ocr-и-tesseract" class="nav-link active" data-scroll-target="#что-такое-ocr-и-tesseract"><span class="header-section-number">3.1</span> Что такое OCR и tesseract</a></li>
   <li><a href="#данные" id="toc-данные" class="nav-link" data-scroll-target="#данные"><span class="header-section-number">3.2</span> Данные</a></li>
-  <li><a href="#вырезать-страницы" id="toc-вырезать-страницы" class="nav-link" data-scroll-target="#вырезать-страницы"><span class="header-section-number">3.3</span> Вырезать страницы</a></li>
+  <li><a href="#выбор-страниц" id="toc-выбор-страниц" class="nav-link" data-scroll-target="#выбор-страниц"><span class="header-section-number">3.3</span> Выбор страниц</a></li>
   <li><a href="#извлечение-текста-из-pdf" id="toc-извлечение-текста-из-pdf" class="nav-link" data-scroll-target="#извлечение-текста-из-pdf"><span class="header-section-number">3.4</span> Извлечение текста из pdf</a></li>
   <li><a href="#распознавание" id="toc-распознавание" class="nav-link" data-scroll-target="#распознавание"><span class="header-section-number">3.5</span> Распознавание</a></li>
   <li><a href="#файн-тюнинг" id="toc-файн-тюнинг" class="nav-link" data-scroll-target="#файн-тюнинг"><span class="header-section-number">3.6</span> Файн-тюнинг</a>
   <ul class="collapse">
   <li><a href="#подготовка-обучающих-данных" id="toc-подготовка-обучающих-данных" class="nav-link" data-scroll-target="#подготовка-обучающих-данных"><span class="header-section-number">3.6.1</span> Подготовка обучающих данных</a></li>
+  <li><a href="#процесс-дообучения" id="toc-процесс-дообучения" class="nav-link" data-scroll-target="#процесс-дообучения"><span class="header-section-number">3.6.2</span> Процесс дообучения</a></li>
+  <li><a href="#установка-модели" id="toc-установка-модели" class="nav-link" data-scroll-target="#установка-модели"><span class="header-section-number">3.6.3</span> Установка модели</a></li>
   </ul></li>
-  <li><a href="#процесс-дообучения" id="toc-процесс-дообучения" class="nav-link" data-scroll-target="#процесс-дообучения"><span class="header-section-number">3.7</span> Процесс дообучения</a></li>
+  <li><a href="#видео-к-этому-уроку" id="toc-видео-к-этому-уроку" class="nav-link" data-scroll-target="#видео-к-этому-уроку"><span class="header-section-number">3.7</span> Видео к этому уроку</a></li>
+  <li><a href="#домашнее-задание" id="toc-домашнее-задание" class="nav-link" data-scroll-target="#домашнее-задание"><span class="header-section-number">3.8</span> Домашнее задание</a></li>
   </ul>
 </nav>
     </div>
@@ -242,25 +245,34 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>В этом уроке мы освоим основной инструмент для распознавания печатного текста в R – пакет <code>tesseract</code>, а также научимся дообучать модели под конкретные задачи и шрифты.</p>
+<p>В этом уроке мы освоим основной инструмент для распознавания печатного текста в R – пакет <code>tesseract</code>, а также научимся дообучать модели под конкретные задачи и шрифты. Для работы нам понадобятся следующие библиотеки:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(qpdf)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(pdftools)</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Using poppler version 23.04.0</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tesseract)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tesseractgt)</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <section id="что-такое-ocr-и-tesseract" class="level2" data-number="3.1">
 <h2 data-number="3.1" class="anchored" data-anchor-id="что-такое-ocr-и-tesseract"><span class="header-section-number">3.1</span> Что такое OCR и tesseract</h2>
-<p>CR (Optical Character Recognition) — это технология автоматического распознавания печатного текста на изображениях и преобразования его в машинно-читаемый формат. Эта технология позволяет “извлекать” текст из сканированных документов, фотографий, PDF-файлов и других графических форматов.</p>
-<p>Tesseract — это одна из самых популярных библиотек OCR с открытым исходным кодом, разработанная компанией Google. Tesseract поддерживает более 100 языков и может работать с различными типами изображений и форматами документов.</p>
+<p>OCR (Optical Character Recognition) — это технология автоматического распознавания печатного текста на изображениях и преобразования его в машинно-читаемый формат. Эта технология позволяет “извлекать” текст из сканированных документов, фотографий, PDF-файлов и других графических форматов.</p>
+<p><a href="https://ru.wikipedia.org/wiki/Tesseract">Tesseract</a> — это одна из самых популярных библиотек OCR с открытым исходным кодом, разработанная компанией Google. Tesseract поддерживает более 100 языков и может работать с различными типами изображений и форматами документов.</p>
 <p>Пакет <code>tesseract</code> в R представляет собой обертку для библиотеки Tesseract, которая позволяет:</p>
 <ul>
-<li>Распознавать текст с изображений различных форматов (PNG, JPEG, TIFF, PDF)</li>
-<li>Работать с многостраничными документами</li>
-<li>Использовать предобученные модели для разных языков (список)</li>
-<li>Настраивать параметры распознавания под конкретные задачи</li>
-<li>Дообучать модели для улучшения качества распознавания специфических шрифтов или типов документов</li>
+<li>Распознавать текст с изображений различных форматов (PNG, JPEG, TIFF, PDF);</li>
+<li>Работать с многостраничными документами;</li>
+<li>Использовать предобученные модели для разных языков; (<a href="https://tesseract-ocr.github.io/tessdoc/Data-Files-in-different-versions.html">список</a>);</li>
+<li>Настраивать параметры распознавания под конкретные задачи;</li>
+<li>Дообучать модели для улучшения качества распознавания специфических шрифтов или типов документов.</li>
 </ul>
-<p>В отличие от онлайн-сервисов OCR, пакет tesseract работает локально, что обеспечивает:</p>
+<p>В отличие от онлайн-сервисов OCR, пакет <code>tesseract</code> работает локально, что обеспечивает:</p>
 <ul>
-<li>Конфиденциальность — данные не передаются третьим лицам</li>
-<li>Скорость — нет задержек на передачу данных по сети</li>
-<li>Настраиваемость — возможность тонкой настройки под конкретные задачи</li>
-<li>Интеграция — seamless integration с экосистемой R для дальнейшего анализа данных</li>
+<li>Конфиденциальность — данные не передаются третьим лицам;</li>
+<li>Скорость — нет задержек на передачу данных по сети;</li>
+<li>Настраиваемость — возможность тонкой настройки под конкретные задачи;</li>
+<li>Бесшовную интеграцию с экосистемой R для дальнейшего анализа данных.</li>
 </ul>
 <p>Однако качество распознавания сильно зависит от качества исходного изображения, типа шрифта, языка документа и правильности настройки параметров. Именно поэтому важно уметь не только использовать готовые модели, но и дообучать их под специфические задачи.</p>
 </section>
@@ -268,30 +280,24 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 data-number="3.2" class="anchored" data-anchor-id="данные"><span class="header-section-number">3.2</span> Данные</h2>
 <p>В качестве упражнения мы возьмем ч. 6 № 6 журнала “Невский зритель” за 1821 г. (<a href="http://lib.pushkinskijdom.ru/Default.aspx?tabid=11373">источник</a>).</p>
 <p>Журнал «Невский зритель» издавался в Петербурге ежемесячно с января 1820 г. по июнь 1821 г. Всего вышло 18 книжек журнала, составивших 6 частей. Все они доступны на сайте “Пушкинского дома”.</p>
-<p>Официальным издателем журнала был выпускник Московского университета Иван Матвеевич Сниткин (род. ок. 1792 г.). С января по апрель 1820 г. соиздателем «Невского зрителя» был В. К. Кюхельбекер; намеревался войти в число издателей и К. Ф. Рылеев (1797-1826), активный сотрудник журнала с октября 1820-го по февраль 1821 г.</p>
-<p>В научной литературе не сложилось единого взгляда на идеологическую и литературно-критическую направленность журнала.</p>
-<p>Разногласия в оценках объясняются противоречивостью статей, помещенных на страницах журнала за время его существования. Некоторые исследователи относят «Невский зритель» к кругу изданий декабристской ориентированности. «Невский зритель» оказался заметным явлением в журналистике 20-х гг. 19-го века, в нем печатались произведения Пушкина: стихотворения «Дориде» (№ 1. С. 96), «Дорида» (№ 2. С. 92), «Кюхельбекеру» («В последний раз, в сени уединенья»), «Прелестнице», «Мадригал М…ой» (все три: № 4. С. 66-68), отрывок из первой песни «Руслана и Людмилы», стихотворения Кюхельбекера, Жуковского, Баратынского, Дельвига, Рылеева, поместившего в октябрьской книжке 1820 г. острейшую сатиру на Аракчеева «К временщику».</p>
-<p>Современные исследователи «Невского зрителя» выделяют два периода в эволюции журнала. Первый - январь-апрель 1820 г. Ведущий сотрудник в разделах «Литература» и «Критика» - Кюхельбекер; активно печатаются Пушкин, Баратынский, Дельвиг. Второй период - май-сентябрь 1820 г. Полностью прекращается сотрудничество с журналом всей группы молодых литераторов. Журнал наводняется эпигонскими произведениями Д. Хвостова, Ф. Синельникова, Г. П. Кругликова и М. А. Яковлева. В разделе «Критика» звучат громкие дифирамбы Хвостову. В этот же период появляется статья о «Руслане и Людмиле» с резкими нападками на поэму. (<a href="https://www.gorkilib.ru/events/200-let-zhurnalu-nevskiy-zritel">Источник описания</a>.)</p>
+<blockquote class="blockquote">
+<p>Официальным издателем журнала был выпускник Московского университета Иван Матвеевич Сниткин (род. ок. 1792 г.). С января по апрель 1820 г. соиздателем «Невского зрителя» был В. К. Кюхельбекер; намеревался войти в число издателей и К. Ф. Рылеев (1797-1826), активный сотрудник журнала с октября 1820-го по февраль 1821 г. В разное время в журнале печатались произведения Пушкина, Кюхельбекера, Жуковского, Баратынского, Дельвига, а также Рылеева, поместившего в октябрьской книжке 1820 г. острейшую сатиру на Аракчеева «К временщику». (<a href="https://www.gorkilib.ru/events/200-let-zhurnalu-nevskiy-zritel">Источник</a>.)</p>
+</blockquote>
 </section>
-<section id="вырезать-страницы" class="level2" data-number="3.3">
-<h2 data-number="3.3" class="anchored" data-anchor-id="вырезать-страницы"><span class="header-section-number">3.3</span> Вырезать страницы</h2>
+<section id="выбор-страниц" class="level2" data-number="3.3">
+<h2 data-number="3.3" class="anchored" data-anchor-id="выбор-страниц"><span class="header-section-number">3.3</span> Выбор страниц</h2>
+<p>Для начала вырежем несколько страниц из pdf. Таким образом вы легко можете делить любые издания на главы, разделы и т.д.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(qpdf)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>my_files <span class="ot">&lt;-</span> <span class="fu">list.files</span>(<span class="st">"../ocr"</span>, <span class="at">pattern =</span> <span class="st">"pdf"</span>, <span class="at">full.names =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>my_files</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>my_files <span class="ot">&lt;-</span> <span class="fu">list.files</span>(<span class="st">"../ocr"</span>, <span class="at">pattern =</span> <span class="st">"pdf"</span>, <span class="at">full.names =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>my_files[<span class="dv">2</span>] <span class="co"># нужный файл</span></span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "../ocr/recognize_my_pdf.py"                       
-[2] "../ocr/Невский зритель. 1821. Ч. 6. № 6. Июнь.pdf"
-[3] "../ocr/НЗ1821_6_6[50-51].pdf"                     </code></pre>
+<pre><code>[1] "../ocr/Невский зритель. 1821. Ч. 6. № 6. Июнь.pdf"</code></pre>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pdf_subset</span>(<span class="at">input =</span> my_files[<span class="dv">2</span>],</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>           <span class="at">output =</span> <span class="st">"../ocr/НЗ1821_6_6[50-51].pdf"</span>,</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">pages =</span> <span class="dv">50</span><span class="sc">:</span><span class="dv">51</span>)</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] "/Users/olga/R_Workflow/philology_2025/ocr/НЗ1821_6_6[50-51].pdf"</code></pre>
-</div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pdf_subset</span>(<span class="at">input =</span> my_files[<span class="dv">2</span>],</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>           <span class="at">output =</span> <span class="st">"../ocr/НЗ1821_6_6[50-51].pdf"</span>,</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">pages =</span> <span class="dv">50</span><span class="sc">:</span><span class="dv">51</span>)</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div>
 
@@ -306,18 +312,27 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
+<div class="callout callout-style-default callout-tip no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Вопрос
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Найдите в метаданных к корпусу русских элегий предположительную фамилию автора.</p>
+</div>
+</div>
+<p>Ответ: <input class="webex-solveme nospaces" size="7" data-answer="[&quot;Бадульф&quot;]">.</p>
 </section>
 <section id="извлечение-текста-из-pdf" class="level2" data-number="3.4">
 <h2 data-number="3.4" class="anchored" data-anchor-id="извлечение-текста-из-pdf"><span class="header-section-number">3.4</span> Извлечение текста из pdf</h2>
 <p>Если вам повезло, то pdf хранит уже распознанный текст.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(pdftools)</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Using poppler version 23.04.0</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tesseract)</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>text1 <span class="ot">&lt;-</span> <span class="fu">pdf_text</span>(<span class="at">pdf =</span> <span class="st">"../ocr/НЗ1821_6_6[50-51].pdf"</span>)</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(text1)</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>text1 <span class="ot">&lt;-</span> <span class="fu">pdf_text</span>(<span class="at">pdf =</span> <span class="st">"../ocr/НЗ1821_6_6[50-51].pdf"</span>)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(text1)</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>ЭЭСЮЭЭЭЭЭСКЮЭЭЭЭЭСЮС»ЭЭЭ&lt;Э&lt;ЗС&gt;Э(ІЭ(99ЭС933 э о э з о з э з э
 
@@ -368,85 +383,71 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="распознавание" class="level2" data-number="3.5">
 <h2 data-number="3.5" class="anchored" data-anchor-id="распознавание"><span class="header-section-number">3.5</span> Распознавание</h2>
-<p>Если текст не распознан (притворимся, что так и есть), то можно попробовать распознать при помощи tesseract. Однако есть нюанс: tesseract не знает дореформенного русского. Это значит, что все яти (ѣ), еры (ъ), фита (Ѳ) и десятеричное и (і) превратятся во что-то другое. А еще трудности бывают с буквой “т”, т.к. в XIX в. ее печатали по-другому.</p>
-<p>Проверим. Но прежде всего, надо скачать модель для русского языка. Это делается один раз. Кстати, тессеракт способен “читать” тексты на нескольких языках, для этого передаем значение аргументу language так: “rus+deu”.</p>
+<p>Если текст не распознан (притворимся, что так и есть), то можно попробовать распознать при помощи <code>tesseract</code>. Однако есть нюанс: <code>tesseract</code> не знает дореформенного русского. Это значит, что все яти (ѣ), еры (ъ), фиты (Ѳ) и десятеричные и (і) превратятся во что-то странное. А еще трудности бывают с буквой “т”, т.к. в XIX в. ее печатали по-другому.</p>
+<p>Проверим. Но прежде всего надо скачать модель для русского языка. Это делается один раз. Кстати, тессеракт способен “читать” тексты на нескольких языках, для этого передаем значение аргументу language так: <code>"rus+deu"</code>.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># tesseract_download("rus")</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>text2 <span class="ot">&lt;-</span> <span class="fu">pdf_ocr_text</span>(<span class="st">"../ocr/НЗ1821_6_6[50-51].pdf"</span>, <span class="at">language =</span> <span class="st">"rus"</span>)</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Converting page 1 to НЗ1821_6_6[50-51]_1.png... done!
-Converting page 2 to НЗ1821_6_6[50-51]_2.png... done!</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(text2)</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>999939993993999999339993399999939939 9039303939
-РАЗЛУКА.
-(Элегтя.)
-————-
-Розамя, мой спушникъь неизмённый
-На полЪ радосшей земныхь!
-Розал!я, мой другь, хранишель несравненный!
-Когда я ошдохну въ объяпияхь швоихъ?...
-Съ шобою горестей душа моя незнаеть,
-И сердцу скорбному не измЪнить покой!
-Надежда мрачный пушь звЪздою озаряепть,
-И я мирюсь съ враждебною судьбой!...
-’Геперь, за дальними, свиофпыми морями
-Твой сладк!й гласъ не оживишьъ меня!
-Взойдеть заря надъ злачными холмами,
-Появишся въ лучахъ свЪшило дня —
-Напрасно! все кругомъ покрыпю мглою.
-Неслышишся мнЪ сладюй тивой привЪфить,
-ВсЪ5 радосши, надежды всЪ съ шобою —
-И опусш$ль безъ милой свЪзить’
-Подруга милая, скажи, чшо край прелесшный,
-Чпо мирвыя, тифвисптыя поля,
-Чтпо своенравныя судьбы привЪтьъ мн лесшный,
-Когда съ шобой въ разлук я.
-Но другь мой! горесмь ошленаепть
- 245
-На бысшрыхь времени крылахь,
-И радосшь сердце посфщаеть....
-Моя надежда — въ небесахь!...
-Когдажъ опяшь смягченными судьбами
-Я въ радосши къ подругЪ понесусь,
-Коснусь волшебныхь сшрунь волшебными пер-
-сшами
-И, сь рфзвою мечтшою примирюсь.
-Я, Б — $5.</code></pre>
-</div>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>text2 <span class="ot">&lt;-</span> <span class="fu">pdf_ocr_text</span>(<span class="st">"../ocr/НЗ1821_6_6[50-51].pdf"</span>, <span class="at">language =</span> <span class="st">"rus"</span>)</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(text2)</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Converting page 1 to НЗ1821_6_6[50-51]_1.png... done!</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Converting page 2 to НЗ1821_6_6[50-51]_2.png... done!</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="co"># 999939993993999999339993399999939939 9039303939</span></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="co"># РАЗЛУКА.</span></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a><span class="co"># (Элегтя.)</span></span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a><span class="co"># ————-</span></span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Розамя, мой спушникъь неизмённый</span></span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a><span class="co"># На полЪ радосшей земныхь!</span></span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Розал!я, мой другь, хранишель несравненный!</span></span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Когда я ошдохну въ объяпияхь швоихъ?...</span></span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Съ шобою горестей душа моя незнаеть,</span></span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a><span class="co"># И сердцу скорбному не измЪнить покой!</span></span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Надежда мрачный пушь звЪздою озаряепть,</span></span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a><span class="co"># И я мирюсь съ враждебною судьбой!...</span></span>
+<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a><span class="co"># ’Геперь, за дальними, свиофпыми морями</span></span>
+<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Твой сладк!й гласъ не оживишьъ меня!</span></span>
+<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Взойдеть заря надъ злачными холмами,</span></span>
+<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a><span class="co"># Появишся въ лучахъ свЪшило дня —</span></span>
+<span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a><span class="co"># Напрасно! все кругомъ покрыпю мглою.</span></span>
+<span id="cb10-25"><a href="#cb10-25" aria-hidden="true" tabindex="-1"></a><span class="co"># Неслышишся мнЪ сладюй тивой привЪфить,</span></span>
+<span id="cb10-26"><a href="#cb10-26" aria-hidden="true" tabindex="-1"></a><span class="co"># ВсЪ5 радосши, надежды всЪ съ шобою —</span></span>
+<span id="cb10-27"><a href="#cb10-27" aria-hidden="true" tabindex="-1"></a><span class="co"># И опусш$ль безъ милой свЪзить’</span></span>
+<span id="cb10-28"><a href="#cb10-28" aria-hidden="true" tabindex="-1"></a><span class="co"># Подруга милая, скажи, чшо край прелесшный,</span></span>
+<span id="cb10-29"><a href="#cb10-29" aria-hidden="true" tabindex="-1"></a><span class="co"># Чпо мирвыя, тифвисптыя поля,</span></span>
+<span id="cb10-30"><a href="#cb10-30" aria-hidden="true" tabindex="-1"></a><span class="co"># Чтпо своенравныя судьбы привЪтьъ мн лесшный,</span></span>
+<span id="cb10-31"><a href="#cb10-31" aria-hidden="true" tabindex="-1"></a><span class="co"># Когда съ шобой въ разлук я.</span></span>
+<span id="cb10-32"><a href="#cb10-32" aria-hidden="true" tabindex="-1"></a><span class="co"># Но другь мой! горесмь ошленаепть</span></span>
+<span id="cb10-33"><a href="#cb10-33" aria-hidden="true" tabindex="-1"></a><span class="co">#  245</span></span>
+<span id="cb10-34"><a href="#cb10-34" aria-hidden="true" tabindex="-1"></a><span class="co"># На бысшрыхь времени крылахь,</span></span>
+<span id="cb10-35"><a href="#cb10-35" aria-hidden="true" tabindex="-1"></a><span class="co"># И радосшь сердце посфщаеть....</span></span>
+<span id="cb10-36"><a href="#cb10-36" aria-hidden="true" tabindex="-1"></a><span class="co"># Моя надежда — въ небесахь!...</span></span>
+<span id="cb10-37"><a href="#cb10-37" aria-hidden="true" tabindex="-1"></a><span class="co"># Когдажъ опяшь смягченными судьбами</span></span>
+<span id="cb10-38"><a href="#cb10-38" aria-hidden="true" tabindex="-1"></a><span class="co"># Я въ радосши къ подругЪ понесусь,</span></span>
+<span id="cb10-39"><a href="#cb10-39" aria-hidden="true" tabindex="-1"></a><span class="co"># Коснусь волшебныхь сшрунь волшебными пер-</span></span>
+<span id="cb10-40"><a href="#cb10-40" aria-hidden="true" tabindex="-1"></a><span class="co"># сшами</span></span>
+<span id="cb10-41"><a href="#cb10-41" aria-hidden="true" tabindex="-1"></a><span class="co"># И, сь рфзвою мечтшою примирюсь.</span></span>
+<span id="cb10-42"><a href="#cb10-42" aria-hidden="true" tabindex="-1"></a><span class="co"># Я, Б — $5.</span></span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Что в таких случаях делать?</p>
 <ul>
-<li><p>Первое: проверить, нет ли обученных моделей, которые справятся с вашей задачей. Я попробовала, например, <a href="https://huggingface.co/Serovvans/trocr-prereform-orthography">модель</a> для распознавания дореформенной орфографии с Hugging Face, но результат оказался очень печальным, я даже не буду его показывать. Это может быть связано с тем, что шрифт в нашем журнале отличается от тех, на которых учили модель.</p></li>
-<li><p>Обученные модели можно также поискать в Транскрибусе (например, <a href="https://app.transkribus.org/models/public/text/russian-print-xviii-cent">здесь</a> и <a href="https://app.transkribus.org/models/public/text/44358">здесь</a>). Чтобы воспользоваться готовыми приложениями для распознавания шрифта, pdf надо преобразовать в картинку. Попробуйте.</p></li>
+<li><p>Первое: проверить, нет ли обученных моделей, которые справятся с вашей задачей. Можно поискать, например, <a href="https://huggingface.co/Serovvans/trocr-prereform-orthography">модели</a> на Hugging Face. Но результат может будет зависеть от того, на каких шрифтах учили модель.</p></li>
+<li><p>Второе: обученные модели можно также поискать в <a href="https://sysblok.ru/digital-heritage/transkribus-kak-kompjuternoe-zrenie-pomogaet-perevodit-teksty-sirijskih-mistikov/">Транскрибусе</a> (например, <a href="https://app.transkribus.org/models/public/text/russian-print-xviii-cent">здесь</a> и <a href="https://app.transkribus.org/models/public/text/44358">здесь</a>). Но у Транскрибуса есть ряд ограничений: модели нельзя использовать локально, расширенный функционал платный, и др. Бесплатно можно пользоваться готовыми приложениями; однако сначала pdf придется преобразовать в картинку.</p></li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pdf_convert</span>(<span class="st">"../ocr/НЗ1821_6_6[50-51].pdf"</span>, </span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>            <span class="at">format =</span> <span class="st">"png"</span>, </span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>            <span class="at">dpi =</span> <span class="dv">300</span>,</span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">pages =</span> <span class="cn">NULL</span>,  <span class="co"># все страницы, или c(1,3,5) для конкретных</span></span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">filenames =</span> <span class="cn">NULL</span>)</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Converting page 1 to НЗ1821_6_6[50-51]_1.png... done!
-Converting page 2 to НЗ1821_6_6[50-51]_2.png... done!</code></pre>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pdf_convert</span>(<span class="st">"../ocr/НЗ1821_6_6[50-51].pdf"</span>, </span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>            <span class="at">format =</span> <span class="st">"png"</span>, </span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>            <span class="at">dpi =</span> <span class="dv">300</span>,</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">pages =</span> <span class="cn">NULL</span>,  <span class="co"># все страницы, или c(1,3,5) для конкретных</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">filenames =</span> <span class="cn">NULL</span>)</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] "НЗ1821_6_6[50-51]_1.png" "НЗ1821_6_6[50-51]_2.png"</code></pre>
-</div>
-</div>
-<p>Результат неплохой, и для небольших проектов подойдет. Но у Транскрибуса есть ряд ограничений: модели нельзя использовать локально, расширенный функционал платный, и др.</p>
-<blockquote class="blockquote">
-<p>Transkribus — платформа для оцифровки и распознавания текста на основе технологии HTR (Handwritten Text Recognition), которая позволяет обучать специальные модули (англ. models) распознавания текста. Обученные модули способны распознавать рукописные, машинописные и печатные документы на самых разных языках, в частности, на классическом сирийском — одном из главных языков восточного христианства. (<a href="https://sysblok.ru/digital-heritage/transkribus-kak-kompjuternoe-zrenie-pomogaet-perevodit-teksty-sirijskih-mistikov/">Источник</a>)</p>
-</blockquote>
 <ul>
-<li>Наконец, можно дообучить уже существующую модель <code>tesseract</code>, как показано вот в этом <a href="https://arcruz0.github.io/posts/finetuning-tess/index.html">примере</a>.</li>
+<li>Наконец, можно дообучить уже существующую модель <code>tesseract</code>, как показано вот в этом <a href="https://arcruz0.github.io/posts/finetuning-tess/index.html">примере</a>. Этим мы сейчас и займемся.</li>
 </ul>
 </section>
 <section id="файн-тюнинг" class="level2" data-number="3.6">
 <h2 data-number="3.6" class="anchored" data-anchor-id="файн-тюнинг"><span class="header-section-number">3.6</span> Файн-тюнинг</h2>
-<p>Начиная с версии 4, Tesseract использует нейронную сеть для распознавания текста, что позволяет дообучать модель для конкретных задач.</p>
-<p>Для дообучения необходимы эталонные данные — фрагменты изображений с соответствующим им текстом.</p>
+<p>Начиная с версии 4, Tesseract использует нейронную сеть для распознавания текста, что позволяет дообучать модель для конкретных задач. Для дообучения необходимы эталонные данные — фрагменты изображений с соответствующим им текстом.</p>
 <section id="подготовка-обучающих-данных" class="level3" data-number="3.6.1">
 <h3 data-number="3.6.1" class="anchored" data-anchor-id="подготовка-обучающих-данных"><span class="header-section-number">3.6.1</span> Подготовка обучающих данных</h3>
 <p><strong>Шаг 1: Подготовка изображений</strong></p>
@@ -456,8 +457,8 @@ Converting page 2 to НЗ1821_6_6[50-51]_2.png... done!</code></pre>
 <p><img src="images/words_view.png" class="img-fluid"> <strong>Шаг 2: Использование пакета <code>tesseractgt</code></strong></p>
 <p>Теперь для каждого изображения добавим текст (файлы в формате <code>.gt.txt</code>). Для ускорения процесса создания эталонных файлов можно использовать специальный пакет:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages("remotes")</span></span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>remotes<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">"arcruz0/tesseractgt"</span>)</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages("remotes")</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>remotes<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">"arcruz0/tesseractgt"</span>)</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Using GitHub PAT from the git credential store.</code></pre>
 </div>
@@ -468,54 +469,54 @@ Converting page 2 to НЗ1821_6_6[50-51]_2.png... done!</code></pre>
 </div>
 <p>Для создания таких файлов используем базовую модель.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tesseractgt)</span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="fu">create_gt_txt</span>(</span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">folder =</span> <span class="st">"../ocr/orus-ground-truth"</span>,</span>
-<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">extension =</span> <span class="st">"png"</span>, </span>
-<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">engine =</span> tesseract<span class="sc">::</span><span class="fu">tesseract</span>(<span class="at">language =</span> <span class="st">"rus"</span>)</span>
-<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">create_gt_txt</span>(</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">folder =</span> <span class="st">"../ocr/orus-ground-truth"</span>,</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">extension =</span> <span class="st">"png"</span>, </span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">engine =</span> tesseract<span class="sc">::</span><span class="fu">tesseract</span>(<span class="at">language =</span> <span class="st">"rus"</span>)</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Убедитесь, что файлы появились в директории.</p>
 <p><strong>Шаг 3: Корректировка текстовых файлов</strong></p>
 <p>Исправьте автоматически созданные файлы <code>.gt.txt</code> вручную:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">correct_gt_txt</span>() </span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">correct_gt_txt</span>() </span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><img src="https://arcruz0.github.io/posts/finetuning-tess/imgs/addin.gif" class="img-fluid"> Если не видно папки с изображениями, смените рабочую директорию.</p>
 </section>
-</section>
-<section id="процесс-дообучения" class="level2" data-number="3.7">
-<h2 data-number="3.7" class="anchored" data-anchor-id="процесс-дообучения"><span class="header-section-number">3.7</span> Процесс дообучения</h2>
+<section id="процесс-дообучения" class="level3" data-number="3.6.2">
+<h3 data-number="3.6.2" class="anchored" data-anchor-id="процесс-дообучения"><span class="header-section-number">3.6.2</span> Процесс дообучения</h3>
 <ol type="1">
 <li>Клонируйте репозиторий <code>tesstrain</code>:</li>
 </ol>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>git clone https<span class="sc">:</span><span class="er">//</span>github.com<span class="sc">/</span>tesseract<span class="sc">-</span>ocr<span class="sc">/</span>tesstrain.git</span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>cd tesstrain</span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>make tesseract<span class="sc">-</span>langdata</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>git clone https<span class="sc">:</span><span class="er">//</span>github.com<span class="sc">/</span>tesseract<span class="sc">-</span>ocr<span class="sc">/</span>tesstrain.git</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>cd tesstrain</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>make tesseract<span class="sc">-</span>langdata</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ol start="2" type="1">
 <li>Переместите папку с данными:</li>
 </ol>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>mv <span class="sc">~</span><span class="er">/</span>location<span class="sc">/</span>alg<span class="sc">-</span>ground<span class="sc">-</span>truth data</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>mv <span class="sc">~</span><span class="er">/</span>location<span class="sc">/</span>alg<span class="sc">-</span>ground<span class="sc">-</span>truth data</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ol start="3" type="1">
 <li>Запуск дообучения</li>
 </ol>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>make training MODEL_NAME<span class="ot">=</span>alg START_MODEL<span class="ot">=</span>eng FINETUNE_TYPE<span class="ot">=</span>Impact</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>make training MODEL_NAME<span class="ot">=</span>alg START_MODEL<span class="ot">=</span>eng FINETUNE_TYPE<span class="ot">=</span>Impact</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>На этом этапе у меня возникли сложности из-за того, что не был установлен make, также пришлось добавить аргумент LANG_TYPE.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>brew install make <span class="co"># для Mac</span></span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>gmake training MODEL_NAME<span class="ot">=</span>orus START_MODEL<span class="ot">=</span>rus FINETUNE_TYPE<span class="ot">=</span>Impact LANG_TYPE<span class="ot">=</span>Both</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>brew install make <span class="co"># для Mac</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>gmake training MODEL_NAME<span class="ot">=</span>orus START_MODEL<span class="ot">=</span>rus FINETUNE_TYPE<span class="ot">=</span>Impact LANG_TYPE<span class="ot">=</span>Both</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Дообучение занимает несколько минут.</p>
-<p>###Установка модели</p>
+</section>
+<section id="установка-модели" class="level3" data-number="3.6.3">
+<h3 data-number="3.6.3" class="anchored" data-anchor-id="установка-модели"><span class="header-section-number">3.6.3</span> Установка модели</h3>
 <p>Найдите системную папку Tesseract:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>tesseract<span class="sc">::</span><span class="fu">tesseract_info</span>()<span class="sc">$</span>datapath</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>tesseract<span class="sc">::</span><span class="fu">tesseract_info</span>()<span class="sc">$</span>datapath</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "/Users/olga/Library/Application Support/tesseract5/tessdata/"</code></pre>
 </div>
@@ -523,19 +524,19 @@ Converting page 2 to НЗ1821_6_6[50-51]_2.png... done!</code></pre>
 <p>Скопируйте сюда новую модель <code>orus.traindata</code>.</p>
 <p>Проверьте доступные модели:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>tesseract<span class="sc">::</span><span class="fu">tesseract_info</span>()<span class="sc">$</span>available</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>tesseract<span class="sc">::</span><span class="fu">tesseract_info</span>()<span class="sc">$</span>available</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "deu"  "eng"  "grc"  "lat"  "orus" "osd"  "rus"  "snum"</code></pre>
 </div>
 </div>
 <p>После дообучения можно использовать новую модель:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>text3 <span class="ot">&lt;-</span> <span class="fu">pdf_ocr_text</span>(<span class="st">"../ocr/НЗ1821_6_6[50-51].pdf"</span>, <span class="at">language =</span> <span class="st">"orus"</span>)</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>text3 <span class="ot">&lt;-</span> <span class="fu">pdf_ocr_text</span>(<span class="st">"../ocr/НЗ1821_6_6[50-51].pdf"</span>, <span class="at">language =</span> <span class="st">"orus"</span>)</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Converting page 1 to НЗ1821_6_6[50-51]_1.png... done!
 Converting page 2 to НЗ1821_6_6[50-51]_2.png... done!</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(text3)</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(text3)</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>птт395$900990300&gt;9000093000ОВ9200080 900306080
 РАЗЛУК @ЧД,.
@@ -575,6 +576,51 @@ Converting page 2 to НЗ1821_6_6[50-51]_2.png... done!</code></pre>
 </div>
 </div>
 <p>Таким образом, дообучение Tesseract позволяет улучшить качество распознавания специализированных текстов; для лучшего результата используйте больше обучающих данных (чем больше, тем лучше). Пакет <code>tesseractgt</code> существенно упрощает процесс подготовки обучающих данных.</p>
+</section>
+</section>
+<section id="видео-к-этому-уроку" class="level2" data-number="3.7">
+<h2 data-number="3.7" class="anchored" data-anchor-id="видео-к-этому-уроку"><span class="header-section-number">3.7</span> Видео к этому уроку</h2>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>
+ _______________________ 
+&lt;Будет добавлено позже&gt;
+ ----------------------- 
+         \
+          \
+
+            |\___/|
+          ==) ^Y^ (==
+            \  ^  /
+             )=*=(
+            /     \
+            |     |
+           /| | | |\
+           \| | |_|/\
+      jgs  //_// ___/
+               \_)</code></pre>
+</div>
+</div>
+</section>
+<section id="домашнее-задание" class="level2" data-number="3.8">
+<h2 data-number="3.8" class="anchored" data-anchor-id="домашнее-задание"><span class="header-section-number">3.8</span> Домашнее задание</h2>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>
+ _______________________ 
+&lt;Будет добавлено позже&gt;
+ ----------------------- 
+    \
+     \
+
+       /\___/\
+       {o}{o}|
+       \ v  /|
+       |    \ \
+        \___/_/       [ab]
+          | |</code></pre>
+</div>
+</div>
 
 
 </section>
