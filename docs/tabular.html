@@ -428,16 +428,21 @@ dbl  (2): id, Year1
 [5] "corpus/102_Jazykov_1825.txt"   "corpus/103_Jazykov_1825.txt"  </code></pre>
 </div>
 </div>
-<p>Создадим таблицу со всеми текстами и их id. Функция <code>str_c()</code> из пакета <code>stringr</code> позволяет объединить несколько строк в одну (через пробел).</p>
+<p>Создадим таблицу со всеми текстами и их id.</p>
+<p>Сначала напишем небольшую вспомогательную функцию <code>read_text</code>. Тело функции всегда заключается в фигурные скобки. Эта функция читает построчно каждый файл, а затем “схлопывает” строки в единый вектор через пробел (это делает функция <code>str_c()</code> из пакета <code>stringr</code>). Функция <code>map_chr()</code> из пакета <code>purrr</code> позволяет запустить нашу “доморощенную” функцию 509 раз, по числу файлов (их список отдаем ей первым аргументом). Результат возвращается в виде длинного вектора, который мы превращаем в столбец нового тиббла.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>elegies_texts <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">title =</span> elegies_files,</span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>                        <span class="at">text =</span> <span class="fu">map_chr</span>(elegies_files, </span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>                                       \(x) <span class="fu">str_c</span>(<span class="fu">read_lines</span>(x), <span class="at">collapse =</span> <span class="st">" "</span>)</span>
-<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>                                       )</span>
-<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>                        )</span>
-<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>elegies_texts <span class="sc">|&gt;</span> </span>
-<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>()</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>read_text <span class="ot">&lt;-</span> <span class="cf">function</span>(file){</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">read_lines</span>(file) <span class="sc">|&gt;</span> </span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">str_c</span>(<span class="at">collapse =</span> <span class="st">" "</span>)</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>elegies_texts <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">title =</span> elegies_files, <span class="co"># в столбец title кладем имена файлов</span></span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">text =</span> <span class="fu">map_chr</span>(elegies_files, read_text) <span class="co"># в столбец text кладем тексты элегий</span></span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>elegies_texts <span class="sc">|&gt;</span> </span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>()</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 509 × 2
    title                         text                                           
@@ -681,7 +686,7 @@ dbl  (2): id, Year1
 </div>
 </div>
 </div>
-<p>Каждый геометрический объект может иметь свои специфические параметры. Например, geom_point() может варьировать размер, цвет, форму и прозрачность точек, а geom_line() — тип, толщину и цвет линии. Эти параметры можно задавать как внутри aes() (когда они зависят от данных), так и вне её (когда задаются константы).</p>
+<p>Каждый геометрический объект может иметь свои специфические параметры. Например, <code>geom_point()</code> может варьировать размер, цвет, форму и прозрачность точек, а <code>geom_line()</code> — тип, толщину и цвет линии. Эти параметры можно задавать как внутри <code>aes()</code> (когда они зависят от данных), так и вне её (когда задаются константы).</p>
 </section>
 <section id="видео-к-этому-уроку" class="level2" data-number="2.9">
 <h2 data-number="2.9" class="anchored" data-anchor-id="видео-к-этому-уроку"><span class="header-section-number">2.9</span> Видео к этому уроку</h2>
@@ -693,16 +698,16 @@ dbl  (2): id, Year1
 <h2 data-number="2.10" class="anchored" data-anchor-id="домашняя-работа"><span class="header-section-number">2.10</span> Домашняя работа</h2>
 <ul>
 <li><p>В этом задании вы исследуете корпус русской песни. <a href="https://dataverse.pushdom.ru/dataset.xhtml?persistentId=doi:10.31860/openlit-2019.11-C003">Источник</a>.</p></li>
-<li><p>Оценка 0-10. Выполнять все пункты задания не обязательно: на оценку 9-10 требования очень высокие (так и задумано).</p></li>
+<li><p><strong>Оценка 0-10</strong>. Выполнять все пункты задания не обязательно: на оценку 9-10 требования очень высокие (так и задумано).</p></li>
 <li><p>Сам корпус и заготовку для кода вы найдете, приняв задание по ссылке: <a href="https://classroom.github.com/a/zlrC_zDL" class="uri">https://classroom.github.com/a/zlrC_zDL</a>. Если вы не видите себя в списке студентов, напишите преподавателю.</p></li>
 <li><p>После этого GitHub создаст репозиторий для сдачи домашнего задания. Клонируйте его (т.е. создайте локальный проект под контролем версий, как мы делали в первом уроке).</p></li>
-<li><p>Внесите необходимые изменения в файл <code>hw2.R</code>, после чего сделайте закоммитьте изменения и сделайте <code>push</code>. Если не получится, используйте кнопку <code>Upload files</code>.</p></li>
+<li><p>Внесите необходимые изменения в файл <code>hw2.R</code>, после чего закоммитьте изменения и сделайте <code>push</code>. Если не получится, используйте кнопку <code>Upload files</code>.</p></li>
 </ul>
 <p><img src="https://locusclassicus.github.io/text_analysis_2024/images/classroom.png" class="img-fluid"></p>
 <p><strong>Критерии оценивания</strong>:</p>
 <ul class="task-list">
-<li><label><input type="checkbox" checked="">Для всех решений (импорт, статистика и др.) использована библиотека tidyverse. - <strong>1 б.</strong></label></li>
-<li><label><input type="checkbox" checked="">Оформление кода: пайпы |&gt;, каждая функция с новой строки, отступы, осмысленные имена переменных. - <strong>1 б.</strong></label></li>
+<li><label><input type="checkbox" checked="">Для всех решений (импорт, статистика и др.) использована библиотека <code>tidyverse</code>. - <strong>1 б.</strong></label></li>
+<li><label><input type="checkbox" checked="">Оформление кода: пайпы <code>|&gt;</code>, каждая функция с новой строки, есть отступы, осмысленные имена переменных. - <strong>1 б.</strong></label></li>
 <li><label><input type="checkbox" checked="">Посчитана статистика по годам публикации. - <strong>1 б.</strong></label></li>
 <li><label><input type="checkbox" checked="">Все текстовые файлы прочитаны и записаны в единый тиббл. - <strong>2 б.</strong></label></li>
 <li><label><input type="checkbox" checked="">Тиббл с текстами корректно (!) объединен с метаданными, в итоговом тиббле только нужные столбцы. - <strong>2 б.</strong></label></li>
@@ -712,7 +717,7 @@ dbl  (2): id, Year1
 </ul>
 <hr>
 <ul>
-<li><p>Весь код должен запускаться без нет ошибок (в противном случае – <strong>минус 4 балла</strong>).</p></li>
+<li><p>Весь код должен запускаться без ошибок (в противном случае – <strong>минус 4 балла</strong>).</p></li>
 <li><p>В случае выявления плагиата всем соучастникам ставится <strong>оценка 0</strong> без возможности пересдачи.</p></li>
 <li><p>После дедлайна (<strong>3 октября 21-00 мск</strong>) задание не принимается.</p></li>
 </ul>
