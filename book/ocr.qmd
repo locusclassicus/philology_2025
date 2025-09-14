@@ -4,8 +4,11 @@
 
 ```{r}
 library(qpdf)
-library(pdftools)
 library(tesseract)
+library(pdftools)
+
+# install.packages("remotes")
+remotes::install_github("arcruz0/tesseractgt")
 library(tesseractgt)
 ```
 
@@ -168,7 +171,7 @@ pdf_convert("../ocr/НЗ1821_6_6[50-51].pdf",
 
 Начиная с версии 4, Tesseract использует нейронную сеть для распознавания текста, что позволяет дообучать модель для конкретных задач. Для дообучения необходимы эталонные данные — фрагменты изображений с соответствующим им текстом.
 
-### Обучающие данные
+### Подготовка изображений
 
 Создайте папку с именем `{язык}-ground-truth/` (например, `orus-ground-truth/`) и поместите туда изображения текста. Названия файлов могут быть любыми. Самый простой способ: сделать скриншоты вручную (чем больше, тем лучше). Вот пример:
 
@@ -193,21 +196,26 @@ crop_words(image_path = "../ocr/НЗ1821_6_6[50-51]_1.png",
            overwrite = FALSE)
 ```
 
+После этого в папке `words` должно появиться нечто похожее:
 
 ![](images/words_view.png)
+Чтобы "разрезать" на слова _несколько_ изображений, используем функции для итераций из пакета `purrr` (мы встречались с ними, когда читали сразу несколько текстовых файлов в окружение).
+
+```{r}
+img_paths <- list.files("../ocr", pattern = "png", full.names = TRUE)
+img_paths
+```
+
+```{r eval=FALSE}
+walk(img_paths, crop_words, 
+     out_dir = "../ocr/orus-ground-truth")
+```
 
 ### Текстовые файлы
 
-Теперь для каждого изображения добавим текст (файлы в формате `.gt.txt`). Для ускорения процесса создания эталонных файлов можно использовать специальный пакет:
+Теперь для каждого изображения добавим текст (файлы в формате `.gt.txt`). Для ускорения процесса создания эталонных файлов можно использовать пакет `tesseractgt`. Для создания таких файлов используем базовую модель.
 
-```{r}
-# install.packages("remotes")
-remotes::install_github("arcruz0/tesseractgt")
-```
-
-Для создания таких файлов используем базовую модель.
-
-```{r}
+```{r eval=FALSE}
 create_gt_txt(
   folder = "../ocr/orus-ground-truth",
   extension = "png", 
@@ -217,53 +225,153 @@ create_gt_txt(
 
 Убедитесь, что файлы появились в директории. Список должен выглядеть примерно так:
 
-```{r echo=FALSE}
-library(fs)
-fs::dir_tree(path = "../ocr/orus-ground-truth",
-             recurse = TRUE)
-```    
+![](images/img_and_text_view.png)
+   
 
-**Шаг 3: Корректировка текстовых файлов**
-
-Исправьте автоматически созданные файлы `.gt.txt` вручную:
+Теперь самый важный этап: корректировка текстовых файлов. Исправить автоматически созданные файлы `.gt.txt` поможет специальная функция:
 
 ```{r eval=FALSE}
 correct_gt_txt() 
 ```
 
-![](https://arcruz0.github.io/posts/finetuning-tess/imgs/addin.gif)
-Если не видно папки с изображениями, смените рабочую директорию.
+![[Источник](https://arcruz0.github.io/posts/finetuning-tess/)](https://arcruz0.github.io/posts/finetuning-tess/imgs/addin.gif)
+
+Если не видно папки с изображениями, смените рабочую директорию. Вот несколько полезных символов: 
+
+:::{.callout-note icon=false}:::
+Чаще всего используемые в дореформенной русской орфографии:
+
+- Ять: Ѣ (U+0462), ѣ (U+0463)
+- И десятеричное: І (U+0406), і (U+0456)
+- Фита: Ѳ (U+0472), ѳ (U+0473)
+- Ижица: Ѵ (U+0474), ѵ (U+0475)
+- Твёрдый знак, еръ: Ъ (U+042A), ъ (U+044A)
+
+:::
 
 ###  Дообучение
 
-1. Клонируйте репозиторий `tesstrain`:
+Теперь мы готовы к дообучению модели. Сначала переходим в терминал, клонируем репозиторий `tesstrain`: 
 
 ```{r eval=FALSE}
 git clone https://github.com/tesseract-ocr/tesstrain.git
+```
+
+Эта команда скачает репозиторий `tesstrain` с GitHub. При этом локально создается папка `tesstrain` со скриптами и `Makefile` для обучения моделей Tesseract. Скачивание может занять несколько минут.
+
+Теперь переходим в только что созданную папку. Команда смены каталога `cd` работает и на macOS, и на Windows.
+
+```{r eval=FALSE}
 cd tesstrain
+```
+
+Следующая команда запускает утилиту (небольшую программу) `make` и выполняет задачу `tesseract-langdata`, описанную в `Makefile` проекта. В результате автоматически скачиваются официальные языковые данные Tesseract, необходимые для обучения, а именно `langdata` и/или `langdata_lstm` — наборы текстов, списки слов, правила пунктуации/нормализации и прочие файлы, которые используются при подготовке и обучении модели.
+
+```{r eval=FALSE}
 make tesseract-langdata
 ```
 
-2. Переместите папку с данными:
+На этом этапе вы можете столкнуться с ошибкой. 
 
 ```{r eval=FALSE}
-mv ~/location/alg-ground-truth data
+# Makefile:175: *** This version of GNU Make is too low (3.81). Check your path, or upgrade to 4.2 or newer..  Stop.
 ```
 
-3. Запуск дообучения
+Проблема решается путем обновления утилиты. На MacOS установить новую GNU Make можно через Homebrew (это менеджер пакетов, его надо отдельно устанавливать: <https://brew.sh/>):
 
 ```{r eval=FALSE}
-make training MODEL_NAME=alg START_MODEL=eng FINETUNE_TYPE=Impact
+# в терминале
+brew install make
 ```
 
-На этом этапе у меня возникли сложности из-за того, что не был установлен make, также пришлось добавить аргумент LANG_TYPE.
+После установки появится команда `gmake`. Её можно вызывать напрямую:
 
 ```{r eval=FALSE}
-brew install make # для Mac
+# в терминале, придется подожать
+gmake tesseract-langdata
+```
+
+На Windows задача также решается при помощи менеджера пакетов -- например, Scoop <https://scoop.sh/>.
+
+```{r eval=FALSE}
+# в терминале
+scoop install make
+```
+
+После установки проверьте версию `make`.
+
+```{r eval=FALSE}
+# в терминале 
+# gmake --version для MacOS
+make --version
+```
+
+Итог: после этих команд у вас есть локальная копия `tesstrain`, вы находитесь в её каталоге, и в него загружены исходные языковые данные (`data`), без которых обучение своей модели Tesseract не запустится. 
+
+На этом этапе структура каталога выглядит так:
+
+```{r echo=FALSE, eval=FALSE}
+library(fs)
+fs::dir_tree(path = "../tesstrain",
+             recurse = TRUE)
+
+# ../tesstrain
+# ├── LICENSE
+# ├── Makefile
+# ├── README.md
+# ├── count_chars.py
+# ├── data
+# │   └── langdata
+# │       ├── Arabic.unicharset
+# │       ├── Armenian.unicharset
+# │       ├── Bengali.unicharset
+# │       ├── ...
+# │       └── radical-stroke.txt
+# ├── generate_eval_train.py
+# ├── generate_gt_from_box.py
+# ├── generate_line_box.py
+# ├── generate_line_syllable_box.py
+# ├── generate_wordstr_box.py
+# ├── normalize.py
+# ├── ocrd-testset.zip
+# ├── ocrd.plot_cer.png
+# ├── plot_cer.py
+# ├── plot_log.py
+# ├── requirements.txt
+# ├── shuffle.py
+# └── src
+#     ├── README.md
+#     ├── setup.cfg
+#     ├── setup.py
+#     └── tesstrain
+#         ├── __init__.py
+#         ├── __main__.py
+#         ├── arguments.py
+#         ├── generate.py
+#         ├── language_specific.py
+#         └── wrapper.py
+``` 
+
+Теперь нам надо переместить обучающие данные -- в нашем случае это `orus-ground-truth` в папку `data`. Можете просто скопировать вручную.
+
+Все, можно запускать дообучение. 
+
+```{r eval=FALSE}
+# в терминале, make на Windows
 gmake training MODEL_NAME=orus START_MODEL=rus FINETUNE_TYPE=Impact LANG_TYPE=Both
 ```
 
-Дообучение занимает несколько минут.
+Команда выше запускает "рецепт" обучения нейросети Tesseract. Этот рецепт под названием `training` автоматически готовит данные и запускает процесс дообучения модели распознавания текста.
+
+Что означает каждая часть команды:
+
+- `gmake training` — запустить задание `training` из файла правил (`Makefile`). Оно скачает/подготовит данные, запустит обучение и положит результат в папку с моделями.
+- `MODEL_NAME=orus` — имя новой модели, которую вы хотите получить. В конце появится файл вроде `orus.traineddata`.
+- `START_MODEL=rus` — не учить с нуля, а взять за основу существующую русскую модель `rus` и "докрутить" ее под новые данные. Это быстрее и надежнее.
+- `FINETUNE_TYPE=Impact` — "бережное" дообучение: меняются только части сети, чтобы сохранить сильные стороны базовой модели и адаптировать её под ваши тексты.
+- `LANG_TYPE=Both` — использовать оба набора языковых данных Tesseract (классический и LSTM), чтобы шире покрыть правила, словари и примеры. 
+
+Дообучение занимает несколько минут ☕☕☕
 
 ### Установка модели
 
@@ -273,7 +381,7 @@ gmake training MODEL_NAME=orus START_MODEL=rus FINETUNE_TYPE=Impact LANG_TYPE=Bo
 tesseract::tesseract_info()$datapath
 ```
 
-Скопируйте сюда новую модель `orus.traindata`.
+Скопируйте сюда новую модель `orus.trainedata`, которая должна появиться в папке `data`.
 
 Проверьте доступные модели:
 
@@ -281,11 +389,10 @@ tesseract::tesseract_info()$datapath
 tesseract::tesseract_info()$available
 ```
 
-После дообучения можно использовать новую модель:
+Все, после дообучения можем использовать новую модель:
 
 ```{r}
 text3 <- pdf_ocr_text("../ocr/НЗ1821_6_6[50-51].pdf", language = "orus")
-cat(text3)
 ```
 
 Таким образом, дообучение Tesseract позволяет улучшить качество распознавания специализированных текстов; для лучшего результата используйте больше обучающих данных (чем больше, тем лучше). Пакет `tesseractgt` существенно упрощает процесс подготовки обучающих данных.
@@ -294,7 +401,7 @@ cat(text3)
 
 ```{r echo=FALSE}
 library(cowsay)
-say("Будет добавлено позже", "cat")
+say("Будет добавлено позже", "egret")
 ```
 
 ## Домашнее задание

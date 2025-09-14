@@ -214,9 +214,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#распознавание" id="toc-распознавание" class="nav-link" data-scroll-target="#распознавание"><span class="header-section-number">3.5</span> Распознавание</a></li>
   <li><a href="#файн-тюнинг" id="toc-файн-тюнинг" class="nav-link" data-scroll-target="#файн-тюнинг"><span class="header-section-number">3.6</span> Файн-тюнинг</a>
   <ul class="collapse">
-  <li><a href="#подготовка-обучающих-данных" id="toc-подготовка-обучающих-данных" class="nav-link" data-scroll-target="#подготовка-обучающих-данных"><span class="header-section-number">3.6.1</span> Подготовка обучающих данных</a></li>
-  <li><a href="#процесс-дообучения" id="toc-процесс-дообучения" class="nav-link" data-scroll-target="#процесс-дообучения"><span class="header-section-number">3.6.2</span> Процесс дообучения</a></li>
-  <li><a href="#установка-модели" id="toc-установка-модели" class="nav-link" data-scroll-target="#установка-модели"><span class="header-section-number">3.6.3</span> Установка модели</a></li>
+  <li><a href="#подготовка-изображений" id="toc-подготовка-изображений" class="nav-link" data-scroll-target="#подготовка-изображений"><span class="header-section-number">3.6.1</span> Подготовка изображений</a></li>
+  <li><a href="#текстовые-файлы" id="toc-текстовые-файлы" class="nav-link" data-scroll-target="#текстовые-файлы"><span class="header-section-number">3.6.2</span> Текстовые файлы</a></li>
+  <li><a href="#дообучение" id="toc-дообучение" class="nav-link" data-scroll-target="#дообучение"><span class="header-section-number">3.6.3</span> Дообучение</a></li>
+  <li><a href="#установка-модели" id="toc-установка-модели" class="nav-link" data-scroll-target="#установка-модели"><span class="header-section-number">3.6.4</span> Установка модели</a></li>
   </ul></li>
   <li><a href="#видео-к-этому-уроку" id="toc-видео-к-этому-уроку" class="nav-link" data-scroll-target="#видео-к-этому-уроку"><span class="header-section-number">3.7</span> Видео к этому уроку</a></li>
   <li><a href="#домашнее-задание" id="toc-домашнее-задание" class="nav-link" data-scroll-target="#домашнее-задание"><span class="header-section-number">3.8</span> Домашнее задание</a></li>
@@ -248,12 +249,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>В этом уроке мы освоим основной инструмент для распознавания печатного текста в R – пакет <code>tesseract</code>, а также научимся дообучать модели под конкретные задачи и шрифты. Для работы нам понадобятся следующие библиотеки:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(qpdf)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(pdftools)</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tesseract)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(pdftools)</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Using poppler version 23.04.0</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tesseract)</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tesseractgt)</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages("remotes")</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>remotes<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">"arcruz0/tesseractgt"</span>)</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Using GitHub PAT from the git credential store.</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Skipping install of 'tesseractgt' from a github remote, the SHA1 (dc49152a) has not changed since last install.
+  Use `force = TRUE` to force installation</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tesseractgt)</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <section id="что-такое-ocr-и-tesseract" class="level2" data-number="3.1">
 <h2 data-number="3.1" class="anchored" data-anchor-id="что-такое-ocr-и-tesseract"><span class="header-section-number">3.1</span> Что такое OCR и tesseract</h2>
@@ -288,16 +298,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 data-number="3.3" class="anchored" data-anchor-id="выбор-страниц"><span class="header-section-number">3.3</span> Выбор страниц</h2>
 <p>Для начала вырежем несколько страниц из pdf. Таким образом вы легко можете делить любые издания на главы, разделы и т.д.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>my_files <span class="ot">&lt;-</span> <span class="fu">list.files</span>(<span class="st">"../ocr"</span>, <span class="at">pattern =</span> <span class="st">"pdf"</span>, <span class="at">full.names =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>my_files[<span class="dv">2</span>] <span class="co"># нужный файл</span></span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>my_files <span class="ot">&lt;-</span> <span class="fu">list.files</span>(<span class="st">"../ocr"</span>, <span class="at">pattern =</span> <span class="st">"pdf"</span>, <span class="at">full.names =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>my_files[<span class="dv">2</span>] <span class="co"># нужный файл</span></span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "../ocr/Невский зритель. 1821. Ч. 6. № 6. Июнь.pdf"</code></pre>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pdf_subset</span>(<span class="at">input =</span> my_files[<span class="dv">2</span>],</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>           <span class="at">output =</span> <span class="st">"../ocr/НЗ1821_6_6[50-51].pdf"</span>,</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">pages =</span> <span class="dv">50</span><span class="sc">:</span><span class="dv">51</span>)</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pdf_subset</span>(<span class="at">input =</span> my_files[<span class="dv">2</span>],</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>           <span class="at">output =</span> <span class="st">"../ocr/НЗ1821_6_6[50-51].pdf"</span>,</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">pages =</span> <span class="dv">50</span><span class="sc">:</span><span class="dv">51</span>)</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div>
 
@@ -331,8 +341,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 data-number="3.4" class="anchored" data-anchor-id="извлечение-текста-из-pdf"><span class="header-section-number">3.4</span> Извлечение текста из pdf</h2>
 <p>Если вам повезло, то pdf хранит уже распознанный текст.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>text1 <span class="ot">&lt;-</span> <span class="fu">pdf_text</span>(<span class="at">pdf =</span> <span class="st">"../ocr/НЗ1821_6_6[50-51].pdf"</span>)</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(text1)</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>text1 <span class="ot">&lt;-</span> <span class="fu">pdf_text</span>(<span class="at">pdf =</span> <span class="st">"../ocr/НЗ1821_6_6[50-51].pdf"</span>)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(text1)</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>ЭЭСЮЭЭЭЭЭСКЮЭЭЭЭЭСЮС»ЭЭЭ&lt;Э&lt;ЗС&gt;Э(ІЭ(99ЭС933 э о э з о з э з э
 
@@ -378,7 +388,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>Текст распознан достаточно хорошо, есть мелкие ошибки, но их можно исправить (о чем речь пойдет в следующем уроке). Если необходимо сохранить извлеченный из pdf текст для дальнейшей работы, это делается так:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">writeLines</span>(text1, <span class="at">con =</span> <span class="st">"../ocr/rosalia.txt"</span>)</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">writeLines</span>(text1, <span class="at">con =</span> <span class="st">"../ocr/rosalia.txt"</span>)</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="распознавание" class="level2" data-number="3.5">
@@ -386,48 +396,92 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Если текст не распознан (притворимся, что так и есть), то можно попробовать распознать при помощи <code>tesseract</code>. Однако есть нюанс: <code>tesseract</code> не знает дореформенного русского. Это значит, что все яти (ѣ), еры (ъ), фиты (Ѳ) и десятеричные и (і) превратятся во что-то странное. А еще трудности бывают с буквой “т”, т.к. в XIX в. ее печатали по-другому.</p>
 <p>Проверим. Но прежде всего надо скачать модель для русского языка. Это делается один раз. Кстати, тессеракт способен “читать” тексты на нескольких языках, для этого передаем значение аргументу language так: <code>"rus+deu"</code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># tesseract_download("rus")</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>text2 <span class="ot">&lt;-</span> <span class="fu">pdf_ocr_text</span>(<span class="st">"../ocr/НЗ1821_6_6[50-51].pdf"</span>, <span class="at">language =</span> <span class="st">"rus"</span>)</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(text2)</span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Converting page 1 to НЗ1821_6_6[50-51]_1.png... done!</span></span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Converting page 2 to НЗ1821_6_6[50-51]_2.png... done!</span></span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="co"># 999939993993999999339993399999939939 9039303939</span></span>
-<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="co"># РАЗЛУКА.</span></span>
-<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a><span class="co"># (Элегтя.)</span></span>
-<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a><span class="co"># ————-</span></span>
-<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Розамя, мой спушникъь неизмённый</span></span>
-<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a><span class="co"># На полЪ радосшей земныхь!</span></span>
-<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Розал!я, мой другь, хранишель несравненный!</span></span>
-<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Когда я ошдохну въ объяпияхь швоихъ?...</span></span>
-<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Съ шобою горестей душа моя незнаеть,</span></span>
-<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a><span class="co"># И сердцу скорбному не измЪнить покой!</span></span>
-<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Надежда мрачный пушь звЪздою озаряепть,</span></span>
-<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a><span class="co"># И я мирюсь съ враждебною судьбой!...</span></span>
-<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a><span class="co"># ’Геперь, за дальними, свиофпыми морями</span></span>
-<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Твой сладк!й гласъ не оживишьъ меня!</span></span>
-<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Взойдеть заря надъ злачными холмами,</span></span>
-<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a><span class="co"># Появишся въ лучахъ свЪшило дня —</span></span>
-<span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a><span class="co"># Напрасно! все кругомъ покрыпю мглою.</span></span>
-<span id="cb10-25"><a href="#cb10-25" aria-hidden="true" tabindex="-1"></a><span class="co"># Неслышишся мнЪ сладюй тивой привЪфить,</span></span>
-<span id="cb10-26"><a href="#cb10-26" aria-hidden="true" tabindex="-1"></a><span class="co"># ВсЪ5 радосши, надежды всЪ съ шобою —</span></span>
-<span id="cb10-27"><a href="#cb10-27" aria-hidden="true" tabindex="-1"></a><span class="co"># И опусш$ль безъ милой свЪзить’</span></span>
-<span id="cb10-28"><a href="#cb10-28" aria-hidden="true" tabindex="-1"></a><span class="co"># Подруга милая, скажи, чшо край прелесшный,</span></span>
-<span id="cb10-29"><a href="#cb10-29" aria-hidden="true" tabindex="-1"></a><span class="co"># Чпо мирвыя, тифвисптыя поля,</span></span>
-<span id="cb10-30"><a href="#cb10-30" aria-hidden="true" tabindex="-1"></a><span class="co"># Чтпо своенравныя судьбы привЪтьъ мн лесшный,</span></span>
-<span id="cb10-31"><a href="#cb10-31" aria-hidden="true" tabindex="-1"></a><span class="co"># Когда съ шобой въ разлук я.</span></span>
-<span id="cb10-32"><a href="#cb10-32" aria-hidden="true" tabindex="-1"></a><span class="co"># Но другь мой! горесмь ошленаепть</span></span>
-<span id="cb10-33"><a href="#cb10-33" aria-hidden="true" tabindex="-1"></a><span class="co">#  245</span></span>
-<span id="cb10-34"><a href="#cb10-34" aria-hidden="true" tabindex="-1"></a><span class="co"># На бысшрыхь времени крылахь,</span></span>
-<span id="cb10-35"><a href="#cb10-35" aria-hidden="true" tabindex="-1"></a><span class="co"># И радосшь сердце посфщаеть....</span></span>
-<span id="cb10-36"><a href="#cb10-36" aria-hidden="true" tabindex="-1"></a><span class="co"># Моя надежда — въ небесахь!...</span></span>
-<span id="cb10-37"><a href="#cb10-37" aria-hidden="true" tabindex="-1"></a><span class="co"># Когдажъ опяшь смягченными судьбами</span></span>
-<span id="cb10-38"><a href="#cb10-38" aria-hidden="true" tabindex="-1"></a><span class="co"># Я въ радосши къ подругЪ понесусь,</span></span>
-<span id="cb10-39"><a href="#cb10-39" aria-hidden="true" tabindex="-1"></a><span class="co"># Коснусь волшебныхь сшрунь волшебными пер-</span></span>
-<span id="cb10-40"><a href="#cb10-40" aria-hidden="true" tabindex="-1"></a><span class="co"># сшами</span></span>
-<span id="cb10-41"><a href="#cb10-41" aria-hidden="true" tabindex="-1"></a><span class="co"># И, сь рфзвою мечтшою примирюсь.</span></span>
-<span id="cb10-42"><a href="#cb10-42" aria-hidden="true" tabindex="-1"></a><span class="co"># Я, Б — $5.</span></span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># tesseract_download("rus")</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">tesseract_info</span>()<span class="sc">$</span>available</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>text2 <span class="ot">&lt;-</span> <span class="fu">pdf_ocr_text</span>(<span class="st">"../ocr/НЗ1821_6_6[50-51].pdf"</span>, </span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>                      <span class="at">language =</span> <span class="st">"rus"</span>)</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Converting page 1 to НЗ1821_6_6[50-51]_1.png... done!
+Converting page 2 to НЗ1821_6_6[50-51]_2.png... done!</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(text2)</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>999939993993999999339993399999939939 9039303939
+РАЗЛУКА.
+(Элегтя.)
+————-
+Розамя, мой спушникъь неизмённый
+На полЪ радосшей земныхь!
+Розал!я, мой другь, хранишель несравненный!
+Когда я ошдохну въ объяпияхь швоихъ?...
+Съ шобою горестей душа моя незнаеть,
+И сердцу скорбному не измЪнить покой!
+Надежда мрачный пушь звЪздою озаряепть,
+И я мирюсь съ враждебною судьбой!...
+’Геперь, за дальними, свиофпыми морями
+Твой сладк!й гласъ не оживишьъ меня!
+Взойдеть заря надъ злачными холмами,
+Появишся въ лучахъ свЪшило дня —
+Напрасно! все кругомъ покрыпю мглою.
+Неслышишся мнЪ сладюй тивой привЪфить,
+ВсЪ5 радосши, надежды всЪ съ шобою —
+И опусш$ль безъ милой свЪзить’
+Подруга милая, скажи, чшо край прелесшный,
+Чпо мирвыя, тифвисптыя поля,
+Чтпо своенравныя судьбы привЪтьъ мн лесшный,
+Когда съ шобой въ разлук я.
+Но другь мой! горесмь ошленаепть
+ 245
+На бысшрыхь времени крылахь,
+И радосшь сердце посфщаеть....
+Моя надежда — въ небесахь!...
+Когдажъ опяшь смягченными судьбами
+Я въ радосши къ подругЪ понесусь,
+Коснусь волшебныхь сшрунь волшебными пер-
+сшами
+И, сь рфзвою мечтшою примирюсь.
+Я, Б — $5.</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Converting page 1 to НЗ1821_6_6[50-51]_1.png... done!</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Converting page 2 to НЗ1821_6_6[50-51]_2.png... done!</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 999939993993999999339993399999939939 9039303939</span></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="co"># РАЗЛУКА.</span></span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a><span class="co"># (Элегтя.)</span></span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a><span class="co"># ————-</span></span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Розамя, мой спушникъь неизмённый</span></span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a><span class="co"># На полЪ радосшей земныхь!</span></span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Розал!я, мой другь, хранишель несравненный!</span></span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Когда я ошдохну въ объяпияхь швоихъ?...</span></span>
+<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Съ шобою горестей душа моя незнаеть,</span></span>
+<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a><span class="co"># И сердцу скорбному не измЪнить покой!</span></span>
+<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Надежда мрачный пушь звЪздою озаряепть,</span></span>
+<span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a><span class="co"># И я мирюсь съ враждебною судьбой!...</span></span>
+<span id="cb18-16"><a href="#cb18-16" aria-hidden="true" tabindex="-1"></a><span class="co"># ’Геперь, за дальними, свиофпыми морями</span></span>
+<span id="cb18-17"><a href="#cb18-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Твой сладк!й гласъ не оживишьъ меня!</span></span>
+<span id="cb18-18"><a href="#cb18-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Взойдеть заря надъ злачными холмами,</span></span>
+<span id="cb18-19"><a href="#cb18-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Появишся въ лучахъ свЪшило дня —</span></span>
+<span id="cb18-20"><a href="#cb18-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Напрасно! все кругомъ покрыпю мглою.</span></span>
+<span id="cb18-21"><a href="#cb18-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Неслышишся мнЪ сладюй тивой привЪфить,</span></span>
+<span id="cb18-22"><a href="#cb18-22" aria-hidden="true" tabindex="-1"></a><span class="co"># ВсЪ5 радосши, надежды всЪ съ шобою —</span></span>
+<span id="cb18-23"><a href="#cb18-23" aria-hidden="true" tabindex="-1"></a><span class="co"># И опусш$ль безъ милой свЪзить’</span></span>
+<span id="cb18-24"><a href="#cb18-24" aria-hidden="true" tabindex="-1"></a><span class="co"># Подруга милая, скажи, чшо край прелесшный,</span></span>
+<span id="cb18-25"><a href="#cb18-25" aria-hidden="true" tabindex="-1"></a><span class="co"># Чпо мирвыя, тифвисптыя поля,</span></span>
+<span id="cb18-26"><a href="#cb18-26" aria-hidden="true" tabindex="-1"></a><span class="co"># Чтпо своенравныя судьбы привЪтьъ мн лесшный,</span></span>
+<span id="cb18-27"><a href="#cb18-27" aria-hidden="true" tabindex="-1"></a><span class="co"># Когда съ шобой въ разлук я.</span></span>
+<span id="cb18-28"><a href="#cb18-28" aria-hidden="true" tabindex="-1"></a><span class="co"># Но другь мой! горесмь ошленаепть</span></span>
+<span id="cb18-29"><a href="#cb18-29" aria-hidden="true" tabindex="-1"></a><span class="co">#  245</span></span>
+<span id="cb18-30"><a href="#cb18-30" aria-hidden="true" tabindex="-1"></a><span class="co"># На бысшрыхь времени крылахь,</span></span>
+<span id="cb18-31"><a href="#cb18-31" aria-hidden="true" tabindex="-1"></a><span class="co"># И радосшь сердце посфщаеть....</span></span>
+<span id="cb18-32"><a href="#cb18-32" aria-hidden="true" tabindex="-1"></a><span class="co"># Моя надежда — въ небесахь!...</span></span>
+<span id="cb18-33"><a href="#cb18-33" aria-hidden="true" tabindex="-1"></a><span class="co"># Когдажъ опяшь смягченными судьбами</span></span>
+<span id="cb18-34"><a href="#cb18-34" aria-hidden="true" tabindex="-1"></a><span class="co"># Я въ радосши къ подругЪ понесусь,</span></span>
+<span id="cb18-35"><a href="#cb18-35" aria-hidden="true" tabindex="-1"></a><span class="co"># Коснусь волшебныхь сшрунь волшебными пер-</span></span>
+<span id="cb18-36"><a href="#cb18-36" aria-hidden="true" tabindex="-1"></a><span class="co"># сшами</span></span>
+<span id="cb18-37"><a href="#cb18-37" aria-hidden="true" tabindex="-1"></a><span class="co"># И, сь рфзвою мечтшою примирюсь.</span></span>
+<span id="cb18-38"><a href="#cb18-38" aria-hidden="true" tabindex="-1"></a><span class="co"># Я, Б — $5.</span></span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Что в таких случаях делать?</p>
 <ul>
@@ -435,11 +489,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>Второе: обученные модели можно также поискать в <a href="https://sysblok.ru/digital-heritage/transkribus-kak-kompjuternoe-zrenie-pomogaet-perevodit-teksty-sirijskih-mistikov/">Транскрибусе</a> (например, <a href="https://app.transkribus.org/models/public/text/russian-print-xviii-cent">здесь</a> и <a href="https://app.transkribus.org/models/public/text/44358">здесь</a>). Но у Транскрибуса есть ряд ограничений: модели нельзя использовать локально, расширенный функционал платный, и др. Бесплатно можно пользоваться готовыми приложениями; однако сначала pdf придется преобразовать в картинку.</p></li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pdf_convert</span>(<span class="st">"../ocr/НЗ1821_6_6[50-51].pdf"</span>, </span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>            <span class="at">format =</span> <span class="st">"png"</span>, </span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>            <span class="at">dpi =</span> <span class="dv">300</span>,</span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">pages =</span> <span class="cn">NULL</span>,  <span class="co"># все страницы, или c(1,3,5) для конкретных</span></span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">filenames =</span> <span class="cn">NULL</span>)</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pdf_convert</span>(<span class="st">"../ocr/НЗ1821_6_6[50-51].pdf"</span>, </span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>            <span class="at">format =</span> <span class="st">"png"</span>, </span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>            <span class="at">dpi =</span> <span class="dv">300</span>,</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">pages =</span> <span class="cn">NULL</span>,  <span class="co"># все страницы, или c(1,3,5) для конкретных</span></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">filenames =</span> <span class="cn">NULL</span>)</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ul>
 <li>Наконец, можно дообучить уже существующую модель <code>tesseract</code>, как показано вот в этом <a href="https://arcruz0.github.io/posts/finetuning-tess/index.html">примере</a>. Этим мы сейчас и займемся.</li>
@@ -448,131 +502,170 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="файн-тюнинг" class="level2" data-number="3.6">
 <h2 data-number="3.6" class="anchored" data-anchor-id="файн-тюнинг"><span class="header-section-number">3.6</span> Файн-тюнинг</h2>
 <p>Начиная с версии 4, Tesseract использует нейронную сеть для распознавания текста, что позволяет дообучать модель для конкретных задач. Для дообучения необходимы эталонные данные — фрагменты изображений с соответствующим им текстом.</p>
-<section id="подготовка-обучающих-данных" class="level3" data-number="3.6.1">
-<h3 data-number="3.6.1" class="anchored" data-anchor-id="подготовка-обучающих-данных"><span class="header-section-number">3.6.1</span> Подготовка обучающих данных</h3>
-<p><strong>Шаг 1: Подготовка изображений</strong></p>
-<p>Создайте папку с именем <code>{язык}-ground-truth/</code> (например, <code>orus-ground-truth/</code>) и поместите туда скриншоты текста. Названия файлов могут быть любыми.</p>
-<p>В моем случае – это все пять скриншотов, лучше сделать несколько десятков. Выглядят они так:</p>
-<p><img src="images/ground_truth1.png" class="img-fluid"> <img src="images/ground_truth2.png" class="img-fluid"> NB: Более продвинутый подход к нарезке изображений см. <a href="https://github.com/ukolshurika/finetune-ocr-sample">здесь</a>. Разрезать изображение на отдельные слова можно и в R – пример мы рассмотрим на занятии.</p>
-<p><img src="images/words_view.png" class="img-fluid"> <strong>Шаг 2: Использование пакета <code>tesseractgt</code></strong></p>
-<p>Теперь для каждого изображения добавим текст (файлы в формате <code>.gt.txt</code>). Для ускорения процесса создания эталонных файлов можно использовать специальный пакет:</p>
+<section id="подготовка-изображений" class="level3" data-number="3.6.1">
+<h3 data-number="3.6.1" class="anchored" data-anchor-id="подготовка-изображений"><span class="header-section-number">3.6.1</span> Подготовка изображений</h3>
+<p>Создайте папку с именем <code>{язык}-ground-truth/</code> (например, <code>orus-ground-truth/</code>) и поместите туда изображения текста. Названия файлов могут быть любыми. Самый простой способ: сделать скриншоты вручную (чем больше, тем лучше). Вот пример:</p>
+<p><img src="images/ground_truth1.png" class="img-fluid"></p>
+<p>Более продвинутый подход к нарезке изображений можно найти <a href="https://github.com/ukolshurika/finetune-ocr-sample">здесь</a> (для Python). Мы нарежем изображение на отдельные слова в R. Для этого скачайте следующий <a href="https://github.com/locusclassicus/philology_2025/blob/main/helper_scripts/crop_words.R">скрипт</a> и запустите его:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages("remotes")</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>remotes<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">"arcruz0/tesseractgt"</span>)</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Using GitHub PAT from the git credential store.</code></pre>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">"../helper_scripts/crop_words.R"</span>)</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Skipping install of 'tesseractgt' from a github remote, the SHA1 (dc49152a) has not changed since last install.
-  Use `force = TRUE` to force installation</code></pre>
-</div>
-</div>
-<p>Для создания таких файлов используем базовую модель.</p>
+<p>В глобальном окружении появится функция <code>crop_words()</code>. Она принимает на входе путь до изображения (обязательный аргумент), название директории, куда будут сохранены слова (по умолчанию <code>words</code>), язык базовой модели (код <code>tesseract</code>, по умолчанию <code>rus</code>) и отступ вокруг слова при обрезке (в пикселях). Аргумент <code>overwrite</code> управляет тем, очищать ли существующие файлы <code>word_*.png</code> в <code>out_dir</code> перед сохранением (по умолчанию <code>FALSE</code>).</p>
+<p>Также функция проверяет наличие пакетов <code>magick</code>, <code>tesseract</code>, <code>tidyverse</code>; при отсутствии пытается установить их вместе с зависимостями и затем подключает. Для корректной работы OCR с выбранным языком в системе должны быть установлены языковые данные Tesseract.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">create_gt_txt</span>(</span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">folder =</span> <span class="st">"../ocr/orus-ground-truth"</span>,</span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">extension =</span> <span class="st">"png"</span>, </span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">engine =</span> tesseract<span class="sc">::</span><span class="fu">tesseract</span>(<span class="at">language =</span> <span class="st">"rus"</span>)</span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">crop_words</span>(<span class="at">image_path =</span> <span class="st">"../ocr/НЗ1821_6_6[50-51]_1.png"</span>,</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>           <span class="at">out_dir =</span> <span class="st">"../ocr/words"</span>,</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">lang =</span> <span class="st">"rus"</span>,</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>           <span class="at">pad =</span> <span class="dv">2</span>L,</span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>           <span class="at">overwrite =</span> <span class="cn">FALSE</span>)</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["file"],"name":[1],"type":["chr"],"align":["left"]},{"label":["word"],"name":[2],"type":["chr"],"align":["left"]},{"label":["confidence"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["x1"],"name":[4],"type":["int"],"align":["right"]},{"label":["y1"],"name":[5],"type":["int"],"align":["right"]},{"label":["x2"],"name":[6],"type":["int"],"align":["right"]},{"label":["y2"],"name":[7],"type":["int"],"align":["right"]},{"label":["w"],"name":[8],"type":["int"],"align":["right"]},{"label":["h"],"name":[9],"type":["int"],"align":["right"]}],"data":[{"1":"../ocr/words/word_473.png","2":"99999993993990999033999330990890009389","3":"0.000000","4":"116","5":"159","6":"1192","7":"199","8":"1076","9":"40"},{"1":"../ocr/words/word_474.png","2":"030300089","3":"72.276497","4":"977","5":"143","6":"1194","7":"205","8":"217","9":"62"},{"1":"../ocr/words/word_475.png","2":"РАЗЛУКА.","3":"89.449821","4":"465","5":"379","6":"852","7":"431","8":"387","9":"52"},{"1":"../ocr/words/word_476.png","2":"(Элеггя.)","3":"73.920197","4":"498","5":"466","6":"813","7":"534","8":"315","9":"68"},{"1":"../ocr/words/word_477.png","2":"———--","3":"35.957916","4":"489","5":"580","6":"778","7":"598","8":"289","9":"18"},{"1":"../ocr/words/word_478.png","2":"Розамя,","3":"72.158585","4":"116","5":"684","6":"294","7":"730","8":"178","9":"46"},{"1":"../ocr/words/word_479.png","2":"мой","3":"93.202614","4":"318","5":"683","6":"401","7":"718","8":"83","9":"35"},{"1":"../ocr/words/word_480.png","2":"спушникь","3":"91.126488","4":"425","5":"693","6":"636","7":"730","8":"211","9":"37"},{"1":"../ocr/words/word_481.png","2":"неизмнный","3":"36.172585","4":"659","5":"684","6":"927","7":"721","8":"268","9":"37"},{"1":"../ocr/words/word_482.png","2":"На","3":"96.812431","4":"226","5":"749","6":"285","7":"783","8":"59","9":"34"},{"1":"../ocr/words/word_483.png","2":"пол","3":"8.809959","4":"307","5":"748","6":"407","7":"781","8":"100","9":"33"},{"1":"../ocr/words/word_484.png","2":"радосшей","3":"92.446777","4":"433","5":"747","6":"637","7":"792","8":"204","9":"45"},{"1":"../ocr/words/word_485.png","2":"земныхь!","3":"89.286819","4":"662","5":"742","6":"859","7":"783","8":"197","9":"41"},{"1":"../ocr/words/word_486.png","2":"Розал1я,","3":"40.524731","4":"116","5":"808","6":"289","7":"854","8":"173","9":"46"},{"1":"../ocr/words/word_487.png","2":"мой","3":"92.734200","4":"313","5":"807","6":"396","7":"843","8":"83","9":"36"},{"1":"../ocr/words/word_488.png","2":"другь,","3":"35.922058","4":"419","5":"818","6":"550","7":"856","8":"131","9":"38"},{"1":"../ocr/words/word_489.png","2":"хранишель","3":"91.904892","4":"574","5":"818","6":"808","7":"856","8":"234","9":"38"},{"1":"../ocr/words/word_490.png","2":"несравненный!","3":"91.789505","4":"832","5":"803","6":"1146","7":"857","8":"314","9":"54"},{"1":"../ocr/words/word_491.png","2":"Когда","3":"96.021118","4":"118","5":"875","6":"244","7":"916","8":"126","9":"41"},{"1":"../ocr/words/word_492.png","2":"я","3":"93.075470","4":"266","5":"881","6":"293","7":"906","8":"27","9":"25"},{"1":"../ocr/words/word_493.png","2":"ошдохну","3":"92.124016","4":"320","5":"880","6":"501","7":"918","8":"181","9":"38"},{"1":"../ocr/words/word_494.png","2":"въ","3":"91.895859","4":"524","5":"880","6":"572","7":"907","8":"48","9":"27"},{"1":"../ocr/words/word_495.png","2":"объяпияхь","3":"91.491516","4":"596","5":"871","6":"818","7":"908","8":"222","9":"37"},{"1":"../ocr/words/word_496.png","2":"швоихъ?...","3":"86.145630","4":"841","5":"871","6":"1095","7":"911","8":"254","9":"40"},{"1":"../ocr/words/word_497.png","2":"Съ","3":"92.114243","4":"122","5":"936","6":"175","7":"972","8":"53","9":"36"},{"1":"../ocr/words/word_498.png","2":"шобою","3":"92.054810","4":"196","5":"933","6":"340","7":"970","8":"144","9":"37"},{"1":"../ocr/words/word_499.png","2":"горестей","3":"90.776527","4":"364","5":"934","6":"567","7":"981","8":"203","9":"47"},{"1":"../ocr/words/word_500.png","2":"душа","3":"96.543510","4":"590","5":"943","6":"698","7":"980","8":"108","9":"37"},{"1":"../ocr/words/word_501.png","2":"моя","3":"92.468002","4":"723","5":"944","6":"805","7":"969","8":"82","9":"25"},{"1":"../ocr/words/word_502.png","2":"незнаетъ,","3":"71.025726","4":"828","5":"943","6":"1045","7":"978","8":"217","9":"35"},{"1":"../ocr/words/word_503.png","2":"И","3":"79.121040","4":"119","5":"999","6":"156","7":"1033","8":"37","9":"34"},{"1":"../ocr/words/word_504.png","2":"сердцу","3":"93.275284","4":"179","5":"1005","6":"324","7":"1042","8":"145","9":"37"},{"1":"../ocr/words/word_505.png","2":"скорбному","3":"90.260010","4":"348","5":"994","6":"572","7":"1042","8":"224","9":"48"},{"1":"../ocr/words/word_506.png","2":"не","3":"93.239830","4":"595","5":"1004","6":"644","7":"1031","8":"49","9":"27"},{"1":"../ocr/words/word_507.png","2":"измЪнить","3":"31.404068","4":"670","5":"999","6":"890","7":"1031","8":"220","9":"32"},{"1":"../ocr/words/word_508.png","2":"покой!","3":"96.369286","4":"913","5":"991","6":"1050","7":"1032","8":"137","9":"41"},{"1":"../ocr/words/word_509.png","2":"Надежда","3":"96.366859","4":"118","5":"1061","6":"299","7":"1103","8":"181","9":"42"},{"1":"../ocr/words/word_510.png","2":"мрачный","3":"93.274780","4":"310","5":"1057","6":"502","7":"1104","8":"192","9":"47"},{"1":"../ocr/words/word_511.png","2":"пушь","3":"86.219391","4":"527","5":"1068","6":"638","7":"1103","8":"111","9":"35"},{"1":"../ocr/words/word_512.png","2":"звЪздою","3":"84.107109","4":"664","5":"1060","6":"833","7":"1100","8":"169","9":"40"},{"1":"../ocr/words/word_513.png","2":"озаряелть,","3":"75.770386","4":"858","5":"1067","6":"1077","7":"1105","8":"219","9":"38"},{"1":"../ocr/words/word_514.png","2":"И","3":"94.618698","4":"226","5":"1122","6":"262","7":"1156","8":"36","9":"34"},{"1":"../ocr/words/word_515.png","2":"я","3":"90.982246","4":"287","5":"1129","6":"315","7":"1155","8":"28","9":"26"},{"1":"../ocr/words/word_516.png","2":"мирюсь","3":"90.228455","4":"337","5":"1128","6":"501","7":"1166","8":"164","9":"38"},{"1":"../ocr/words/word_517.png","2":"съ","3":"93.206764","4":"525","5":"1129","6":"573","7":"1155","8":"48","9":"26"},{"1":"../ocr/words/word_518.png","2":"враждебною","3":"90.463013","4":"597","5":"1118","6":"854","7":"1165","8":"257","9":"47"},{"1":"../ocr/words/word_519.png","2":"судьбой!...","3":"90.463013","4":"887","5":"1114","6":"1145","7":"1166","8":"258","9":"52"},{"1":"../ocr/words/word_520.png","2":"Теперь,","3":"49.824013","4":"119","5":"1185","6":"286","7":"1229","8":"167","9":"44"},{"1":"../ocr/words/word_521.png","2":"за","3":"96.635040","4":"312","5":"1189","6":"359","7":"1217","8":"47","9":"28"},{"1":"../ocr/words/word_522.png","2":"дальними,","3":"90.601212","4":"382","5":"1190","6":"596","7":"1225","8":"214","9":"35"},{"1":"../ocr/words/word_523.png","2":"свирЪпыми","3":"61.556290","4":"623","5":"1184","6":"864","7":"1227","8":"241","9":"43"},{"1":"../ocr/words/word_524.png","2":"морями","3":"96.331825","4":"890","5":"1191","6":"1057","7":"1228","8":"167","9":"37"},{"1":"../ocr/words/word_525.png","2":"Твой","3":"92.776001","4":"169","5":"1244","6":"276","7":"1281","8":"107","9":"37"},{"1":"../ocr/words/word_526.png","2":"сладк!й","3":"66.009987","4":"299","5":"1242","6":"455","7":"1286","8":"156","9":"44"},{"1":"../ocr/words/word_527.png","2":"гласъь","3":"58.066563","4":"479","5":"1253","6":"592","7":"1279","8":"113","9":"26"},{"1":"../ocr/words/word_528.png","2":"не","3":"93.225449","4":"616","5":"1252","6":"665","7":"1278","8":"49","9":"26"},{"1":"../ocr/words/word_529.png","2":"оживишь","3":"90.286278","4":"690","5":"1253","6":"888","7":"1278","8":"198","9":"25"},{"1":"../ocr/words/word_530.png","2":"меня!","3":"95.892982","4":"912","5":"1237","6":"1040","7":"1279","8":"128","9":"42"},{"1":"../ocr/words/word_531.png","2":"Взойдешь","3":"54.734921","4":"120","5":"1307","6":"326","7":"1351","8":"206","9":"44"},{"1":"../ocr/words/word_532.png","2":"заря","3":"93.113075","4":"350","5":"1314","6":"447","7":"1351","8":"97","9":"37"},{"1":"../ocr/words/word_533.png","2":"надъ","3":"90.497810","4":"471","5":"1314","6":"565","7":"1348","8":"94","9":"34"},{"1":"../ocr/words/word_534.png","2":"злачными","3":"90.497810","4":"589","5":"1314","6":"799","7":"1340","8":"210","9":"26"},{"1":"../ocr/words/word_535.png","2":"холмами,","3":"94.974220","4":"825","5":"1314","6":"1024","7":"1350","8":"199","9":"36"},{"1":"../ocr/words/word_536.png","2":"Появишся","3":"91.433929","4":"172","5":"1371","6":"393","7":"1405","8":"221","9":"34"},{"1":"../ocr/words/word_537.png","2":"въ","3":"93.081566","4":"414","5":"1377","6":"462","7":"1401","8":"48","9":"24"},{"1":"../ocr/words/word_538.png","2":"лучахъ","3":"71.227921","4":"484","5":"1375","6":"630","7":"1413","8":"146","9":"38"},{"1":"../ocr/words/word_539.png","2":"свЪъшило","3":"51.437675","4":"655","5":"1370","6":"838","7":"1402","8":"183","9":"32"},{"1":"../ocr/words/word_540.png","2":"дня","3":"93.033081","4":"864","5":"1377","6":"939","7":"1408","8":"75","9":"31"},{"1":"../ocr/words/word_541.png","2":"—","3":"89.299500","4":"963","5":"1384","6":"1005","7":"1394","8":"42","9":"10"},{"1":"../ocr/words/word_542.png","2":"Напрасно!","3":"96.731857","4":"173","5":"1424","6":"390","7":"1475","8":"217","9":"51"},{"1":"../ocr/words/word_543.png","2":"все","3":"91.665321","4":"415","5":"1437","6":"483","7":"1465","8":"68","9":"28"},{"1":"../ocr/words/word_544.png","2":"кругомъ","3":"91.665321","4":"507","5":"1438","6":"681","7":"1475","8":"174","9":"37"},{"1":"../ocr/words/word_545.png","2":"покрыто","3":"75.714066","4":"705","5":"1438","6":"899","7":"1475","8":"194","9":"37"},{"1":"../ocr/words/word_546.png","2":"мглою.","3":"91.196594","4":"924","5":"1438","6":"1072","7":"1464","8":"148","9":"26"},{"1":"../ocr/words/word_547.png","2":"Неслышишся","3":"76.501892","4":"174","5":"1491","6":"463","7":"1526","8":"289","9":"35"},{"1":"../ocr/words/word_548.png","2":"мнЪ","3":"90.979317","4":"485","5":"1494","6":"569","7":"1525","8":"84","9":"31"},{"1":"../ocr/words/word_549.png","2":"сладкй","3":"43.754494","4":"594","5":"1489","6":"747","7":"1533","8":"153","9":"44"},{"1":"../ocr/words/word_550.png","2":"тивой","3":"52.772743","4":"774","5":"1490","6":"885","7":"1525","8":"111","9":"35"},{"1":"../ocr/words/word_551.png","2":"привить.","3":"20.517342","4":"911","5":"1493","6":"1113","7":"1536","8":"202","9":"43"},{"1":"../ocr/words/word_552.png","2":"ВсЪ","3":"30.565521","4":"175","5":"1551","6":"256","7":"1587","8":"81","9":"36"},{"1":"../ocr/words/word_553.png","2":"радосши,","3":"85.947182","4":"281","5":"1559","6":"474","7":"1596","8":"193","9":"37"},{"1":"../ocr/words/word_554.png","2":"надежды","3":"93.204628","4":"500","5":"1560","6":"685","7":"1593","8":"185","9":"33"},{"1":"../ocr/words/word_555.png","2":"всЪ","3":"83.456612","4":"711","5":"1554","6":"783","7":"1586","8":"72","9":"32"},{"1":"../ocr/words/word_556.png","2":"съ","3":"93.272934","4":"808","5":"1561","6":"855","7":"1586","8":"47","9":"25"},{"1":"../ocr/words/word_557.png","2":"шобою","3":"84.540115","4":"880","5":"1550","6":"1023","7":"1587","8":"143","9":"37"},{"1":"../ocr/words/word_558.png","2":"—","3":"92.675232","4":"1045","5":"1568","6":"1087","7":"1579","8":"42","9":"11"},{"1":"../ocr/words/word_559.png","2":"И","3":"91.996384","4":"233","5":"1613","6":"269","7":"1647","8":"36","9":"34"},{"1":"../ocr/words/word_560.png","2":"опусшёль","3":"0.000000","4":"293","5":"1613","6":"499","7":"1656","8":"206","9":"43"},{"1":"../ocr/words/word_561.png","2":"безъ","3":"82.867844","4":"526","5":"1610","6":"618","7":"1645","8":"92","9":"35"},{"1":"../ocr/words/word_562.png","2":"милой","3":"93.060799","4":"643","5":"1612","6":"773","7":"1645","8":"130","9":"33"},{"1":"../ocr/words/word_563.png","2":"свЪшь’","3":"72.797234","4":"799","5":"1606","6":"944","7":"1645","8":"145","9":"39"},{"1":"../ocr/words/word_564.png","2":"Подруга","3":"96.414780","4":"125","5":"1676","6":"300","7":"1722","8":"175","9":"46"},{"1":"../ocr/words/word_565.png","2":"милая,","3":"93.441597","4":"326","5":"1680","6":"470","7":"1715","8":"144","9":"35"},{"1":"../ocr/words/word_566.png","2":"скажи,","3":"95.704521","4":"497","5":"1680","6":"642","7":"1712","8":"145","9":"32"},{"1":"../ocr/words/word_567.png","2":"что","3":"40.864822","4":"671","5":"1680","6":"755","7":"1705","8":"84","9":"25"},{"1":"../ocr/words/word_568.png","2":"край","3":"93.288399","4":"781","5":"1672","6":"879","7":"1716","8":"98","9":"44"},{"1":"../ocr/words/word_569.png","2":"прелесшный,","3":"89.629120","4":"903","5":"1670","6":"1183","7":"1718","8":"280","9":"48"},{"1":"../ocr/words/word_570.png","2":"Чшо","3":"70.131348","4":"179","5":"1738","6":"272","7":"1772","8":"93","9":"34"},{"1":"../ocr/words/word_571.png","2":"мирныя,","3":"77.952911","4":"296","5":"1743","6":"480","7":"1780","8":"184","9":"37"},{"1":"../ocr/words/word_572.png","2":"шфнисптыя","3":"59.341148","4":"506","5":"1735","6":"743","7":"1767","8":"237","9":"32"},{"1":"../ocr/words/word_573.png","2":"поля,","3":"95.183319","4":"766","5":"1741","6":"883","7":"1774","8":"117","9":"33"},{"1":"../ocr/words/word_574.png","2":"Что","3":"80.542992","4":"129","5":"1800","6":"222","7":"1834","8":"93","9":"34"},{"1":"../ocr/words/word_575.png","2":"своенравныя","3":"91.194572","4":"246","5":"1805","6":"519","7":"1843","8":"273","9":"38"},{"1":"../ocr/words/word_576.png","2":"судьбы","3":"92.983963","4":"543","5":"1792","6":"692","7":"1840","8":"149","9":"48"},{"1":"../ocr/words/word_577.png","2":"привЪть","3":"59.552383","4":"704","5":"1797","6":"890","7":"1839","8":"186","9":"42"},{"1":"../ocr/words/word_578.png","2":"мнЪ","3":"85.747452","4":"901","5":"1797","6":"984","7":"1831","8":"83","9":"34"},{"1":"../ocr/words/word_579.png","2":"лесшный,","3":"91.336082","4":"993","5":"1796","6":"1201","7":"1844","8":"208","9":"48"},{"1":"../ocr/words/word_580.png","2":"Когда","3":"94.631355","4":"235","5":"1860","6":"358","7":"1903","8":"123","9":"43"},{"1":"../ocr/words/word_581.png","2":"съ","3":"93.228706","4":"382","5":"1869","6":"429","7":"1896","8":"47","9":"27"},{"1":"../ocr/words/word_582.png","2":"шобой","3":"92.317772","4":"452","5":"1856","6":"589","7":"1893","8":"137","9":"37"},{"1":"../ocr/words/word_583.png","2":"въ","3":"91.869881","4":"614","5":"1866","6":"662","7":"1891","8":"48","9":"25"},{"1":"../ocr/words/word_584.png","2":"разлукЪ","3":"90.995399","4":"685","5":"1859","6":"851","7":"1903","8":"166","9":"44"},{"1":"../ocr/words/word_585.png","2":"я.","3":"96.663788","4":"877","5":"1867","6":"913","7":"1893","8":"36","9":"26"},{"1":"../ocr/words/word_586.png","2":"Но","3":"92.977943","4":"234","5":"1922","6":"294","7":"1957","8":"60","9":"35"},{"1":"../ocr/words/word_587.png","2":"другь","3":"91.907021","4":"317","5":"1930","6":"434","7":"1968","8":"117","9":"38"},{"1":"../ocr/words/word_588.png","2":"мой!","3":"93.287598","4":"458","5":"1914","6":"556","7":"1957","8":"98","9":"43"},{"1":"../ocr/words/word_589.png","2":"горестшь","3":"21.212265","4":"579","5":"1927","6":"755","7":"1969","8":"176","9":"42"},{"1":"../ocr/words/word_590.png","2":"отлешаепть","3":"80.745415","4":"779","5":"1927","6":"1029","7":"1958","8":"250","9":"31"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
 </div>
-<p>Убедитесь, что файлы появились в директории.</p>
-<p><strong>Шаг 3: Корректировка текстовых файлов</strong></p>
-<p>Исправьте автоматически созданные файлы <code>.gt.txt</code> вручную:</p>
+</div>
+</div>
+<p>После этого в папке <code>words</code> должно появиться нечто похожее:</p>
+<p><img src="images/words_view.png" class="img-fluid"> Чтобы “разрезать” на слова <em>несколько</em> изображений, используем функции для итераций из пакета <code>purrr</code> (мы встречались с ними, когда читали сразу несколько текстовых файлов в окружение).</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">correct_gt_txt</span>() </span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>img_paths <span class="ot">&lt;-</span> <span class="fu">list.files</span>(<span class="st">"../ocr"</span>, <span class="at">pattern =</span> <span class="st">"png"</span>, <span class="at">full.names =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>img_paths</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "../ocr/НЗ1821_6_6[50-51]_1.png" "../ocr/НЗ1821_6_6[50-51]_2.png"</code></pre>
 </div>
-<p><img src="https://arcruz0.github.io/posts/finetuning-tess/imgs/addin.gif" class="img-fluid"> Если не видно папки с изображениями, смените рабочую директорию.</p>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">walk</span>(img_paths, crop_words, </span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>     <span class="at">out_dir =</span> <span class="st">"../ocr/orus-ground-truth"</span>)</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
-<section id="процесс-дообучения" class="level3" data-number="3.6.2">
-<h3 data-number="3.6.2" class="anchored" data-anchor-id="процесс-дообучения"><span class="header-section-number">3.6.2</span> Процесс дообучения</h3>
-<ol type="1">
-<li>Клонируйте репозиторий <code>tesstrain</code>:</li>
-</ol>
+<section id="текстовые-файлы" class="level3" data-number="3.6.2">
+<h3 data-number="3.6.2" class="anchored" data-anchor-id="текстовые-файлы"><span class="header-section-number">3.6.2</span> Текстовые файлы</h3>
+<p>Теперь для каждого изображения добавим текст (файлы в формате <code>.gt.txt</code>). Для ускорения процесса создания эталонных файлов можно использовать пакет <code>tesseractgt</code>. Для создания таких файлов используем базовую модель.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>git clone https<span class="sc">:</span><span class="er">//</span>github.com<span class="sc">/</span>tesseract<span class="sc">-</span>ocr<span class="sc">/</span>tesstrain.git</span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>cd tesstrain</span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>make tesseract<span class="sc">-</span>langdata</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">create_gt_txt</span>(</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">folder =</span> <span class="st">"../ocr/orus-ground-truth"</span>,</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">extension =</span> <span class="st">"png"</span>, </span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">engine =</span> tesseract<span class="sc">::</span><span class="fu">tesseract</span>(<span class="at">language =</span> <span class="st">"rus"</span>)</span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<ol start="2" type="1">
-<li>Переместите папку с данными:</li>
-</ol>
+<p>Убедитесь, что файлы появились в директории. Список должен выглядеть примерно так:</p>
+<p><img src="images/img_and_text_view.png" class="img-fluid"></p>
+<p>Теперь самый важный этап: корректировка текстовых файлов. Исправить автоматически созданные файлы <code>.gt.txt</code> поможет специальная функция:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>mv <span class="sc">~</span><span class="er">/</span>location<span class="sc">/</span>alg<span class="sc">-</span>ground<span class="sc">-</span>truth data</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">correct_gt_txt</span>() </span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<ol start="3" type="1">
-<li>Запуск дообучения</li>
-</ol>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>make training MODEL_NAME<span class="ot">=</span>alg START_MODEL<span class="ot">=</span>eng FINETUNE_TYPE<span class="ot">=</span>Impact</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://arcruz0.github.io/posts/finetuning-tess/imgs/addin.gif" class="img-fluid figure-img"></p>
+<figcaption><a href="https://arcruz0.github.io/posts/finetuning-tess/">Источник</a></figcaption>
+</figure>
 </div>
-<p>На этом этапе у меня возникли сложности из-за того, что не был установлен make, также пришлось добавить аргумент LANG_TYPE.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>brew install make <span class="co"># для Mac</span></span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>gmake training MODEL_NAME<span class="ot">=</span>orus START_MODEL<span class="ot">=</span>rus FINETUNE_TYPE<span class="ot">=</span>Impact LANG_TYPE<span class="ot">=</span>Both</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Если не видно папки с изображениями, смените рабочую директорию. Вот несколько полезных символов:</p>
+<div class="callout callout-style-default callout-note no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
 </div>
-<p>Дообучение занимает несколько минут.</p>
+<div class="callout-title-container flex-fill">
+На заметку
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Чаще всего используемые в дореформенной русской орфографии:</p>
+<ul>
+<li>Ять: Ѣ (U+0462), ѣ (U+0463)</li>
+<li>И десятеричное: І (U+0406), і (U+0456)</li>
+<li>Фита: Ѳ (U+0472), ѳ (U+0473)</li>
+<li>Ижица: Ѵ (U+0474), ѵ (U+0475)</li>
+<li>Твёрдый знак, еръ: Ъ (U+042A), ъ (U+044A)</li>
+</ul>
+</div>
+</div>
 </section>
-<section id="установка-модели" class="level3" data-number="3.6.3">
-<h3 data-number="3.6.3" class="anchored" data-anchor-id="установка-модели"><span class="header-section-number">3.6.3</span> Установка модели</h3>
+<section id="дообучение" class="level3" data-number="3.6.3">
+<h3 data-number="3.6.3" class="anchored" data-anchor-id="дообучение"><span class="header-section-number">3.6.3</span> Дообучение</h3>
+<p>Теперь мы готовы к дообучению модели. Сначала переходим в терминал, клонируем репозиторий <code>tesstrain</code>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>git clone https<span class="sc">:</span><span class="er">//</span>github.com<span class="sc">/</span>tesseract<span class="sc">-</span>ocr<span class="sc">/</span>tesstrain.git</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Эта команда скачает репозиторий <code>tesstrain</code> с GitHub. При этом локально создается папка <code>tesstrain</code> со скриптами и <code>Makefile</code> для обучения моделей Tesseract. Скачивание может занять несколько минут.</p>
+<p>Теперь переходим в только что созданную папку. Команда смены каталога <code>cd</code> работает и на macOS, и на Windows.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>cd tesstrain</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Следующая команда запускает утилиту (небольшую программу) <code>make</code> и выполняет задачу <code>tesseract-langdata</code>, описанную в <code>Makefile</code> проекта. В результате автоматически скачиваются официальные языковые данные Tesseract, необходимые для обучения, а именно <code>langdata</code> и/или <code>langdata_lstm</code> — наборы текстов, списки слов, правила пунктуации/нормализации и прочие файлы, которые используются при подготовке и обучении модели.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>make tesseract<span class="sc">-</span>langdata</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>На этом этапе вы можете столкнуться с ошибкой.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Makefile:175: *** This version of GNU Make is too low (3.81). Check your path, or upgrade to 4.2 or newer..  Stop.</span></span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Проблема решается путем обновления утилиты. На MacOS установить новую GNU Make можно через Homebrew (это менеджер пакетов, его надо отдельно устанавливать: <a href="https://brew.sh/" class="uri">https://brew.sh/</a>):</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co"># в терминале</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>brew install make</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>После установки появится команда <code>gmake</code>. Её можно вызывать напрямую:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co"># в терминале, придется подожать</span></span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>gmake tesseract<span class="sc">-</span>langdata</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>На Windows задача также решается при помощи менеджера пакетов – например, Scoop <a href="https://scoop.sh/" class="uri">https://scoop.sh/</a>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co"># в терминале</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>scoop install make</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>После установки проверьте версию <code>make</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co"># в терминале </span></span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="co"># gmake --version для MacOS</span></span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>make <span class="sc">--</span>version</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Итог: после этих команд у вас есть локальная копия <code>tesstrain</code>, вы находитесь в её каталоге, и в него загружены исходные языковые данные (<code>data</code>), без которых обучение своей модели Tesseract не запустится.</p>
+<p>На этом этапе структура каталога выглядит так:</p>
+<p>Теперь нам надо переместить обучающие данные – в нашем случае это <code>orus-ground-truth</code> в папку <code>data</code>. Можете просто скопировать вручную.</p>
+<p>Все, можно запускать дообучение.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co"># в терминале, make на Windows</span></span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>gmake training MODEL_NAME<span class="ot">=</span>orus START_MODEL<span class="ot">=</span>rus FINETUNE_TYPE<span class="ot">=</span>Impact LANG_TYPE<span class="ot">=</span>Both</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Команда выше запускает “рецепт” обучения нейросети Tesseract. Этот рецепт под названием <code>training</code> автоматически готовит данные и запускает процесс дообучения модели распознавания текста.</p>
+<p>Что означает каждая часть команды:</p>
+<ul>
+<li><code>gmake training</code> — запустить задание <code>training</code> из файла правил (<code>Makefile</code>). Оно скачает/подготовит данные, запустит обучение и положит результат в папку с моделями.</li>
+<li><code>MODEL_NAME=orus</code> — имя новой модели, которую вы хотите получить. В конце появится файл вроде <code>orus.traineddata</code>.</li>
+<li><code>START_MODEL=rus</code> — не учить с нуля, а взять за основу существующую русскую модель <code>rus</code> и “докрутить” ее под новые данные. Это быстрее и надежнее.</li>
+<li><code>FINETUNE_TYPE=Impact</code> — “бережное” дообучение: меняются только части сети, чтобы сохранить сильные стороны базовой модели и адаптировать её под ваши тексты.</li>
+<li><code>LANG_TYPE=Both</code> — использовать оба набора языковых данных Tesseract (классический и LSTM), чтобы шире покрыть правила, словари и примеры.</li>
+</ul>
+<p>Дообучение занимает несколько минут ☕☕☕</p>
+</section>
+<section id="установка-модели" class="level3" data-number="3.6.4">
+<h3 data-number="3.6.4" class="anchored" data-anchor-id="установка-модели"><span class="header-section-number">3.6.4</span> Установка модели</h3>
 <p>Найдите системную папку Tesseract:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>tesseract<span class="sc">::</span><span class="fu">tesseract_info</span>()<span class="sc">$</span>datapath</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>tesseract<span class="sc">::</span><span class="fu">tesseract_info</span>()<span class="sc">$</span>datapath</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "/Users/olga/Library/Application Support/tesseract5/tessdata/"</code></pre>
 </div>
 </div>
-<p>Скопируйте сюда новую модель <code>orus.traindata</code>.</p>
+<p>Скопируйте сюда новую модель <code>orus.trainedata</code>, которая должна появиться в папке <code>data</code>.</p>
 <p>Проверьте доступные модели:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>tesseract<span class="sc">::</span><span class="fu">tesseract_info</span>()<span class="sc">$</span>available</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>tesseract<span class="sc">::</span><span class="fu">tesseract_info</span>()<span class="sc">$</span>available</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "deu"  "eng"  "grc"  "lat"  "orus" "osd"  "rus"  "snum"</code></pre>
+<pre><code>[1] "deu"  "eng"  "grc"  "lat"  "orus" "osd"  "rus" </code></pre>
 </div>
 </div>
-<p>После дообучения можно использовать новую модель:</p>
+<p>Все, после дообучения можем использовать новую модель:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>text3 <span class="ot">&lt;-</span> <span class="fu">pdf_ocr_text</span>(<span class="st">"../ocr/НЗ1821_6_6[50-51].pdf"</span>, <span class="at">language =</span> <span class="st">"orus"</span>)</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>text3 <span class="ot">&lt;-</span> <span class="fu">pdf_ocr_text</span>(<span class="st">"../ocr/НЗ1821_6_6[50-51].pdf"</span>, <span class="at">language =</span> <span class="st">"orus"</span>)</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Converting page 1 to НЗ1821_6_6[50-51]_1.png... done!
 Converting page 2 to НЗ1821_6_6[50-51]_2.png... done!</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(text3)</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>птт395$900990300&gt;9000093000ОВ9200080 900306080
-РАЗЛУК @ЧД,.
-(Эляегтля.)
-——-————
-Розамя, мой спутникъ неизмБнный
-На пол&amp; радостей земныхъ!
-Розамя, мой другъ, хранишель несравненный!
-Когда я отдохну въ объяпияхь тшвоихъ?...
-Съ тобою горестей душа моя незнаетъ,
-И сердцу скорбному не измЪнить покой!
-Надежда мрачный путь звБздою озаряеть,
-И я мирюсь съ враждебною судьбой!...
-Теперь, за дальними, свиръпыми морями
-Твой сладктй глась не оживишьъ меня!
-Взойдеть заря надь злачными холмами,
-Появится въ лучакъь свЪытило дня —
-Напрасно! ксе кругомъ покрыто мглою.
-Неслышится мнЪ сладкй тшвой привЪтьъ,
-ВсЪ радости, надежды всЪ сь тобою —
-И опустль безъ милой свЪътъ!
-Подруга милая, скажи, что край прелестный,
-Что мирныя, тФнистыя поля,
-Что своенравныя судьбы привЪтъ мнЪ лестный,
-Когда сь тобой въ разлукЪ я.
-Но другь мой! горесть отлетаетьъ
- 242
-На быстрыхъ времени крылахьъ,
-И радость сердце посвбщаеть...,
-Моя надежда — въ небесахь!...
-Когдажь опять смятченными судьбами
-Я въ радости къ подругЪ понесусь,
-Коснусь волшебныхъь струнь волшебными пер-
-стами
-И, сь рБзвою мечтою примирюсь.
-А., Б — фё.</code></pre>
 </div>
 </div>
 <p>Таким образом, дообучение Tesseract позволяет улучшить качество распознавания специализированных текстов; для лучшего результата используйте больше обучающих данных (чем больше, тем лучше). Пакет <code>tesseractgt</code> существенно упрощает процесс подготовки обучающих данных.</p>
@@ -586,19 +679,19 @@ Converting page 2 to НЗ1821_6_6[50-51]_2.png... done!</code></pre>
  _______________________ 
 &lt;Будет добавлено позже&gt;
  ----------------------- 
+        \
          \
-          \
 
-            |\___/|
-          ==) ^Y^ (==
-            \  ^  /
-             )=*=(
-            /     \
-            |     |
-           /| | | |\
-           \| | |_|/\
-      jgs  //_// ___/
-               \_)</code></pre>
+           _,
+      -==&lt;' `
+          ) /
+         / (_.
+        |  ,-,`\
+         \\   \ \
+          `\,  \ \
+           ||\  \`|,
+ jgs      _|| `=`-'
+         ~~`~`</code></pre>
 </div>
 </div>
 </section>
