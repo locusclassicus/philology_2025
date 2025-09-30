@@ -305,7 +305,7 @@ correct_gt_txt()
 
 ###  Дообучение
 
-Теперь мы готовы к дообучению модели. Сначала переходим в терминал, клонируем репозиторий `tesstrain`: 
+Теперь мы готовы к дообучению модели. Сначала переходим в терминал/PowerShell, клонируем репозиторий `tesstrain`: 
 
 ```{r eval=FALSE}
 git clone https://github.com/tesseract-ocr/tesstrain.git
@@ -319,24 +319,21 @@ git clone https://github.com/tesseract-ocr/tesstrain.git
 # Resolving deltas: 100% (659/659), done.
 ```
 
-Где искать терминал? Например, в соседней с консолью вкладке. Если не видите, идете в меню `Tools > Terminal > New Terminal`. 
+Где искать терминал? Например, в соседней с консолью вкладке. Если не видите, идете в меню `Tools > Terminal > New Terminal`. Команда сработает и на MacOs, и на Windows.
 
 Эта команда скачает репозиторий `tesstrain` с GitHub. При этом локально создается папка `tesstrain` со скриптами и `Makefile` для обучения моделей Tesseract. Скачивание может занять несколько минут (вы уже погладили кота? погладьте еще раз).
 
-Теперь переходим в только что созданную папку. Команда смены каталога `cd` работает и на macOS, и на Windows.
+Теперь переходим в только что созданную папку. Команда смены каталога `cd` также работает и на macOS, и на Windows.
 
 ```{r eval=FALSE}
-# это опять в терминале!!! 
-# нет, не надо в консоли, в терминале
+# это опять в терминале!
 cd tesstrain
 ```
 
 Следующая команда запускает утилиту (небольшую программу) `make` и выполняет задачу `tesseract-langdata`, описанную в `Makefile` проекта. В результате автоматически скачиваются официальные языковые данные Tesseract, необходимые для обучения, а именно `langdata` и/или `langdata_lstm` — наборы текстов, списки слов, правила пунктуации/нормализации и прочие файлы, которые используются при подготовке и обучении модели.
 
 ```{r eval=FALSE}
-# в терминале! не в консоли
-
-# Windows
+# Windows 
 make tesseract-langdata
 
 # или для MacOS
@@ -349,13 +346,14 @@ gmake tesseract-langdata
 # Connecting to raw.githubusercontent.com... connected. HTTP request sent, awaiting response... OK... Saving to...
 ```
 
-Либо вы можете столкнуться с ошибкой. Например, с такой (на MacOS):
+
+Либо вы можете столкнуться с ошибкой. Например, с такой:
 
 ```{r eval=FALSE}
 # Makefile:175: *** This version of GNU Make is too low (3.81). Check your path, or upgrade to 4.2 or newer..  Stop.
 ```
 
-Не расстраивайтесь. Проблема решается путем обновления утилиты. На MacOS установить новую GNU Make можно через Homebrew (это менеджер пакетов, его надо отдельно поставить: <https://brew.sh/>):
+Проблема решается путем обновления утилиты. На MacOS установить новую GNU Make можно через Homebrew (это менеджер пакетов, его надо отдельно поставить: <https://brew.sh/>):
 
 
 ```{r eval=FALSE}
@@ -372,18 +370,35 @@ gmake tesseract-langdata
 
 На Windows задача также решается при помощи менеджера пакетов -- например, Scoop <https://scoop.sh/>.
 
+Поставьте Scoop через Powershell: 
+
 ```{r eval=FALSE}
-# в терминале
+Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
+
+irm get.scoop.sh | iex
+```
+
+После этого выполните в PowerShell команду:
+
+
+```{r eval=FALSE}
 scoop install make
 ```
+
+:::{.callout-note icon = false}
+Обратите внимание: на Windows можно работать и в терминале из RStudio, но для этого сначала придется поставть [RTools](https://cran.r-project.org/bin/windows/Rtools/) и перезапустить сессию.
+:::
 
 После установки проверьте версию `make`.
 
 ```{r eval=FALSE}
-# в терминале 
-# gmake --version для MacOS
-make --version
+# в терминале  / PowerShell
+gmake --version # для MacOS
+make --v # для Windows
 ```
+
+Как вариант, в Windows 10 и 11 возможна установка `make` без `scoop` или других менеджеров пакетов; для этого в PowerShell напишите `winget install ezwinports.make`. 
+
 
 ### Структура каталога
 
