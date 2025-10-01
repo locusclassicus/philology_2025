@@ -352,7 +352,7 @@ writeLines(text5[-c(1,2,32)], con = "../ocr/rosalia_norm.txt")
 
 ## Оценка качества распознавания
 
-```{r}
+```{r echo=FALSE}
 cowsay::say("Этот раздел еще дорабатывается.")
 ```
 
