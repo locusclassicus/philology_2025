@@ -621,13 +621,11 @@ writeLines(text3, con = "../ocr/rosalia_3.txt")
 
 ## Видео к этому уроку
 
-```{r echo=FALSE}
-library(cowsay)
-say("Будет добавлено позже", "egret")
-```
+- [Видео](https://vk.com/video91786643_456239077) 2025 г.
 
 ## Домашнее задание
 
 ```{r echo=FALSE}
+library(cowsay)
 say("Будет добавлено позже", "owl")
 ```
