@@ -220,10 +220,10 @@ processed <- input |>
   image_resize("2000x") |>          
   image_convert(colorspace = "gray") |> 
   image_trim(fuzz = 40)  |> 
-  image_modulate(brightness = 120, saturation = 0)  |>   # Коррекция яркости
-  image_contrast(sharpen = 1) |>    # Повышение контрастности
-  image_normalize() |>             # Нормализация гистограммы
-  image_despeckle()                  # Подавление шума
+  image_modulate(brightness = 120, saturation = 0)  |>
+  image_contrast(sharpen = 1) |>
+  image_normalize() |>  
+  image_despeckle() 
 ```
 
 ```{r eval=FALSE}
@@ -256,7 +256,7 @@ text2 <- tesseract::ocr(processed, engine = "rus")
 Создайте папку с именем `{язык}-ground-truth/` (например, `orus-ground-truth/`) и поместите туда изображения текста. Названия файлов могут быть любыми. 
 
 ```{r eval=FALSE}
-dir.create("orus-ground-truth/")
+dir.create("orus-ground-truth")
 ```
 
 Самый простой способ: сделать скриншоты вручную (чем больше, тем лучше). Вот пример:
@@ -278,14 +278,14 @@ source("../helper_scripts/crop_words.R")
 
 ```{r eval=FALSE}
 words_data <- crop_words(image_path = "../ocr/НЗ1821_6_6[50-51]_1.png",
-           out_dir = "../ocr/words",
+           out_dir = "../ocr/orus-ground-truth",
            lang = "rus",
-           pad = 2L,
+           pad = 0,
            overwrite = TRUE)
 ```
 
 
-После этого в папке `words` должно появиться нечто похожее:
+После этого в папке должно появиться нечто похожее:
 
 ![](images/words_view.png)
 Чтобы "разрезать" на слова _несколько_ изображений, используем функции для итераций из пакета `purrr` (мы встречались с ними, когда читали сразу несколько текстовых файлов в окружение). 
@@ -304,9 +304,9 @@ walk(img_paths, crop_words,
      out_dir = "../ocr/orus-ground-truth")
 ```
 
-После запуска кода в папке должно появиться 157 файлов `png`. Все перепроверим, мы же тревожные.
+После запуска кода в папке должно появиться 157 файлов `png`. 
 
-```{r}
+```{r eval=FALSE}
 list.files("../ocr/orus-ground-truth") |> 
   length()
 ```
@@ -339,6 +339,18 @@ create_gt_txt(
 ![](images/img_and_text_view.png)
    
 
+```{r}
+gt <- list.files("../ocr/orus-ground-truth", pattern = "txt", full.names = TRUE)
+
+res <- tibble::tibble(
+  file = gt,
+  n_lines = purrr::map_int(gt, ~ length(readLines(.x, warn = FALSE)))
+)
+
+res
+```
+
+
 Теперь самый важный этап: корректировка текстовых файлов. Исправить автоматически созданные файлы `.gt.txt` поможет специальная функция:
 
 ```{r eval=FALSE}
@@ -359,11 +371,107 @@ correct_gt_txt()
 - Твёрдый знак, еръ: Ъ (U+042A), ъ (U+044A)
 :::
 
-Исправьте несколько файлов (чем больше, тем лучше). А еще выпейте чаю, посмотрите в окно, погладьте кота и возвращайтесь. 
+Исправьте несколько файлов (чем больше, тем лучше). 
+
+Если видите ошибку `Warning: Error in writeImpl: Text to be written must be a length-one character vector`, сделайте следующее:
+
+```{r eval=FALSE}
+fix_gt_txt <- function(folder) {
+  txts <- list.files(folder, pattern = "\\.txt$", full.names = TRUE)
+  for (f in txts) {
+    # читаем файл
+    x <- readLines(f, warn = FALSE, encoding = "UTF-8")
+    
+    # если пусто → оставляем пустую строку
+    if (length(x) == 0) {
+      one_line <- ""
+    } else {
+      # склеиваем все строки через пробел
+      one_line <- paste(x, collapse = " ")
+      # убираем лишние пробелы
+      one_line <- gsub("\\s+", " ", one_line)
+      one_line <- trimws(one_line)
+    }
+    
+    # записываем обратно в файл
+    writeLines(enc2utf8(one_line), f, useBytes = TRUE)
+  }
+  message("Готово: все txt-файлы приведены к одной строке")
+}
+
+# запускаем
+fix_gt_txt("../ocr/orus-ground-truth") # ваш путь к файлу
+```
+
+```{r}
+# проверяем
+res <- tibble::tibble(
+  file = list.files("../ocr/orus-ground-truth", pattern = "txt", full.names = TRUE),
+  n_lines = purrr::map_int(gt, ~ length(readLines(.x, warn = FALSE)))
+)
+
+res |> 
+  head()
+```
+
+### Проверка версий 
+
+В терминале проверьте версию `make`.
+
+```{r eval=FALSE}
+# в терминале  / PowerShell
+gmake --version # для MacOS
+make --v # для Windows
+```
+
+На MacOS установить новую GNU Make можно через Homebrew (это менеджер пакетов, его надо отдельно поставить: <https://brew.sh/>):
+
+```{r eval=FALSE}
+# в терминале!
+brew install make
+```
+
+
+На Windows задача также решается при помощи менеджера пакетов -- например, Scoop <https://scoop.sh/>. Поставьте Scoop через Powershell: 
+
+```{r eval=FALSE}
+Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
+
+irm get.scoop.sh | iex
+```
+
+После этого выполните в PowerShell команду:
+
+```{r eval=FALSE}
+scoop install make
+```
+
+Как вариант, в Windows 10 и 11 возможна установка `make` без `scoop` или других менеджеров пакетов; для этого в PowerShell напишите `winget install ezwinports.make`.
+
+:::{.callout-note icon = false}
+В среде Windows можно использовать терминал RStudio, однако для этого предварительно потребуется установить [RTools](https://cran.r-project.org/bin/windows/Rtools/) и перезапустить RStudio.
+:::
+
+После установки снова проверьте версию `make`.
+
+```{r eval=FALSE}
+# в терминале  / PowerShell
+gmake --version # для MacOS
+make --v # для Windows
+```
+
 
 ###  Дообучение
 
-Теперь мы готовы к дообучению модели. Сначала переходим в терминал/PowerShell, клонируем репозиторий `tesstrain`: 
+Задача этого шага — подготовить материалы, нужные для обучения `Tesseract`. Сначала скачиваем служебный проект `tesstrain`, потом — языковые данные.
+
+1) Откройте терминал: 
+
+- macOS: Terminal.
+- Linux: любой терминал.
+- Windows: используйте [WSL](https://learn.microsoft.com/en-us/windows/wsl/install). Это полноценный Linux внутри Windows. Подходит для команды `make`. Если это сложно, пока пропустите этот шаг. 
+
+2) Скачайте проект tesstrain с GitHub.
 
 ```{r eval=FALSE}
 git clone https://github.com/tesseract-ocr/tesstrain.git
@@ -377,27 +485,30 @@ git clone https://github.com/tesseract-ocr/tesstrain.git
 # Resolving deltas: 100% (659/659), done.
 ```
 
-Где искать терминал? Например, в соседней с консолью вкладке. Если не видите, идете в меню `Tools > Terminal > New Terminal`. Команда сработает и на MacOs, и на Windows.
+После этого у вас появится папка `tesstrain`. В ней лежат скрипты и файл `Makefile` — он описывает, что и как делать для обучения.
 
-Эта команда скачает репозиторий `tesstrain` с GitHub. При этом локально создается папка `tesstrain` со скриптами и `Makefile` для обучения моделей Tesseract. Скачивание может занять несколько минут (вы уже погладили кота? погладьте еще раз).
-
-Теперь переходим в только что созданную папку. Команда смены каталога `cd` также работает и на macOS, и на Windows.
+3) Перейдите в папку tesstrain. Команда смены каталога `cd` также работает и на macOS, и на Windows.
 
 ```{r eval=FALSE}
-# это опять в терминале!
 cd tesstrain
 ```
 
-Следующая команда запускает утилиту (небольшую программу) `make` и выполняет задачу `tesseract-langdata`, описанную в `Makefile` проекта. В результате автоматически скачиваются официальные языковые данные Tesseract, необходимые для обучения, а именно `langdata` и/или `langdata_lstm` — наборы текстов, списки слов, правила пунктуации/нормализации и прочие файлы, которые используются при подготовке и обучении модели.
+4) Скачайте языковые данные для обучения
+
+- На Linux/WSL/Windows  запускайте так:
 
 ```{r eval=FALSE}
-# Windows 
 make tesseract-langdata
+```
 
-# или для MacOS
+- На macOS:
+
+```{r eval=FALSE}
 gmake tesseract-langdata
 ```
 
+Команда `gmake tesseract-langdata` (или `make tesseract-langdata`)  запускает утилиту (небольшую программу) `make` и выполняет задачу `tesseract-langdata`, описанную в `Makefile` проекта. В результате автоматически скачиваются официальные языковые данные Tesseract, необходимые для обучения, а именно `langdata` и/или `langdata_lstm` — наборы текстов, списки слов, правила пунктуации/нормализации и прочие файлы, которые используются при подготовке и обучении модели. Одним словом, данные готовятся для обучения.
+ 
 Если все хорошо, на экране забегают какие-то цифирки. Все нормально, подождите.
 
 ```{r eval=FALSE}
@@ -405,62 +516,9 @@ gmake tesseract-langdata
 ```
 
 
-Либо вы можете столкнуться с ошибкой. Например, с такой:
-
-```{r eval=FALSE}
-# Makefile:175: *** This version of GNU Make is too low (3.81). Check your path, or upgrade to 4.2 or newer..  Stop.
-```
-
-Проблема решается путем обновления утилиты. На MacOS установить новую GNU Make можно через Homebrew (это менеджер пакетов, его надо отдельно поставить: <https://brew.sh/>):
-
-
-```{r eval=FALSE}
-# в терминале!
-brew install make
-```
-
-После установки появится команда `gmake`. Её можно вызывать напрямую:
-
-```{r eval=FALSE}
-# в терминале, придется подожать
-gmake tesseract-langdata
-```
-
-На Windows задача также решается при помощи менеджера пакетов -- например, Scoop <https://scoop.sh/>.
-
-Поставьте Scoop через Powershell: 
-
-```{r eval=FALSE}
-Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
-
-irm get.scoop.sh | iex
-```
-
-После этого выполните в PowerShell команду:
-
-
-```{r eval=FALSE}
-scoop install make
-```
-
-:::{.callout-note icon = false}
-В среде Windows можно использовать терминал RStudio, однако для этого предварительно потребуется установить [RTools](https://cran.r-project.org/bin/windows/Rtools/) и перезапустить RStudio.
-:::
-
-После установки проверьте версию `make`.
-
-```{r eval=FALSE}
-# в терминале  / PowerShell
-gmake --version # для MacOS
-make --v # для Windows
-```
-
-Как вариант, в Windows 10 и 11 возможна установка `make` без `scoop` или других менеджеров пакетов; для этого в PowerShell напишите `winget install ezwinports.make`. 
-
-
 ### Структура каталога
 
-Итог: после этих ~~мучений~~ команд у вас есть локальная копия `tesstrain`, вы находитесь в её каталоге, и в него загружены исходные языковые данные (`data`), без которых обучение своей модели Tesseract не запустится. 
+Итог: после этих ~~мучений~~ команд у вас есть локальная копия `tesstrain`, вы находитесь в её каталоге, и в него загружены исходные языковые данные (`data`), без которых обучение своей модели Tesseract **не запустится**. 
 
 На этом этапе структура каталога выглядит так:
 
@@ -508,13 +566,11 @@ fs::dir_tree(path = "../tesstrain",
 #         └── wrapper.py
 ``` 
 
-Теперь нам надо переместить обучающие данные -- в нашем случае это `orus-ground-truth` в папку `data`. Можете просто скопировать вручную.
-
-Справились? Все, можно запускать дообучение. 
+Теперь нам надо переместить обучающие данные -- в нашем случае это `orus-ground-truth` в папку `data`. Можете просто скопировать вручную. Все, можно запускать дообучение. 
 
 ```{r eval=FALSE}
 # в терминале!
-# make на Windows
+# make на Windows/WSL
 gmake training MODEL_NAME=orus START_MODEL=rus FINETUNE_TYPE=Impact LANG_TYPE=Both
 ```
 

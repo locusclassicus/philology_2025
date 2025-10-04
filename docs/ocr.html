@@ -212,9 +212,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul class="collapse">
   <li><a href="#подготовка-изображений" id="toc-подготовка-изображений" class="nav-link" data-scroll-target="#подготовка-изображений"><span class="header-section-number">3.8.1</span> Подготовка изображений</a></li>
   <li><a href="#текстовые-файлы" id="toc-текстовые-файлы" class="nav-link" data-scroll-target="#текстовые-файлы"><span class="header-section-number">3.8.2</span> Текстовые файлы</a></li>
-  <li><a href="#дообучение" id="toc-дообучение" class="nav-link" data-scroll-target="#дообучение"><span class="header-section-number">3.8.3</span> Дообучение</a></li>
-  <li><a href="#структура-каталога" id="toc-структура-каталога" class="nav-link" data-scroll-target="#структура-каталога"><span class="header-section-number">3.8.4</span> Структура каталога</a></li>
-  <li><a href="#установка-модели" id="toc-установка-модели" class="nav-link" data-scroll-target="#установка-модели"><span class="header-section-number">3.8.5</span> Установка модели</a></li>
+  <li><a href="#проверка-версий" id="toc-проверка-версий" class="nav-link" data-scroll-target="#проверка-версий"><span class="header-section-number">3.8.3</span> Проверка версий</a></li>
+  <li><a href="#дообучение" id="toc-дообучение" class="nav-link" data-scroll-target="#дообучение"><span class="header-section-number">3.8.4</span> Дообучение</a></li>
+  <li><a href="#структура-каталога" id="toc-структура-каталога" class="nav-link" data-scroll-target="#структура-каталога"><span class="header-section-number">3.8.5</span> Структура каталога</a></li>
+  <li><a href="#установка-модели" id="toc-установка-модели" class="nav-link" data-scroll-target="#установка-модели"><span class="header-section-number">3.8.6</span> Установка модели</a></li>
   </ul></li>
   <li><a href="#видео-к-этому-уроку" id="toc-видео-к-этому-уроку" class="nav-link" data-scroll-target="#видео-к-этому-уроку"><span class="header-section-number">3.9</span> Видео к этому уроку</a></li>
   <li><a href="#домашнее-задание" id="toc-домашнее-задание" class="nav-link" data-scroll-target="#домашнее-задание"><span class="header-section-number">3.10</span> Домашнее задание</a></li>
@@ -489,10 +490,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">image_resize</span>(<span class="st">"2000x"</span>) <span class="sc">|&gt;</span>          </span>
 <span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">image_convert</span>(<span class="at">colorspace =</span> <span class="st">"gray"</span>) <span class="sc">|&gt;</span> </span>
 <span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">image_trim</span>(<span class="at">fuzz =</span> <span class="dv">40</span>)  <span class="sc">|&gt;</span> </span>
-<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">image_modulate</span>(<span class="at">brightness =</span> <span class="dv">120</span>, <span class="at">saturation =</span> <span class="dv">0</span>)  <span class="sc">|&gt;</span>   <span class="co"># Коррекция яркости</span></span>
-<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">image_contrast</span>(<span class="at">sharpen =</span> <span class="dv">1</span>) <span class="sc">|&gt;</span>    <span class="co"># Повышение контрастности</span></span>
-<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">image_normalize</span>() <span class="sc">|&gt;</span>             <span class="co"># Нормализация гистограммы</span></span>
-<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">image_despeckle</span>()                  <span class="co"># Подавление шума</span></span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">image_modulate</span>(<span class="at">brightness =</span> <span class="dv">120</span>, <span class="at">saturation =</span> <span class="dv">0</span>)  <span class="sc">|&gt;</span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">image_contrast</span>(<span class="at">sharpen =</span> <span class="dv">1</span>) <span class="sc">|&gt;</span></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">image_normalize</span>() <span class="sc">|&gt;</span>  </span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">image_despeckle</span>() </span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Сохранение на диск (посмотреть результат)</span></span>
@@ -514,7 +515,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 data-number="3.8.1" class="anchored" data-anchor-id="подготовка-изображений"><span class="header-section-number">3.8.1</span> Подготовка изображений</h3>
 <p>Создайте папку с именем <code>{язык}-ground-truth/</code> (например, <code>orus-ground-truth/</code>) и поместите туда изображения текста. Названия файлов могут быть любыми.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dir.create</span>(<span class="st">"orus-ground-truth/"</span>)</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dir.create</span>(<span class="st">"orus-ground-truth"</span>)</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Самый простой способ: сделать скриншоты вручную (чем больше, тем лучше). Вот пример:</p>
 <p><img src="images/ground_truth1.png" class="img-fluid"></p>
@@ -527,12 +528,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Также функция проверяет наличие пакетов <code>magick</code>, <code>tesseract</code>, <code>tidyverse</code>; при отсутствии пытается установить их вместе с зависимостями и затем подключает. Для корректной работы OCR с выбранным языком в системе должны быть установлены языковые данные Tesseract. Функция сохранит в папку изображения, а также вернет таблицу с метаданными (ее присвоим переменной; это не обязательно делать).</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>words_data <span class="ot">&lt;-</span> <span class="fu">crop_words</span>(<span class="at">image_path =</span> <span class="st">"../ocr/НЗ1821_6_6[50-51]_1.png"</span>,</span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>           <span class="at">out_dir =</span> <span class="st">"../ocr/words"</span>,</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>           <span class="at">out_dir =</span> <span class="st">"../ocr/orus-ground-truth"</span>,</span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">lang =</span> <span class="st">"rus"</span>,</span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>           <span class="at">pad =</span> <span class="dv">2</span>L,</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>           <span class="at">pad =</span> <span class="dv">0</span>,</span>
 <span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>           <span class="at">overwrite =</span> <span class="cn">TRUE</span>)</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>После этого в папке <code>words</code> должно появиться нечто похожее:</p>
+<p>После этого в папке должно появиться нечто похожее:</p>
 <p><img src="images/words_view.png" class="img-fluid"> Чтобы “разрезать” на слова <em>несколько</em> изображений, используем функции для итераций из пакета <code>purrr</code> (мы встречались с ними, когда читали сразу несколько текстовых файлов в окружение).</p>
 <p>Сначала собираем все пути до файлов в символьный вектор.</p>
 <div class="cell">
@@ -547,20 +548,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">walk</span>(img_paths, crop_words, </span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>     <span class="at">out_dir =</span> <span class="st">"../ocr/orus-ground-truth"</span>)</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>После запуска кода в папке должно появиться 157 файлов <code>png</code>. Все перепроверим, мы же тревожные.</p>
+<p>После запуска кода в папке должно появиться 157 файлов <code>png</code>.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">list.files</span>(<span class="st">"../ocr/orus-ground-truth"</span>) <span class="sc">|&gt;</span> </span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">length</span>()</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 157</code></pre>
-</div>
 </div>
 <p>Обратите внимание на то, что функция <code>walk()</code>, в отличие от <code>map_chr()</code> из того же пакета <code>{purrr}</code>, ничего не сохраняет в окружение. Мы используем ее для повторного запуска <code>crop_words()</code>, которая последовательно нарезает страницы на слова и “сбрасывает” изображения слов в указанную директорию. То же самое можно было бы сделать так:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">crop_words</span>(image_paths[<span class="dv">1</span>])</span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="fu">crop_words</span>(image_paths[<span class="dv">2</span>])</span>
-<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a><span class="co"># ...и так далее!</span></span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">crop_words</span>(image_paths[<span class="dv">1</span>])</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="fu">crop_words</span>(image_paths[<span class="dv">2</span>])</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a><span class="co"># ...и так далее!</span></span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Но, согласитесь, повторять это действие больше двух раз достаточно утомительно. Кроме того, у программистов считается плохим тоном “копипастить” один кусок кода более двух раз. Поэтому мы использовали функцию-итератор. Вжух.</p>
 </section>
@@ -568,14 +566,31 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 data-number="3.8.2" class="anchored" data-anchor-id="текстовые-файлы"><span class="header-section-number">3.8.2</span> Текстовые файлы</h3>
 <p>Теперь для каждого изображения добавим текст (файлы в формате <code>.gt.txt</code>). Для ускорения процесса создания эталонных файлов можно использовать пакет <code>tesseractgt</code>. Для создания таких файлов используем базовую модель.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">create_gt_txt</span>(</span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">folder =</span> <span class="st">"../ocr/orus-ground-truth"</span>,</span>
-<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">extension =</span> <span class="st">"png"</span>, </span>
-<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">engine =</span> tesseract<span class="sc">::</span><span class="fu">tesseract</span>(<span class="at">language =</span> <span class="st">"rus"</span>)</span>
-<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">create_gt_txt</span>(</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">folder =</span> <span class="st">"../ocr/orus-ground-truth"</span>,</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">extension =</span> <span class="st">"png"</span>, </span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">engine =</span> tesseract<span class="sc">::</span><span class="fu">tesseract</span>(<span class="at">language =</span> <span class="st">"rus"</span>)</span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Убедитесь, что файлы появились в директории. Это должно выглядеть примерно так:</p>
 <p><img src="images/img_and_text_view.png" class="img-fluid"></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>gt <span class="ot">&lt;-</span> <span class="fu">list.files</span>(<span class="st">"../ocr/orus-ground-truth"</span>, <span class="at">pattern =</span> <span class="st">"txt"</span>, <span class="at">full.names =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>res <span class="ot">&lt;-</span> tibble<span class="sc">::</span><span class="fu">tibble</span>(</span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">file =</span> gt,</span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">n_lines =</span> purrr<span class="sc">::</span><span class="fu">map_int</span>(gt, <span class="sc">~</span> <span class="fu">length</span>(<span class="fu">readLines</span>(.x, <span class="at">warn =</span> <span class="cn">FALSE</span>)))</span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a>res</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["file"],"name":[1],"type":["chr"],"align":["left"]},{"label":["n_lines"],"name":[2],"type":["int"],"align":["right"]}],"data":[{"1":"../ocr/orus-ground-truth/word_001.gt.txt","2":"1"},{"1":"../ocr/orus-ground-truth/word_002.gt.txt","2":"1"},{"1":"../ocr/orus-ground-truth/word_003.gt.txt","2":"1"},{"1":"../ocr/orus-ground-truth/word_004.gt.txt","2":"1"},{"1":"../ocr/orus-ground-truth/word_005.gt.txt","2":"1"},{"1":"../ocr/orus-ground-truth/word_006.gt.txt","2":"1"},{"1":"../ocr/orus-ground-truth/word_007.gt.txt","2":"1"},{"1":"../ocr/orus-ground-truth/word_008.gt.txt","2":"1"},{"1":"../ocr/orus-ground-truth/word_009.gt.txt","2":"1"},{"1":"../ocr/orus-ground-truth/word_010.gt.txt","2":"1"},{"1":"../ocr/orus-ground-truth/word_011.gt.txt","2":"1"},{"1":"../ocr/orus-ground-truth/word_012.gt.txt","2":"1"},{"1":"../ocr/orus-ground-truth/word_013.gt.txt","2":"1"},{"1":"../ocr/orus-ground-truth/word_014.gt.txt","2":"1"},{"1":"../ocr/orus-ground-truth/word_015.gt.txt","2":"1"},{"1":"../ocr/orus-ground-truth/word_016.gt.txt","2":"1"},{"1":"../ocr/orus-ground-truth/word_017.gt.txt","2":"1"},{"1":"../ocr/orus-ground-truth/word_018.gt.txt","2":"1"},{"1":"../ocr/orus-ground-truth/word_019.gt.txt","2":"1"},{"1":"../ocr/orus-ground-truth/word_020.gt.txt","2":"1"},{"1":"../ocr/orus-ground-truth/word_021.gt.txt","2":"1"},{"1":"../ocr/orus-ground-truth/word_022.gt.txt","2":"1"},{"1":"../ocr/orus-ground-truth/word_023.gt.txt","2":"1"},{"1":"../ocr/orus-ground-truth/word_024.gt.txt","2":"1"},{"1":"../ocr/orus-ground-truth/word_025.gt.txt","2":"1"},{"1":"../ocr/orus-ground-truth/word_026.gt.txt","2":"1"},{"1":"../ocr/orus-ground-truth/word_027.gt.txt","2":"1"},{"1":"../ocr/orus-ground-truth/word_028.gt.txt","2":"1"},{"1":"../ocr/orus-ground-truth/word_029.gt.txt","2":"1"},{"1":"../ocr/orus-ground-truth/word_030.gt.txt","2":"1"},{"1":"../ocr/orus-ground-truth/word_031.gt.txt","2":"1"},{"1":"../ocr/orus-ground-truth/word_032.gt.txt","2":"1"},{"1":"../ocr/orus-ground-truth/word_033.gt.txt","2":"1"},{"1":"../ocr/orus-ground-truth/word_034.gt.txt","2":"1"},{"1":"../ocr/orus-ground-truth/word_035.gt.txt","2":"1"},{"1":"../ocr/orus-ground-truth/word_036.gt.txt","2":"1"},{"1":"../ocr/orus-ground-truth/word_037.gt.txt","2":"1"},{"1":"../ocr/orus-ground-truth/word_038.gt.txt","2":"1"},{"1":"../ocr/orus-ground-truth/word_039.gt.txt","2":"1"},{"1":"../ocr/orus-ground-truth/word_040.gt.txt","2":"1"},{"1":"../ocr/orus-ground-truth/word_041.gt.txt","2":"1"},{"1":"../ocr/orus-ground-truth/word_042.gt.txt","2":"1"},{"1":"../ocr/orus-ground-truth/word_043.gt.txt","2":"1"},{"1":"../ocr/orus-ground-truth/word_044.gt.txt","2":"1"},{"1":"../ocr/orus-ground-truth/word_045.gt.txt","2":"1"},{"1":"../ocr/orus-ground-truth/word_046.gt.txt","2":"1"},{"1":"../ocr/orus-ground-truth/word_047.gt.txt","2":"1"},{"1":"../ocr/orus-ground-truth/word_048.gt.txt","2":"1"},{"1":"../ocr/orus-ground-truth/word_049.gt.txt","2":"1"},{"1":"../ocr/orus-ground-truth/word_050.gt.txt","2":"1"},{"1":"../ocr/orus-ground-truth/word_051.gt.txt","2":"1"},{"1":"../ocr/orus-ground-truth/word_052.gt.txt","2":"1"},{"1":"../ocr/orus-ground-truth/word_053.gt.txt","2":"1"},{"1":"../ocr/orus-ground-truth/word_054.gt.txt","2":"1"},{"1":"../ocr/orus-ground-truth/word_055.gt.txt","2":"1"},{"1":"../ocr/orus-ground-truth/word_056.gt.txt","2":"1"},{"1":"../ocr/orus-ground-truth/word_057.gt.txt","2":"1"},{"1":"../ocr/orus-ground-truth/word_058.gt.txt","2":"1"},{"1":"../ocr/orus-ground-truth/word_059.gt.txt","2":"1"},{"1":"../ocr/orus-ground-truth/word_060.gt.txt","2":"1"},{"1":"../ocr/orus-ground-truth/word_061.gt.txt","2":"1"},{"1":"../ocr/orus-ground-truth/word_062.gt.txt","2":"1"},{"1":"../ocr/orus-ground-truth/word_063.gt.txt","2":"1"},{"1":"../ocr/orus-ground-truth/word_064.gt.txt","2":"1"},{"1":"../ocr/orus-ground-truth/word_065.gt.txt","2":"1"},{"1":"../ocr/orus-ground-truth/word_066.gt.txt","2":"1"},{"1":"../ocr/orus-ground-truth/word_067.gt.txt","2":"1"},{"1":"../ocr/orus-ground-truth/word_068.gt.txt","2":"1"},{"1":"../ocr/orus-ground-truth/word_069.gt.txt","2":"1"},{"1":"../ocr/orus-ground-truth/word_070.gt.txt","2":"1"},{"1":"../ocr/orus-ground-truth/word_071.gt.txt","2":"1"},{"1":"../ocr/orus-ground-truth/word_072.gt.txt","2":"1"},{"1":"../ocr/orus-ground-truth/word_073.gt.txt","2":"1"},{"1":"../ocr/orus-ground-truth/word_074.gt.txt","2":"1"},{"1":"../ocr/orus-ground-truth/word_075.gt.txt","2":"1"},{"1":"../ocr/orus-ground-truth/word_076.gt.txt","2":"1"},{"1":"../ocr/orus-ground-truth/word_077.gt.txt","2":"1"},{"1":"../ocr/orus-ground-truth/word_078.gt.txt","2":"1"},{"1":"../ocr/orus-ground-truth/word_079.gt.txt","2":"1"},{"1":"../ocr/orus-ground-truth/word_080.gt.txt","2":"1"},{"1":"../ocr/orus-ground-truth/word_081.gt.txt","2":"1"},{"1":"../ocr/orus-ground-truth/word_082.gt.txt","2":"1"},{"1":"../ocr/orus-ground-truth/word_083.gt.txt","2":"1"},{"1":"../ocr/orus-ground-truth/word_084.gt.txt","2":"1"},{"1":"../ocr/orus-ground-truth/word_085.gt.txt","2":"1"},{"1":"../ocr/orus-ground-truth/word_086.gt.txt","2":"1"},{"1":"../ocr/orus-ground-truth/word_087.gt.txt","2":"1"},{"1":"../ocr/orus-ground-truth/word_088.gt.txt","2":"1"},{"1":"../ocr/orus-ground-truth/word_089.gt.txt","2":"1"},{"1":"../ocr/orus-ground-truth/word_090.gt.txt","2":"1"},{"1":"../ocr/orus-ground-truth/word_091.gt.txt","2":"1"},{"1":"../ocr/orus-ground-truth/word_092.gt.txt","2":"1"},{"1":"../ocr/orus-ground-truth/word_093.gt.txt","2":"1"},{"1":"../ocr/orus-ground-truth/word_094.gt.txt","2":"1"},{"1":"../ocr/orus-ground-truth/word_095.gt.txt","2":"1"},{"1":"../ocr/orus-ground-truth/word_096.gt.txt","2":"1"},{"1":"../ocr/orus-ground-truth/word_097.gt.txt","2":"1"},{"1":"../ocr/orus-ground-truth/word_098.gt.txt","2":"1"},{"1":"../ocr/orus-ground-truth/word_099.gt.txt","2":"1"},{"1":"../ocr/orus-ground-truth/word_100.gt.txt","2":"1"},{"1":"../ocr/orus-ground-truth/word_101.gt.txt","2":"1"},{"1":"../ocr/orus-ground-truth/word_102.gt.txt","2":"1"},{"1":"../ocr/orus-ground-truth/word_103.gt.txt","2":"1"},{"1":"../ocr/orus-ground-truth/word_104.gt.txt","2":"1"},{"1":"../ocr/orus-ground-truth/word_105.gt.txt","2":"1"},{"1":"../ocr/orus-ground-truth/word_106.gt.txt","2":"1"},{"1":"../ocr/orus-ground-truth/word_107.gt.txt","2":"1"},{"1":"../ocr/orus-ground-truth/word_108.gt.txt","2":"1"},{"1":"../ocr/orus-ground-truth/word_109.gt.txt","2":"1"},{"1":"../ocr/orus-ground-truth/word_110.gt.txt","2":"1"},{"1":"../ocr/orus-ground-truth/word_111.gt.txt","2":"1"},{"1":"../ocr/orus-ground-truth/word_112.gt.txt","2":"1"},{"1":"../ocr/orus-ground-truth/word_113.gt.txt","2":"1"},{"1":"../ocr/orus-ground-truth/word_114.gt.txt","2":"1"},{"1":"../ocr/orus-ground-truth/word_115.gt.txt","2":"1"},{"1":"../ocr/orus-ground-truth/word_116.gt.txt","2":"1"},{"1":"../ocr/orus-ground-truth/word_117.gt.txt","2":"1"},{"1":"../ocr/orus-ground-truth/word_118.gt.txt","2":"1"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
 <p>Теперь самый важный этап: корректировка текстовых файлов. Исправить автоматически созданные файлы <code>.gt.txt</code> поможет специальная функция:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">correct_gt_txt</span>() </span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -607,66 +622,77 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 </div>
 </div>
-<p>Исправьте несколько файлов (чем больше, тем лучше). А еще выпейте чаю, посмотрите в окно, погладьте кота и возвращайтесь.</p>
+<p>Исправьте несколько файлов (чем больше, тем лучше).</p>
+<p>Если видите ошибку <code>Warning: Error in writeImpl: Text to be written must be a length-one character vector</code>, сделайте следующее:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>fix_gt_txt <span class="ot">&lt;-</span> <span class="cf">function</span>(folder) {</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>  txts <span class="ot">&lt;-</span> <span class="fu">list.files</span>(folder, <span class="at">pattern =</span> <span class="st">"</span><span class="sc">\\</span><span class="st">.txt$"</span>, <span class="at">full.names =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (f <span class="cf">in</span> txts) {</span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>    <span class="co"># читаем файл</span></span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>    x <span class="ot">&lt;-</span> <span class="fu">readLines</span>(f, <span class="at">warn =</span> <span class="cn">FALSE</span>, <span class="at">encoding =</span> <span class="st">"UTF-8"</span>)</span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>    <span class="co"># если пусто → оставляем пустую строку</span></span>
+<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (<span class="fu">length</span>(x) <span class="sc">==</span> <span class="dv">0</span>) {</span>
+<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a>      one_line <span class="ot">&lt;-</span> <span class="st">""</span></span>
+<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a>    } <span class="cf">else</span> {</span>
+<span id="cb27-11"><a href="#cb27-11" aria-hidden="true" tabindex="-1"></a>      <span class="co"># склеиваем все строки через пробел</span></span>
+<span id="cb27-12"><a href="#cb27-12" aria-hidden="true" tabindex="-1"></a>      one_line <span class="ot">&lt;-</span> <span class="fu">paste</span>(x, <span class="at">collapse =</span> <span class="st">" "</span>)</span>
+<span id="cb27-13"><a href="#cb27-13" aria-hidden="true" tabindex="-1"></a>      <span class="co"># убираем лишние пробелы</span></span>
+<span id="cb27-14"><a href="#cb27-14" aria-hidden="true" tabindex="-1"></a>      one_line <span class="ot">&lt;-</span> <span class="fu">gsub</span>(<span class="st">"</span><span class="sc">\\</span><span class="st">s+"</span>, <span class="st">" "</span>, one_line)</span>
+<span id="cb27-15"><a href="#cb27-15" aria-hidden="true" tabindex="-1"></a>      one_line <span class="ot">&lt;-</span> <span class="fu">trimws</span>(one_line)</span>
+<span id="cb27-16"><a href="#cb27-16" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb27-17"><a href="#cb27-17" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb27-18"><a href="#cb27-18" aria-hidden="true" tabindex="-1"></a>    <span class="co"># записываем обратно в файл</span></span>
+<span id="cb27-19"><a href="#cb27-19" aria-hidden="true" tabindex="-1"></a>    <span class="fu">writeLines</span>(<span class="fu">enc2utf8</span>(one_line), f, <span class="at">useBytes =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb27-20"><a href="#cb27-20" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb27-21"><a href="#cb27-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">message</span>(<span class="st">"Готово: все txt-файлы приведены к одной строке"</span>)</span>
+<span id="cb27-22"><a href="#cb27-22" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb27-23"><a href="#cb27-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-24"><a href="#cb27-24" aria-hidden="true" tabindex="-1"></a><span class="co"># запускаем</span></span>
+<span id="cb27-25"><a href="#cb27-25" aria-hidden="true" tabindex="-1"></a><span class="fu">fix_gt_txt</span>(<span class="st">"../ocr/orus-ground-truth"</span>) <span class="co"># ваш путь к файлу</span></span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># проверяем</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>res <span class="ot">&lt;-</span> tibble<span class="sc">::</span><span class="fu">tibble</span>(</span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">file =</span> <span class="fu">list.files</span>(<span class="st">"../ocr/orus-ground-truth"</span>, <span class="at">pattern =</span> <span class="st">"txt"</span>, <span class="at">full.names =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">n_lines =</span> purrr<span class="sc">::</span><span class="fu">map_int</span>(gt, <span class="sc">~</span> <span class="fu">length</span>(<span class="fu">readLines</span>(.x, <span class="at">warn =</span> <span class="cn">FALSE</span>)))</span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a>res <span class="sc">|&gt;</span> </span>
+<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>()</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["file"],"name":[1],"type":["chr"],"align":["left"]},{"label":["n_lines"],"name":[2],"type":["int"],"align":["right"]}],"data":[{"1":"../ocr/orus-ground-truth/word_001.gt.txt","2":"1"},{"1":"../ocr/orus-ground-truth/word_002.gt.txt","2":"1"},{"1":"../ocr/orus-ground-truth/word_003.gt.txt","2":"1"},{"1":"../ocr/orus-ground-truth/word_004.gt.txt","2":"1"},{"1":"../ocr/orus-ground-truth/word_005.gt.txt","2":"1"},{"1":"../ocr/orus-ground-truth/word_006.gt.txt","2":"1"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
 </section>
-<section id="дообучение" class="level3" data-number="3.8.3">
-<h3 data-number="3.8.3" class="anchored" data-anchor-id="дообучение"><span class="header-section-number">3.8.3</span> Дообучение</h3>
-<p>Теперь мы готовы к дообучению модели. Сначала переходим в терминал/PowerShell, клонируем репозиторий <code>tesstrain</code>:</p>
+<section id="проверка-версий" class="level3" data-number="3.8.3">
+<h3 data-number="3.8.3" class="anchored" data-anchor-id="проверка-версий"><span class="header-section-number">3.8.3</span> Проверка версий</h3>
+<p>В терминале проверьте версию <code>make</code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>git clone https<span class="sc">:</span><span class="er">//</span>github.com<span class="sc">/</span>tesseract<span class="sc">-</span>ocr<span class="sc">/</span>tesstrain.git</span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Cloning into 'tesstrain'...</span></span>
-<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a><span class="co"># remote: Enumerating objects: 1119, done.</span></span>
-<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a><span class="co"># remote: Counting objects: 100% (475/475), done.</span></span>
-<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a><span class="co"># remote: Compressing objects: 100% (61/61), done.</span></span>
-<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a><span class="co"># remote: Total 1119 (delta 440), reused 416 (delta 414), pack-reused 644 (from 2)</span></span>
-<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Receiving objects: 100% (1119/1119), 13.53 MiB | 2.49 MiB/s, done.</span></span>
-<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Resolving deltas: 100% (659/659), done.</span></span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># в терминале  / PowerShell</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>gmake <span class="sc">--</span>version <span class="co"># для MacOS</span></span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>make <span class="sc">--</span>v <span class="co"># для Windows</span></span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Где искать терминал? Например, в соседней с консолью вкладке. Если не видите, идете в меню <code>Tools &gt; Terminal &gt; New Terminal</code>. Команда сработает и на MacOs, и на Windows.</p>
-<p>Эта команда скачает репозиторий <code>tesstrain</code> с GitHub. При этом локально создается папка <code>tesstrain</code> со скриптами и <code>Makefile</code> для обучения моделей Tesseract. Скачивание может занять несколько минут (вы уже погладили кота? погладьте еще раз).</p>
-<p>Теперь переходим в только что созданную папку. Команда смены каталога <code>cd</code> также работает и на macOS, и на Windows.</p>
+<p>На MacOS установить новую GNU Make можно через Homebrew (это менеджер пакетов, его надо отдельно поставить: <a href="https://brew.sh/" class="uri">https://brew.sh/</a>):</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># это опять в терминале!</span></span>
-<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>cd tesstrain</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># в терминале!</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>brew install make</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Следующая команда запускает утилиту (небольшую программу) <code>make</code> и выполняет задачу <code>tesseract-langdata</code>, описанную в <code>Makefile</code> проекта. В результате автоматически скачиваются официальные языковые данные Tesseract, необходимые для обучения, а именно <code>langdata</code> и/или <code>langdata_lstm</code> — наборы текстов, списки слов, правила пунктуации/нормализации и прочие файлы, которые используются при подготовке и обучении модели.</p>
+<p>На Windows задача также решается при помощи менеджера пакетов – например, Scoop <a href="https://scoop.sh/" class="uri">https://scoop.sh/</a>. Поставьте Scoop через Powershell:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Windows </span></span>
-<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>make tesseract<span class="sc">-</span>langdata</span>
-<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a><span class="co"># или для MacOS</span></span>
-<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>gmake tesseract<span class="sc">-</span>langdata</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Если все хорошо, на экране забегают какие-то цифирки. Все нормально, подождите.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Connecting to raw.githubusercontent.com... connected. HTTP request sent, awaiting response... OK... Saving to...</span></span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Либо вы можете столкнуться с ошибкой. Например, с такой:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Makefile:175: *** This version of GNU Make is too low (3.81). Check your path, or upgrade to 4.2 or newer..  Stop.</span></span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Проблема решается путем обновления утилиты. На MacOS установить новую GNU Make можно через Homebrew (это менеджер пакетов, его надо отдельно поставить: <a href="https://brew.sh/" class="uri">https://brew.sh/</a>):</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co"># в терминале!</span></span>
-<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>brew install make</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>После установки появится команда <code>gmake</code>. Её можно вызывать напрямую:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co"># в терминале, придется подожать</span></span>
-<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>gmake tesseract<span class="sc">-</span>langdata</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>На Windows задача также решается при помощи менеджера пакетов – например, Scoop <a href="https://scoop.sh/" class="uri">https://scoop.sh/</a>.</p>
-<p>Поставьте Scoop через Powershell:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>Set<span class="sc">-</span>ExecutionPolicy <span class="sc">-</span>ExecutionPolicy RemoteSigned <span class="sc">-</span>Scope CurrentUser</span>
-<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>irm get.scoop.sh <span class="sc">|</span> iex</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>Set<span class="sc">-</span>ExecutionPolicy <span class="sc">-</span>ExecutionPolicy RemoteSigned <span class="sc">-</span>Scope CurrentUser</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>irm get.scoop.sh <span class="sc">|</span> iex</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>После этого выполните в PowerShell команду:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>scoop install make</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>scoop install make</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<p>Как вариант, в Windows 10 и 11 возможна установка <code>make</code> без <code>scoop</code> или других менеджеров пакетов; для этого в PowerShell напишите <code>winget install ezwinports.make</code>.</p>
 <div class="callout callout-style-default callout-note no-icon callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -680,61 +706,112 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>В среде Windows можно использовать терминал RStudio, однако для этого предварительно потребуется установить <a href="https://cran.r-project.org/bin/windows/Rtools/">RTools</a> и перезапустить RStudio.</p>
 </div>
 </div>
-<p>После установки проверьте версию <code>make</code>.</p>
+<p>После установки снова проверьте версию <code>make</code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co"># в терминале  / PowerShell</span></span>
-<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>gmake <span class="sc">--</span>version <span class="co"># для MacOS</span></span>
-<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>make <span class="sc">--</span>v <span class="co"># для Windows</span></span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co"># в терминале  / PowerShell</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>gmake <span class="sc">--</span>version <span class="co"># для MacOS</span></span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>make <span class="sc">--</span>v <span class="co"># для Windows</span></span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Как вариант, в Windows 10 и 11 возможна установка <code>make</code> без <code>scoop</code> или других менеджеров пакетов; для этого в PowerShell напишите <code>winget install ezwinports.make</code>.</p>
 </section>
-<section id="структура-каталога" class="level3" data-number="3.8.4">
-<h3 data-number="3.8.4" class="anchored" data-anchor-id="структура-каталога"><span class="header-section-number">3.8.4</span> Структура каталога</h3>
-<p>Итог: после этих <del>мучений</del> команд у вас есть локальная копия <code>tesstrain</code>, вы находитесь в её каталоге, и в него загружены исходные языковые данные (<code>data</code>), без которых обучение своей модели Tesseract не запустится.</p>
+<section id="дообучение" class="level3" data-number="3.8.4">
+<h3 data-number="3.8.4" class="anchored" data-anchor-id="дообучение"><span class="header-section-number">3.8.4</span> Дообучение</h3>
+<p>Задача этого шага — подготовить материалы, нужные для обучения <code>Tesseract</code>. Сначала скачиваем служебный проект <code>tesstrain</code>, потом — языковые данные.</p>
+<ol type="1">
+<li>Откройте терминал:</li>
+</ol>
+<ul>
+<li>macOS: Terminal.</li>
+<li>Linux: любой терминал.</li>
+<li>Windows: используйте <a href="https://learn.microsoft.com/en-us/windows/wsl/install">WSL</a>. Это полноценный Linux внутри Windows. Подходит для команды <code>make</code>. Если это сложно, пока пропустите этот шаг.</li>
+</ul>
+<ol start="2" type="1">
+<li>Скачайте проект tesstrain с GitHub.</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>git clone https<span class="sc">:</span><span class="er">//</span>github.com<span class="sc">/</span>tesseract<span class="sc">-</span>ocr<span class="sc">/</span>tesstrain.git</span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Cloning into 'tesstrain'...</span></span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a><span class="co"># remote: Enumerating objects: 1119, done.</span></span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a><span class="co"># remote: Counting objects: 100% (475/475), done.</span></span>
+<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a><span class="co"># remote: Compressing objects: 100% (61/61), done.</span></span>
+<span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a><span class="co"># remote: Total 1119 (delta 440), reused 416 (delta 414), pack-reused 644 (from 2)</span></span>
+<span id="cb34-8"><a href="#cb34-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Receiving objects: 100% (1119/1119), 13.53 MiB | 2.49 MiB/s, done.</span></span>
+<span id="cb34-9"><a href="#cb34-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Resolving deltas: 100% (659/659), done.</span></span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>После этого у вас появится папка <code>tesstrain</code>. В ней лежат скрипты и файл <code>Makefile</code> — он описывает, что и как делать для обучения.</p>
+<ol start="3" type="1">
+<li>Перейдите в папку tesstrain. Команда смены каталога <code>cd</code> также работает и на macOS, и на Windows.</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>cd tesstrain</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ol start="4" type="1">
+<li>Скачайте языковые данные для обучения</li>
+</ol>
+<ul>
+<li>На Linux/WSL/Windows запускайте так:</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>make tesseract<span class="sc">-</span>langdata</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ul>
+<li>На macOS:</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>gmake tesseract<span class="sc">-</span>langdata</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Команда <code>gmake tesseract-langdata</code> (или <code>make tesseract-langdata</code>) запускает утилиту (небольшую программу) <code>make</code> и выполняет задачу <code>tesseract-langdata</code>, описанную в <code>Makefile</code> проекта. В результате автоматически скачиваются официальные языковые данные Tesseract, необходимые для обучения, а именно <code>langdata</code> и/или <code>langdata_lstm</code> — наборы текстов, списки слов, правила пунктуации/нормализации и прочие файлы, которые используются при подготовке и обучении модели. Одним словом, данные готовятся для обучения.</p>
+<p>Если все хорошо, на экране забегают какие-то цифирки. Все нормально, подождите.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Connecting to raw.githubusercontent.com... connected. HTTP request sent, awaiting response... OK... Saving to...</span></span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="структура-каталога" class="level3" data-number="3.8.5">
+<h3 data-number="3.8.5" class="anchored" data-anchor-id="структура-каталога"><span class="header-section-number">3.8.5</span> Структура каталога</h3>
+<p>Итог: после этих <del>мучений</del> команд у вас есть локальная копия <code>tesstrain</code>, вы находитесь в её каталоге, и в него загружены исходные языковые данные (<code>data</code>), без которых обучение своей модели Tesseract <strong>не запустится</strong>.</p>
 <p>На этом этапе структура каталога выглядит так:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ../tesstrain</span></span>
-<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="co"># ├── LICENSE</span></span>
-<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a><span class="co"># ├── Makefile</span></span>
-<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a><span class="co"># ├── README.md</span></span>
-<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a><span class="co"># ├── count_chars.py</span></span>
-<span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a><span class="co"># ├── data</span></span>
-<span id="cb37-7"><a href="#cb37-7" aria-hidden="true" tabindex="-1"></a><span class="co"># │   └── langdata</span></span>
-<span id="cb37-8"><a href="#cb37-8" aria-hidden="true" tabindex="-1"></a><span class="co"># │       ├── Arabic.unicharset</span></span>
-<span id="cb37-9"><a href="#cb37-9" aria-hidden="true" tabindex="-1"></a><span class="co"># │       ├── Armenian.unicharset</span></span>
-<span id="cb37-10"><a href="#cb37-10" aria-hidden="true" tabindex="-1"></a><span class="co"># │       ├── Bengali.unicharset</span></span>
-<span id="cb37-11"><a href="#cb37-11" aria-hidden="true" tabindex="-1"></a><span class="co"># │       ├── ...</span></span>
-<span id="cb37-12"><a href="#cb37-12" aria-hidden="true" tabindex="-1"></a><span class="co"># │       └── radical-stroke.txt</span></span>
-<span id="cb37-13"><a href="#cb37-13" aria-hidden="true" tabindex="-1"></a><span class="co"># ├── generate_eval_train.py</span></span>
-<span id="cb37-14"><a href="#cb37-14" aria-hidden="true" tabindex="-1"></a><span class="co"># ├── generate_gt_from_box.py</span></span>
-<span id="cb37-15"><a href="#cb37-15" aria-hidden="true" tabindex="-1"></a><span class="co"># ├── generate_line_box.py</span></span>
-<span id="cb37-16"><a href="#cb37-16" aria-hidden="true" tabindex="-1"></a><span class="co"># ├── generate_line_syllable_box.py</span></span>
-<span id="cb37-17"><a href="#cb37-17" aria-hidden="true" tabindex="-1"></a><span class="co"># ├── generate_wordstr_box.py</span></span>
-<span id="cb37-18"><a href="#cb37-18" aria-hidden="true" tabindex="-1"></a><span class="co"># ├── normalize.py</span></span>
-<span id="cb37-19"><a href="#cb37-19" aria-hidden="true" tabindex="-1"></a><span class="co"># ├── ocrd-testset.zip</span></span>
-<span id="cb37-20"><a href="#cb37-20" aria-hidden="true" tabindex="-1"></a><span class="co"># ├── ocrd.plot_cer.png</span></span>
-<span id="cb37-21"><a href="#cb37-21" aria-hidden="true" tabindex="-1"></a><span class="co"># ├── plot_cer.py</span></span>
-<span id="cb37-22"><a href="#cb37-22" aria-hidden="true" tabindex="-1"></a><span class="co"># ├── plot_log.py</span></span>
-<span id="cb37-23"><a href="#cb37-23" aria-hidden="true" tabindex="-1"></a><span class="co"># ├── requirements.txt</span></span>
-<span id="cb37-24"><a href="#cb37-24" aria-hidden="true" tabindex="-1"></a><span class="co"># ├── shuffle.py</span></span>
-<span id="cb37-25"><a href="#cb37-25" aria-hidden="true" tabindex="-1"></a><span class="co"># └── src</span></span>
-<span id="cb37-26"><a href="#cb37-26" aria-hidden="true" tabindex="-1"></a><span class="co">#     ├── README.md</span></span>
-<span id="cb37-27"><a href="#cb37-27" aria-hidden="true" tabindex="-1"></a><span class="co">#     ├── setup.cfg</span></span>
-<span id="cb37-28"><a href="#cb37-28" aria-hidden="true" tabindex="-1"></a><span class="co">#     ├── setup.py</span></span>
-<span id="cb37-29"><a href="#cb37-29" aria-hidden="true" tabindex="-1"></a><span class="co">#     └── tesstrain</span></span>
-<span id="cb37-30"><a href="#cb37-30" aria-hidden="true" tabindex="-1"></a><span class="co">#         ├── __init__.py</span></span>
-<span id="cb37-31"><a href="#cb37-31" aria-hidden="true" tabindex="-1"></a><span class="co">#         ├── __main__.py</span></span>
-<span id="cb37-32"><a href="#cb37-32" aria-hidden="true" tabindex="-1"></a><span class="co">#         ├── arguments.py</span></span>
-<span id="cb37-33"><a href="#cb37-33" aria-hidden="true" tabindex="-1"></a><span class="co">#         ├── generate.py</span></span>
-<span id="cb37-34"><a href="#cb37-34" aria-hidden="true" tabindex="-1"></a><span class="co">#         ├── language_specific.py</span></span>
-<span id="cb37-35"><a href="#cb37-35" aria-hidden="true" tabindex="-1"></a><span class="co">#         └── wrapper.py</span></span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ../tesstrain</span></span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="co"># ├── LICENSE</span></span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a><span class="co"># ├── Makefile</span></span>
+<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a><span class="co"># ├── README.md</span></span>
+<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a><span class="co"># ├── count_chars.py</span></span>
+<span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a><span class="co"># ├── data</span></span>
+<span id="cb39-7"><a href="#cb39-7" aria-hidden="true" tabindex="-1"></a><span class="co"># │   └── langdata</span></span>
+<span id="cb39-8"><a href="#cb39-8" aria-hidden="true" tabindex="-1"></a><span class="co"># │       ├── Arabic.unicharset</span></span>
+<span id="cb39-9"><a href="#cb39-9" aria-hidden="true" tabindex="-1"></a><span class="co"># │       ├── Armenian.unicharset</span></span>
+<span id="cb39-10"><a href="#cb39-10" aria-hidden="true" tabindex="-1"></a><span class="co"># │       ├── Bengali.unicharset</span></span>
+<span id="cb39-11"><a href="#cb39-11" aria-hidden="true" tabindex="-1"></a><span class="co"># │       ├── ...</span></span>
+<span id="cb39-12"><a href="#cb39-12" aria-hidden="true" tabindex="-1"></a><span class="co"># │       └── radical-stroke.txt</span></span>
+<span id="cb39-13"><a href="#cb39-13" aria-hidden="true" tabindex="-1"></a><span class="co"># ├── generate_eval_train.py</span></span>
+<span id="cb39-14"><a href="#cb39-14" aria-hidden="true" tabindex="-1"></a><span class="co"># ├── generate_gt_from_box.py</span></span>
+<span id="cb39-15"><a href="#cb39-15" aria-hidden="true" tabindex="-1"></a><span class="co"># ├── generate_line_box.py</span></span>
+<span id="cb39-16"><a href="#cb39-16" aria-hidden="true" tabindex="-1"></a><span class="co"># ├── generate_line_syllable_box.py</span></span>
+<span id="cb39-17"><a href="#cb39-17" aria-hidden="true" tabindex="-1"></a><span class="co"># ├── generate_wordstr_box.py</span></span>
+<span id="cb39-18"><a href="#cb39-18" aria-hidden="true" tabindex="-1"></a><span class="co"># ├── normalize.py</span></span>
+<span id="cb39-19"><a href="#cb39-19" aria-hidden="true" tabindex="-1"></a><span class="co"># ├── ocrd-testset.zip</span></span>
+<span id="cb39-20"><a href="#cb39-20" aria-hidden="true" tabindex="-1"></a><span class="co"># ├── ocrd.plot_cer.png</span></span>
+<span id="cb39-21"><a href="#cb39-21" aria-hidden="true" tabindex="-1"></a><span class="co"># ├── plot_cer.py</span></span>
+<span id="cb39-22"><a href="#cb39-22" aria-hidden="true" tabindex="-1"></a><span class="co"># ├── plot_log.py</span></span>
+<span id="cb39-23"><a href="#cb39-23" aria-hidden="true" tabindex="-1"></a><span class="co"># ├── requirements.txt</span></span>
+<span id="cb39-24"><a href="#cb39-24" aria-hidden="true" tabindex="-1"></a><span class="co"># ├── shuffle.py</span></span>
+<span id="cb39-25"><a href="#cb39-25" aria-hidden="true" tabindex="-1"></a><span class="co"># └── src</span></span>
+<span id="cb39-26"><a href="#cb39-26" aria-hidden="true" tabindex="-1"></a><span class="co">#     ├── README.md</span></span>
+<span id="cb39-27"><a href="#cb39-27" aria-hidden="true" tabindex="-1"></a><span class="co">#     ├── setup.cfg</span></span>
+<span id="cb39-28"><a href="#cb39-28" aria-hidden="true" tabindex="-1"></a><span class="co">#     ├── setup.py</span></span>
+<span id="cb39-29"><a href="#cb39-29" aria-hidden="true" tabindex="-1"></a><span class="co">#     └── tesstrain</span></span>
+<span id="cb39-30"><a href="#cb39-30" aria-hidden="true" tabindex="-1"></a><span class="co">#         ├── __init__.py</span></span>
+<span id="cb39-31"><a href="#cb39-31" aria-hidden="true" tabindex="-1"></a><span class="co">#         ├── __main__.py</span></span>
+<span id="cb39-32"><a href="#cb39-32" aria-hidden="true" tabindex="-1"></a><span class="co">#         ├── arguments.py</span></span>
+<span id="cb39-33"><a href="#cb39-33" aria-hidden="true" tabindex="-1"></a><span class="co">#         ├── generate.py</span></span>
+<span id="cb39-34"><a href="#cb39-34" aria-hidden="true" tabindex="-1"></a><span class="co">#         ├── language_specific.py</span></span>
+<span id="cb39-35"><a href="#cb39-35" aria-hidden="true" tabindex="-1"></a><span class="co">#         └── wrapper.py</span></span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Теперь нам надо переместить обучающие данные – в нашем случае это <code>orus-ground-truth</code> в папку <code>data</code>. Можете просто скопировать вручную.</p>
-<p>Справились? Все, можно запускать дообучение.</p>
+<p>Теперь нам надо переместить обучающие данные – в нашем случае это <code>orus-ground-truth</code> в папку <code>data</code>. Можете просто скопировать вручную. Все, можно запускать дообучение.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="co"># в терминале!</span></span>
-<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="co"># make на Windows</span></span>
-<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>gmake training MODEL_NAME<span class="ot">=</span>orus START_MODEL<span class="ot">=</span>rus FINETUNE_TYPE<span class="ot">=</span>Impact LANG_TYPE<span class="ot">=</span>Both</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="co"># в терминале!</span></span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a><span class="co"># make на Windows/WSL</span></span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>gmake training MODEL_NAME<span class="ot">=</span>orus START_MODEL<span class="ot">=</span>rus FINETUNE_TYPE<span class="ot">=</span>Impact LANG_TYPE<span class="ot">=</span>Both</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Команда выше запускает “рецепт” обучения нейросети Tesseract. Этот рецепт под названием <code>training</code> автоматически готовит данные и запускает процесс дообучения модели распознавания текста.</p>
 <p>Что означает каждая часть команды:</p>
@@ -747,11 +824,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 <p>Дообучение занимает несколько минут. Воспользуйтесь перерывом, чтобы похвалить себя за выполнение сложнейшей задачи. Вы инициировали дообучение нейросети вообще-то 🆒 🆒 🆒</p>
 </section>
-<section id="установка-модели" class="level3" data-number="3.8.5">
-<h3 data-number="3.8.5" class="anchored" data-anchor-id="установка-модели"><span class="header-section-number">3.8.5</span> Установка модели</h3>
+<section id="установка-модели" class="level3" data-number="3.8.6">
+<h3 data-number="3.8.6" class="anchored" data-anchor-id="установка-модели"><span class="header-section-number">3.8.6</span> Установка модели</h3>
 <p>Найдите системную папку Tesseract:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>tesseract<span class="sc">::</span><span class="fu">tesseract_info</span>()<span class="sc">$</span>datapath</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>tesseract<span class="sc">::</span><span class="fu">tesseract_info</span>()<span class="sc">$</span>datapath</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "/Users/olga/Library/Application Support/tesseract5/tessdata/"</code></pre>
 </div>
@@ -759,14 +836,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Скопируйте сюда новую модель <code>orus.trainedata</code>, которая должна появиться в папке <code>data</code> после обучения.</p>
 <p>Проверьте доступные модели:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>tesseract<span class="sc">::</span><span class="fu">tesseract_info</span>()<span class="sc">$</span>available</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>tesseract<span class="sc">::</span><span class="fu">tesseract_info</span>()<span class="sc">$</span>available</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "deu"  "eng"  "grc"  "lat"  "orus" "osd"  "rus" </code></pre>
 </div>
 </div>
 <p>Теперь можем использовать новую модель:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>text3 <span class="ot">&lt;-</span> <span class="fu">pdf_ocr_text</span>(<span class="st">"../ocr/НЗ1821_6_6[50-51].pdf"</span>, <span class="at">language =</span> <span class="st">"orus"</span>)</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>text3 <span class="ot">&lt;-</span> <span class="fu">pdf_ocr_text</span>(<span class="st">"../ocr/НЗ1821_6_6[50-51].pdf"</span>, <span class="at">language =</span> <span class="st">"orus"</span>)</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Converting page 1 to НЗ1821_6_6[50-51]_1.png... done!
 Converting page 2 to НЗ1821_6_6[50-51]_2.png... done!</code></pre>
@@ -774,8 +851,8 @@ Converting page 2 to НЗ1821_6_6[50-51]_2.png... done!</code></pre>
 </div>
 <p>Снова запишем.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="co"># укажите свой путь или одно только имя</span></span>
-<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a><span class="fu">writeLines</span>(text3, <span class="at">con =</span> <span class="st">"../ocr/rosalia_3.txt"</span>)</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="co"># укажите свой путь или одно только имя</span></span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a><span class="fu">writeLines</span>(text3, <span class="at">con =</span> <span class="st">"../ocr/rosalia_3.txt"</span>)</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Эти тексты можно будет использовать для сравнения моделей. Для лучшего результата используйте больше обучающих данных.</p>
 <p>Таким образом, дообучение Tesseract позволяет улучшить качество распознавания специализированных текстов; Пакет <code>tesseractgt</code> существенно упрощает процесс подготовки обучающих данных.</p>
