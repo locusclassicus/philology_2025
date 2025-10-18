@@ -219,6 +219,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#cer-ред.-расстояние-по-символам-длина-эталона" id="toc-cer-ред.-расстояние-по-символам-длина-эталона" class="nav-link" data-scroll-target="#cer-ред.-расстояние-по-символам-длина-эталона"><span class="header-section-number">4.2.2</span> CER: ред. расстояние по символам / длина эталона</a></li>
   <li><a href="#wer-ред.-расстояние-по-словам-число-слов-эталона" id="toc-wer-ред.-расстояние-по-словам-число-слов-эталона" class="nav-link" data-scroll-target="#wer-ред.-расстояние-по-словам-число-слов-эталона"><span class="header-section-number">4.2.3</span> WER: ред. расстояние по словам / число слов эталона</a></li>
   </ul></li>
+  <li><a href="#видео" id="toc-видео" class="nav-link" data-scroll-target="#видео"><span class="header-section-number">4.3</span> Видео</a></li>
   </ul>
 </nav>
     </div>
@@ -494,10 +495,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tr>
 </tbody>
 </table>
-<p>Эти классы тоже можно задавать в качестве паттерна.</p>
+<p>Эти классы тоже можно задавать в качестве паттерна. Знак <code>\\b</code> означает любую границу слова (начало строки, конец строки, пробел, пунктуация).</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># заменяет все вхождения</span></span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str_subset</span>(text, <span class="st">"[[:digit:]]"</span>)</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_subset</span>(text, <span class="st">"[[:digit:]]"</span>)</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "ЭЭСЮЭЭЭЭЭСКЮЭЭЭЭЭСЮС»ЭЭЭ&lt;Э&lt;ЗС&gt;Э(ІЭ(99ЭС933 э о э з о з э з э"
 [2] "                    243"                                     </code></pre>
@@ -505,8 +505,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>Работы с регулярными выражениями требует навыка; поначалу, прежде чем преобразовывать строки, удобно просто посмотреть, что попало в ваш невод.</p>
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_view</span>(text[<span class="dv">1</span><span class="sc">:</span><span class="dv">8</span>], <span class="st">"[[:punct:]]"</span>, <span class="at">html =</span> <span class="cn">TRUE</span>)</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="str_view html-widget html-fill-item" id="htmlwidget-6280b6489494bd78e261" style="width:960px;height:100%;"></div>
-<script type="application/json" data-for="htmlwidget-6280b6489494bd78e261">{"x":{"html":"<ul>\n  <li><pre>ЭЭСЮЭЭЭЭЭСКЮЭЭЭЭЭСЮС<span class='match'>»<\/span>ЭЭЭ<Э<ЗС>Э<span class='match'>(<\/span>ІЭ<span class='match'>(<\/span>99ЭС933 э о э з о з э з э<\/pre><\/li>\n  <li><pre>                   РАЗЛУКА<span class='match'>.<\/span><\/pre><\/li>\n  <li><pre>                     <span class='match'>(<\/span> Э л е г і я <span class='match'>,<\/span><span class='match'>)<\/span><\/pre><\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+<div class="str_view html-widget html-fill-item" id="htmlwidget-ae7e44154175fa9c6354" style="width:960px;height:100%;"></div>
+<script type="application/json" data-for="htmlwidget-ae7e44154175fa9c6354">{"x":{"html":"<ul>\n  <li><pre>ЭЭСЮЭЭЭЭЭСКЮЭЭЭЭЭСЮС<span class='match'>»<\/span>ЭЭЭ<Э<ЗС>Э<span class='match'>(<\/span>ІЭ<span class='match'>(<\/span>99ЭС933 э о э з о з э з э<\/pre><\/li>\n  <li><pre>                   РАЗЛУКА<span class='match'>.<\/span><\/pre><\/li>\n  <li><pre>                     <span class='match'>(<\/span> Э л е г і я <span class='match'>,<\/span><span class='match'>)<\/span><\/pre><\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
 <p>Внутри квадратных скобор знак <code>^</code> означает отрицание. Сравните:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># удаляем всю пунктуацию</span></span>
@@ -693,16 +693,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_subset</span>(text3, <span class="st">",$"</span>)</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_subset</span>(text3, <span class="st">"^Ч"</span>)</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "Съ тобою горестей душа моя незнаетъ,"       
-[2] "Надежда мрачный путь звездою озаряетъ,"     
-[3] "Взойдетъ заря надъ злачными холмами,"       
-[4] "Подруга милая, скажи, что край прелестный," 
-[5] "Что мирныя, тенисты я поля,"                
-[6] "Что своенравныя судьбы приветъ мне лестный,"
-[7] "На быстрыхъ времени крылахъ,"               
-[8] "Я въ радости къ подруге понесусь,"          </code></pre>
+<pre><code>[1] "Что мирныя, тенисты я поля,"                
+[2] "Что своенравныя судьбы приветъ мне лестный,"</code></pre>
 </div>
 </div>
 <p>Найдем строки, которые начинаются со строчной:</p>
@@ -788,7 +782,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Узнайте, в каких предложениях в sentences за пробелом следует ровно три согласных. Найдите все слова в <code>words</code>, которые заканчиваются на x. Найдите все слова, которые начинаются на b или на g.</p>
+<p>Найдите все слова в <code>words</code>, которые заканчиваются на x. Найдите все слова, которые начинаются (или не начинаются) на b или на g.</p>
 </div>
 </div>
 </section>
@@ -937,7 +931,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Дана строка “tomorrow (and) tomorrow (and) tomorrow”. Необходимо удалить первые скобки с их содержанием. Узнайте, все ли предложения в sentences (входит в stringr) кончаются на точку. Найдите все слова в <code>words</code>, в которых есть любые два символа между b и k.</p>
+<p>Дана строка “tomorrow (and) tomorrow (and) tomorrow”. Необходимо удалить первые скобки с их содержанием. Узнайте, все ли предложения в sentences (входит в <code>stringr</code>) кончаются на точку. Найдите все слова в <code>words</code>, в которых есть любые два символа между b и k.</p>
 </div>
 </div>
 </section>
@@ -1024,8 +1018,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tbody>
 </table>
 <div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_view</span>(text4, <span class="st">"[ъЪ](?=</span><span class="sc">\\</span><span class="st">W)"</span>, <span class="at">html =</span> <span class="cn">TRUE</span>)</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="str_view html-widget html-fill-item" id="htmlwidget-e284613c1d2ec3d16382" style="width:960px;height:100%;"></div>
-<script type="application/json" data-for="htmlwidget-e284613c1d2ec3d16382">{"x":{"html":"<ul>\n  <li><pre>Розалия, мой спутник<span class='match'>ъ<\/span> неизменный<\/pre><\/li>\n  <li><pre>На поле радостей земных<span class='match'>ъ<\/span>!<\/pre><\/li>\n  <li><pre>Розалия, мой друг<span class='match'>ъ<\/span>, хранитель несравненный!<\/pre><\/li>\n  <li><pre>Когда я отдохну в<span class='match'>ъ<\/span> объятиях<span class='match'>ъ<\/span> твоих<span class='match'>ъ<\/span>?<\/pre><\/li>\n  <li><pre>С<span class='match'>ъ<\/span> тобою горестей душа моя незнает<span class='match'>ъ<\/span>,<\/pre><\/li>\n  <li><pre>И сердцу скорбному не изменит<span class='match'>ъ<\/span> покой!<\/pre><\/li>\n  <li><pre>Надежда мрачный путь звездою озаряет<span class='match'>ъ<\/span>,<\/pre><\/li>\n  <li><pre>И я мирюсь с<span class='match'>ъ<\/span> враждебною судьбой!<\/pre><\/li>\n  <li><pre>Твой сладкий глас<span class='match'>ъ<\/span> не оживит<span class='match'>ъ<\/span> меня!<\/pre><\/li>\n  <li><pre>Взойдет<span class='match'>ъ<\/span> заря над<span class='match'>ъ<\/span> злачными холмами,<\/pre><\/li>\n  <li><pre>Появится в<span class='match'>ъ<\/span> лучах<span class='match'>ъ<\/span> светило дня—<\/pre><\/li>\n  <li><pre>Напрасно! все кругом<span class='match'>ъ<\/span> покрыто мглою.<\/pre><\/li>\n  <li><pre>Неслышится мне сладкий игивой привет<span class='match'>ъ<\/span>.<\/pre><\/li>\n  <li><pre>Все радости, надежды все с<span class='match'>ъ<\/span> тобою—<\/pre><\/li>\n  <li><pre>И опустел<span class='match'>ъ<\/span> без<span class='match'>ъ<\/span> милой свет<span class='match'>ъ<\/span>!<\/pre><\/li>\n  <li><pre>Что своенравныя судьбы привет<span class='match'>ъ<\/span> мне лестный,<\/pre><\/li>\n  <li><pre>Когда с<span class='match'>ъ<\/span> тобой в<span class='match'>ъ<\/span> разлуке я.<\/pre><\/li>\n  <li><pre>Но друг<span class='match'>ъ<\/span> мои! горесть отл етаетъ<\/pre><\/li>\n  <li><pre>На быстрых<span class='match'>ъ<\/span> времени крылах<span class='match'>ъ<\/span>,<\/pre><\/li>\n  <li><pre>И радость сердце посещ ает<span class='match'>ъ<\/span>.<\/pre><\/li>\n  <li><pre>Моя надежда — в<span class='match'>ъ<\/span> небесах<span class='match'>ъ<\/span>!<\/pre><\/li>\n  <li><pre>Когдаж<span class='match'>ъ<\/span> опять смягченными судьбами<\/pre><\/li>\n  <li><pre>Я в<span class='match'>ъ<\/span> радости к<span class='match'>ъ<\/span> подруге понесусь,<\/pre><\/li>\n  <li><pre>Коснусь волшебных<span class='match'>ъ<\/span> струн<span class='match'>ъ<\/span> волшебными пер<\/pre><\/li>\n  <li><pre>И, с<span class='match'>ъ<\/span> резвою мечтою примирюсь.<\/pre><\/li>\n  <li><pre>А, Б — ф<span class='match'>Ъ<\/span>.<\/pre><\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+<div class="str_view html-widget html-fill-item" id="htmlwidget-0e1bd76ef48ac88b160d" style="width:960px;height:100%;"></div>
+<script type="application/json" data-for="htmlwidget-0e1bd76ef48ac88b160d">{"x":{"html":"<ul>\n  <li><pre>Розалия, мой спутник<span class='match'>ъ<\/span> неизменный<\/pre><\/li>\n  <li><pre>На поле радостей земных<span class='match'>ъ<\/span>!<\/pre><\/li>\n  <li><pre>Розалия, мой друг<span class='match'>ъ<\/span>, хранитель несравненный!<\/pre><\/li>\n  <li><pre>Когда я отдохну в<span class='match'>ъ<\/span> объятиях<span class='match'>ъ<\/span> твоих<span class='match'>ъ<\/span>?<\/pre><\/li>\n  <li><pre>С<span class='match'>ъ<\/span> тобою горестей душа моя незнает<span class='match'>ъ<\/span>,<\/pre><\/li>\n  <li><pre>И сердцу скорбному не изменит<span class='match'>ъ<\/span> покой!<\/pre><\/li>\n  <li><pre>Надежда мрачный путь звездою озаряет<span class='match'>ъ<\/span>,<\/pre><\/li>\n  <li><pre>И я мирюсь с<span class='match'>ъ<\/span> враждебною судьбой!<\/pre><\/li>\n  <li><pre>Твой сладкий глас<span class='match'>ъ<\/span> не оживит<span class='match'>ъ<\/span> меня!<\/pre><\/li>\n  <li><pre>Взойдет<span class='match'>ъ<\/span> заря над<span class='match'>ъ<\/span> злачными холмами,<\/pre><\/li>\n  <li><pre>Появится в<span class='match'>ъ<\/span> лучах<span class='match'>ъ<\/span> светило дня—<\/pre><\/li>\n  <li><pre>Напрасно! все кругом<span class='match'>ъ<\/span> покрыто мглою.<\/pre><\/li>\n  <li><pre>Неслышится мне сладкий игивой привет<span class='match'>ъ<\/span>.<\/pre><\/li>\n  <li><pre>Все радости, надежды все с<span class='match'>ъ<\/span> тобою—<\/pre><\/li>\n  <li><pre>И опустел<span class='match'>ъ<\/span> без<span class='match'>ъ<\/span> милой свет<span class='match'>ъ<\/span>!<\/pre><\/li>\n  <li><pre>Что своенравныя судьбы привет<span class='match'>ъ<\/span> мне лестный,<\/pre><\/li>\n  <li><pre>Когда с<span class='match'>ъ<\/span> тобой в<span class='match'>ъ<\/span> разлуке я.<\/pre><\/li>\n  <li><pre>Но друг<span class='match'>ъ<\/span> мои! горесть отл етаетъ<\/pre><\/li>\n  <li><pre>На быстрых<span class='match'>ъ<\/span> времени крылах<span class='match'>ъ<\/span>,<\/pre><\/li>\n  <li><pre>И радость сердце посещ ает<span class='match'>ъ<\/span>.<\/pre><\/li>\n  <li><pre>Моя надежда — в<span class='match'>ъ<\/span> небесах<span class='match'>ъ<\/span>!<\/pre><\/li>\n  <li><pre>Когдаж<span class='match'>ъ<\/span> опять смягченными судьбами<\/pre><\/li>\n  <li><pre>Я в<span class='match'>ъ<\/span> радости к<span class='match'>ъ<\/span> подруге понесусь,<\/pre><\/li>\n  <li><pre>Коснусь волшебных<span class='match'>ъ<\/span> струн<span class='match'>ъ<\/span> волшебными пер<\/pre><\/li>\n  <li><pre>И, с<span class='match'>ъ<\/span> резвою мечтою примирюсь.<\/pre><\/li>\n  <li><pre>А, Б — ф<span class='match'>Ъ<\/span>.<\/pre><\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
 <p>Теперь удалим такие знаки препинания, которые следуют за другими знаками препинания в конце строки. Также добавим в контекст сам конец строки (иначе остается с твердым знаком слово “отлетает”).</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>text5 <span class="ot">&lt;-</span> <span class="fu">str_remove_all</span>(text4, <span class="st">"[ъЪ](?=</span><span class="sc">\\</span><span class="st">W|$)"</span>)</span>
@@ -1242,9 +1236,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <pre><code>[1] 0.5486111</code></pre>
 </div>
 </div>
-
-
 </section>
+</section>
+<section id="видео" class="level2" data-number="4.3">
+<h2 data-number="4.3" class="anchored" data-anchor-id="видео"><span class="header-section-number">4.3</span> Видео</h2>
+<ul>
+<li><a href="https://vk.com/video91786643_456239080">Видео</a> 2025 г.</li>
+</ul>
+
+
 </section>
 
 </main> <!-- /main -->
