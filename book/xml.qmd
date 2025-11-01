@@ -98,13 +98,15 @@ ingr_node_1
 Но обычно нам нужен не элемент как таковой, а его содержание (значение). Чтобы добраться до него, используем функцию `xml_text()`:
 
 ```{r}
-xml_text(xml_children(composition_node))
+xml_children(composition_node) |> 
+  xml_text()
 ```
 
 Можно уточнить атрибуты узла при помощи `xml_attrs()`:
 
 ```{r}
-xml_attrs(xml_children(composition_node))
+xml_children(composition_node) |> 
+  xml_attrs()
 ```
 
 Чтобы извлечь значение атрибута, используем функцию `xml_attr()`. Первым аргументом функции передаем xml-узел, вторым -- имя атрибута.
@@ -140,17 +142,19 @@ xml_find_all(rootnode, "//composition//ingredient[@unit='стакан']")
 
 ```{r}
 # Получаем узлы:
-title <- xml_text(xml_find_all(rootnode, "title")) |> 
+title <- xml_find_all(rootnode, "title") |> 
+  xml_text() |> 
   trimws()
 
-ingredient_ns <- xml_find_all(rootnode, "./composition/ingredient")
+ingredient_ns <- xml_find_all(rootnode, "//composition//ingredient")
 
 tibble(
   title  = title,
   ingredients = xml_text(ingredient_ns),
   unit = xml_attr(ingredient_ns, "unit"),
   amount = xml_attr(ingredient_ns, "amount")
-) |> print()
+) |> 
+  print()
 ```
 
 Теперь рассмотрим более сложные примеры.
@@ -326,10 +330,11 @@ ns
 
 ```{r}
 # Найти все строки (tei:l)
-line_nodes <- xml_find_all(doc, ".//d1:l", ns)
+line_nodes <- xml_find_all(doc, "//d1:l", ns)
 
 # Извлечь текст каждой строки
 line_text <- xml_text(line_nodes)
+
 line_text |> 
   head()
 ```
@@ -338,9 +343,8 @@ line_text |>
 
 ```{r}
 # line_nodes — вектор узлов <l>
-speakers <- xml_text(
-  xml_find_first(line_nodes, "ancestor::d1:sp/d1:speaker", ns = ns)
-)
+speakers <- xml_find_first(line_nodes, "ancestor::d1:sp/d1:speaker", ns = ns) |> 
+  xml_text()
 
 speakers |> 
   head()
@@ -349,9 +353,8 @@ speakers |>
 Аналогичным образом находим явление и акт.
 
 ```{r}
-scenes <- xml_text(
-  xml_find_first(line_nodes, "ancestor::d1:div[@type='scene']/d1:head", ns = ns)
-)
+scenes <- xml_find_first(line_nodes, "ancestor::d1:div[@type='scene']/d1:head", ns = ns) |> 
+  xml_text()
 
 scenes |> 
   tail()
@@ -375,7 +378,9 @@ woe_from_wit <- tibble(
   speaker = speakers,
   text = line_text
 )
+```
 
+```{r echo=FALSE}
 woe_from_wit |> 
   head(6) |> 
   gt::gt()
