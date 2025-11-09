@@ -14,6 +14,7 @@ book:
   - ocr.qmd
   - regex.qmd
   - xml.qmd
+  - POS.qmd
   - llm.qmd
   - share.qmd
 bibliography: references.bib
