@@ -300,6 +300,16 @@
     ]
   },
   {
+    "objectID": "ocr.html#препроцессинг-изображений",
+    "href": "ocr.html#препроцессинг-изображений",
+    "title": "3  Распознавание изображений",
+    "section": "3.7 Препроцессинг изображений",
+    "text": "3.7 Препроцессинг изображений\nТочность OCR зависит от качества исходного изображения. Часто можно улучшить результат, правильно масштабируя изображение, удаляя шум и артефакты или обрезая область, где находится текст. Отличный пакет {magick} содержит множество полезных функций для улучшения качества изображения. Что можно попробовать:\n\nЕсли изображение наклонено, используйте image_deskew() и image_rotate(), чтобы выровнять текст по горизонтали.\nimage_trim() обрезает поля с пробельными областями.\nИспользуйте image_convert() для преобразования изображения в градации серого.\nДля изменения размера используйте image_resize().\nФункции image_modulate() или image_contrast() подходят для регулировки яркости/контраста.\nПопробуйте image_reducenoise() для автоматического удаления шума.\n\nВозьмем вот такое изображение и сравним результат распознавания до и после препроцессинга.\n\n\ninput &lt;- image_read(\"./images/IMG_5539.jpg\")\n\n\n# Обработка изображения\nprocessed &lt;- input |&gt;\n  image_deskew() |&gt; \n  image_resize(\"2000x\") |&gt;          \n  image_convert(colorspace = \"gray\") |&gt; \n  image_trim(fuzz = 40)  |&gt; \n  image_modulate(brightness = 120, saturation = 0)  |&gt;\n  image_contrast(sharpen = 1) |&gt;\n  image_normalize() |&gt;  \n  image_despeckle() \n\n\n# Сохранение на диск (посмотреть результат)\nimage_write(processed, path = \"./images/processed.png\", format = \"png\", density = \"300x300\")\n\n\n\n# OCR на обработанном изображении\ntesseract::ocr(processed, engine = \"rus\")\n\n[1] \"„Просимъ огласить слёдующий фактъ: БъЪжавшй въ 1\\n‘изъ Вятской губ. Бауманъ (Ветеринарный врачъ, служинц\\nСаратовскомъ земств въ 95-96 г.) удачно скрывшись от п\\nдовай шшоновъ, попалъ случайно въ совершенно негнану,\\nмЪстность, село ХлЪбное, Задонскаго у$Ззда, Воронежеко м\\nИзмученный голодомъ и продолжительной дорогой ПЪШкКом,\\nрфшилъ обратиться за содфйстнемъ къ самому интеллигент\\nпредставителю деревни, къ земскому врачу Валерану Веленн,\\n\"\n\n\nЕсли проблема в том, что строки имеют разный наклон (например, из-за деформации страницы), то может потребоваться нелинейное преобразование (например, коррекция искажения). Это сложнее, и в {magick} нет прямых функций для этого. Возможно, потребуется использование других инструментов, в том числе предобработка в специализированном ПО.",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Распознавание изображений</span>"
+    ]
+  },
+  {
     "objectID": "ocr.html#файн-тюнинг",
     "href": "ocr.html#файн-тюнинг",
     "title": "3  Распознавание изображений",
@@ -360,6 +370,16 @@
     ]
   },
   {
+    "objectID": "regex.html#видео",
+    "href": "regex.html#видео",
+    "title": "4  Нормализация и оценка",
+    "section": "4.3 Видео",
+    "text": "4.3 Видео\n\nВидео 2025 г.",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Нормализация и оценка</span>"
+    ]
+  },
+  {
     "objectID": "xml.html",
     "href": "xml.html",
     "title": "5  Разметка TEI XML",
@@ -394,227 +414,7 @@
     "href": "xml.html#кейс-горе-от-ума",
     "title": "5  Разметка TEI XML",
     "section": "5.3 Кейс: “Горе от ума”",
-    "text": "5.3 Кейс: “Горе от ума”\nСкачаем по из репозитория проекта Dracor “Горе от ума” Грибоедова и преобразуем xml в прямоугольный формат таким образом, чтобы для каждой реплики был указан акт, сцена и действующее лицо.\n\n\n\n\n\n\nНа заметку\n\n\n\nДля работы с корпусом Dracor в среде R существует пакет rdracor. Он позволяет доставать тексты пьес сразу в виде таблицы.\n\n\n\nurl &lt;- \"https://raw.githubusercontent.com/dracor-org/rusdracor/main/tei/griboyedov-gore-ot-uma.xml\"\ndownload_xml(url, file = \"griboedov.xml\")\n\n\ndoc &lt;- read_xml(\"griboedov.xml\")\n\n# определить пространство имён\nns &lt;- xml_ns(doc)\nns\n\nd1 &lt;-&gt; http://www.tei-c.org/ns/1.0\n\n\nПространство имён (namespace) в XML — это механизм, который позволяет однозначно различать элементы и атрибуты с одинаковыми именами, но из разных словарей или стандартов. Оно действует как “фамилия” для элемента. Чтобы задать “фамилию”, её связывают с уникальным идентификатором (обычно это URI, в нашем случае http://www.tei-c.org/ns/1.0). Для удобства этому идентификатору присваивают короткий префикс.\n\n# Найти все строки (tei:l)\nline_nodes &lt;- xml_find_all(doc, \"//d1:l\", ns)\n\n# Извлечь текст каждой строки\nline_text &lt;- xml_text(line_nodes)\n\nline_text |&gt; \n  head()\n\n[1] \"Светает!.. Ах! как скоро ночь минула!\"  \n[2] \"Вчера просилась спать — отказ.\"         \n[3] \"«Ждем друга». — Нужен глаз да глаз,\"    \n[4] \"Не спи, покудова не скатишься со стула.\"\n[5] \"Теперь вот только что вздремнула,\"      \n[6] \"Уж день!.. сказать им...\"               \n\n\nТеперь нам надо для каждой реплики найти информацию о том, кто говорит: она хранится в теге &lt;speaker&gt;. То есть нам надо подняться на два этажа вверх (на уровень &lt;sp&gt;), а потом спуститься к его другому “ребенку”, &lt;speaker&gt;. Для этого используем синтаксис XPath: сначала при помощи ancestor::d1:sp поднимаемся вверх по дереву и выбираем всех предков узла, которые являются элементами sp, а затем спускаемся к ребенку speaker этого найденного sp. Так список спикеров будет равно числу стихов.\n\n# line_nodes — вектор узлов &lt;l&gt;\nspeakers &lt;- xml_find_first(line_nodes, \"ancestor::d1:sp/d1:speaker\", ns = ns) |&gt; \n  xml_text()\n\nspeakers |&gt; \n  head()\n\n[1] \"Лизанька\" \"Лизанька\" \"Лизанька\" \"Лизанька\" \"Лизанька\" \"Лизанька\"\n\n\nАналогичным образом находим явление и акт.\n\nscenes &lt;- xml_find_first(line_nodes, \"ancestor::d1:div[@type='scene']/d1:head\", ns = ns) |&gt; \n  xml_text()\n\nscenes |&gt; \n  tail()\n\n[1] \"Явление 15\" \"Явление 15\" \"Явление 15\" \"Явление 15\" \"Явление 15\"\n[6] \"Явление 15\"\n\n\n\nacts &lt;- xml_text(\n  xml_find_first(line_nodes, \"ancestor::d1:div[@type='act']/d1:head\", ns = ns)\n)\n\nacts |&gt; \n  sample(6)\n\n[1] \"Действие первое\" \"Действие второе\" \"Действие первое\" \"Действие второе\"\n[5] \"Действие третье\" \"Действие второе\"\n\n\nНам осталось объединить все векторы в одну таблицу.\n\nwoe_from_wit &lt;- tibble(\n  act = acts,\n  scene = scenes,\n  speaker = speakers,\n  text = line_text\n)\n\n\n\n\n\n\n\n\n\nact\nscene\nspeaker\ntext\n\n\n\n\nДействие первое\nЯвление 1\nЛизанька\nСветает!.. Ах! как скоро ночь минула!\n\n\nДействие первое\nЯвление 1\nЛизанька\nВчера просилась спать — отказ.\n\n\nДействие первое\nЯвление 1\nЛизанька\n«Ждем друга». — Нужен глаз да глаз,\n\n\nДействие первое\nЯвление 1\nЛизанька\nНе спи, покудова не скатишься со стула.\n\n\nДействие первое\nЯвление 1\nЛизанька\nТеперь вот только что вздремнула,\n\n\nДействие первое\nЯвление 1\nЛизанька\nУж день!.. сказать им...",
-    "crumbs": [
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Разметка TEI XML</span>"
-    ]
-  },
-  {
-    "objectID": "xml.html#кейс-война-и-мир",
-    "href": "xml.html#кейс-война-и-мир",
-    "title": "5  Разметка TEI XML",
-    "section": "5.4 Кейс: “Война и мир”",
-    "text": "5.4 Кейс: “Война и мир”\n\n\n\n __________________________ \n&lt; Patience you must learn. &gt;\n -------------------------- \n                \\\n                 \\\n\n                   ____\n                _.' :  `._\n            .-.'`.  ;   .'`.-.\n   __      / : ___\\ ;  /___ ; \\      __\n  ,'_ \"\"--.:__;\".-.\";: :\".-.\":__;.--\"\" _`,\n  :' `.t\"\"--.. '&lt;@.`;_  ',@&gt;` ..--\"\"j.' `;\n       `:-.._J '-.-'L__ `-- ' L_..-;'\n          \"-.__ ;  .-\"  \"-.  : __.-\"\n             L ' /.------.\\ ' J\n             \"-.   \"--\"   .-\"\n             __.l\"-:_JL_;-\";.__\n         .-j/'.;  ;\"\"\"\"  / .'\\\"-.\n         .' /:`. \"-.:     .-\" .';  `.\n      .-\"  / ;  \"-. \"-..-\" .-\"  :    \"-.\n  .+\"-.  : :      \"-.__.-\"      ;-._   \\\n  ; \\  `.; ;                    : : \"+. ;\n  :  ;   ; ;                    : ;  : \\:\n  ;  :   ; :                    ;:   ;  :\n  : \\  ;  :  ;                  : ;  /  ::\n  ;  ; :   ; :                  ;   :   ;:\n  :  :  ;  :  ;                : :  ;  : ;\n  ;\\    :   ; :                ; ;     ; ;\n  : `.\"-;   :  ;              :  ;    /  ;\n ;    -:   ; :              ;  : .-\"   :\n  :\\     \\  :  ;            : \\.-\"      :\n  ;`.    \\  ; :            ;.'_..--  / ;\n  :  \"-.  \"-:  ;          :/.\"      .'  :\n   \\         \\ :          ;/  __        :\n    \\       .-`.\\        /t-\"\"  \":-+.   :\n     `.  .-\"    `l    __/ /`. :  ; ; \\  ;\n       \\   .-\" .-\"-.-\"  .' .'j \\  /   ;/\n        \\ / .-\"   /.     .'.' ;_:'    ;\n  :-\"\"-.`./-.'     /    `.___.'\n               \\ `t  ._  /  bug\n                \"-.t-._:'\n\n\nПодбробнее о структуре XML документов и способах работы с ними вы можете прочитать в книгах: (Nolan и Lang 2014) и (Холзнер 2004).\n\n\n\n\nNolan, D., и D. T. Lang. 2014. XML and Web Technologies for Data Science with R. Springer.\n\n\nСкоринкин, Даниил. 2016. «Электронное представление текста с помощью стандарта разметки TEI», 90–108.\n\n\nХолзнер, Стивен. 2004. Энциклопедия XML. Питер.",
-    "crumbs": [
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Разметка TEI XML</span>"
-    ]
-  },
-  {
-    "objectID": "llm.html",
-    "href": "llm.html",
-    "title": "6  Добавление разметки с LLM",
-    "section": "",
-    "text": "6.1 Модели\nOpenRouter — это агрегатор LLM‑моделей (OpenAI, Anthropic, Meta, Mistral и др.) с единым API. Можно выбрать бесплатные модели (с лимитами) и вызывать их из R/RStudio.",
-    "crumbs": [
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Добавление разметки с LLM</span>"
-    ]
-  },
-  {
-    "objectID": "llm.html#модели",
-    "href": "llm.html#модели",
-    "title": "6  Добавление разметки с LLM",
-    "section": "",
-    "text": "Большая часть моделей требует денег за API =(\nЕсть бесплатный пробный период у Gemini, но из России воспользоваться им не получится без VPN =/\nЕсть полностью бесплатные локальные модели. Они тяжелые и не всегда умные.\nКопипаста через телеграм-чат - не наш метод.\nРазные хитрости.",
-    "crumbs": [
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Добавление разметки с LLM</span>"
-    ]
-  },
-  {
-    "objectID": "llm.html#получение-ключа-api",
-    "href": "llm.html#получение-ключа-api",
-    "title": "6  Добавление разметки с LLM",
-    "section": "6.2 Получение ключа API",
-    "text": "6.2 Получение ключа API\nAPI (Application programming interface) это набор правил, по которым приложения или части программы общаются друг с другом.\nИдем на сайт https://openrouter.ai/, регистрируемся, получаем ключ (дайте ему осмысленное название), копируем и сразу сохраняем.\n\nSys.setenv(OPENROUTER_API_KEY = \"ваш_ключ_api\")\n\nИли отредактируйте файл .Renviron в домашней директории:\n\nusethis::edit_r_environ()\n\n☐ Edit '/Users/olga/.Renviron'.\n\n\n☐ Restart R for changes to take effect.\n\n\nПосле чего добавьте строку в файл OPENROUTER_API_KEY=ваш_ключ_api и перезапустите сессию.\nПроверить:\n\nSys.getenv(\"OPENROUTER_API_KEY\")",
-    "crumbs": [
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Добавление разметки с LLM</span>"
-    ]
-  },
-  {
-    "objectID": "llm.html#начало-работы",
-    "href": "llm.html#начало-работы",
-    "title": "6  Добавление разметки с LLM",
-    "section": "6.3 Начало работы",
-    "text": "6.3 Начало работы\n\nlibrary(ellmer)\npackageVersion(\"ellmer\")\n\n[1] '0.3.0'\n\n\n\nchat &lt;- chat_openrouter(\n  system_prompt = \"You always reply in Latin\",\n  api_key = Sys.getenv(\"OPENROUTER_API_KEY\"),\n  model = NULL\n)\n\n\nchat$chat(\"На сколько частей разделена Галлия?\")\n# Error in `req_perform_connection()`:\n# ! HTTP 402 Payment Required.\n# ℹ Insufficient credits. Add more using\n#   https://openrouter.ai/settings/credits\n# Run `rlang::last_trace()` to see where the error occurred.\n\nСписок бесплатных моделей можно уточнить здесь https://openrouter.ai/models\n\nchat &lt;- chat_openrouter(\n  system_prompt = \"You always reply in Latin\",\n  api_key = Sys.getenv(\"OPENROUTER_API_KEY\"),\n  model = \"openai/gpt-oss-20b:free\"\n)\n\nchat$chat(\"На сколько частей разделена Галлия?\")\n# Gallia in tres partes dividitur: Gallia Narbonensis, Gallia \n# Lugdunensis, et Gallia Belgica.\n\nЕсли все получилось, идем дальше.",
-    "crumbs": [
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Добавление разметки с LLM</span>"
-    ]
-  },
-  {
-    "objectID": "llm.html#создание-промпта",
-    "href": "llm.html#создание-промпта",
-    "title": "6  Добавление разметки с LLM",
-    "section": "6.4 Создание промпта",
-    "text": "6.4 Создание промпта\n(Тут будет подробнее про стратегии написания промптов)\n\nsystem_prompt &lt;- \"You are an experienced TEI encoder specializing in geographic markup. Your task is to identify and tag all place references in the text using proper TEI &lt;place&gt; elements.\n\nINSTRUCTIONS:\n1. Identify ALL geographic references including:\n   - Cities, towns, villages (e.g., Paris, London)\n   - Countries, regions, states (e.g., France, Tuscany, California)\n   - Geographic features (e.g., Rhine River, Alps, Mediterranean Sea)\n   - Buildings and landmarks (e.g., Eiffel Tower, Westminster Abbey)\n   - Fictional places (e.g., Hogwarts, Middle-earth)\n\n2. Use this tagging format:\n   - Simple places: &lt;place&gt;Paris&lt;/place&gt;\n   - With type attribute: &lt;place type='city'&gt;Paris&lt;/place&gt;\n   - With key/ID: &lt;place key='paris_france'&gt;Paris&lt;/place&gt;\n\n3. TYPES to use:\n   - settlement (cities, towns, villages)\n   - country \n   - region\n   - building\n   - landmark\n   - waterway\n   - mountain\n   - fictional\n\n4. RULES:\n   - Tag the complete place name as it appears\n   - Don't tag directional references like 'north', 'eastern' unless part of proper name\n   - Include adjectives when part of the place name (e.g., 'New York', 'Great Britain')\n   - For ambiguous cases, prioritize the most specific geographic reading\n\n5. Return the complete text with all place references properly tagged.\"",
-    "crumbs": [
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Добавление разметки с LLM</span>"
-    ]
-  },
-  {
-    "objectID": "llm.html#добавление-разметки",
-    "href": "llm.html#добавление-разметки",
-    "title": "6  Добавление разметки с LLM",
-    "section": "6.5 Добавление разметки",
-    "text": "6.5 Добавление разметки\n\nuser_prompt &lt;- \"Может быть, никто из живущих в Москве не знает так хорошо окрестностей города сего, как я, потому что никто чаще моего не бывает в поле, никто более моего не бродит пешком, без плана, без цели — куда глаза глядят — по лугам и рощам, по холмам и равнинам. Всякое лето нахожу новые приятные места или в старых новые красоты.\n\nНо всего приятнее для меня то место, на котором возвышаются мрачные, готические башни Си...нова монастыря. Стоя на сей горе, видишь на правой стороне почти всю Москву, сию ужасную громаду домов и церквей, которая представляется глазам в образе величественного амфитеатра: великолепная картина, особливо когда светит на нее солнце, когда вечерние лучи его пылают на бесчисленных златых куполах, на бесчисленных крестах, к небу возносящихся! Внизу расстилаются тучные, густо-зеленые цветущие луга, а за ними, по желтым пескам, течет светлая река, волнуемая легкими веслами рыбачьих лодок или шумящая под рулем грузных стругов, которые плывут от плодоноснейших стран Российской империи и наделяют алчную Москву хлебом. На другой стороне реки видна дубовая роща, подле которой пасутся многочисленные стада; там молодые пастухи, сидя под тению дерев, поют простые, унылые песни и сокращают тем летние дни, столь для них единообразные. Подалее, в густой зелени древних вязов, блистает златоглавый Данилов монастырь; еще далее, почти на краю горизонта, синеются Воробьевы горы. На левой же стороне видны обширные, хлебом покрытые поля, лесочки, три или четыре деревеньки и вдали село Коломенское с высоким дворцом своим.\"\n\nchat &lt;- chat_openrouter(\n  system_prompt = system_prompt,\n  api_key = Sys.getenv(\"OPENROUTER_API_KEY\"),\n  model = \"openai/gpt-oss-20b:free\"\n)\n\nresponse &lt;- chat$chat(user_prompt)\n# Может быть, никто из живущих в &lt;place \n# type='settlement'&gt;Москву&lt;/place&gt; не знает так хорошо окрестностей \n# города сего, как я, потому что никто чаще моего не бывает в поле, \n# никто более моего не бродит пешком, без плана, без цели — куда \n# глаза глядят — по лугам и рощам, по холмам и равнинам. Всякое лето \n# нахожу новые приятные места или в старых новые красоты.\n# \n# Но всего приятнее для меня то место, на котором возвышаются \n# мрачные, готические башни &lt;place type='building'&gt;Си…нова \n# монастыря&lt;/place&gt;. Стоя на сей горе, видишь на правой стороне почти\n# всю &lt;place type='settlement'&gt;Москва&lt;/place&gt;, сию ужасную громаду \n# домов и церквей, которая представляется глазам в образе \n# величественного амфитеатра: великолепная картина, особливо когда \n# светит на нее солнце, когда вечерние лучи его пылают на \n# бесчисленных златых куполах, на бесчисленных крестах, к небу \n# возносящихся! Внизу расстилаются тучные, густо-зеленые цветущие \n# луга, а за ними, по желтым пескам, течет светлая река, волнуемая \n# легкими веслами рыбачьих лодок или шумящая под рулем грузных \n# стругов, которые плывут от плодоноснейших стран &lt;place \n# type='region'&gt;Российской империи&lt;/place&gt; и наделяют алчную &lt;place \n# type='settlement'&gt;Москву&lt;/place&gt; хлебом. На другой стороне реки \n# видна дубовая роща, подле которой пасутся многочисленные стада; там\n# молодые пастухи, сидя под тенью дерев, поют простые, унылые песни и\n# сокращают тем летние дни, столь для них единообразные. Подалее, в \n# густой зелени древних вязов, блистает златоглавый &lt;place \n# type='building'&gt;Данилов монастырь&lt;/place&gt;; еще далее, почти на краю\n# горизонта, синеются &lt;place type='mountain'&gt;Воробьевы горы&lt;/place&gt;. \n# На левой же стороне видны обширные, хлебом покрытые поля, лесочки, \n# три или четыре деревеньки и вдали село &lt;place \n# type='settlement'&gt;Коломенское&lt;/place&gt; с высоким дворцом своим.\n\nНа первый взгляд, модель справилась неплохо. “Российскую империю” стоило тегировать как “страну”, а не “регион” (подобные случаи можно прописать в промпте).",
-    "crumbs": [
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Добавление разметки с LLM</span>"
-    ]
-  },
-  {
-    "objectID": "llm.html#добавление-пролога",
-    "href": "llm.html#добавление-пролога",
-    "title": "6  Добавление разметки с LLM",
-    "section": "6.6 Добавление пролога",
-    "text": "6.6 Добавление пролога\n\nadd_tei_prologue &lt;- function(marked_text, \n                            title = \"Карамзин Н.М. Бедная Лиза\", \n                            author = \"Карамзин, Николай Михайлович\",\n                            date = \"1792\") {\n  \n  prologue &lt;- sprintf('&lt;?xml version=\"1.0\" encoding=\"UTF-8\"?&gt;\n&lt;TEI xmlns=\"http://www.tei-c.org/ns/1.0\"&gt;\n  &lt;teiHeader&gt;\n    &lt;fileDesc&gt;\n      &lt;titleStmt&gt;\n        &lt;title&gt;%s&lt;/title&gt;\n        &lt;author&gt;%s&lt;/author&gt;\n      &lt;/titleStmt&gt;\n      &lt;publicationStmt&gt;\n        &lt;p&gt;Цифровое издание для исследовательских целей&lt;/p&gt;\n      &lt;/publicationStmt&gt;\n      &lt;sourceDesc&gt;\n        &lt;p&gt;Оригинальный текст %s года&lt;/p&gt;\n      &lt;/sourceDesc&gt;\n    &lt;/fileDesc&gt;\n  &lt;/teiHeader&gt;\n  &lt;text&gt;\n    &lt;body&gt;\n      &lt;p&gt;%s&lt;/p&gt;\n    &lt;/body&gt;\n  &lt;/text&gt;\n&lt;/TEI&gt;', title, author, date, marked_text)\n  \n  return(prologue)\n}\n\nПрименяем к нашему тексту.\n\ntei_document &lt;- add_tei_prologue(response)\n\nСохраняем в файл.\n\nwriteLines(tei_document, \"bednaya_liza_fragment.xml\", useBytes = TRUE)\n\nПроверяем валидность XML.\n\nlibrary(xml2)\nxml_doc &lt;- read_xml(\"bednaya_liza_fragment.xml\")\nclass(xml_doc)\n\nПрежде чем масштабировать, проверим, нет ли галлюцинаций в оригинале (такое, увы, бывает).",
-    "crumbs": [
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Добавление разметки с LLM</span>"
-    ]
-  },
-  {
-    "objectID": "llm.html#сравнение-с-исходником",
-    "href": "llm.html#сравнение-с-исходником",
-    "title": "6  Добавление разметки с LLM",
-    "section": "6.7 Сравнение с исходником",
-    "text": "6.7 Сравнение с исходником\nИзвлекаем текст из параграфа.\n\nns &lt;- c(tei = \"http://www.tei-c.org/ns/1.0\")\n\ntext_content &lt;- xml_doc |&gt; \n    xml_find_all(\".//tei:body//tei:p\", ns) |&gt; \n    xml_text() |&gt;\n    paste(collapse = \"nn\")\n\nВыводим результат.\n\ncat(text_content)\n\nТеперь можно сравнивать.\n\nlibrary(diffobj)\n\ndiffChr(trimws(text), trimws(text_content), mode = \"sidebyside\")\n\n\nУпс. Машинка действительно кое-что поправила, и не в лучшую сторону.",
-    "crumbs": [
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Добавление разметки с LLM</span>"
-    ]
-  },
-  {
-    "objectID": "llm.html#метрики",
-    "href": "llm.html#метрики",
-    "title": "6  Добавление разметки с LLM",
-    "section": "6.8 Метрики",
-    "text": "6.8 Метрики\nhttps://digitalcommons.unl.edu/r-journal/415/\nИмеет смысл сравнить несколько моделей и выбрать лучшую.\n\nlibrary(stringdist)\nlibrary(dplyr)\n\n\nAttaching package: 'dplyr'\n\n\nThe following objects are masked from 'package:stats':\n\n    filter, lag\n\n\nThe following objects are masked from 'package:base':\n\n    intersect, setdiff, setequal, union\n\n# Sample data\noriginal_text &lt;- \"The quick brown fox jumps over the lazy dog\"\nmodel_outputs &lt;- list(\n  model_A = \"The quikc brown fox jumps over the lazy dog\", # one typo\n  model_B = \"A brow fox jumped over  lazy dog\",  # the worst\n  model_C = \"The quick brown fox jumps over the lazy dog\" # exact match\n)\n\nСчитаем расстояние.\nLevenshtein distance - подсчитывает минимальное количество вставок, удалений и замен - Классическая метрика, широко используется\nOptimal String Alignment (OSA) - добавляет транспозиции смежных символов - Не удовлетворяет неравенству треугольника - Используется по умолчанию в stringdist\nDamerau-Levenshtein - полная версия с множественными транспозициями - Является настоящей метрикой (удовлетворяет всем свойствам)\n\ncompare_texts &lt;- function(original, outputs) {\n  results &lt;- data.frame(\n    model = names(outputs),\n    Levenshtein = sapply(outputs, function(x) stringdist(original, x, method = \"lv\")),\n    DamerauLevenshtein = sapply(outputs, function(x) stringdist(original, x, method = \"dl\")),\n    OptimalStringAlignment = sapply(outputs, function(x) stringdist(original, x, method = \"osa\"))\n    )\n  return(results)\n}\n\n# Compare all models\ncomparison_results &lt;- compare_texts(original_text, model_outputs)\nprint(comparison_results)\n\n          model Levenshtein DamerauLevenshtein OptimalStringAlignment\nmodel_A model_A           2                  1                      1\nmodel_B model_B          15                 15                     15\nmodel_C model_C           0                  0                      0\n\n\nВажно! Для корректно оценки необходимо вручную оценить теги.",
-    "crumbs": [
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Добавление разметки с LLM</span>"
-    ]
-  },
-  {
-    "objectID": "llm.html#как-улучшить-результат",
-    "href": "llm.html#как-улучшить-результат",
-    "title": "6  Добавление разметки с LLM",
-    "section": "6.9 Как улучшить результат",
-    "text": "6.9 Как улучшить результат\n\n6.9.1 Доработка промпта\nДобавьте четкие инструкции о сохранении исходного текста:\n\nsystem_prompt &lt;- \"You are an experienced TEI encoder specializing in geographic markup. \n\nCRITICAL: You must preserve the original text EXACTLY as provided. Do not correct spelling, grammar, or punctuation. Do not modernize language or fix any perceived errors.\n\nYour task is to identify and tag all place references using proper TEI &lt;place&gt; elements WITHOUT changing the original text in any way.\n\n[остальные инструкции...]\n\nIMPORTANT: Return the text with ONLY the place tags added. Everything else must remain identical to the input.\"\n\n\n\n6.9.2 Альтернативные модели\nПопробуйте разные модели - некоторые лучше следуют инструкциям:\n\nmodels_to_test &lt;- c(\n  \"anthropic/claude-3-haiku:beta\",\n  \"meta-llama/llama-3.1-8b-instruct:free\",\n  \"microsoft/wizardlm-2-8x22b\",\n  \"openai/gpt-oss-20b:free\"\n)\n\nТестируем на небольшом фрагменте.\n\nbest_model &lt;- test_models(models_to_test, sample_text)",
-    "crumbs": [
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Добавление разметки с LLM</span>"
-    ]
-  },
-  {
-    "objectID": "share.html",
-    "href": "share.html",
-    "title": "7  Публикационная система Quarto",
-    "section": "",
-    "text": "7.1 О воспроизводимости\nПолученный в результате количественных исследований результат должен быть проверяем и воспроизводим. Это значит, что в большинстве случаев недостаточно просто рассказать, что вы проделали. Теоретически читатель должен иметь возможность проделать тот же путь, что и автор: воcпроизвести его результаты, но в обратном направлении.\nДля этого должны выполняться три основных требования:\nУже на этапе планирования исследования очень важно продумать, как вы будете его документировать. Важно помнить, что код пишется не только для машин, но и для людей, поэтому стоит документировать не только то, что вы делали, но и почему. R дает для этого множество возможностей, главная из которых – это Markdown.",
-    "crumbs": [
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Публикационная система Quarto</span>"
-    ]
-  },
-  {
-    "objectID": "share.html#о-воспроизводимости",
-    "href": "share.html#о-воспроизводимости",
-    "title": "7  Публикационная система Quarto",
-    "section": "",
-    "text": "На заметку\n\n\n\nВоспроизводимость (reproducibility) – это не то же, что повторяемость (replicability). Ученый, который повторяет исследование, проводит его заново на новых данных. Воспроизведение – гораздо более скромная задача, не требующая таких ресурсов, как повторение (Winter 2020, 47).\n\n\n\n\nдоступность данных и метаданных;\nдоступность компьютерного кода;\nдоступность программного обеспечения.",
-    "crumbs": [
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Публикационная система Quarto</span>"
-    ]
-  },
-  {
-    "objectID": "share.html#markdown",
-    "href": "share.html#markdown",
-    "title": "7  Публикационная система Quarto",
-    "section": "7.2 Markdown",
-    "text": "7.2 Markdown\nMarkdown – это облегчённый язык разметки. Он позволяет создавать документы разного формата – не только HTML (веб-страницы), но и PDF и Word. Markdown дает возможность создания полностью воспроизводимых документов, сочетающих код и поясняющий текст. Этот язык используется для создания сайтов, статей, книг, презентаций, отчетов, дашбордов и т.п. Этот курс написан с использованием Markdown.\nЧтобы начать работать с документами .rmd, нужен пакет rmarkdown; в RStudio он уже предустановлен. Создание нового документа .rmd происходит из меню.\nПо умолчанию документ .rmd снабжен шапкой yaml. Она не обязательна. Здесь содержатся данные об авторе, времени создания, формате, сведения о файле с библиографией и т.п.\n---\ntitle: \"Demo\"\nauthor: \"My name\"\ndate: \"2025-10-01\"\noutput: html_document\n---\nТакже в документе .rmd скорее всего будет простой текст и блоки кода. Чтобы “сшить” html (pdf, doc), достаточно нажать кнопку knit либо запустить в консоли код: rmarkdown::render(\"Demo.Rmd\"). После этого в рабочей директории появится новый файл (html, pdf, или doc), которым можно поделиться с коллегами, грантодателями или друзьями.",
-    "crumbs": [
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Публикационная система Quarto</span>"
-    ]
-  },
-  {
-    "objectID": "share.html#quarto",
-    "href": "share.html#quarto",
-    "title": "7  Публикационная система Quarto",
-    "section": "7.3 Quarto",
-    "text": "7.3 Quarto\nРаботать с маркдауном мы будем, используя издательскую систему Quarto с открытым исходным кодом. Она позволяет создавать и публиковать статьи, презентации, информационные панели, веб-сайты, блоги и книги в HTML, PDF, MS Word, ePub и других форматах. В общем, обычный Markdown тоже позволяет все это делать, но чуть сложнее. Quarto объединяет различные пакеты из экосистемы R Markdown воедино и значительно упрощает работу с ними. Подробнее см. практическое руководство “Quarto: The Definitive Guide”.\n\n\n\n\n\n\nЗадание\n\n\n\nСоздайте новый .qmd документ. Потренируйтесь запускать код и сшивать документ в .html, .pdf, .docx.\n\n\nДля .pdf может понадобиться установка LaTeX.\n\n# install.packages(\"tinytex\")\ntinytex::install_tinytex()\n# to uninstall TinyTeX, run\n# tinytex::uninstall_tinytex()\n\nМожно указать сразу несколько форматов для файла, как показано здесь, и “сшить” их одновременно:\n\nquarto::quarto_render(\n  \"untitled.qmd\", \n  output_format = c(\"pdf\", \"html\", \"docx\")\n)",
-    "crumbs": [
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Публикационная система Quarto</span>"
-    ]
-  },
-  {
-    "objectID": "share.html#шапка-yaml",
-    "href": "share.html#шапка-yaml",
-    "title": "7  Публикационная система Quarto",
-    "section": "7.4 Шапка YAML",
-    "text": "7.4 Шапка YAML\nОсновные параметры документа хранятся в YAML-шапке. К ним относятся format, title, subtitle, date, date-format, author, abstract, lang, toc, number-sections и другие.\nПопробуйте изменить шапку своего .qmd-документа и заново его сшить. Сравните с предыдущей версией.\n---\ntitle: \"Заголовок\"\nsubtitle: \"Подзаголовок\"\nformat: html\nauthor: locusclassicus\ndate: today\ndate-format: D.MM.YYYY\nabstract: Значенье бублика нам непонятно.\nlang: ru\ntoc: true\nnumber-sections: true\n---\n\nПоле execute позволяет задать параметры всех фрагментов кода в документе, например:\n---\nexecute:\n  echo: false\n  fig-width: 9\n---\n  \nНо для отдельных кусков кода эти настройки можно поменять:\n```\n#| echo: true\n\nsqrt(16)\n```\nПараметр df-print позволяет выбрать один из возможных способов отображения датафреймов:\n\ndefault — стандартный, как в консоли;\ntibble — стандартный, как в консоли, но в формате tibble;\nkable — минималистичный вариант, подходит для всех видов документов;\npaged — интерактивная таблица, подходит для html страниц.",
-    "crumbs": [
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Публикационная система Quarto</span>"
-    ]
-  },
-  {
-    "objectID": "share.html#синтаксис-markdown",
-    "href": "share.html#синтаксис-markdown",
-    "title": "7  Публикационная система Quarto",
-    "section": "7.5 Синтаксис Markdown",
-    "text": "7.5 Синтаксис Markdown\n\n7.5.1 Заголовки\nЗаголовки разного уровня задаются при помощи решетки:\n# Заголовок первого уровня\n## Заголовок второго уровня\n### Заголовок третьего уровня\n#### Заголовок четвёртого уровня\nПример заголовка третьего уровня:\n\n\n7.5.2 Форматирование\n*курсив*  \n_курсив_\n\n**полужирный**  \n__полужирный__\n\n***полужирный курсив***  \n___полужирный курсив___\n\n~~зачеркнутый~~\n\n&lt;mark&gt;выделение&lt;/mark&gt;\nПример:\nкурсив\nполужирный\nуж и не знаю как выделить\nзачеркнутый\nвыделение\n\n\n7.5.3 Списки\nНумерованный список\n1. Пункт первый\n2. Пункт второй\n3. Пункт третий\nПример:\n\nПункт первый\nПункт второй\nПункт третий\n\nМаркированный список\n- Пункт первый\n- Пункт второй\n- Пункт третий\nПример:\n\nПункт первый\nПункт второй\nПункт третий\n\nТакже Markdown позволяет делать вложенные списки:\n1. Пункт первый\n    - Подпункт первый\n    - Подпункт второй\n2. Пункт второй\nПример:\n\nПункт первый\n\nПодпункт первый\nПодпункт второй\n\nПункт второй\n\nСамое удобное, что элементы списка не обязательно нумеровать:\n(@) Пункт первый.\n(@) Пункт не знаю какой.\n\nПункт первый.\nПункт не знаю какой.\n\n\n\n7.5.4 Ссылки\n[Текст ссылки](http://antibarbari.ru/)\nПример:\nТекст ссылки\n\n\n7.5.5 Изображения\n![Текст описания](https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/Holbein-erasmus.jpg/548px-Holbein-erasmus.jpg)\nПример:\n\n\n\nМоя картинка\n\n\nДва нюанса:\n\nможно давать ссылки на локальные файлы (то есть такие файлы, которые хранятся на компьютере), но имейте в виду, что такой код не будет работать у другого пользователя;\nизображения можно вставлять, пользуясь непосредственно разметкой html.\n\n&lt;img src=\"images/my_image.jpg\" width=40%&gt;\n\n\n7.5.6 Блоки кода\nМожно вставлять непосредственно в текст; для этого код выделяют одинарным обратным апострофом (грависом). Но чаще код дают отдельным блоком. Эти блоки можно именовать; тогда в случае ошибки будет сразу понятно, где она случилась.\n```{}\nsome code here\n```\nВ фигурных скобках надо указать язык, например {r}, только в этом случае код будет подсвечиваться и выполняться.\nТам же в фигурных скобках можно задать следующие параметры:\n\neval = FALSE код будет показан, но не будет выполняться;\ninclude = FALSE код будет выполнен, но ни код, ни результат не будут показаны;\necho = FALSE код будет выполнен, но не показан, результаты при этом видны;\nmessage = FALSE или warning = FALSE прячет сообщения или предупреждения;\nresults = 'hide' не распечатывает результат, а fig.show = 'hide' прячет графики;\nerror = TRUE “сшивание” продолжается, даже если этот блок вернул ошибку.\n\n\n\n7.5.7 Цитаты\n&gt; Omnia praeclara rara.\nПример:\n\nOmnia praeclara rara.\n\nЦитата с подписью может быть оформлена так:\n&gt; Omnia praeclara rara.\n&gt;\n&gt; --- Cicero\nПример:\n\nOmnia praeclara rara.\n— Cicero\n\n\n\n7.5.8 Разделители\nЧтобы создать горизонтальную линию, можно использовать ---, *** или ___.\nПример:\n\n\n\n7.5.9 Таблицы\nТаблицы можно задать вручную при помощи дефисов - и вертикальных линий |; идеальная точность при этом не нужна. Перед таблицей обязательно оставляйте пустую строку, иначе волшебство не сработает.\n\n| Фрукты   | Калории  |\n| -----  | ---- |\n| Яблоко   | 52  |\n| Апельсин | 47  |\nПример:\n\n\n\nФрукты\nКалории\n\n\n\n\nЯблоко\n52\n\n\nАпельсин\n47\n\n\n\nПо умолчанию Markdown распечатывает таблицы так, как они бы выглядели в консоли.\n\ndata(\"iris\")\nhead(iris)\n\n\n  \n\n\n\nДля дополнительного форматирования можно использовать функцию knitr::kable():\n\nknitr::kable(iris[1:6, ], caption = \"Таблица knitr\")\n\n\nТаблица knitr\n\n\nSepal.Length\nSepal.Width\nPetal.Length\nPetal.Width\nSpecies\n\n\n\n\n5.1\n3.5\n1.4\n0.2\nsetosa\n\n\n4.9\n3.0\n1.4\n0.2\nsetosa\n\n\n4.7\n3.2\n1.3\n0.2\nsetosa\n\n\n4.6\n3.1\n1.5\n0.2\nsetosa\n\n\n5.0\n3.6\n1.4\n0.2\nsetosa\n\n\n5.4\n3.9\n1.7\n0.4\nsetosa\n\n\n\n\n\nИнтерактивную таблицу можно создать так:\n\nDT::datatable(iris[1:6,])\n\n\n\n\n\n\n\n7.5.10 Чек-листы\n- [x] Таблицы\n- [ ] Графики\nПример:\n\nТаблицы\nГрафики\n\n\n\n7.5.11 Внутренние ссылки\nУдобны для навигации по документу. К названию любого раздела можно добавить {#id}.\n[Вернуться к чек-листам](#id)\nПример:\nВернуться к чек-листам\n\n\n7.5.12 Графики\nMarkdown позволяет встраивать любые графики.\n\nlibrary(ggplot2)\nggplot(aes(x = Sepal.Length, y = Petal.Length, col = Species), data = iris) +\n  geom_point(show.legend = F)\n\n\n\n\n\n\n\n\nДля интерактивных графиков понадобится пакет plotly:\n\nlibrary(plotly)\nplot_ly(data=iris, x = ~Sepal.Length, y = ~Petal.Length, color = ~Species)\n\n\n\n\n\nПодробное руководство по созданию интерактивных графиков можно найти на сайте https://plotly.com/r/.\n\n\n7.5.13 Математические формулы\nПишутся с использованием синтаксиса LaTeX, о котором можно прочитать подробнее здесь.\nФормулы заключаются в одинарный $, если пишутся в строку, и в двойной $$, если отдельным блоком.\n\\cos (2\\theta) = \\cos^2 \\theta - \\sin^2 \\theta\nВот так это выглядит в тексте: \\(\\cos (2\\theta) = \\cos^2 \\theta - \\sin^2 \\theta\\).\nА вот так – блоком:\n\\[\\cos (2\\theta) = \\cos^2 \\theta - \\sin^2 \\theta\\]\n\n\n7.5.14 Смайлы\nУдобнее вставлять через визуальный редактор (“шестеренка” &gt; Use Visual Editor), но можно и без него:\n\n# devtools::install_github(\"hadley/emo\")\nlibrary(emo)\nemo::ji(\"apple\")\n\n🍎 \n\n\nКод можно записать в строку, тогда смайл появится в тексте: 💀.",
-    "crumbs": [
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Публикационная система Quarto</span>"
-    ]
-  },
-  {
-    "objectID": "share.html#библиография",
-    "href": "share.html#библиография",
-    "title": "7  Публикационная система Quarto",
-    "section": "7.6 Библиография",
-    "text": "7.6 Библиография\nMarkdown позволяет добавлять библиографию в формате BibTeX. BibTeX — программное обеспечение для создания форматированных списков библиографии; обычно используется совместно с LaTeX’ом. Многие сайты, например GoogleScholar, позволяют экспортировать библиографические записи в формате BibTeX. При необходимости запись можно исправить вручную.\nКаждая запись имеет следующую форму.\n@book{winter2020,\n  author = {Bodo Winter},\n  title = \"{Statistics for Linguists: An Introduction Using R}\",\n  year = {2020},\n  publisher = {Routledge}\n}\nЗдесь book — тип записи («книга»), winter2020 — метка-идентификатор записи, дальше список полей со значениями.\nОдна запись описывает ровно одну публикацию статью, книгу, диссертацию, и т. д. Подробнее о типах записей можно посмотреть вот здесь.\nПодобные записи хранятся в текстовом файле с расширением .bib. Чтобы привязать библиографию, нужно указать имя файла в шапке yaml.\n---\nbibliography: bibliography.bib\n---\nДальше, чтобы добавить ссылку, достаточно ввести ключ публикации после @ (в квадратных скобках, чтобы публикация отражалась в круглых): [@wickham2016].\nПример:\n(Wickham и Grolemund 2016).\nМожно интегрировать BibTex с Zotero или другим менеджером библиографии. Для этого придется установить специальное расширение.\nЧтобы изменить стиль цитирования, необходимо добавить в шапку yaml название csl-файла (CSL - Citation Style Language), например:\n---\noutput: html_document\nbibliography: references.bib\ncsl: archiv-fur-geschichte-der-philosophie.csl\n---\nНайти необходимый csl-файл можно, например, в репозитории стилей Zotero.",
-    "crumbs": [
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Публикационная система Quarto</span>"
-    ]
-  },
-  {
-    "objectID": "share.html#публикация-html",
-    "href": "share.html#публикация-html",
-    "title": "7  Публикационная система Quarto",
-    "section": "7.7 Публикация html",
-    "text": "7.7 Публикация html\nДля публикации на RPubs понадобится установить пакеты packrat, rsconnect.\nПри публикации страницы на https://rpubs.com/ следует добавить в шапку две строчки:\n\n---\nembed-resources: true\nstandalone: true\n---\n\nЭто позволит корректно отобразить локальные фото, графики и сохранит оформление.\n\n\n\n\nWickham, Hadley, и Garrett Grolemund. 2016. R for Data Science. O’Reilly. https://r4ds.had.co.nz/index.html.\n\n\nWinter, Bodo. 2020. Statistics for Linguists: An Introduction Using R. Routledge.",
-    "crumbs": [
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Публикационная система Quarto</span>"
-    ]
-  },
-  {
-    "objectID": "ocr.html#препроцессинг-изображений",
-    "href": "ocr.html#препроцессинг-изображений",
-    "title": "3  Распознавание изображений",
-    "section": "3.7 Препроцессинг изображений",
-    "text": "3.7 Препроцессинг изображений\nТочность OCR зависит от качества исходного изображения. Часто можно улучшить результат, правильно масштабируя изображение, удаляя шум и артефакты или обрезая область, где находится текст. Отличный пакет {magick} содержит множество полезных функций для улучшения качества изображения. Что можно попробовать:\n\nЕсли изображение наклонено, используйте image_deskew() и image_rotate(), чтобы выровнять текст по горизонтали.\nimage_trim() обрезает поля с пробельными областями.\nИспользуйте image_convert() для преобразования изображения в градации серого.\nДля изменения размера используйте image_resize().\nФункции image_modulate() или image_contrast() подходят для регулировки яркости/контраста.\nПопробуйте image_reducenoise() для автоматического удаления шума.\n\nВозьмем вот такое изображение и сравним результат распознавания до и после препроцессинга.\n\n\ninput &lt;- image_read(\"./images/IMG_5539.jpg\")\n\n\n# Обработка изображения\nprocessed &lt;- input |&gt;\n  image_deskew() |&gt; \n  image_resize(\"2000x\") |&gt;          \n  image_convert(colorspace = \"gray\") |&gt; \n  image_trim(fuzz = 40)  |&gt; \n  image_modulate(brightness = 120, saturation = 0)  |&gt;\n  image_contrast(sharpen = 1) |&gt;\n  image_normalize() |&gt;  \n  image_despeckle() \n\n\n# Сохранение на диск (посмотреть результат)\nimage_write(processed, path = \"./images/processed.png\", format = \"png\", density = \"300x300\")\n\n\n\n# OCR на обработанном изображении\ntesseract::ocr(processed, engine = \"rus\")\n\n[1] \"„Просимъ огласить слёдующий фактъ: БъЪжавшй въ 1\\n‘изъ Вятской губ. Бауманъ (Ветеринарный врачъ, служинц\\nСаратовскомъ земств въ 95-96 г.) удачно скрывшись от п\\nдовай шшоновъ, попалъ случайно въ совершенно негнану,\\nмЪстность, село ХлЪбное, Задонскаго у$Ззда, Воронежеко м\\nИзмученный голодомъ и продолжительной дорогой ПЪШкКом,\\nрфшилъ обратиться за содфйстнемъ къ самому интеллигент\\nпредставителю деревни, къ земскому врачу Валерану Веленн,\\n\"\n\n\nЕсли проблема в том, что строки имеют разный наклон (например, из-за деформации страницы), то может потребоваться нелинейное преобразование (например, коррекция искажения). Это сложнее, и в {magick} нет прямых функций для этого. Возможно, потребуется использование других инструментов, в том числе предобработка в специализированном ПО.",
-    "crumbs": [
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Распознавание изображений</span>"
-    ]
-  },
-  {
-    "objectID": "regex.html#видео",
-    "href": "regex.html#видео",
-    "title": "4  Нормализация и оценка",
-    "section": "4.3 Видео",
-    "text": "4.3 Видео\n\nВидео 2025 г.",
-    "crumbs": [
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Нормализация и оценка</span>"
-    ]
-  },
-  {
-    "objectID": "xml.html#домашнее-задание",
-    "href": "xml.html#домашнее-задание",
-    "title": "5  Разметка TEI XML",
-    "section": "5.5 Домашнее задание",
-    "text": "5.5 Домашнее задание\n\nДедлайн: 14 ноября 21-00.\nСсылка: https://classroom.github.com/a/l-jxHG39\nОценивание: 0/1\nДанные, подробные инструкции и заготовку для скрипта вы найдете в репозитории. Репозиторий надо клонировать (создать новый локальный проект под контролем версий), отредактировать скрипт согласно инструкции (не переименовывайте файл!), запушить изменения.\nПроверка автоматическая, обычно занимает до 20 минут, выполняется после каждого коммита / пуша. Можно пушить сколько угодно раз до дедлайна. В случае прохождения всех тестов (после обновления страницы) вы увидите зеленую галочку.\n\n\n\nПочему это не быстро? Потому что GitHub Actions при каждой проверке запускает “чистую” виртуальную машину (как правило, Ubuntu), где установлены только базовые вещи типа R, Python и т.д.\nЕсли тесты не пройдены, напротив коммита будет красный крест.\n\n\n\nВы можете пройти на вкладку Actions (см. фото выше), найти там свой коммит (вы же его как-то назвали, помните?) и посмотреть ошибку. После исправления ошибки сделайте новый коммит.\n\nВот так выглядит вкладка Actions. Желтый цвет означает, что workflow в работе.\n Если нажать на коммит (здесь: sumbit hw xml) -&gt; test -&gt; Run tests, можно увидеть детали проверки.\n\n\nВнимательно читайте сообщения об ошибках! Их можно и нужно показывать LLM (например, DeepSeek), которые помогут доработать код.\nВаша задача: добиться прохождения всех тестов! В противном случае задание не засчитывается.\n\n\nПодбробнее о структуре XML документов и способах работы с ними вы можете прочитать в книгах: (Nolan и Lang 2014) и (Холзнер 2004).\n\n\n\n\nNolan, D., и D. T. Lang. 2014. XML and Web Technologies for Data Science with R. Springer.\n\n\nСкоринкин, Даниил. 2016. «Электронное представление текста с помощью стандарта разметки TEI», 90–108.\n\n\nХолзнер, Стивен. 2004. Энциклопедия XML. Питер.",
+    "text": "5.3 Кейс: “Горе от ума”\nСкачаем по из репозитория проекта Dracor “Горе от ума” Грибоедова и преобразуем xml в прямоугольный формат таким образом, чтобы для каждой реплики был указан акт, сцена и действующее лицо.\n\n\n\n\n\n\nНа заметку\n\n\n\nДля работы с корпусом Dracor в среде R существует пакет rdracor. Он позволяет доставать тексты пьес сразу в виде таблицы.\n\n\n\nurl &lt;- \"https://raw.githubusercontent.com/dracor-org/rusdracor/main/tei/griboyedov-gore-ot-uma.xml\"\ndownload_xml(url, file = \"griboedov.xml\")\n\n\ndoc &lt;- read_xml(\"griboedov.xml\")\n\n# определить пространство имён\nns &lt;- xml_ns(doc)\nns\n\nd1 &lt;-&gt; http://www.tei-c.org/ns/1.0\n\n\nПространство имён (namespace) в XML — это механизм, который позволяет однозначно различать элементы и атрибуты с одинаковыми именами, но из разных словарей или стандартов. Оно действует как “фамилия” для элемента. Чтобы задать “фамилию”, её связывают с уникальным идентификатором (обычно это URI, в нашем случае http://www.tei-c.org/ns/1.0). Для удобства этому идентификатору присваивают короткий префикс.\n\n# Найти все строки (tei:l)\nline_nodes &lt;- xml_find_all(doc, \"//d1:l\", ns)\n\n# Извлечь текст каждой строки\nline_text &lt;- xml_text(line_nodes)\n\nline_text |&gt; \n  head()\n\n[1] \"Светает!.. Ах! как скоро ночь минула!\"  \n[2] \"Вчера просилась спать — отказ.\"         \n[3] \"«Ждем друга». — Нужен глаз да глаз,\"    \n[4] \"Не спи, покудова не скатишься со стула.\"\n[5] \"Теперь вот только что вздремнула,\"      \n[6] \"Уж день!.. сказать им...\"               \n\n\nТеперь нам надо для каждой реплики найти информацию о том, кто говорит: она хранится в теге &lt;speaker&gt;. То есть нам надо подняться на два этажа вверх (на уровень &lt;sp&gt;), а потом спуститься к его другому “ребенку”, &lt;speaker&gt;. Для этого используем синтаксис XPath: сначала при помощи ancestor::d1:sp поднимаемся вверх по дереву и выбираем всех предков узла, которые являются элементами sp, а затем спускаемся к ребенку speaker этого найденного sp. Так список спикеров будет равно числу стихов.\n\n# line_nodes — вектор узлов &lt;l&gt;\nspeakers &lt;- xml_find_first(line_nodes, \"ancestor::d1:sp/d1:speaker\", ns = ns) |&gt; \n  xml_text()\n\nspeakers |&gt; \n  head()\n\n[1] \"Лизанька\" \"Лизанька\" \"Лизанька\" \"Лизанька\" \"Лизанька\" \"Лизанька\"\n\n\nАналогичным образом находим явление и акт.\n\nscenes &lt;- xml_find_first(line_nodes, \"ancestor::d1:div[@type='scene']/d1:head\", ns = ns) |&gt; \n  xml_text()\n\nscenes |&gt; \n  tail()\n\n[1] \"Явление 15\" \"Явление 15\" \"Явление 15\" \"Явление 15\" \"Явление 15\"\n[6] \"Явление 15\"\n\n\n\nacts &lt;- xml_text(\n  xml_find_first(line_nodes, \"ancestor::d1:div[@type='act']/d1:head\", ns = ns)\n)\n\nacts |&gt; \n  sample(6)\n\n[1] \"Действие четвертое\" \"Действие третье\"    \"Действие второе\"   \n[4] \"Действие второе\"    \"Действие первое\"    \"Действие первое\"   \n\n\nНам осталось объединить все векторы в одну таблицу.\n\nwoe_from_wit &lt;- tibble(\n  act = acts,\n  scene = scenes,\n  speaker = speakers,\n  text = line_text\n)\n\n\n\n\n\n\n\n\n\nact\nscene\nspeaker\ntext\n\n\n\n\nДействие первое\nЯвление 1\nЛизанька\nСветает!.. Ах! как скоро ночь минула!\n\n\nДействие первое\nЯвление 1\nЛизанька\nВчера просилась спать — отказ.\n\n\nДействие первое\nЯвление 1\nЛизанька\n«Ждем друга». — Нужен глаз да глаз,\n\n\nДействие первое\nЯвление 1\nЛизанька\nНе спи, покудова не скатишься со стула.\n\n\nДействие первое\nЯвление 1\nЛизанька\nТеперь вот только что вздремнула,\n\n\nДействие первое\nЯвление 1\nЛизанька\nУж день!.. сказать им...",
     "crumbs": [
       "<span class='chapter-number'>5</span>  <span class='chapter-title'>Разметка TEI XML</span>"
     ]
@@ -625,6 +425,16 @@
     "title": "5  Разметка TEI XML",
     "section": "5.4 Видео к уроку",
     "text": "5.4 Видео к уроку\n\nВидео 2025 г.",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Разметка TEI XML</span>"
+    ]
+  },
+  {
+    "objectID": "xml.html#домашнее-задание",
+    "href": "xml.html#домашнее-задание",
+    "title": "5  Разметка TEI XML",
+    "section": "5.5 Домашнее задание",
+    "text": "5.5 Домашнее задание\n\nДедлайн: 14 ноября 21-00.\nСсылка: https://classroom.github.com/a/l-jxHG39\nОценивание: 0/1\nДанные, подробные инструкции и заготовку для скрипта вы найдете в репозитории. Репозиторий надо клонировать (создать новый локальный проект под контролем версий), отредактировать скрипт согласно инструкции (не переименовывайте файл!), запушить изменения.\nПроверка автоматическая, обычно занимает до 20 минут, выполняется после каждого коммита / пуша. Можно пушить сколько угодно раз до дедлайна. В случае прохождения всех тестов (после обновления страницы) вы увидите зеленую галочку.\n\n\n\nПочему это не быстро? Потому что GitHub Actions при каждой проверке запускает “чистую” виртуальную машину (как правило, Ubuntu), где установлены только базовые вещи типа R, Python и т.д.\nЕсли тесты не пройдены, напротив коммита будет красный крест.\n\n\n\nВы можете пройти на вкладку Actions (см. фото выше), найти там свой коммит (вы же его как-то назвали, помните?) и посмотреть ошибку. После исправления ошибки сделайте новый коммит.\n\nВот так выглядит вкладка Actions. Желтый цвет означает, что workflow в работе.\n Если нажать на коммит (здесь: sumbit hw xml) -&gt; test -&gt; Run tests, можно увидеть детали проверки.\n\n\nВнимательно читайте сообщения об ошибках! Их можно и нужно показывать LLM (например, DeepSeek), которые помогут доработать код.\nВаша задача: добиться прохождения всех тестов! В противном случае задание не засчитывается.\n\n\nПодбробнее о структуре XML документов и способах работы с ними вы можете прочитать в книгах: (Nolan и Lang 2014) и (Холзнер 2004).\n\n\n\n\nNolan, D., и D. T. Lang. 2014. XML and Web Technologies for Data Science with R. Springer.\n\n\nСкоринкин, Даниил. 2016. «Электронное представление текста с помощью стандарта разметки TEI», 90–108.\n\n\nХолзнер, Стивен. 2004. Энциклопедия XML. Питер.",
     "crumbs": [
       "<span class='chapter-number'>5</span>  <span class='chapter-title'>Разметка TEI XML</span>"
     ]
@@ -677,6 +487,186 @@
     "text": "6.4 Совместная встречаемость слов\nФункция cooccurence() из пакета udpipe позволяет выяснить, сколько раз некий термин встречается совместно с другим термином, например:\n\nслова встречаются в одном и том же документе/предложении/параграфе;\nслова следуют за другим словом;\nслова находятся по соседству с другим словом на расстоянии n слов.\n\nВыясним, какие существительные чаще встречаются в одном предложении у Локка:\n\nlocke_subset &lt;-  subset(emp_pos, doc_id = \"Locke\")\n\nlocke_nouns &lt;- locke_subset |&gt; \n  filter(upos == \"NOUN\")\n\ncooc &lt;- cooccurrence(locke_nouns, term = \"lemma\", \n                     group = c(\"doc_id\", \"sentence_id\")) |&gt;\n  as_tibble() |&gt; \n  filter(cooc &gt; 100)\n\ncooc\n\n\n  \n\n\n\nЭтот результат легко визуализировать, используя пакет ggraph:\n\nlibrary(igraph)\nlibrary(ggraph)\n\nwordnetwork &lt;- graph_from_data_frame(cooc)\n\nggraph(wordnetwork, layout = \"fr\") +\n  geom_edge_arc(aes(width = cooc), alpha = 0.8, edge_colour = \"grey90\", show.legend=FALSE) +\n  geom_node_label(aes(label = name), col = \"#1f78b4\", size = 4) +\n  theme_void() +\n  labs(title = \"Совместная встречаемость существительных в предложении\")\n\n\n\n\n\n\n\n\nЧтобы узнать, какие слова чаще стоят рядом, используем ту же функцию, но с другими аргументами:\n\ncooc2 &lt;- cooccurrence(locke_subset$lemma, \n                      relevant = locke_subset$upos %in% c(\"NOUN\", \"ADJ\"), \n                      skipgram = 1) |&gt; \n  as_tibble() |&gt; \n  filter(cooc &gt; 20)\n\ncooc2\n\n\n  \n\n\n\n\nwordnetwork &lt;- graph_from_data_frame(cooc2)\n\nggraph(wordnetwork, layout = \"fr\") +\n  geom_edge_link(aes(width = cooc), edge_colour = \"grey90\", edge_alpha=0.8, show.legend = F) +\n  geom_node_label(aes(label = name), col = \"#1f78b4\") +\n  labs(title = \"Слова, стоящие рядом в тексте\") +\n  theme_void()\n\nWarning in geom_node_label(aes(label = name), col = \"#1f78b4\"): Ignoring\nunknown parameters: `label.size`",
     "crumbs": [
       "<span class='chapter-number'>6</span>  <span class='chapter-title'>Анализ частотностей</span>"
+    ]
+  },
+  {
+    "objectID": "llm.html",
+    "href": "llm.html",
+    "title": "7  Добавление разметки с LLM",
+    "section": "",
+    "text": "7.1 Модели\nOpenRouter — это агрегатор LLM‑моделей (OpenAI, Anthropic, Meta, Mistral и др.) с единым API. Можно выбрать бесплатные модели (с лимитами) и вызывать их из R/RStudio.",
+    "crumbs": [
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Добавление разметки с LLM</span>"
+    ]
+  },
+  {
+    "objectID": "llm.html#модели",
+    "href": "llm.html#модели",
+    "title": "7  Добавление разметки с LLM",
+    "section": "",
+    "text": "Большая часть моделей требует денег за API =(\nЕсть бесплатный пробный период у Gemini, но из России воспользоваться им не получится без VPN =/\nЕсть полностью бесплатные локальные модели. Они тяжелые и не всегда умные.\nКопипаста через телеграм-чат - не наш метод.\nРазные хитрости.",
+    "crumbs": [
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Добавление разметки с LLM</span>"
+    ]
+  },
+  {
+    "objectID": "llm.html#получение-ключа-api",
+    "href": "llm.html#получение-ключа-api",
+    "title": "7  Добавление разметки с LLM",
+    "section": "7.2 Получение ключа API",
+    "text": "7.2 Получение ключа API\nAPI (Application programming interface) это набор правил, по которым приложения или части программы общаются друг с другом.\nИдем на сайт https://openrouter.ai/, регистрируемся, получаем ключ (дайте ему осмысленное название), копируем и сразу сохраняем.\n\nSys.setenv(OPENROUTER_API_KEY = \"ваш_ключ_api\")\n\nИли отредактируйте файл .Renviron в домашней директории:\n\nusethis::edit_r_environ()\n\nПосле чего добавьте строку в файл OPENROUTER_API_KEY=ваш_ключ_api и перезапустите сессию.\nПроверить:\n\nSys.getenv(\"OPENROUTER_API_KEY\")",
+    "crumbs": [
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Добавление разметки с LLM</span>"
+    ]
+  },
+  {
+    "objectID": "llm.html#начало-работы",
+    "href": "llm.html#начало-работы",
+    "title": "7  Добавление разметки с LLM",
+    "section": "7.3 Начало работы",
+    "text": "7.3 Начало работы\n\nlibrary(ellmer)\npackageVersion(\"ellmer\")\n\n[1] '0.3.0'\n\n\n\nchat &lt;- chat_openrouter(\n  system_prompt = \"You always reply in Latin\",\n  api_key = Sys.getenv(\"OPENROUTER_API_KEY\"),\n  model = NULL\n)\n\n\nchat$chat(\"На сколько частей разделена Галлия?\")\n# Error in `req_perform_connection()`:\n# ! HTTP 402 Payment Required.\n# ℹ Insufficient credits. Add more using\n#   https://openrouter.ai/settings/credits\n# Run `rlang::last_trace()` to see where the error occurred.\n\nСписок бесплатных моделей можно уточнить здесь https://openrouter.ai/models\n\nchat &lt;- chat_openrouter(\n  system_prompt = \"You always reply in Latin\",\n  api_key = Sys.getenv(\"OPENROUTER_API_KEY\"),\n  model = \"openai/gpt-oss-20b:free\"\n)\n\nchat$chat(\"На сколько частей разделена Галлия?\")\n# Gallia in tres partes dividitur: Gallia Narbonensis, Gallia \n# Lugdunensis, et Gallia Belgica.\n\nЕсли все получилось, идем дальше.",
+    "crumbs": [
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Добавление разметки с LLM</span>"
+    ]
+  },
+  {
+    "objectID": "llm.html#создание-промпта",
+    "href": "llm.html#создание-промпта",
+    "title": "7  Добавление разметки с LLM",
+    "section": "7.4 Создание промпта",
+    "text": "7.4 Создание промпта\n(Тут будет подробнее про стратегии написания промптов)\n\nsystem_prompt &lt;- \"You are an experienced TEI encoder specializing in geographic markup. Your task is to identify and tag all place references in the text using proper TEI &lt;place&gt; elements.\n\nINSTRUCTIONS:\n1. Identify ALL geographic references including:\n   - Cities, towns, villages (e.g., Paris, London)\n   - Countries, regions, states (e.g., France, Tuscany, California)\n   - Geographic features (e.g., Rhine River, Alps, Mediterranean Sea)\n   - Buildings and landmarks (e.g., Eiffel Tower, Westminster Abbey)\n   - Fictional places (e.g., Hogwarts, Middle-earth)\n\n2. Use this tagging format:\n   - Simple places: &lt;place&gt;Paris&lt;/place&gt;\n   - With type attribute: &lt;place type='city'&gt;Paris&lt;/place&gt;\n   - With key/ID: &lt;place key='paris_france'&gt;Paris&lt;/place&gt;\n\n3. TYPES to use:\n   - settlement (cities, towns, villages)\n   - country \n   - region\n   - building\n   - landmark\n   - waterway\n   - mountain\n   - fictional\n\n4. RULES:\n   - Tag the complete place name as it appears\n   - Don't tag directional references like 'north', 'eastern' unless part of proper name\n   - Include adjectives when part of the place name (e.g., 'New York', 'Great Britain')\n   - For ambiguous cases, prioritize the most specific geographic reading\n\n5. Return the complete text with all place references properly tagged.\"",
+    "crumbs": [
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Добавление разметки с LLM</span>"
+    ]
+  },
+  {
+    "objectID": "llm.html#добавление-разметки",
+    "href": "llm.html#добавление-разметки",
+    "title": "7  Добавление разметки с LLM",
+    "section": "7.5 Добавление разметки",
+    "text": "7.5 Добавление разметки\n\nuser_prompt &lt;- \"Может быть, никто из живущих в Москве не знает так хорошо окрестностей города сего, как я, потому что никто чаще моего не бывает в поле, никто более моего не бродит пешком, без плана, без цели — куда глаза глядят — по лугам и рощам, по холмам и равнинам. Всякое лето нахожу новые приятные места или в старых новые красоты.\n\nНо всего приятнее для меня то место, на котором возвышаются мрачные, готические башни Си...нова монастыря. Стоя на сей горе, видишь на правой стороне почти всю Москву, сию ужасную громаду домов и церквей, которая представляется глазам в образе величественного амфитеатра: великолепная картина, особливо когда светит на нее солнце, когда вечерние лучи его пылают на бесчисленных златых куполах, на бесчисленных крестах, к небу возносящихся! Внизу расстилаются тучные, густо-зеленые цветущие луга, а за ними, по желтым пескам, течет светлая река, волнуемая легкими веслами рыбачьих лодок или шумящая под рулем грузных стругов, которые плывут от плодоноснейших стран Российской империи и наделяют алчную Москву хлебом. На другой стороне реки видна дубовая роща, подле которой пасутся многочисленные стада; там молодые пастухи, сидя под тению дерев, поют простые, унылые песни и сокращают тем летние дни, столь для них единообразные. Подалее, в густой зелени древних вязов, блистает златоглавый Данилов монастырь; еще далее, почти на краю горизонта, синеются Воробьевы горы. На левой же стороне видны обширные, хлебом покрытые поля, лесочки, три или четыре деревеньки и вдали село Коломенское с высоким дворцом своим.\"\n\nchat &lt;- chat_openrouter(\n  system_prompt = system_prompt,\n  api_key = Sys.getenv(\"OPENROUTER_API_KEY\"),\n  model = \"openai/gpt-oss-20b:free\"\n)\n\nresponse &lt;- chat$chat(user_prompt)\n# Может быть, никто из живущих в &lt;place \n# type='settlement'&gt;Москву&lt;/place&gt; не знает так хорошо окрестностей \n# города сего, как я, потому что никто чаще моего не бывает в поле, \n# никто более моего не бродит пешком, без плана, без цели — куда \n# глаза глядят — по лугам и рощам, по холмам и равнинам. Всякое лето \n# нахожу новые приятные места или в старых новые красоты.\n# \n# Но всего приятнее для меня то место, на котором возвышаются \n# мрачные, готические башни &lt;place type='building'&gt;Си…нова \n# монастыря&lt;/place&gt;. Стоя на сей горе, видишь на правой стороне почти\n# всю &lt;place type='settlement'&gt;Москва&lt;/place&gt;, сию ужасную громаду \n# домов и церквей, которая представляется глазам в образе \n# величественного амфитеатра: великолепная картина, особливо когда \n# светит на нее солнце, когда вечерние лучи его пылают на \n# бесчисленных златых куполах, на бесчисленных крестах, к небу \n# возносящихся! Внизу расстилаются тучные, густо-зеленые цветущие \n# луга, а за ними, по желтым пескам, течет светлая река, волнуемая \n# легкими веслами рыбачьих лодок или шумящая под рулем грузных \n# стругов, которые плывут от плодоноснейших стран &lt;place \n# type='region'&gt;Российской империи&lt;/place&gt; и наделяют алчную &lt;place \n# type='settlement'&gt;Москву&lt;/place&gt; хлебом. На другой стороне реки \n# видна дубовая роща, подле которой пасутся многочисленные стада; там\n# молодые пастухи, сидя под тенью дерев, поют простые, унылые песни и\n# сокращают тем летние дни, столь для них единообразные. Подалее, в \n# густой зелени древних вязов, блистает златоглавый &lt;place \n# type='building'&gt;Данилов монастырь&lt;/place&gt;; еще далее, почти на краю\n# горизонта, синеются &lt;place type='mountain'&gt;Воробьевы горы&lt;/place&gt;. \n# На левой же стороне видны обширные, хлебом покрытые поля, лесочки, \n# три или четыре деревеньки и вдали село &lt;place \n# type='settlement'&gt;Коломенское&lt;/place&gt; с высоким дворцом своим.\n\nНа первый взгляд, модель справилась неплохо. “Российскую империю” стоило тегировать как “страну”, а не “регион” (подобные случаи можно прописать в промпте).",
+    "crumbs": [
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Добавление разметки с LLM</span>"
+    ]
+  },
+  {
+    "objectID": "llm.html#добавление-пролога",
+    "href": "llm.html#добавление-пролога",
+    "title": "7  Добавление разметки с LLM",
+    "section": "7.6 Добавление пролога",
+    "text": "7.6 Добавление пролога\n\nadd_tei_prologue &lt;- function(marked_text, \n                            title = \"Карамзин Н.М. Бедная Лиза\", \n                            author = \"Карамзин, Николай Михайлович\",\n                            date = \"1792\") {\n  \n  prologue &lt;- sprintf('&lt;?xml version=\"1.0\" encoding=\"UTF-8\"?&gt;\n&lt;TEI xmlns=\"http://www.tei-c.org/ns/1.0\"&gt;\n  &lt;teiHeader&gt;\n    &lt;fileDesc&gt;\n      &lt;titleStmt&gt;\n        &lt;title&gt;%s&lt;/title&gt;\n        &lt;author&gt;%s&lt;/author&gt;\n      &lt;/titleStmt&gt;\n      &lt;publicationStmt&gt;\n        &lt;p&gt;Цифровое издание для исследовательских целей&lt;/p&gt;\n      &lt;/publicationStmt&gt;\n      &lt;sourceDesc&gt;\n        &lt;p&gt;Оригинальный текст %s года&lt;/p&gt;\n      &lt;/sourceDesc&gt;\n    &lt;/fileDesc&gt;\n  &lt;/teiHeader&gt;\n  &lt;text&gt;\n    &lt;body&gt;\n      &lt;p&gt;%s&lt;/p&gt;\n    &lt;/body&gt;\n  &lt;/text&gt;\n&lt;/TEI&gt;', title, author, date, marked_text)\n  \n  return(prologue)\n}\n\nПрименяем к нашему тексту.\n\ntei_document &lt;- add_tei_prologue(response)\n\nСохраняем в файл.\n\nwriteLines(tei_document, \"bednaya_liza_fragment.xml\", useBytes = TRUE)\n\nПроверяем валидность XML.\n\nlibrary(xml2)\nxml_doc &lt;- read_xml(\"bednaya_liza_fragment.xml\")\nclass(xml_doc)\n\nПрежде чем масштабировать, проверим, нет ли галлюцинаций в оригинале (такое, увы, бывает).",
+    "crumbs": [
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Добавление разметки с LLM</span>"
+    ]
+  },
+  {
+    "objectID": "llm.html#сравнение-с-исходником",
+    "href": "llm.html#сравнение-с-исходником",
+    "title": "7  Добавление разметки с LLM",
+    "section": "7.7 Сравнение с исходником",
+    "text": "7.7 Сравнение с исходником\nИзвлекаем текст из параграфа.\n\nns &lt;- c(tei = \"http://www.tei-c.org/ns/1.0\")\n\ntext_content &lt;- xml_doc |&gt; \n    xml_find_all(\".//tei:body//tei:p\", ns) |&gt; \n    xml_text() |&gt;\n    paste(collapse = \"nn\")\n\nВыводим результат.\n\ncat(text_content)\n\nТеперь можно сравнивать.\n\nlibrary(diffobj)\n\ndiffChr(trimws(text), trimws(text_content), mode = \"sidebyside\")\n\n\nУпс. Машинка действительно кое-что поправила, и не в лучшую сторону.",
+    "crumbs": [
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Добавление разметки с LLM</span>"
+    ]
+  },
+  {
+    "objectID": "llm.html#метрики",
+    "href": "llm.html#метрики",
+    "title": "7  Добавление разметки с LLM",
+    "section": "7.8 Метрики",
+    "text": "7.8 Метрики\nhttps://digitalcommons.unl.edu/r-journal/415/\nИмеет смысл сравнить несколько моделей и выбрать лучшую.\n\nlibrary(stringdist)\nlibrary(dplyr)\n\n\nAttaching package: 'dplyr'\n\n\nThe following objects are masked from 'package:stats':\n\n    filter, lag\n\n\nThe following objects are masked from 'package:base':\n\n    intersect, setdiff, setequal, union\n\n# Sample data\noriginal_text &lt;- \"The quick brown fox jumps over the lazy dog\"\nmodel_outputs &lt;- list(\n  model_A = \"The quikc brown fox jumps over the lazy dog\", # one typo\n  model_B = \"A brow fox jumped over  lazy dog\",  # the worst\n  model_C = \"The quick brown fox jumps over the lazy dog\" # exact match\n)\n\nСчитаем расстояние.\nLevenshtein distance - подсчитывает минимальное количество вставок, удалений и замен - Классическая метрика, широко используется\nOptimal String Alignment (OSA) - добавляет транспозиции смежных символов - Не удовлетворяет неравенству треугольника - Используется по умолчанию в stringdist\nDamerau-Levenshtein - полная версия с множественными транспозициями - Является настоящей метрикой (удовлетворяет всем свойствам)\n\ncompare_texts &lt;- function(original, outputs) {\n  results &lt;- data.frame(\n    model = names(outputs),\n    Levenshtein = sapply(outputs, function(x) stringdist(original, x, method = \"lv\")),\n    DamerauLevenshtein = sapply(outputs, function(x) stringdist(original, x, method = \"dl\")),\n    OptimalStringAlignment = sapply(outputs, function(x) stringdist(original, x, method = \"osa\"))\n    )\n  return(results)\n}\n\n# Compare all models\ncomparison_results &lt;- compare_texts(original_text, model_outputs)\nprint(comparison_results)\n\n          model Levenshtein DamerauLevenshtein OptimalStringAlignment\nmodel_A model_A           2                  1                      1\nmodel_B model_B          15                 15                     15\nmodel_C model_C           0                  0                      0\n\n\nВажно! Для корректно оценки необходимо вручную оценить теги.",
+    "crumbs": [
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Добавление разметки с LLM</span>"
+    ]
+  },
+  {
+    "objectID": "llm.html#как-улучшить-результат",
+    "href": "llm.html#как-улучшить-результат",
+    "title": "7  Добавление разметки с LLM",
+    "section": "7.9 Как улучшить результат",
+    "text": "7.9 Как улучшить результат\n\n7.9.1 Доработка промпта\nДобавьте четкие инструкции о сохранении исходного текста:\n\nsystem_prompt &lt;- \"You are an experienced TEI encoder specializing in geographic markup. \n\nCRITICAL: You must preserve the original text EXACTLY as provided. Do not correct spelling, grammar, or punctuation. Do not modernize language or fix any perceived errors.\n\nYour task is to identify and tag all place references using proper TEI &lt;place&gt; elements WITHOUT changing the original text in any way.\n\n[остальные инструкции...]\n\nIMPORTANT: Return the text with ONLY the place tags added. Everything else must remain identical to the input.\"\n\n\n\n7.9.2 Альтернативные модели\nПопробуйте разные модели - некоторые лучше следуют инструкциям:\n\nmodels_to_test &lt;- c(\n  \"anthropic/claude-3-haiku:beta\",\n  \"meta-llama/llama-3.1-8b-instruct:free\",\n  \"microsoft/wizardlm-2-8x22b\",\n  \"openai/gpt-oss-20b:free\"\n)\n\nТестируем на небольшом фрагменте.\n\nbest_model &lt;- test_models(models_to_test, sample_text)",
+    "crumbs": [
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Добавление разметки с LLM</span>"
+    ]
+  },
+  {
+    "objectID": "share.html",
+    "href": "share.html",
+    "title": "8  Публикационная система Quarto",
+    "section": "",
+    "text": "8.1 О воспроизводимости\nПолученный в результате количественных исследований результат должен быть проверяем и воспроизводим. Это значит, что в большинстве случаев недостаточно просто рассказать, что вы проделали. Теоретически читатель должен иметь возможность проделать тот же путь, что и автор: воcпроизвести его результаты, но в обратном направлении.\nДля этого должны выполняться три основных требования:\nУже на этапе планирования исследования очень важно продумать, как вы будете его документировать. Важно помнить, что код пишется не только для машин, но и для людей, поэтому стоит документировать не только то, что вы делали, но и почему. R дает для этого множество возможностей, главная из которых – это Markdown.",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Публикационная система Quarto</span>"
+    ]
+  },
+  {
+    "objectID": "share.html#о-воспроизводимости",
+    "href": "share.html#о-воспроизводимости",
+    "title": "8  Публикационная система Quarto",
+    "section": "",
+    "text": "На заметку\n\n\n\nВоспроизводимость (reproducibility) – это не то же, что повторяемость (replicability). Ученый, который повторяет исследование, проводит его заново на новых данных. Воспроизведение – гораздо более скромная задача, не требующая таких ресурсов, как повторение (Winter 2020, 47).\n\n\n\n\nдоступность данных и метаданных;\nдоступность компьютерного кода;\nдоступность программного обеспечения.",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Публикационная система Quarto</span>"
+    ]
+  },
+  {
+    "objectID": "share.html#markdown",
+    "href": "share.html#markdown",
+    "title": "8  Публикационная система Quarto",
+    "section": "8.2 Markdown",
+    "text": "8.2 Markdown\nMarkdown – это облегчённый язык разметки. Он позволяет создавать документы разного формата – не только HTML (веб-страницы), но и PDF и Word. Markdown дает возможность создания полностью воспроизводимых документов, сочетающих код и поясняющий текст. Этот язык используется для создания сайтов, статей, книг, презентаций, отчетов, дашбордов и т.п. Этот курс написан с использованием Markdown.\nЧтобы начать работать с документами .rmd, нужен пакет rmarkdown; в RStudio он уже предустановлен. Создание нового документа .rmd происходит из меню.\nПо умолчанию документ .rmd снабжен шапкой yaml. Она не обязательна. Здесь содержатся данные об авторе, времени создания, формате, сведения о файле с библиографией и т.п.\n---\ntitle: \"Demo\"\nauthor: \"My name\"\ndate: \"2025-11-10\"\noutput: html_document\n---\nТакже в документе .rmd скорее всего будет простой текст и блоки кода. Чтобы “сшить” html (pdf, doc), достаточно нажать кнопку knit либо запустить в консоли код: rmarkdown::render(\"Demo.Rmd\"). После этого в рабочей директории появится новый файл (html, pdf, или doc), которым можно поделиться с коллегами, грантодателями или друзьями.",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Публикационная система Quarto</span>"
+    ]
+  },
+  {
+    "objectID": "share.html#quarto",
+    "href": "share.html#quarto",
+    "title": "8  Публикационная система Quarto",
+    "section": "8.3 Quarto",
+    "text": "8.3 Quarto\nРаботать с маркдауном мы будем, используя издательскую систему Quarto с открытым исходным кодом. Она позволяет создавать и публиковать статьи, презентации, информационные панели, веб-сайты, блоги и книги в HTML, PDF, MS Word, ePub и других форматах. В общем, обычный Markdown тоже позволяет все это делать, но чуть сложнее. Quarto объединяет различные пакеты из экосистемы R Markdown воедино и значительно упрощает работу с ними. Подробнее см. практическое руководство “Quarto: The Definitive Guide”.\n\n\n\n\n\n\nЗадание\n\n\n\nСоздайте новый .qmd документ. Потренируйтесь запускать код и сшивать документ в .html, .pdf, .docx.\n\n\nДля .pdf может понадобиться установка LaTeX.\n\n# install.packages(\"tinytex\")\ntinytex::install_tinytex()\n# to uninstall TinyTeX, run\n# tinytex::uninstall_tinytex()\n\nМожно указать сразу несколько форматов для файла, как показано здесь, и “сшить” их одновременно:\n\nquarto::quarto_render(\n  \"untitled.qmd\", \n  output_format = c(\"pdf\", \"html\", \"docx\")\n)",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Публикационная система Quarto</span>"
+    ]
+  },
+  {
+    "objectID": "share.html#шапка-yaml",
+    "href": "share.html#шапка-yaml",
+    "title": "8  Публикационная система Quarto",
+    "section": "8.4 Шапка YAML",
+    "text": "8.4 Шапка YAML\nОсновные параметры документа хранятся в YAML-шапке. К ним относятся format, title, subtitle, date, date-format, author, abstract, lang, toc, number-sections и другие.\nПопробуйте изменить шапку своего .qmd-документа и заново его сшить. Сравните с предыдущей версией.\n---\ntitle: \"Заголовок\"\nsubtitle: \"Подзаголовок\"\nformat: html\nauthor: locusclassicus\ndate: today\ndate-format: D.MM.YYYY\nabstract: Значенье бублика нам непонятно.\nlang: ru\ntoc: true\nnumber-sections: true\n---\n\nПоле execute позволяет задать параметры всех фрагментов кода в документе, например:\n---\nexecute:\n  echo: false\n  fig-width: 9\n---\n  \nНо для отдельных кусков кода эти настройки можно поменять:\n```\n#| echo: true\n\nsqrt(16)\n```\nПараметр df-print позволяет выбрать один из возможных способов отображения датафреймов:\n\ndefault — стандартный, как в консоли;\ntibble — стандартный, как в консоли, но в формате tibble;\nkable — минималистичный вариант, подходит для всех видов документов;\npaged — интерактивная таблица, подходит для html страниц.",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Публикационная система Quarto</span>"
+    ]
+  },
+  {
+    "objectID": "share.html#синтаксис-markdown",
+    "href": "share.html#синтаксис-markdown",
+    "title": "8  Публикационная система Quarto",
+    "section": "8.5 Синтаксис Markdown",
+    "text": "8.5 Синтаксис Markdown\n\n8.5.1 Заголовки\nЗаголовки разного уровня задаются при помощи решетки:\n# Заголовок первого уровня\n## Заголовок второго уровня\n### Заголовок третьего уровня\n#### Заголовок четвёртого уровня\nПример заголовка третьего уровня:\n\n\n8.5.2 Форматирование\n*курсив*  \n_курсив_\n\n**полужирный**  \n__полужирный__\n\n***полужирный курсив***  \n___полужирный курсив___\n\n~~зачеркнутый~~\n\n&lt;mark&gt;выделение&lt;/mark&gt;\nПример:\nкурсив\nполужирный\nуж и не знаю как выделить\nзачеркнутый\nвыделение\n\n\n8.5.3 Списки\nНумерованный список\n1. Пункт первый\n2. Пункт второй\n3. Пункт третий\nПример:\n\nПункт первый\nПункт второй\nПункт третий\n\nМаркированный список\n- Пункт первый\n- Пункт второй\n- Пункт третий\nПример:\n\nПункт первый\nПункт второй\nПункт третий\n\nТакже Markdown позволяет делать вложенные списки:\n1. Пункт первый\n    - Подпункт первый\n    - Подпункт второй\n2. Пункт второй\nПример:\n\nПункт первый\n\nПодпункт первый\nПодпункт второй\n\nПункт второй\n\nСамое удобное, что элементы списка не обязательно нумеровать:\n(@) Пункт первый.\n(@) Пункт не знаю какой.\n\nПункт первый.\nПункт не знаю какой.\n\n\n\n8.5.4 Ссылки\n[Текст ссылки](http://antibarbari.ru/)\nПример:\nТекст ссылки\n\n\n8.5.5 Изображения\n![Текст описания](https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/Holbein-erasmus.jpg/548px-Holbein-erasmus.jpg)\nПример:\n\n\n\nМоя картинка\n\n\nДва нюанса:\n\nможно давать ссылки на локальные файлы (то есть такие файлы, которые хранятся на компьютере), но имейте в виду, что такой код не будет работать у другого пользователя;\nизображения можно вставлять, пользуясь непосредственно разметкой html.\n\n&lt;img src=\"images/my_image.jpg\" width=40%&gt;\n\n\n8.5.6 Блоки кода\nМожно вставлять непосредственно в текст; для этого код выделяют одинарным обратным апострофом (грависом). Но чаще код дают отдельным блоком. Эти блоки можно именовать; тогда в случае ошибки будет сразу понятно, где она случилась.\n```{}\nsome code here\n```\nВ фигурных скобках надо указать язык, например {r}, только в этом случае код будет подсвечиваться и выполняться.\nТам же в фигурных скобках можно задать следующие параметры:\n\neval = FALSE код будет показан, но не будет выполняться;\ninclude = FALSE код будет выполнен, но ни код, ни результат не будут показаны;\necho = FALSE код будет выполнен, но не показан, результаты при этом видны;\nmessage = FALSE или warning = FALSE прячет сообщения или предупреждения;\nresults = 'hide' не распечатывает результат, а fig.show = 'hide' прячет графики;\nerror = TRUE “сшивание” продолжается, даже если этот блок вернул ошибку.\n\n\n\n8.5.7 Цитаты\n&gt; Omnia praeclara rara.\nПример:\n\nOmnia praeclara rara.\n\nЦитата с подписью может быть оформлена так:\n&gt; Omnia praeclara rara.\n&gt;\n&gt; --- Cicero\nПример:\n\nOmnia praeclara rara.\n— Cicero\n\n\n\n8.5.8 Разделители\nЧтобы создать горизонтальную линию, можно использовать ---, *** или ___.\nПример:\n\n\n\n8.5.9 Таблицы\nТаблицы можно задать вручную при помощи дефисов - и вертикальных линий |; идеальная точность при этом не нужна. Перед таблицей обязательно оставляйте пустую строку, иначе волшебство не сработает.\n\n| Фрукты   | Калории  |\n| -----  | ---- |\n| Яблоко   | 52  |\n| Апельсин | 47  |\nПример:\n\n\n\nФрукты\nКалории\n\n\n\n\nЯблоко\n52\n\n\nАпельсин\n47\n\n\n\nПо умолчанию Markdown распечатывает таблицы так, как они бы выглядели в консоли.\n\ndata(\"iris\")\nhead(iris)\n\n\n  \n\n\n\nДля дополнительного форматирования можно использовать функцию knitr::kable():\n\nknitr::kable(iris[1:6, ], caption = \"Таблица knitr\")\n\n\nТаблица knitr\n\n\nSepal.Length\nSepal.Width\nPetal.Length\nPetal.Width\nSpecies\n\n\n\n\n5.1\n3.5\n1.4\n0.2\nsetosa\n\n\n4.9\n3.0\n1.4\n0.2\nsetosa\n\n\n4.7\n3.2\n1.3\n0.2\nsetosa\n\n\n4.6\n3.1\n1.5\n0.2\nsetosa\n\n\n5.0\n3.6\n1.4\n0.2\nsetosa\n\n\n5.4\n3.9\n1.7\n0.4\nsetosa\n\n\n\n\n\nИнтерактивную таблицу можно создать так:\n\nDT::datatable(iris[1:6,])\n\n\n\n\n\n\n\n8.5.10 Чек-листы\n- [x] Таблицы\n- [ ] Графики\nПример:\n\nТаблицы\nГрафики\n\n\n\n8.5.11 Внутренние ссылки\nУдобны для навигации по документу. К названию любого раздела можно добавить {#id}.\n[Вернуться к чек-листам](#id)\nПример:\nВернуться к чек-листам\n\n\n8.5.12 Графики\nMarkdown позволяет встраивать любые графики.\n\nlibrary(ggplot2)\nggplot(aes(x = Sepal.Length, y = Petal.Length, col = Species), data = iris) +\n  geom_point(show.legend = F)\n\n\n\n\n\n\n\n\nДля интерактивных графиков понадобится пакет plotly:\n\nlibrary(plotly)\nplot_ly(data=iris, x = ~Sepal.Length, y = ~Petal.Length, color = ~Species)\n\n\n\n\n\nПодробное руководство по созданию интерактивных графиков можно найти на сайте https://plotly.com/r/.\n\n\n8.5.13 Математические формулы\nПишутся с использованием синтаксиса LaTeX, о котором можно прочитать подробнее здесь.\nФормулы заключаются в одинарный $, если пишутся в строку, и в двойной $$, если отдельным блоком.\n\\cos (2\\theta) = \\cos^2 \\theta - \\sin^2 \\theta\nВот так это выглядит в тексте: \\(\\cos (2\\theta) = \\cos^2 \\theta - \\sin^2 \\theta\\).\nА вот так – блоком:\n\\[\\cos (2\\theta) = \\cos^2 \\theta - \\sin^2 \\theta\\]\n\n\n8.5.14 Смайлы\nУдобнее вставлять через визуальный редактор (“шестеренка” &gt; Use Visual Editor), но можно и без него:\n\n# devtools::install_github(\"hadley/emo\")\nlibrary(emo)\nemo::ji(\"apple\")\n\n🍎 \n\n\nКод можно записать в строку, тогда смайл появится в тексте: 💀.",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Публикационная система Quarto</span>"
+    ]
+  },
+  {
+    "objectID": "share.html#библиография",
+    "href": "share.html#библиография",
+    "title": "8  Публикационная система Quarto",
+    "section": "8.6 Библиография",
+    "text": "8.6 Библиография\nMarkdown позволяет добавлять библиографию в формате BibTeX. BibTeX — программное обеспечение для создания форматированных списков библиографии; обычно используется совместно с LaTeX’ом. Многие сайты, например GoogleScholar, позволяют экспортировать библиографические записи в формате BibTeX. При необходимости запись можно исправить вручную.\nКаждая запись имеет следующую форму.\n@book{winter2020,\n  author = {Bodo Winter},\n  title = \"{Statistics for Linguists: An Introduction Using R}\",\n  year = {2020},\n  publisher = {Routledge}\n}\nЗдесь book — тип записи («книга»), winter2020 — метка-идентификатор записи, дальше список полей со значениями.\nОдна запись описывает ровно одну публикацию статью, книгу, диссертацию, и т. д. Подробнее о типах записей можно посмотреть вот здесь.\nПодобные записи хранятся в текстовом файле с расширением .bib. Чтобы привязать библиографию, нужно указать имя файла в шапке yaml.\n---\nbibliography: bibliography.bib\n---\nДальше, чтобы добавить ссылку, достаточно ввести ключ публикации после @ (в квадратных скобках, чтобы публикация отражалась в круглых): [@wickham2016].\nПример:\n(Wickham и Grolemund 2016).\nМожно интегрировать BibTex с Zotero или другим менеджером библиографии. Для этого придется установить специальное расширение.\nЧтобы изменить стиль цитирования, необходимо добавить в шапку yaml название csl-файла (CSL - Citation Style Language), например:\n---\noutput: html_document\nbibliography: references.bib\ncsl: archiv-fur-geschichte-der-philosophie.csl\n---\nНайти необходимый csl-файл можно, например, в репозитории стилей Zotero.",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Публикационная система Quarto</span>"
+    ]
+  },
+  {
+    "objectID": "share.html#публикация-html",
+    "href": "share.html#публикация-html",
+    "title": "8  Публикационная система Quarto",
+    "section": "8.7 Публикация html",
+    "text": "8.7 Публикация html\nДля публикации на RPubs понадобится установить пакеты packrat, rsconnect.\nПри публикации страницы на https://rpubs.com/ следует добавить в шапку две строчки:\n\n---\nembed-resources: true\nstandalone: true\n---\n\nЭто позволит корректно отобразить локальные фото, графики и сохранит оформление.\n\n\n\n\nWickham, Hadley, и Garrett Grolemund. 2016. R for Data Science. O’Reilly. https://r4ds.had.co.nz/index.html.\n\n\nWinter, Bodo. 2020. Statistics for Linguists: An Introduction Using R. Routledge.",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Публикационная система Quarto</span>"
     ]
   }
 ]

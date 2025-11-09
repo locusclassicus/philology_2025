@@ -84,7 +84,7 @@ div.csl-indent {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./llm.html" rel="next">
+<link href="./POS.html" rel="next">
 <link href="./regex.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -201,14 +201,20 @@ div.csl-indent {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./POS.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Анализ частотностей</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./llm.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Добавление разметки с LLM</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Добавление разметки с LLM</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./share.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Публикационная система Quarto</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Публикационная система Quarto</span></span></a>
   </div>
 </li>
     </ul>
@@ -682,8 +688,8 @@ div.csl-indent {
 <span id="cb46-5"><a href="#cb46-5" aria-hidden="true" tabindex="-1"></a>acts <span class="sc">|&gt;</span> </span>
 <span id="cb46-6"><a href="#cb46-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sample</span>(<span class="dv">6</span>)</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "Действие первое" "Действие второе" "Действие первое" "Действие второе"
-[5] "Действие третье" "Действие второе"</code></pre>
+<pre><code>[1] "Действие четвертое" "Действие третье"    "Действие второе"   
+[4] "Действие второе"    "Действие первое"    "Действие первое"   </code></pre>
 </div>
 </div>
 <p>Нам осталось объединить все векторы в одну таблицу.</p>
@@ -697,23 +703,23 @@ div.csl-indent {
 </div>
 <div class="cell">
 <div class="cell-output-display">
-<div id="paejkbulks" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#paejkbulks table {
+<div id="ljgxvmuzdl" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#ljgxvmuzdl table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#paejkbulks thead, #paejkbulks tbody, #paejkbulks tfoot, #paejkbulks tr, #paejkbulks td, #paejkbulks th {
+#ljgxvmuzdl thead, #ljgxvmuzdl tbody, #ljgxvmuzdl tfoot, #ljgxvmuzdl tr, #ljgxvmuzdl td, #ljgxvmuzdl th {
   border-style: none;
 }
 
-#paejkbulks p {
+#ljgxvmuzdl p {
   margin: 0;
   padding: 0;
 }
 
-#paejkbulks .gt_table {
+#ljgxvmuzdl .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -739,12 +745,12 @@ div.csl-indent {
   border-left-color: #D3D3D3;
 }
 
-#paejkbulks .gt_caption {
+#ljgxvmuzdl .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#paejkbulks .gt_title {
+#ljgxvmuzdl .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -756,7 +762,7 @@ div.csl-indent {
   border-bottom-width: 0;
 }
 
-#paejkbulks .gt_subtitle {
+#ljgxvmuzdl .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -768,7 +774,7 @@ div.csl-indent {
   border-top-width: 0;
 }
 
-#paejkbulks .gt_heading {
+#ljgxvmuzdl .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -780,13 +786,13 @@ div.csl-indent {
   border-right-color: #D3D3D3;
 }
 
-#paejkbulks .gt_bottom_border {
+#ljgxvmuzdl .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#paejkbulks .gt_col_headings {
+#ljgxvmuzdl .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -801,7 +807,7 @@ div.csl-indent {
   border-right-color: #D3D3D3;
 }
 
-#paejkbulks .gt_col_heading {
+#ljgxvmuzdl .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -821,7 +827,7 @@ div.csl-indent {
   overflow-x: hidden;
 }
 
-#paejkbulks .gt_column_spanner_outer {
+#ljgxvmuzdl .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -833,15 +839,15 @@ div.csl-indent {
   padding-right: 4px;
 }
 
-#paejkbulks .gt_column_spanner_outer:first-child {
+#ljgxvmuzdl .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#paejkbulks .gt_column_spanner_outer:last-child {
+#ljgxvmuzdl .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#paejkbulks .gt_column_spanner {
+#ljgxvmuzdl .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -853,11 +859,11 @@ div.csl-indent {
   width: 100%;
 }
 
-#paejkbulks .gt_spanner_row {
+#ljgxvmuzdl .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#paejkbulks .gt_group_heading {
+#ljgxvmuzdl .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -883,7 +889,7 @@ div.csl-indent {
   text-align: left;
 }
 
-#paejkbulks .gt_empty_group_heading {
+#ljgxvmuzdl .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -898,15 +904,15 @@ div.csl-indent {
   vertical-align: middle;
 }
 
-#paejkbulks .gt_from_md > :first-child {
+#ljgxvmuzdl .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#paejkbulks .gt_from_md > :last-child {
+#ljgxvmuzdl .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#paejkbulks .gt_row {
+#ljgxvmuzdl .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -925,7 +931,7 @@ div.csl-indent {
   overflow-x: hidden;
 }
 
-#paejkbulks .gt_stub {
+#ljgxvmuzdl .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -938,7 +944,7 @@ div.csl-indent {
   padding-right: 5px;
 }
 
-#paejkbulks .gt_stub_row_group {
+#ljgxvmuzdl .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -952,15 +958,15 @@ div.csl-indent {
   vertical-align: top;
 }
 
-#paejkbulks .gt_row_group_first td {
+#ljgxvmuzdl .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#paejkbulks .gt_row_group_first th {
+#ljgxvmuzdl .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#paejkbulks .gt_summary_row {
+#ljgxvmuzdl .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -970,16 +976,16 @@ div.csl-indent {
   padding-right: 5px;
 }
 
-#paejkbulks .gt_first_summary_row {
+#ljgxvmuzdl .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#paejkbulks .gt_first_summary_row.thick {
+#ljgxvmuzdl .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#paejkbulks .gt_last_summary_row {
+#ljgxvmuzdl .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -989,7 +995,7 @@ div.csl-indent {
   border-bottom-color: #D3D3D3;
 }
 
-#paejkbulks .gt_grand_summary_row {
+#ljgxvmuzdl .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -999,7 +1005,7 @@ div.csl-indent {
   padding-right: 5px;
 }
 
-#paejkbulks .gt_first_grand_summary_row {
+#ljgxvmuzdl .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1009,7 +1015,7 @@ div.csl-indent {
   border-top-color: #D3D3D3;
 }
 
-#paejkbulks .gt_last_grand_summary_row_top {
+#ljgxvmuzdl .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1019,11 +1025,11 @@ div.csl-indent {
   border-bottom-color: #D3D3D3;
 }
 
-#paejkbulks .gt_striped {
+#ljgxvmuzdl .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#paejkbulks .gt_table_body {
+#ljgxvmuzdl .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1032,7 +1038,7 @@ div.csl-indent {
   border-bottom-color: #D3D3D3;
 }
 
-#paejkbulks .gt_footnotes {
+#ljgxvmuzdl .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1046,7 +1052,7 @@ div.csl-indent {
   border-right-color: #D3D3D3;
 }
 
-#paejkbulks .gt_footnote {
+#ljgxvmuzdl .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1055,7 +1061,7 @@ div.csl-indent {
   padding-right: 5px;
 }
 
-#paejkbulks .gt_sourcenotes {
+#ljgxvmuzdl .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1069,7 +1075,7 @@ div.csl-indent {
   border-right-color: #D3D3D3;
 }
 
-#paejkbulks .gt_sourcenote {
+#ljgxvmuzdl .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1077,72 +1083,72 @@ div.csl-indent {
   padding-right: 5px;
 }
 
-#paejkbulks .gt_left {
+#ljgxvmuzdl .gt_left {
   text-align: left;
 }
 
-#paejkbulks .gt_center {
+#ljgxvmuzdl .gt_center {
   text-align: center;
 }
 
-#paejkbulks .gt_right {
+#ljgxvmuzdl .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#paejkbulks .gt_font_normal {
+#ljgxvmuzdl .gt_font_normal {
   font-weight: normal;
 }
 
-#paejkbulks .gt_font_bold {
+#ljgxvmuzdl .gt_font_bold {
   font-weight: bold;
 }
 
-#paejkbulks .gt_font_italic {
+#ljgxvmuzdl .gt_font_italic {
   font-style: italic;
 }
 
-#paejkbulks .gt_super {
+#ljgxvmuzdl .gt_super {
   font-size: 65%;
 }
 
-#paejkbulks .gt_footnote_marks {
+#ljgxvmuzdl .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#paejkbulks .gt_asterisk {
+#ljgxvmuzdl .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#paejkbulks .gt_indent_1 {
+#ljgxvmuzdl .gt_indent_1 {
   text-indent: 5px;
 }
 
-#paejkbulks .gt_indent_2 {
+#ljgxvmuzdl .gt_indent_2 {
   text-indent: 10px;
 }
 
-#paejkbulks .gt_indent_3 {
+#ljgxvmuzdl .gt_indent_3 {
   text-indent: 15px;
 }
 
-#paejkbulks .gt_indent_4 {
+#ljgxvmuzdl .gt_indent_4 {
   text-indent: 20px;
 }
 
-#paejkbulks .gt_indent_5 {
+#ljgxvmuzdl .gt_indent_5 {
   text-indent: 25px;
 }
 
-#paejkbulks .katex-display {
+#ljgxvmuzdl .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#paejkbulks div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#ljgxvmuzdl div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -1879,8 +1885,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./llm.html" class="pagination-link" aria-label="Добавление разметки с LLM">
-        <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Добавление разметки с LLM</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./POS.html" class="pagination-link" aria-label="Анализ частотностей">
+        <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Анализ частотностей</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
