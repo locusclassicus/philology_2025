@@ -20,10 +20,10 @@ book:
 bibliography: references.bib
 language: custom.yml
 lang: ru
-df-print: paged
 format:
   html:
     theme: cosmo
     css: include/webex.css
     include-after-body: include/webex.js
+    df-print: paged
 prefer-html: true
