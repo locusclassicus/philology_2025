@@ -293,7 +293,7 @@ cooc2 <- cooccurrence(locke_subset$lemma,
 cooc2
 ```
 
-```{r fig.width=9}
+```{r warning=FALSE}
 wordnetwork <- graph_from_data_frame(cooc2)
 
 ggraph(wordnetwork, layout = "fr") +
