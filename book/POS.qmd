@@ -393,3 +393,17 @@ ggraph(wordnetwork, layout = "fr") +
   theme_graph(base_family = "Arial Narrow") +
   labs(title = "Words in topic Physics ", subtitle = "Nouns Cooccurrence")
 ```
+
+## Видео 
+
+- [Видео](https://vk.com/video91786643_456239085) 2025 г.
+
+## Домашнее задание
+
+По [ссылке](https://github.com/locusclassicus/philology_2025/raw/refs/heads/main/data/tales_text.Rdata) вы найдете датасет со сказками Салтыкова-Щедрина (в формате `.Rdata`). Вам необходимо аннотировать сказки, используя модель SynTagRus. 
+
+После этого ответьте на вопросы по [ссылке](https://forms.gle/zb5JRk25685CHb849). Задание считается выполненным, если верные ответы даны на 3 из 5 вопросов. 
+
+Ошибки лемматизации и морфологического анализа игнорируйте. 
+
+Дедлайн: 28 ноября, 21-00.
