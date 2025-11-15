@@ -75,8 +75,8 @@ author_word_tfidf
 
 ```{r message=FALSE}
 author_word_tfidf |> 
+  group_by(author) |>
   arrange(-tf_idf) |> 
-  group_by(author) |> 
   top_n(15) |> 
   ungroup() |> 
   ggplot(aes(reorder_within(word, tf_idf, author), tf_idf, fill = author)) +
@@ -100,7 +100,7 @@ author_word_tfidf |>
 
 ```{r eval=FALSE}
 # скачиваем модель в рабочую директорию
-# udpipe_download_model(language = "english-gum")
+#udpipe_download_model(language = "english-gum")
 
 # загружаем модель
 english_gum <- udpipe_load_model(file = "english-gum-ud-2.5-191206.udpipe")
@@ -185,7 +185,7 @@ pos_share |>
   facet_wrap(~doc_id, scales = "free")
 ```
 
-Отберем наиболее частотные имена и имена собственные.
+Отберем наиболее частотные имена существительные и имена собственные.
 
 ```{r}
 nouns <- emp_pos  |> 
@@ -199,10 +199,11 @@ nouns
 nouns |> 
   group_by(doc_id) |> 
   slice_head(n = 10) |> 
-  ggplot(aes(reorder(lemma, n), n, fill = lemma)) +
+  ggplot(aes(reorder_within(lemma, n, doc_id), n, fill = lemma)) +
   geom_col(show.legend = FALSE) +
   theme_light() +
   coord_flip() +
+  scale_x_reordered() +
   facet_wrap(~ doc_id, scales = "free") +
   xlab(NULL)
 ```
@@ -221,8 +222,21 @@ superlatives <- emp_pos  |>
   filter(str_detect(feats, "Degree=Sup") & upos == "ADJ") |> 
   select(doc_id, token)
 
-superlatives |> 
-  count(doc_id, token, sort = TRUE)
+superlatives_counts <- superlatives |> 
+  count(doc_id, token, sort = TRUE) |> 
+  group_by(doc_id) |> 
+  slice_head(n = 15)
+```
+
+```{r}
+superlatives_counts |> 
+  ggplot(aes(reorder_within(token, n, doc_id), n, fill = doc_id)) +
+  geom_col(show.legend = FALSE) +
+  coord_flip() +
+  theme_light() +
+  facet_wrap(~ doc_id, scales = "free") +
+  scale_x_reordered() +
+  xlab(NULL)
 ```
 
 
@@ -241,15 +255,19 @@ superlatives |>
 
 
 ```{r warning=FALSE}
-locke_subset <-  subset(emp_pos, doc_id = "Locke")
-
-locke_nouns <- locke_subset |> 
+locke_nouns <-  emp_pos |> 
+  filter(doc_id == "Locke") |> 
   filter(upos == "NOUN")
 
+locke_nouns
+```
+
+```{r}
 cooc <- cooccurrence(locke_nouns, term = "lemma", 
-                     group = c("doc_id", "sentence_id")) |>
+                     group = "sentence_id") |>
   as_tibble() |> 
-  filter(cooc > 100)
+  filter(cooc > 70) |> 
+  filter(term1 != "idea", term2 != "idea")
 
 cooc
 ```
@@ -261,7 +279,9 @@ library(igraph)
 library(ggraph)
 
 wordnetwork <- graph_from_data_frame(cooc)
+```
 
+```{r message=FALSE}
 ggraph(wordnetwork, layout = "fr") +
   geom_edge_arc(aes(width = cooc), alpha = 0.8, edge_colour = "grey90", show.legend=FALSE) +
   geom_node_label(aes(label = name), col = "#1f78b4", size = 4) +
@@ -272,11 +292,11 @@ ggraph(wordnetwork, layout = "fr") +
 Чтобы узнать, какие слова чаще стоят рядом, используем ту же функцию, но [с другими аргументами](https://cran.r-project.org/web/packages/udpipe/vignettes/udpipe-usecase-postagging-lemmatisation.html):
 
 ```{r warning=FALSE}
-cooc2 <- cooccurrence(locke_subset$lemma, 
-                      relevant = locke_subset$upos %in% c("NOUN", "ADJ"), 
+cooc2 <- cooccurrence(locke_nouns$lemma, 
+                      relevant = locke_nouns$upos %in% "NOUN", 
                       skipgram = 1) |> 
   as_tibble() |> 
-  filter(cooc > 20)
+  filter(cooc > 10)
 
 cooc2
 ```
@@ -307,15 +327,23 @@ ggraph(wordnetwork, layout = "fr") +
 
 ```{r}
 emp_pos$topic_level_id <- unique_identifier(emp_pos, fields = c("doc_id", "sentence_id"))
-dtf <- subset(emp_pos, upos %in% c("NOUN"))
+
+dtf <- emp_pos |> 
+  filter(upos == "NOUN")
+```
+
+```{r}
 dtf <- document_term_frequencies(dtf, document = "topic_level_id", term = "lemma")
 head(dtf)
 ```
 
 ```{r}
 dtm <- document_term_matrix(x = dtf)
+```
+
+```{r}
 dtm_clean <- dtm_remove_lowfreq(dtm, minfreq = 5)
-head(dtm_colsums(dtm_clean))
+sample(dtm_colsums(dtm_clean), 10)
 ```
 
 ```{r}
@@ -338,7 +366,7 @@ topicterminology
 
 ```{r}
 scores <- predict(m, newdata = dtm_clean, type = "topics", 
-                  labels = c("labela", "labelb", "labelc", "xyz"))
+                  labels = c("physics", "psychology", "ethics", "epistemology"))
 ```
 
 Аргумент `labels` присваивает пользовательские имена темам в итоговом результате предсказания.
@@ -363,5 +391,5 @@ ggraph(wordnetwork, layout = "fr") +
   geom_edge_link(aes(width = cooc, edge_alpha = cooc), edge_colour = "pink")  +
   geom_node_text(aes(label = name), col = "darkgreen", size = 4) +
   theme_graph(base_family = "Arial Narrow") +
-  labs(title = "Words in topic 1 ", subtitle = "Nouns Cooccurrence")
+  labs(title = "Words in topic Physics ", subtitle = "Nouns Cooccurrence")
 ```
