@@ -134,7 +134,7 @@ chat$chat("Что такое метафора?")
 
 Последние версии Ollama позволяют работать в облаке; для этого требуется регистрация. После регистрации идете на сайте `Settings` -> `Keys` и создаете новый ключ API. Список облачных моделей доступен здесь <https://ollama.com/blog/cloud-models>.
 
-```{r}
+```{r eval=FALSE}
 chat <- chat_ollama(
   system_prompt = "Отвечай по-русски, будь краток.",
   api_key = Sys.getenv("OLLAMA_API_KEY"),
