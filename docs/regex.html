@@ -105,7 +105,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="site_libs/htmltools-fill-0.5.8.1/fill.css" rel="stylesheet">
 <script src="site_libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
 <link href="site_libs/str_view-0.1.0/str_view.css" rel="stylesheet">
-<script src="site_libs/str_view-binding-1.5.1/str_view.js"></script>
+<script src="site_libs/str_view-binding-1.6.0/str_view.js"></script>
 <link href="site_libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet">
 <script src="site_libs/pagedtable-1.1/js/pagedtable.js"></script>
 
@@ -186,13 +186,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./POS.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Анализ частотностей</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Лемматизация и тематическое моделирование</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./llm.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Добавление разметки с LLM</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Работа с LLM</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -211,21 +211,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Содержание</h2>
    
   <ul>
-  <li><a href="#регулярные-выражения" id="toc-регулярные-выражения" class="nav-link active" data-scroll-target="#регулярные-выражения"><span class="header-section-number">4.1</span> Регулярные выражения</a>
-  <ul class="collapse">
-  <li><a href="#литералы-и-классы" id="toc-литералы-и-классы" class="nav-link" data-scroll-target="#литералы-и-классы"><span class="header-section-number">4.1.1</span> Литералы и классы</a></li>
-  <li><a href="#якоря-и-квантификация" id="toc-якоря-и-квантификация" class="nav-link" data-scroll-target="#якоря-и-квантификация"><span class="header-section-number">4.1.2</span> Якоря и квантификация</a></li>
-  <li><a href="#метасимволы-и-экранирование" id="toc-метасимволы-и-экранирование" class="nav-link" data-scroll-target="#метасимволы-и-экранирование"><span class="header-section-number">4.1.3</span> Метасимволы и экранирование</a></li>
-  <li><a href="#группировка-и-look-arounds" id="toc-группировка-и-look-arounds" class="nav-link" data-scroll-target="#группировка-и-look-arounds"><span class="header-section-number">4.1.4</span> Группировка и Look arounds</a></li>
-  <li><a href="#оборачиваем-в-функцию" id="toc-оборачиваем-в-функцию" class="nav-link" data-scroll-target="#оборачиваем-в-функцию"><span class="header-section-number">4.1.5</span> Оборачиваем в функцию</a></li>
-  </ul></li>
-  <li><a href="#оценка-качества-распознавания" id="toc-оценка-качества-распознавания" class="nav-link" data-scroll-target="#оценка-качества-распознавания"><span class="header-section-number">4.2</span> Оценка качества распознавания</a>
-  <ul class="collapse">
-  <li><a href="#метрики-качества-ocr-cer-и-wer" id="toc-метрики-качества-ocr-cer-и-wer" class="nav-link" data-scroll-target="#метрики-качества-ocr-cer-и-wer"><span class="header-section-number">4.2.1</span> Метрики качества OCR: CER и WER</a></li>
-  <li><a href="#cer-ред.-расстояние-по-символам-длина-эталона" id="toc-cer-ред.-расстояние-по-символам-длина-эталона" class="nav-link" data-scroll-target="#cer-ред.-расстояние-по-символам-длина-эталона"><span class="header-section-number">4.2.2</span> CER: ред. расстояние по символам / длина эталона</a></li>
-  <li><a href="#wer-ред.-расстояние-по-словам-число-слов-эталона" id="toc-wer-ред.-расстояние-по-словам-число-слов-эталона" class="nav-link" data-scroll-target="#wer-ред.-расстояние-по-словам-число-слов-эталона"><span class="header-section-number">4.2.3</span> WER: ред. расстояние по словам / число слов эталона</a></li>
-  </ul></li>
-  <li><a href="#видео" id="toc-видео" class="nav-link" data-scroll-target="#видео"><span class="header-section-number">4.3</span> Видео</a></li>
+  <li><a href="#регулярные-выражения" id="toc-регулярные-выражения" class="nav-link active" data-scroll-target="#регулярные-выражения"><span class="header-section-number">4.1</span> Регулярные выражения</a></li>
+  <li><a href="#литералы-и-классы" id="toc-литералы-и-классы" class="nav-link" data-scroll-target="#литералы-и-классы"><span class="header-section-number">4.2</span> Литералы и классы</a></li>
+  <li><a href="#якоря-и-квантификаторы" id="toc-якоря-и-квантификаторы" class="nav-link" data-scroll-target="#якоря-и-квантификаторы"><span class="header-section-number">4.3</span> Якоря и квантификаторы</a></li>
+  <li><a href="#метасимволы-и-экранирование" id="toc-метасимволы-и-экранирование" class="nav-link" data-scroll-target="#метасимволы-и-экранирование"><span class="header-section-number">4.4</span> Метасимволы и экранирование</a></li>
+  <li><a href="#группировка-и-наблюдающие-конструкции" id="toc-группировка-и-наблюдающие-конструкции" class="nav-link" data-scroll-target="#группировка-и-наблюдающие-конструкции"><span class="header-section-number">4.5</span> Группировка и наблюдающие конструкции</a></li>
+  <li><a href="#конвейер-обработки" id="toc-конвейер-обработки" class="nav-link" data-scroll-target="#конвейер-обработки"><span class="header-section-number">4.6</span> Конвейер обработки</a></li>
+  <li><a href="#видео" id="toc-видео" class="nav-link" data-scroll-target="#видео"><span class="header-section-number">4.7</span> Видео</a></li>
   </ul>
 </nav>
     </div>
@@ -257,11 +249,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Для работы нам понадобится пакет <code>stringr</code> из библиотеки <code>tidyverse</code>.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'ggplot2' was built under R version 4.5.2</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'readr' was built under R version 4.5.2</code></pre>
+</div>
 </div>
 <p>Загрузим распознанный текст элегии.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>text <span class="ot">&lt;-</span> <span class="fu">readLines</span>(<span class="at">con =</span> <span class="st">"../ocr/rosalia_1.txt"</span>)</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>text</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>text <span class="ot">&lt;-</span> <span class="fu">readLines</span>(<span class="at">con =</span> <span class="st">"../ocr/rosalia_1.txt"</span>)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>text</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> [1] "ЭЭСЮЭЭЭЭЭСКЮЭЭЭЭЭСЮС»ЭЭЭ&lt;Э&lt;ЗС&gt;Э(ІЭ(99ЭС933 э о э з о з э з э"
  [2] ""                                                            
@@ -331,8 +329,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 </div>
 </div>
-<section id="литералы-и-классы" class="level3" data-number="4.1.1">
-<h3 data-number="4.1.1" class="anchored" data-anchor-id="литералы-и-классы"><span class="header-section-number">4.1.1</span> Литералы и классы</h3>
+</section>
+<section id="литералы-и-классы" class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="литералы-и-классы"><span class="header-section-number">4.2</span> Литералы и классы</h2>
 <p>Регулярные выражения (regex, regexp) объединяют <em>буквальные символы</em> (литералы) и <em>метасимволы</em> (символы-джокеры, англ. wildcard characters).</p>
 <p>Для поиска используется строка-образец (англ. pattern, по-русски её часто называют “шаблоном”, “маской”), которая задает правило поиска. Строка замены также может содержать в себе специальные символы.</p>
 <div class="callout callout-style-default callout-note no-icon callout-titled">
@@ -351,8 +350,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><em>Буквальные символы</em> – это то, что вы ожидаете увидеть (или не увидеть – для управляющих и пробельных символов); можно сказать, что это символы, которые ничего не “имеют в виду”. Их можно объединять в <em>классы</em> при помощи квадратных скобок.</p>
 <p>Для поиска совпадений используются три функции: <code>str_detect()</code>, <code>str_which()</code> и <code>str_subset()</code>. Первая возвращает логический вектор (то есть вектор значений <code>TRUE</code> / <code>FALSE</code>); вторая – индексы элементов, а третья – сами эти элементы. Сравним.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># возвращает логический вектор</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str_detect</span>(text, <span class="st">"[ѣъ]"</span>)</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># возвращает логический вектор</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str_detect</span>(text, <span class="st">"[ѣъ]"</span>)</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> [1] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE  TRUE
 [13]  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE
@@ -362,22 +361,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>Так мы нашли все строки, где есть еры или яти. Можно сохранить логический вектор и использовать его для индексации. Функция <code>head()</code> позволяет ограничить вывод первыми элементами вектора.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># создаем индекс</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>idx <span class="ot">&lt;-</span> <span class="fu">str_detect</span>(text, <span class="st">"[ѣъ]"</span>)</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co"># используем его для отбора строк</span></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>text[idx] </span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># создаем индекс</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>idx <span class="ot">&lt;-</span> <span class="fu">str_detect</span>(text, <span class="st">"[ѣъ]"</span>)</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="co"># используем его для отбора строк</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>text[idx] </span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Теперь узнаем, в каких строках находятся рядом буквы ія. Мы не объединяем их в класс при помощи квадратных скобок, поэтому фукнция ищет не что-то одно, а именно сочетание.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_which</span>(text, <span class="st">"ія"</span>)</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_which</span>(text, <span class="st">"ія"</span>)</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 11 13 14</code></pre>
 </div>
 </div>
 <p>Эту функцию тоже можно использовать для индексации. На этот раз не сохраняем переменную <code>idx</code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>text[<span class="fu">str_which</span>(text, <span class="st">"ія"</span>)]</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>text[<span class="fu">str_which</span>(text, <span class="st">"ія"</span>)]</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "Розалія, мой спутникъ неизмѣнный"           
 [2] "Розалія, мой другъ, хранитель несравненный!"
@@ -386,21 +385,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>Наконец, <code>str_subset()</code> сама индексирует вектор. Попробуем.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_subset</span>(text, <span class="st">"i"</span>)</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_subset</span>(text, <span class="st">"i"</span>)</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>character(0)</code></pre>
 </div>
 </div>
 <p>Упс. Что произошло, куда делись все i? Дело в том, что я набрала i в латинской клавиатуры, а это другой знак в Юникоде. Проверим (первую i копирую из текста выше):</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="st">"і"</span> <span class="sc">==</span> <span class="st">"i"</span></span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="st">"і"</span> <span class="sc">==</span> <span class="st">"i"</span></span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] FALSE</code></pre>
 </div>
 </div>
 <p>Исправляем.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_subset</span>(text, <span class="st">"і"</span>)</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_subset</span>(text, <span class="st">"і"</span>)</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "                     ( Э л е г і я ,)"      
 [2] "Розалія, мой спутникъ неизмѣнный"           
@@ -412,7 +411,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>В некоторых случаях удобнее использовать непосредственно код буквы.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_subset</span>(text, <span class="st">"[\u0406\u0456]"</span>)</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_subset</span>(text, <span class="st">"[\u0406\u0456]"</span>)</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "ЭЭСЮЭЭЭЭЭСКЮЭЭЭЭЭСЮС»ЭЭЭ&lt;Э&lt;ЗС&gt;Э(ІЭ(99ЭС933 э о э з о з э з э"
 [2] "                     ( Э л е г і я ,)"                       
@@ -503,20 +502,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </table>
 <p>Эти классы тоже можно задавать в качестве паттерна. Знак <code>\\b</code> означает любую границу слова (начало строки, конец строки, пробел, пунктуация).</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_subset</span>(text, <span class="st">"[[:digit:]]"</span>)</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_subset</span>(text, <span class="st">"[[:digit:]]"</span>)</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "ЭЭСЮЭЭЭЭЭСКЮЭЭЭЭЭСЮС»ЭЭЭ&lt;Э&lt;ЗС&gt;Э(ІЭ(99ЭС933 э о э з о з э з э"
 [2] "                    243"                                     </code></pre>
 </div>
 </div>
 <p>Работы с регулярными выражениями требует навыка; поначалу, прежде чем преобразовывать строки, удобно просто посмотреть, что попало в ваш невод.</p>
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_view</span>(text[<span class="dv">1</span><span class="sc">:</span><span class="dv">8</span>], <span class="st">"[[:punct:]]"</span>, <span class="at">html =</span> <span class="cn">TRUE</span>)</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="str_view html-widget html-fill-item" id="htmlwidget-ffca433244c21fe9c2f8" style="width:960px;height:100%;"></div>
-<script type="application/json" data-for="htmlwidget-ffca433244c21fe9c2f8">{"x":{"html":"<ul>\n  <li><pre>ЭЭСЮЭЭЭЭЭСКЮЭЭЭЭЭСЮС<span class='match'>»<\/span>ЭЭЭ<Э<ЗС>Э<span class='match'>(<\/span>ІЭ<span class='match'>(<\/span>99ЭС933 э о э з о з э з э<\/pre><\/li>\n  <li><pre>                   РАЗЛУКА<span class='match'>.<\/span><\/pre><\/li>\n  <li><pre>                     <span class='match'>(<\/span> Э л е г і я <span class='match'>,<\/span><span class='match'>)<\/span><\/pre><\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_view</span>(text[<span class="dv">1</span><span class="sc">:</span><span class="dv">8</span>], <span class="st">"[[:punct:]]"</span>, <span class="at">html =</span> <span class="cn">TRUE</span>)</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="str_view html-widget html-fill-item" id="htmlwidget-1cc28169b56685bf490e" style="width:960px;height:100%;"></div>
+<script type="application/json" data-for="htmlwidget-1cc28169b56685bf490e">{"x":{"html":"<ul>\n  <li><pre>ЭЭСЮЭЭЭЭЭСКЮЭЭЭЭЭСЮС<span class='match'>»<\/span>ЭЭЭ<Э<ЗС>Э<span class='match'>(<\/span>ІЭ<span class='match'>(<\/span>99ЭС933 э о э з о з э з э<\/pre><\/li>\n  <li><pre>                   РАЗЛУКА<span class='match'>.<\/span><\/pre><\/li>\n  <li><pre>                     <span class='match'>(<\/span> Э л е г і я <span class='match'>,<\/span><span class='match'>)<\/span><\/pre><\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
 <p>Внутри квадратных скобор знак <code>^</code> означает отрицание. Сравните:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># удаляем всю пунктуацию</span></span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str_remove_all</span>(text[<span class="dv">1</span><span class="sc">:</span><span class="dv">8</span>], <span class="st">"[[:punct:]]"</span>) </span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># удаляем всю пунктуацию</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str_remove_all</span>(text[<span class="dv">1</span><span class="sc">:</span><span class="dv">8</span>], <span class="st">"[[:punct:]]"</span>) </span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "ЭЭСЮЭЭЭЭЭСКЮЭЭЭЭЭСЮСЭЭЭ&lt;Э&lt;ЗС&gt;ЭІЭ99ЭС933 э о э з о з э з э"
 [2] ""                                                         
@@ -529,8 +528,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># удаляем все, кроме пунктуации</span></span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str_remove_all</span>(text[<span class="dv">1</span><span class="sc">:</span><span class="dv">8</span>], <span class="st">"[^[:punct:]]"</span>) </span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># удаляем все, кроме пунктуации</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str_remove_all</span>(text[<span class="dv">1</span><span class="sc">:</span><span class="dv">8</span>], <span class="st">"[^[:punct:]]"</span>) </span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "»((" ""    ""    ""    ""    "."   "(,)" ""   </code></pre>
 </div>
@@ -584,9 +583,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </table>
 <p>Найдем все строки с числами и удалим их (в нашем случае либо номера страниц, либо ошибки распознавания). Также удалим все пустые строки.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># вторая косая черта "экранирует" первую</span></span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>text2 <span class="ot">&lt;-</span> text[<span class="sc">!</span><span class="fu">str_detect</span>(text, <span class="st">"</span><span class="sc">\\</span><span class="st">d"</span>) <span class="sc">&amp;</span> <span class="fu">nchar</span>(text) <span class="sc">!=</span> <span class="dv">0</span>]</span>
-<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>text2</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># вторая косая черта "экранирует" первую</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>text2 <span class="ot">&lt;-</span> text[<span class="sc">!</span><span class="fu">str_detect</span>(text, <span class="st">"</span><span class="sc">\\</span><span class="st">d"</span>) <span class="sc">&amp;</span> <span class="fu">nchar</span>(text) <span class="sc">!=</span> <span class="dv">0</span>]</span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>text2</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> [1] "                   РАЗЛУКА."                 
  [2] "                     ( Э л е г і я ,)"       
@@ -624,9 +623,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>Теперь удалим лишние пробелы и заменим яти на е. Функция <code>str_replace()</code> заменяет только первое вхождение в каждом элементе вектора, поэтому в строке 16 осталось “привѣтъ” (ср. 17, 18 и 21).</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>text2 <span class="sc">|&gt;</span> </span>
-<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">str_squish</span>() <span class="sc">|&gt;</span> </span>
-<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">str_replace</span>(<span class="st">"ѣ"</span>, <span class="st">"е"</span>)</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>text2 <span class="sc">|&gt;</span> </span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">str_squish</span>() <span class="sc">|&gt;</span> </span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">str_replace</span>(<span class="st">"ѣ"</span>, <span class="st">"е"</span>)</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> [1] "РАЗЛУКА."                                   
  [2] "( Э л е г і я ,)"                           
@@ -664,9 +663,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>Чтобы заменить все вхождения, используем <code>str_replace_all()</code>. Можно произвести сразу несколько замен, задав вектор соответствий:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>text3 <span class="ot">&lt;-</span> text2 <span class="sc">|&gt;</span> </span>
-<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">str_squish</span>() <span class="sc">|&gt;</span> </span>
-<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">str_replace_all</span>(<span class="fu">c</span>(<span class="st">"і"</span> <span class="ot">=</span> <span class="st">"и"</span>, <span class="st">"ѣ"</span> <span class="ot">=</span> <span class="st">"е"</span>))</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>text3 <span class="ot">&lt;-</span> text2 <span class="sc">|&gt;</span> </span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">str_squish</span>() <span class="sc">|&gt;</span> </span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">str_replace_all</span>(<span class="fu">c</span>(<span class="st">"і"</span> <span class="ot">=</span> <span class="st">"и"</span>, <span class="st">"ѣ"</span> <span class="ot">=</span> <span class="st">"е"</span>))</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="callout callout-style-default callout-warning no-icon callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -682,11 +681,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
-<section id="якоря-и-квантификация" class="level3" data-number="4.1.2">
-<h3 data-number="4.1.2" class="anchored" data-anchor-id="якоря-и-квантификация"><span class="header-section-number">4.1.2</span> Якоря и квантификация</h3>
+<section id="якоря-и-квантификаторы" class="level2" data-number="4.3">
+<h2 data-number="4.3" class="anchored" data-anchor-id="якоря-и-квантификаторы"><span class="header-section-number">4.3</span> Якоря и квантификаторы</h2>
 <p>Якоря позволяют искать последовательности символов в начале или в конце строки. Знак <code>^</code> (вне квадратных скобок!) означает начало строки, а знак <code>$</code> – конец. Мнемоническое правило: First you get the power (^) and then you get the money ($).</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_subset</span>(text3, <span class="st">",$"</span>)</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_subset</span>(text3, <span class="st">",$"</span>)</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "Съ тобою горестей душа моя незнаетъ,"       
 [2] "Надежда мрачный путь звездою озаряетъ,"     
@@ -699,7 +698,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_subset</span>(text3, <span class="st">"^Ч"</span>)</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_subset</span>(text3, <span class="st">"^Ч"</span>)</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "Что мирныя, тенисты я поля,"                
 [2] "Что своенравныя судьбы приветъ мне лестный,"</code></pre>
@@ -707,7 +706,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>Найдем строки, которые начинаются со строчной:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_subset</span>(text3, <span class="st">"^[а-я]"</span>)</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_subset</span>(text3, <span class="st">"^[а-я]"</span>)</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "стами"</code></pre>
 </div>
@@ -767,7 +766,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tbody>
 </table>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_subset</span>(text3, <span class="st">"</span><span class="sc">\\</span><span class="st">W{2,}$"</span>)</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_subset</span>(text3, <span class="st">"</span><span class="sc">\\</span><span class="st">W{2,}$"</span>)</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "( Э л е г и я ,)"                         
 [2] "Когда я отдохну въ объятияхъ твоихъ? . •."
@@ -792,8 +791,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
-<section id="метасимволы-и-экранирование" class="level3" data-number="4.1.3">
-<h3 data-number="4.1.3" class="anchored" data-anchor-id="метасимволы-и-экранирование"><span class="header-section-number">4.1.3</span> Метасимволы и экранирование</h3>
+<section id="метасимволы-и-экранирование" class="level2" data-number="4.4">
+<h2 data-number="4.4" class="anchored" data-anchor-id="метасимволы-и-экранирование"><span class="header-section-number">4.4</span> Метасимволы и экранирование</h2>
 <p>Все метасимволы представлены в таблице ниже.</p>
 <table class="caption-top table">
 <thead>
@@ -863,8 +862,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </table>
 <p>Квадратные скобки используются для создания классов, карет и знак доллара – это якоря, но карет внутри квадратных скобок может также быть отрицанием. Точка – это любой знак.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="co"># любой символ после знака вопроса</span></span>
-<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str_subset</span>(text3, <span class="st">"</span><span class="sc">\\</span><span class="st">?."</span>) </span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="co"># любой символ после знака вопроса</span></span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str_subset</span>(text3, <span class="st">"</span><span class="sc">\\</span><span class="st">?."</span>) </span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "Когда я отдохну въ объятияхъ твоихъ? . •."</code></pre>
 </div>
@@ -872,7 +871,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Две косые черты перед знаком вопроса означают <em>экранирование</em>. Оно используется тогда, когда необходимо найти буквальную точку, буквальный знак вопроса и т.п., т.е. превратить метасимвол в литерал. Для этого перед знаком ставится косая черта. Но так как сама косая черта – это метасимвол, но нужно две косые черты, первая из которых экранирует вторую.</p>
 <p>Часто используется последовательность <code>.*</code> для обозначения любого количества любых символов между двумя частями регулярного выражения. Вот так находим любой знак между двумя (буквальными) точками:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_extract</span>(text3, <span class="st">"</span><span class="sc">\\</span><span class="st">..</span><span class="sc">\\</span><span class="st">."</span>)</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_extract</span>(text3, <span class="st">"</span><span class="sc">\\</span><span class="st">..</span><span class="sc">\\</span><span class="st">."</span>)</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> [1] NA    NA    NA    NA    NA    NA    NA    NA    NA    ". ." NA    NA   
 [13] NA    NA    NA    NA    NA    NA    NA    NA    NA    NA    NA    NA   
@@ -881,7 +880,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>Вот так – любое число знаков между двумя точками.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_extract</span>(text3, <span class="st">"</span><span class="sc">\\</span><span class="st">..*</span><span class="sc">\\</span><span class="st">."</span>)</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_extract</span>(text3, <span class="st">"</span><span class="sc">\\</span><span class="st">..*</span><span class="sc">\\</span><span class="st">."</span>)</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> [1] NA        NA        NA        NA        NA        ". •."    NA       
  [8] NA        NA        ". ."     NA        NA        NA        NA       
@@ -919,7 +918,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </table>
 <p>Пример:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_extract</span>(text3, <span class="st">"</span><span class="sc">\\</span><span class="st">..*?</span><span class="sc">\\</span><span class="st">."</span>)</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_extract</span>(text3, <span class="st">"</span><span class="sc">\\</span><span class="st">..*?</span><span class="sc">\\</span><span class="st">."</span>)</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> [1] NA     NA     NA     NA     NA     ". •." NA     NA     NA     ". ." 
 [11] NA     NA     NA     NA     NA     NA     NA     NA     NA     NA    
@@ -941,16 +940,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
-<section id="группировка-и-look-arounds" class="level3" data-number="4.1.4">
-<h3 data-number="4.1.4" class="anchored" data-anchor-id="группировка-и-look-arounds"><span class="header-section-number">4.1.4</span> Группировка и Look arounds</h3>
+<section id="группировка-и-наблюдающие-конструкции" class="level2" data-number="4.5">
+<h2 data-number="4.5" class="anchored" data-anchor-id="группировка-и-наблюдающие-конструкции"><span class="header-section-number">4.5</span> Группировка и наблюдающие конструкции</h2>
 <p>Допустим, мы нашли несколько подряд знаков препинания и пробелов и хотим удалить лишние. Это можно сделать при помощи группировки</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>text4 <span class="ot">&lt;-</span> text3 <span class="sc">|&gt;</span> </span>
-<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># чтобы не потерять тире в конце строки</span></span>
-<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">str_replace</span>(<span class="st">" —$"</span>, <span class="st">"—"</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb47-4"><a href="#cb47-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">str_replace</span>(<span class="st">"(</span><span class="sc">\\</span><span class="st">W)(</span><span class="sc">\\</span><span class="st">W+)$"</span>, <span class="st">"</span><span class="sc">\\</span><span class="st">1"</span>)</span>
-<span id="cb47-5"><a href="#cb47-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb47-6"><a href="#cb47-6" aria-hidden="true" tabindex="-1"></a>text4</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>text4 <span class="ot">&lt;-</span> text3 <span class="sc">|&gt;</span> </span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># чтобы не потерять тире в конце строки</span></span>
+<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">str_replace</span>(<span class="st">" —$"</span>, <span class="st">"—"</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb49-4"><a href="#cb49-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">str_replace</span>(<span class="st">"(</span><span class="sc">\\</span><span class="st">W)(</span><span class="sc">\\</span><span class="st">W+)$"</span>, <span class="st">"</span><span class="sc">\\</span><span class="st">1"</span>)</span>
+<span id="cb49-5"><a href="#cb49-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-6"><a href="#cb49-6" aria-hidden="true" tabindex="-1"></a>text4</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> [1] "РАЗЛУКА."                                   
  [2] "( Э л е г и я "                             
@@ -1023,13 +1022,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tr>
 </tbody>
 </table>
-<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_view</span>(text4, <span class="st">"[ъЪ](?=</span><span class="sc">\\</span><span class="st">W)"</span>, <span class="at">html =</span> <span class="cn">TRUE</span>)</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="str_view html-widget html-fill-item" id="htmlwidget-bd21f2f70ca8e1153fb2" style="width:960px;height:100%;"></div>
-<script type="application/json" data-for="htmlwidget-bd21f2f70ca8e1153fb2">{"x":{"html":"<ul>\n  <li><pre>Розалия, мой спутник<span class='match'>ъ<\/span> неизменный<\/pre><\/li>\n  <li><pre>На поле радостей земных<span class='match'>ъ<\/span>!<\/pre><\/li>\n  <li><pre>Розалия, мой друг<span class='match'>ъ<\/span>, хранитель несравненный!<\/pre><\/li>\n  <li><pre>Когда я отдохну в<span class='match'>ъ<\/span> объятиях<span class='match'>ъ<\/span> твоих<span class='match'>ъ<\/span>?<\/pre><\/li>\n  <li><pre>С<span class='match'>ъ<\/span> тобою горестей душа моя незнает<span class='match'>ъ<\/span>,<\/pre><\/li>\n  <li><pre>И сердцу скорбному не изменит<span class='match'>ъ<\/span> покой!<\/pre><\/li>\n  <li><pre>Надежда мрачный путь звездою озаряет<span class='match'>ъ<\/span>,<\/pre><\/li>\n  <li><pre>И я мирюсь с<span class='match'>ъ<\/span> враждебною судьбой!<\/pre><\/li>\n  <li><pre>Твой сладкий глас<span class='match'>ъ<\/span> не оживит<span class='match'>ъ<\/span> меня!<\/pre><\/li>\n  <li><pre>Взойдет<span class='match'>ъ<\/span> заря над<span class='match'>ъ<\/span> злачными холмами,<\/pre><\/li>\n  <li><pre>Появится в<span class='match'>ъ<\/span> лучах<span class='match'>ъ<\/span> светило дня—<\/pre><\/li>\n  <li><pre>Напрасно! все кругом<span class='match'>ъ<\/span> покрыто мглою.<\/pre><\/li>\n  <li><pre>Неслышится мне сладкий игивой привет<span class='match'>ъ<\/span>.<\/pre><\/li>\n  <li><pre>Все радости, надежды все с<span class='match'>ъ<\/span> тобою—<\/pre><\/li>\n  <li><pre>И опустел<span class='match'>ъ<\/span> без<span class='match'>ъ<\/span> милой свет<span class='match'>ъ<\/span>!<\/pre><\/li>\n  <li><pre>Что своенравныя судьбы привет<span class='match'>ъ<\/span> мне лестный,<\/pre><\/li>\n  <li><pre>Когда с<span class='match'>ъ<\/span> тобой в<span class='match'>ъ<\/span> разлуке я.<\/pre><\/li>\n  <li><pre>Но друг<span class='match'>ъ<\/span> мои! горесть отл етаетъ<\/pre><\/li>\n  <li><pre>На быстрых<span class='match'>ъ<\/span> времени крылах<span class='match'>ъ<\/span>,<\/pre><\/li>\n  <li><pre>И радость сердце посещ ает<span class='match'>ъ<\/span>.<\/pre><\/li>\n  <li><pre>Моя надежда — в<span class='match'>ъ<\/span> небесах<span class='match'>ъ<\/span>!<\/pre><\/li>\n  <li><pre>Когдаж<span class='match'>ъ<\/span> опять смягченными судьбами<\/pre><\/li>\n  <li><pre>Я в<span class='match'>ъ<\/span> радости к<span class='match'>ъ<\/span> подруге понесусь,<\/pre><\/li>\n  <li><pre>Коснусь волшебных<span class='match'>ъ<\/span> струн<span class='match'>ъ<\/span> волшебными пер<\/pre><\/li>\n  <li><pre>И, с<span class='match'>ъ<\/span> резвою мечтою примирюсь.<\/pre><\/li>\n  <li><pre>А, Б — ф<span class='match'>Ъ<\/span>.<\/pre><\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_view</span>(text4, <span class="st">"[ъЪ](?=</span><span class="sc">\\</span><span class="st">W)"</span>, <span class="at">html =</span> <span class="cn">TRUE</span>)</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="str_view html-widget html-fill-item" id="htmlwidget-e06b61d1aa0a1b1db749" style="width:960px;height:100%;"></div>
+<script type="application/json" data-for="htmlwidget-e06b61d1aa0a1b1db749">{"x":{"html":"<ul>\n  <li><pre>Розалия, мой спутник<span class='match'>ъ<\/span> неизменный<\/pre><\/li>\n  <li><pre>На поле радостей земных<span class='match'>ъ<\/span>!<\/pre><\/li>\n  <li><pre>Розалия, мой друг<span class='match'>ъ<\/span>, хранитель несравненный!<\/pre><\/li>\n  <li><pre>Когда я отдохну в<span class='match'>ъ<\/span> объятиях<span class='match'>ъ<\/span> твоих<span class='match'>ъ<\/span>?<\/pre><\/li>\n  <li><pre>С<span class='match'>ъ<\/span> тобою горестей душа моя незнает<span class='match'>ъ<\/span>,<\/pre><\/li>\n  <li><pre>И сердцу скорбному не изменит<span class='match'>ъ<\/span> покой!<\/pre><\/li>\n  <li><pre>Надежда мрачный путь звездою озаряет<span class='match'>ъ<\/span>,<\/pre><\/li>\n  <li><pre>И я мирюсь с<span class='match'>ъ<\/span> враждебною судьбой!<\/pre><\/li>\n  <li><pre>Твой сладкий глас<span class='match'>ъ<\/span> не оживит<span class='match'>ъ<\/span> меня!<\/pre><\/li>\n  <li><pre>Взойдет<span class='match'>ъ<\/span> заря над<span class='match'>ъ<\/span> злачными холмами,<\/pre><\/li>\n  <li><pre>Появится в<span class='match'>ъ<\/span> лучах<span class='match'>ъ<\/span> светило дня—<\/pre><\/li>\n  <li><pre>Напрасно! все кругом<span class='match'>ъ<\/span> покрыто мглою.<\/pre><\/li>\n  <li><pre>Неслышится мне сладкий игивой привет<span class='match'>ъ<\/span>.<\/pre><\/li>\n  <li><pre>Все радости, надежды все с<span class='match'>ъ<\/span> тобою—<\/pre><\/li>\n  <li><pre>И опустел<span class='match'>ъ<\/span> без<span class='match'>ъ<\/span> милой свет<span class='match'>ъ<\/span>!<\/pre><\/li>\n  <li><pre>Что своенравныя судьбы привет<span class='match'>ъ<\/span> мне лестный,<\/pre><\/li>\n  <li><pre>Когда с<span class='match'>ъ<\/span> тобой в<span class='match'>ъ<\/span> разлуке я.<\/pre><\/li>\n  <li><pre>Но друг<span class='match'>ъ<\/span> мои! горесть отл етаетъ<\/pre><\/li>\n  <li><pre>На быстрых<span class='match'>ъ<\/span> времени крылах<span class='match'>ъ<\/span>,<\/pre><\/li>\n  <li><pre>И радость сердце посещ ает<span class='match'>ъ<\/span>.<\/pre><\/li>\n  <li><pre>Моя надежда — в<span class='match'>ъ<\/span> небесах<span class='match'>ъ<\/span>!<\/pre><\/li>\n  <li><pre>Когдаж<span class='match'>ъ<\/span> опять смягченными судьбами<\/pre><\/li>\n  <li><pre>Я в<span class='match'>ъ<\/span> радости к<span class='match'>ъ<\/span> подруге понесусь,<\/pre><\/li>\n  <li><pre>Коснусь волшебных<span class='match'>ъ<\/span> струн<span class='match'>ъ<\/span> волшебными пер<\/pre><\/li>\n  <li><pre>И, с<span class='match'>ъ<\/span> резвою мечтою примирюсь.<\/pre><\/li>\n  <li><pre>А, Б — ф<span class='match'>Ъ<\/span>.<\/pre><\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
 <p>Теперь удалим такие знаки препинания, которые следуют за другими знаками препинания в конце строки. Также добавим в контекст сам конец строки (иначе остается с твердым знаком слово “отлетает”).</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>text5 <span class="ot">&lt;-</span> <span class="fu">str_remove_all</span>(text4, <span class="st">"[ъЪ](?=</span><span class="sc">\\</span><span class="st">W|$)"</span>)</span>
-<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>text5</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a>text5 <span class="ot">&lt;-</span> <span class="fu">str_remove_all</span>(text4, <span class="st">"[ъЪ](?=</span><span class="sc">\\</span><span class="st">W|$)"</span>)</span>
+<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a>text5</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> [1] "РАЗЛУКА."                                  
  [2] "( Э л е г и я "                            
@@ -1066,20 +1065,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
-<section id="оборачиваем-в-функцию" class="level3" data-number="4.1.5">
-<h3 data-number="4.1.5" class="anchored" data-anchor-id="оборачиваем-в-функцию"><span class="header-section-number">4.1.5</span> Оборачиваем в функцию</h3>
+<section id="конвейер-обработки" class="level2" data-number="4.6">
+<h2 data-number="4.6" class="anchored" data-anchor-id="конвейер-обработки"><span class="header-section-number">4.6</span> Конвейер обработки</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a>normalize_text <span class="ot">&lt;-</span> <span class="cf">function</span>(text) {</span>
-<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># подумайте, нужно ли вам удалять строки с цифрами!</span></span>
-<span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a>  text[<span class="sc">!</span><span class="fu">str_detect</span>(text, <span class="st">"</span><span class="sc">\\</span><span class="st">d"</span>) <span class="sc">&amp;</span> <span class="fu">nchar</span>(text) <span class="sc">!=</span> <span class="dv">0</span>] <span class="sc">|&gt;</span> </span>
-<span id="cb52-4"><a href="#cb52-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">str_squish</span>() <span class="sc">|&gt;</span> </span>
-<span id="cb52-5"><a href="#cb52-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">str_replace_all</span>(<span class="fu">c</span>(<span class="st">"і"</span> <span class="ot">=</span> <span class="st">"и"</span>, <span class="st">"ѣ"</span> <span class="ot">=</span> <span class="st">"е"</span>)) <span class="sc">|&gt;</span></span>
-<span id="cb52-6"><a href="#cb52-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">str_replace</span>(<span class="st">" —$"</span>, <span class="st">"—"</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb52-7"><a href="#cb52-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">str_replace</span>(<span class="st">"(</span><span class="sc">\\</span><span class="st">W)(</span><span class="sc">\\</span><span class="st">W+)$"</span>, <span class="st">"</span><span class="sc">\\</span><span class="st">1"</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb52-8"><a href="#cb52-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">str_remove_all</span>(<span class="st">"[ъЪ](?=</span><span class="sc">\\</span><span class="st">W|$)"</span>)</span>
-<span id="cb52-9"><a href="#cb52-9" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb52-10"><a href="#cb52-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb52-11"><a href="#cb52-11" aria-hidden="true" tabindex="-1"></a><span class="fu">normalize_text</span>(text)</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a>normalize_text <span class="ot">&lt;-</span> <span class="cf">function</span>(text) {</span>
+<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># подумайте, нужно ли вам удалять строки с цифрами!</span></span>
+<span id="cb54-3"><a href="#cb54-3" aria-hidden="true" tabindex="-1"></a>  text[<span class="sc">!</span><span class="fu">str_detect</span>(text, <span class="st">"</span><span class="sc">\\</span><span class="st">d"</span>) <span class="sc">&amp;</span> <span class="fu">nchar</span>(text) <span class="sc">!=</span> <span class="dv">0</span>] <span class="sc">|&gt;</span> </span>
+<span id="cb54-4"><a href="#cb54-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">str_squish</span>() <span class="sc">|&gt;</span> </span>
+<span id="cb54-5"><a href="#cb54-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">str_replace_all</span>(<span class="fu">c</span>(<span class="st">"і"</span> <span class="ot">=</span> <span class="st">"и"</span>, <span class="st">"ѣ"</span> <span class="ot">=</span> <span class="st">"е"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb54-6"><a href="#cb54-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">str_replace</span>(<span class="st">" —$"</span>, <span class="st">"—"</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb54-7"><a href="#cb54-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">str_replace</span>(<span class="st">"(</span><span class="sc">\\</span><span class="st">W)(</span><span class="sc">\\</span><span class="st">W+)$"</span>, <span class="st">"</span><span class="sc">\\</span><span class="st">1"</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb54-8"><a href="#cb54-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">str_remove_all</span>(<span class="st">"[ъЪ](?=</span><span class="sc">\\</span><span class="st">W|$)"</span>)</span>
+<span id="cb54-9"><a href="#cb54-9" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb54-10"><a href="#cb54-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb54-11"><a href="#cb54-11" aria-hidden="true" tabindex="-1"></a><span class="fu">normalize_text</span>(text)</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> [1] "РАЗЛУКА."                                  
  [2] "( Э л е г и я "                            
@@ -1117,135 +1116,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>В зависимости от задачи, продумайте свою нормализацию. Она может включать в себя склейку переносов и другие преобразования.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="fu">writeLines</span>(text5[<span class="sc">-</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">32</span>)], <span class="at">con =</span> <span class="st">"../ocr/rosalia_norm.txt"</span>)</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="fu">writeLines</span>(text5[<span class="sc">-</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">32</span>)], <span class="at">con =</span> <span class="st">"../ocr/rosalia_norm.txt"</span>)</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-</section>
-<section id="оценка-качества-распознавания" class="level2" data-number="4.2">
-<h2 data-number="4.2" class="anchored" data-anchor-id="оценка-качества-распознавания"><span class="header-section-number">4.2</span> Оценка качества распознавания</h2>
-<div class="cell">
-<div class="cell-output cell-output-stdout">
-<pre><code>
- _________________________________ 
-&lt;Этот раздел еще дорабатывается.&gt;
- --------------------------------- 
-      \
-       \
-
-        ^__^ 
-        (oo)\ ________ 
-        (__)\         )\ /\ 
-             ||------w|
-             ||      ||</code></pre>
-</div>
-</div>
-<section id="метрики-качества-ocr-cer-и-wer" class="level3" data-number="4.2.1">
-<h3 data-number="4.2.1" class="anchored" data-anchor-id="метрики-качества-ocr-cer-и-wer"><span class="header-section-number">4.2.1</span> Метрики качества OCR: CER и WER</h3>
-<p>Для оценки качества распознавания текста (OCR) стандартно используются две метрики — CER (<em>Character Error Rate</em>) и WER (<em>Word Error Rate</em>). Обе рассчитываются на основе расстояния Левенштейна — минимального числа вставок, удалений или замен, необходимых для преобразования одного текста в другой.</p>
-<ul>
-<li><p>CER (ошибки на символ):</p>
-<p>CER = (редакционное расстояние по символам) / (число символов в эталонном тексте)</p></li>
-<li><p>WER (ошибки на слова):</p>
-<p>WER = (редакционное расстояние по словам) / (число слов в эталонном тексте)</p></li>
-</ul>
-<p>Эталонный текст — это корректная разметка (<em>ground truth</em>), а распознанный текст — результат работы OCR.</p>
-<p>Зачем нужны обе метрики:</p>
-<ul>
-<li>CER чувствительнее к отдельным опечаткам, диакритическим знакам и пунктуации.</li>
-<li>WER лучше отражает читабельность и пригодность текста для поиска, анализа и других практических задач — поэтому особенно полезна при оценке итогового качества корпуса.</li>
-</ul>
-<p>Для работы нам понадобятся следующие пакеты.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(stringdist)</span>
-<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(stringi)</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Также загрузим для сравнения три текста: эталон и два результата распознавания (один из них очень плохой и не нормализованный).</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a>ref <span class="ot">&lt;-</span> <span class="fu">readLines</span>(<span class="st">"../ocr/rosalia_gt.txt"</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">str_c</span>(<span class="at">collapse =</span> <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span>
-<span id="cb57-3"><a href="#cb57-3" aria-hidden="true" tabindex="-1"></a>hyp1 <span class="ot">&lt;-</span> <span class="fu">readLines</span>(<span class="st">"../ocr/rosalia_norm.txt"</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb57-4"><a href="#cb57-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">str_c</span>(<span class="at">collapse =</span> <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span>
-<span id="cb57-5"><a href="#cb57-5" aria-hidden="true" tabindex="-1"></a>hyp2 <span class="ot">&lt;-</span> <span class="fu">readLines</span>(<span class="st">"../ocr/rosalia_3.txt"</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb57-6"><a href="#cb57-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">str_c</span>(<span class="at">collapse =</span> <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>) </span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
-<section id="cer-ред.-расстояние-по-символам-длина-эталона" class="level3" data-number="4.2.2">
-<h3 data-number="4.2.2" class="anchored" data-anchor-id="cer-ред.-расстояние-по-символам-длина-эталона"><span class="header-section-number">4.2.2</span> CER: ред. расстояние по символам / длина эталона</h3>
-<p>Напишем фунκцию, которая будет сравнивать эталон с гипотезой.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a>cer <span class="ot">&lt;-</span> <span class="cf">function</span>(ref, hyp) {</span>
-<span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb58-3"><a href="#cb58-3" aria-hidden="true" tabindex="-1"></a>  dist <span class="ot">&lt;-</span> <span class="fu">stringdist</span>(ref, hyp, <span class="at">method =</span> <span class="st">"lv"</span>) <span class="co"># Левенштейн</span></span>
-<span id="cb58-4"><a href="#cb58-4" aria-hidden="true" tabindex="-1"></a>  nref <span class="ot">&lt;-</span> <span class="fu">nchar</span>(ref, <span class="at">type =</span> <span class="st">"chars"</span>)</span>
-<span id="cb58-5"><a href="#cb58-5" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (nref <span class="sc">==</span> <span class="dv">0</span>) <span class="fu">return</span>(<span class="cn">NA_real_</span>)</span>
-<span id="cb58-6"><a href="#cb58-6" aria-hidden="true" tabindex="-1"></a>  dist <span class="sc">/</span> nref</span>
-<span id="cb58-7"><a href="#cb58-7" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cer</span>(ref, hyp1)</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.007494647</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb61"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cer</span>(ref, hyp2)</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.2109208</code></pre>
-</div>
-</div>
-</section>
-<section id="wer-ред.-расстояние-по-словам-число-слов-эталона" class="level3" data-number="4.2.3">
-<h3 data-number="4.2.3" class="anchored" data-anchor-id="wer-ред.-расстояние-по-словам-число-слов-эталона"><span class="header-section-number">4.2.3</span> WER: ред. расстояние по словам / число слов эталона</h3>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb63"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a>wer <span class="ot">&lt;-</span> <span class="cf">function</span>(ref, hyp) {</span>
-<span id="cb63-2"><a href="#cb63-2" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb63-3"><a href="#cb63-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Разбиваем на слова, удаляя пустые строки</span></span>
-<span id="cb63-4"><a href="#cb63-4" aria-hidden="true" tabindex="-1"></a>  ref_words <span class="ot">&lt;-</span> <span class="fu">unlist</span>(<span class="fu">strsplit</span>(ref, <span class="st">"</span><span class="sc">\\</span><span class="st">s+"</span>))</span>
-<span id="cb63-5"><a href="#cb63-5" aria-hidden="true" tabindex="-1"></a>  hyp_words <span class="ot">&lt;-</span> <span class="fu">unlist</span>(<span class="fu">strsplit</span>(hyp, <span class="st">"</span><span class="sc">\\</span><span class="st">s+"</span>))</span>
-<span id="cb63-6"><a href="#cb63-6" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb63-7"><a href="#cb63-7" aria-hidden="true" tabindex="-1"></a>  ref_words <span class="ot">&lt;-</span> ref_words[ref_words <span class="sc">!=</span> <span class="st">""</span>]</span>
-<span id="cb63-8"><a href="#cb63-8" aria-hidden="true" tabindex="-1"></a>  hyp_words <span class="ot">&lt;-</span> hyp_words[hyp_words <span class="sc">!=</span> <span class="st">""</span>]</span>
-<span id="cb63-9"><a href="#cb63-9" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb63-10"><a href="#cb63-10" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Создаем матрицу для расчета расстояния Левенштейна</span></span>
-<span id="cb63-11"><a href="#cb63-11" aria-hidden="true" tabindex="-1"></a>  n_ref <span class="ot">&lt;-</span> <span class="fu">length</span>(ref_words)</span>
-<span id="cb63-12"><a href="#cb63-12" aria-hidden="true" tabindex="-1"></a>  n_hyp <span class="ot">&lt;-</span> <span class="fu">length</span>(hyp_words)</span>
-<span id="cb63-13"><a href="#cb63-13" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb63-14"><a href="#cb63-14" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Инициализируем матрицу</span></span>
-<span id="cb63-15"><a href="#cb63-15" aria-hidden="true" tabindex="-1"></a>  d <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">0</span>, <span class="at">nrow =</span> n_ref <span class="sc">+</span> <span class="dv">1</span>, <span class="at">ncol =</span> n_hyp <span class="sc">+</span> <span class="dv">1</span>)</span>
-<span id="cb63-16"><a href="#cb63-16" aria-hidden="true" tabindex="-1"></a>  d[,<span class="dv">1</span>] <span class="ot">&lt;-</span> <span class="dv">0</span><span class="sc">:</span>n_ref</span>
-<span id="cb63-17"><a href="#cb63-17" aria-hidden="true" tabindex="-1"></a>  d[<span class="dv">1</span>,] <span class="ot">&lt;-</span> <span class="dv">0</span><span class="sc">:</span>n_hyp</span>
-<span id="cb63-18"><a href="#cb63-18" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb63-19"><a href="#cb63-19" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Заполняем матрицу расстояний</span></span>
-<span id="cb63-20"><a href="#cb63-20" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>n_ref) {</span>
-<span id="cb63-21"><a href="#cb63-21" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> (j <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>n_hyp) {</span>
-<span id="cb63-22"><a href="#cb63-22" aria-hidden="true" tabindex="-1"></a>      <span class="cf">if</span> (ref_words[i] <span class="sc">==</span> hyp_words[j]) {</span>
-<span id="cb63-23"><a href="#cb63-23" aria-hidden="true" tabindex="-1"></a>        d[i<span class="sc">+</span><span class="dv">1</span>, j<span class="sc">+</span><span class="dv">1</span>] <span class="ot">&lt;-</span> d[i, j]  <span class="co"># слова совпадают</span></span>
-<span id="cb63-24"><a href="#cb63-24" aria-hidden="true" tabindex="-1"></a>      } <span class="cf">else</span> {</span>
-<span id="cb63-25"><a href="#cb63-25" aria-hidden="true" tabindex="-1"></a>        d[i<span class="sc">+</span><span class="dv">1</span>, j<span class="sc">+</span><span class="dv">1</span>] <span class="ot">&lt;-</span> <span class="fu">min</span>(</span>
-<span id="cb63-26"><a href="#cb63-26" aria-hidden="true" tabindex="-1"></a>          d[i, j<span class="sc">+</span><span class="dv">1</span>] <span class="sc">+</span> <span class="dv">1</span>,   <span class="co"># удаление</span></span>
-<span id="cb63-27"><a href="#cb63-27" aria-hidden="true" tabindex="-1"></a>          d[i<span class="sc">+</span><span class="dv">1</span>, j] <span class="sc">+</span> <span class="dv">1</span>,   <span class="co"># вставка  </span></span>
-<span id="cb63-28"><a href="#cb63-28" aria-hidden="true" tabindex="-1"></a>          d[i, j] <span class="sc">+</span> <span class="dv">1</span>      <span class="co"># замена</span></span>
-<span id="cb63-29"><a href="#cb63-29" aria-hidden="true" tabindex="-1"></a>        )</span>
-<span id="cb63-30"><a href="#cb63-30" aria-hidden="true" tabindex="-1"></a>      }</span>
-<span id="cb63-31"><a href="#cb63-31" aria-hidden="true" tabindex="-1"></a>    }</span>
-<span id="cb63-32"><a href="#cb63-32" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb63-33"><a href="#cb63-33" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb63-34"><a href="#cb63-34" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Возвращаем WER</span></span>
-<span id="cb63-35"><a href="#cb63-35" aria-hidden="true" tabindex="-1"></a>  d[n_ref <span class="sc">+</span> <span class="dv">1</span>, n_hyp <span class="sc">+</span> <span class="dv">1</span>] <span class="sc">/</span> n_ref</span>
-<span id="cb63-36"><a href="#cb63-36" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb64"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="fu">wer</span>(ref, hyp1)</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.0625</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb66"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a><span class="fu">wer</span>(ref, hyp2)</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.5486111</code></pre>
-</div>
-</div>
-</section>
-</section>
-<section id="видео" class="level2" data-number="4.3">
-<h2 data-number="4.3" class="anchored" data-anchor-id="видео"><span class="header-section-number">4.3</span> Видео</h2>
+<section id="видео" class="level2" data-number="4.7">
+<h2 data-number="4.7" class="anchored" data-anchor-id="видео"><span class="header-section-number">4.7</span> Видео</h2>
 <ul>
 <li><a href="https://vk.com/video91786643_456239080">Видео</a> 2025 г.</li>
 </ul>
