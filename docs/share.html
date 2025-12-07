@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>7&nbsp; Публикационная система Quarto – Программирование на R для филологов</title>
+<title>8&nbsp; Презентация исследования – Программирование на R для филологов</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -121,52 +121,9 @@ div.csl-indent {
     "search-label": "Поиск"
   }
 }</script>
-<link href="site_libs/htmltools-fill-0.5.8.1/fill.css" rel="stylesheet">
-<script src="site_libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
-<link href="site_libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet">
-<script src="site_libs/datatables-binding-0.33/datatables.js"></script>
-<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
-<link href="site_libs/dt-core-1.13.6/css/jquery.dataTables.min.css" rel="stylesheet">
-<link href="site_libs/dt-core-1.13.6/css/jquery.dataTables.extra.css" rel="stylesheet">
-<script src="site_libs/dt-core-1.13.6/js/jquery.dataTables.min.js"></script>
-<link href="site_libs/crosstalk-1.2.1/css/crosstalk.min.css" rel="stylesheet">
-<script src="site_libs/crosstalk-1.2.1/js/crosstalk.min.js"></script>
-<script src="site_libs/plotly-binding-4.10.4/plotly.js"></script>
-<script src="site_libs/typedarray-0.1/typedarray.min.js"></script>
-<link href="site_libs/plotly-htmlwidgets-css-2.11.1/plotly-htmlwidgets.css" rel="stylesheet">
-<script src="site_libs/plotly-main-2.11.1/plotly-latest.min.js"></script>
 <link href="site_libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet">
 <script src="site_libs/pagedtable-1.1/js/pagedtable.js"></script>
 
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
 
 <link rel="stylesheet" href="include/webex.css">
 </head>
@@ -180,7 +137,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Переключить боковую панель навигации" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./share.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Публикационная система Quarto</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./share.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Презентация исследования</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Переключить боковую панель навигации" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Поиск" onclick="window.quartoOpenSearch();">
@@ -243,14 +200,20 @@ window.Quarto = {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./POS.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Лемматизация и тематическое моделирование</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./llm.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Добавление разметки с LLM</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Работа с LLM</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./share.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Публикационная система Quarto</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Презентация исследования</span></span></a>
   </div>
 </li>
     </ul>
@@ -263,29 +226,33 @@ window.Quarto = {
     <h2 id="toc-title">Содержание</h2>
    
   <ul>
-  <li><a href="#о-воспроизводимости" id="toc-о-воспроизводимости" class="nav-link active" data-scroll-target="#о-воспроизводимости"><span class="header-section-number">7.1</span> О воспроизводимости</a></li>
-  <li><a href="#markdown" id="toc-markdown" class="nav-link" data-scroll-target="#markdown"><span class="header-section-number">7.2</span> Markdown</a></li>
-  <li><a href="#quarto" id="toc-quarto" class="nav-link" data-scroll-target="#quarto"><span class="header-section-number">7.3</span> Quarto</a></li>
-  <li><a href="#шапка-yaml" id="toc-шапка-yaml" class="nav-link" data-scroll-target="#шапка-yaml"><span class="header-section-number">7.4</span> Шапка YAML</a></li>
-  <li><a href="#синтаксис-markdown" id="toc-синтаксис-markdown" class="nav-link" data-scroll-target="#синтаксис-markdown"><span class="header-section-number">7.5</span> Синтаксис Markdown</a>
+  <li><a href="#сайт-quarto" id="toc-сайт-quarto" class="nav-link active" data-scroll-target="#сайт-quarto"><span class="header-section-number">8.1</span> Сайт Quarto</a></li>
+  <li><a href="#репозиторий-github" id="toc-репозиторий-github" class="nav-link" data-scroll-target="#репозиторий-github"><span class="header-section-number">8.2</span> Репозиторий GitHub</a>
   <ul class="collapse">
-  <li><a href="#заголовки" id="toc-заголовки" class="nav-link" data-scroll-target="#заголовки"><span class="header-section-number">7.5.1</span> Заголовки</a></li>
-  <li><a href="#форматирование" id="toc-форматирование" class="nav-link" data-scroll-target="#форматирование"><span class="header-section-number">7.5.2</span> Форматирование</a></li>
-  <li><a href="#списки" id="toc-списки" class="nav-link" data-scroll-target="#списки"><span class="header-section-number">7.5.3</span> Списки</a></li>
-  <li><a href="#ссылки" id="toc-ссылки" class="nav-link" data-scroll-target="#ссылки"><span class="header-section-number">7.5.4</span> Ссылки</a></li>
-  <li><a href="#изображения" id="toc-изображения" class="nav-link" data-scroll-target="#изображения"><span class="header-section-number">7.5.5</span> Изображения</a></li>
-  <li><a href="#блоки-кода" id="toc-блоки-кода" class="nav-link" data-scroll-target="#блоки-кода"><span class="header-section-number">7.5.6</span> Блоки кода</a></li>
-  <li><a href="#цитаты" id="toc-цитаты" class="nav-link" data-scroll-target="#цитаты"><span class="header-section-number">7.5.7</span> Цитаты</a></li>
-  <li><a href="#разделители" id="toc-разделители" class="nav-link" data-scroll-target="#разделители"><span class="header-section-number">7.5.8</span> Разделители</a></li>
-  <li><a href="#таблицы" id="toc-таблицы" class="nav-link" data-scroll-target="#таблицы"><span class="header-section-number">7.5.9</span> Таблицы</a></li>
-  <li><a href="#id" id="toc-id" class="nav-link" data-scroll-target="#id"><span class="header-section-number">7.5.10</span> Чек-листы</a></li>
-  <li><a href="#внутренние-ссылки" id="toc-внутренние-ссылки" class="nav-link" data-scroll-target="#внутренние-ссылки"><span class="header-section-number">7.5.11</span> Внутренние ссылки</a></li>
-  <li><a href="#графики" id="toc-графики" class="nav-link" data-scroll-target="#графики"><span class="header-section-number">7.5.12</span> Графики</a></li>
-  <li><a href="#математические-формулы" id="toc-математические-формулы" class="nav-link" data-scroll-target="#математические-формулы"><span class="header-section-number">7.5.13</span> Математические формулы</a></li>
-  <li><a href="#смайлы" id="toc-смайлы" class="nav-link" data-scroll-target="#смайлы"><span class="header-section-number">7.5.14</span> Смайлы</a></li>
+  <li><a href="#контроль-2-балла" id="toc-контроль-2-балла" class="nav-link" data-scroll-target="#контроль-2-балла"><span class="header-section-number">8.2.1</span> ⭐ Контроль (2 балла)</a></li>
   </ul></li>
-  <li><a href="#библиография" id="toc-библиография" class="nav-link" data-scroll-target="#библиография"><span class="header-section-number">7.6</span> Библиография</a></li>
-  <li><a href="#публикация-html" id="toc-публикация-html" class="nav-link" data-scroll-target="#публикация-html"><span class="header-section-number">7.7</span> Публикация html</a></li>
+  <li><a href="#редактируем-yaml" id="toc-редактируем-yaml" class="nav-link" data-scroll-target="#редактируем-yaml"><span class="header-section-number">8.3</span> Редактируем YAML</a>
+  <ul class="collapse">
+  <li><a href="#контроль-2-балла-1" id="toc-контроль-2-балла-1" class="nav-link" data-scroll-target="#контроль-2-балла-1"><span class="header-section-number">8.3.1</span> ⭐ Контроль (2 балла)</a></li>
+  </ul></li>
+  <li><a href="#markdown" id="toc-markdown" class="nav-link" data-scroll-target="#markdown"><span class="header-section-number">8.4</span> Markdown</a>
+  <ul class="collapse">
+  <li><a href="#контроль-1-балл" id="toc-контроль-1-балл" class="nav-link" data-scroll-target="#контроль-1-балл"><span class="header-section-number">8.4.1</span> ⭐ Контроль (1 балл)</a></li>
+  <li><a href="#заголовки" id="toc-заголовки" class="nav-link" data-scroll-target="#заголовки"><span class="header-section-number">8.4.2</span> Заголовки</a></li>
+  <li><a href="#форматирование" id="toc-форматирование" class="nav-link" data-scroll-target="#форматирование"><span class="header-section-number">8.4.3</span> Форматирование</a></li>
+  <li><a href="#списки" id="toc-списки" class="nav-link" data-scroll-target="#списки"><span class="header-section-number">8.4.4</span> Списки</a></li>
+  <li><a href="#ссылки" id="toc-ссылки" class="nav-link" data-scroll-target="#ссылки"><span class="header-section-number">8.4.5</span> Ссылки</a></li>
+  <li><a href="#изображения" id="toc-изображения" class="nav-link" data-scroll-target="#изображения"><span class="header-section-number">8.4.6</span> Изображения</a></li>
+  <li><a href="#блоки-кода" id="toc-блоки-кода" class="nav-link" data-scroll-target="#блоки-кода"><span class="header-section-number">8.4.7</span> Блоки кода</a></li>
+  <li><a href="#цитаты" id="toc-цитаты" class="nav-link" data-scroll-target="#цитаты"><span class="header-section-number">8.4.8</span> Цитаты</a></li>
+  <li><a href="#id" id="toc-id" class="nav-link" data-scroll-target="#id"><span class="header-section-number">8.4.9</span> Чек-листы</a></li>
+  <li><a href="#графики" id="toc-графики" class="nav-link" data-scroll-target="#графики"><span class="header-section-number">8.4.10</span> Графики</a></li>
+  <li><a href="#контроль-4-балла" id="toc-контроль-4-балла" class="nav-link" data-scroll-target="#контроль-4-балла"><span class="header-section-number">8.4.11</span> ⭐ Контроль (4 балла)</a></li>
+  </ul></li>
+  <li><a href="#библиография" id="toc-библиография" class="nav-link" data-scroll-target="#библиография"><span class="header-section-number">8.5</span> Библиография</a>
+  <ul class="collapse">
+  <li><a href="#контроль-1-балл-1" id="toc-контроль-1-балл-1" class="nav-link" data-scroll-target="#контроль-1-балл-1"><span class="header-section-number">8.5.1</span> ⭐ Контроль (1 балл)</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -294,7 +261,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Публикационная система Quarto</span></h1>
+<h1 class="title"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Презентация исследования</span></h1>
 </div>
 
 
@@ -311,9 +278,16 @@ window.Quarto = {
 </header>
 
 
-<section id="о-воспроизводимости" class="level2" data-number="7.1">
-<h2 data-number="7.1" class="anchored" data-anchor-id="о-воспроизводимости"><span class="header-section-number">7.1</span> О воспроизводимости</h2>
-<p>Полученный в результате количественных исследований результат должен быть проверяем и воспроизводим. Это значит, что в большинстве случаев недостаточно просто <em>рассказать</em>, что вы проделали. Теоретически читатель должен иметь возможность проделать тот же путь, что и автор: <strong>воcпроизвести</strong> его результаты, но в обратном направлении.</p>
+<p>В предыдущих уроках вы научились многому из того, что нужно исследователю-филологу:</p>
+<ul class="task-list">
+<li><label><input type="checkbox">анализировать готовые датасеты с использованием <code>{tidyverse}</code>;</label></li>
+<li><label><input type="checkbox">распознавать текст на изображении при помощи <code>{tesseract}</code>;</label></li>
+<li><label><input type="checkbox">вносить исправления в текст при помощи регулярных выражений;</label></li>
+<li><label><input type="checkbox">парсить XML и работать с разметкой TEI;</label></li>
+<li><label><input type="checkbox">использовать <code>{udpipe}</code> для лемматизации и анализа коллокаций;</label></li>
+<li><label><input type="checkbox">встраивать большие языковые модели в рабочие процессы.</label></li>
+</ul>
+<p>В этом уроке пришло время обобщить ваши знания и опубликовать свое первое количественное исследование. Мы сделаем это при помощи публикационной системы Quarto и сервиса GitHub Pages.</p>
 <div class="callout callout-style-default callout-note no-icon callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -324,103 +298,110 @@ window.Quarto = {
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Воспроизводимость (reproducibility) – это не то же, что повторяемость (replicability). Ученый, который повторяет исследование, проводит его заново на новых данных. Воспроизведение – гораздо более скромная задача, не требующая таких ресурсов, как повторение <span class="citation" data-cites="winter2020">(<a href="#ref-winter2020" role="doc-biblioref">Winter 2020, 47</a>)</span>.</p>
+<p>Работа на занятии оценивается; задания, которые учитываются при оценивании, отмечены звездочками ⭐.</p>
 </div>
 </div>
-<p>Для этого должны выполняться три основных требования:</p>
-<ul>
-<li>доступность данных и метаданных;</li>
-<li>доступность компьютерного кода;</li>
-<li>доступность программного обеспечения.</li>
+<section id="сайт-quarto" class="level2" data-number="8.1">
+<h2 data-number="8.1" class="anchored" data-anchor-id="сайт-quarto"><span class="header-section-number">8.1</span> Сайт Quarto</h2>
+<p>Работать с маркдауном мы будем, используя издательскую систему <a href="https://quarto.org/">Quarto</a> с открытым исходным кодом. Она позволяет создавать и публиковать статьи, презентации, информационные панели, веб-сайты, блоги и книги в HTML, PDF, MS Word, ePub и других форматах.</p>
+<p>Подробнее см. практическое руководство “<a href="https://quarto-tdg.org/">Quarto: The Definitive Guide</a>”, а также <a href="https://quarto.org/docs/websites/" class="uri">https://quarto.org/docs/websites/</a>.</p>
+<p>Создайте проект Quarto под контролем версий. В меню идем <code>File</code> -&gt; <code>New Project</code> -&gt; <code>New Directory</code> -&gt; <code>Quarto Website</code>. Поставьте галочку, чтобы проект был под контролем версий.</p>
+<p><img src="images/quarto_start.png" class="img-fluid"> У вашего сайта пока всего две страницы, About и Home. Загляните в файл <code>_quarto.yml</code>, чтобы в этом убедиться. Также отредактируйте файл <code>_quarto.yml</code>, указав путь для рендеринга html-файлов.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>project<span class="sc">:</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  type<span class="sc">:</span> website</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># вот эту строчку надо дописать</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  output<span class="sc">-</span>dir<span class="sc">:</span> docs</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Чтобы получить html, надо выполнить команду:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(quarto)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>quarto<span class="sc">::</span><span class="fu">quarto_render</span>()</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>После выполнения команды загляните в docs, чтобы убедить, что там лежат файлы html. Вы можете открыть их в любом браузере. Они пока пустоваты (но мы чуть позже их заполним).</p>
+</section>
+<section id="репозиторий-github" class="level2" data-number="8.2">
+<h2 data-number="8.2" class="anchored" data-anchor-id="репозиторий-github"><span class="header-section-number">8.2</span> Репозиторий GitHub</h2>
+<p>Вы уже умеете работать под контролем версий. Если забыли, загляните в <a href="https://locusclassicus.github.io/philology_2025/start.html">урок 1</a>.</p>
+<p>Сейчас нам надо связать наш проект с новым репозиторием.</p>
+<p>Для этого идете на GitHub, создатете публичный репозиторий и следуете инструкции.</p>
+<p><img src="images/create_repo.png" class="img-fluid"> Выполняйте код в терминале построчно. Также git попросит вас выполнить следующую команду: <code>git push --set-upstream origin main</code>.</p>
+<p>Для начала можете закоммитить сайт. После этого идем на GitHub, обновляем страницу репозитория, а затем и включаем Pages, указав, что наш сайт будет рендериться из папки docs.</p>
+<p><img src="images/pages.png" class="img-fluid"> Нажимаем <code>Save</code> и ждем несколько минут. В результате вы увидите нечто такое:</p>
+<p><img src="images/pages_start.png" class="img-fluid"></p>
+<p>Сохраните ссылку на сайт в описании репозитория, чтобы не искать каждый раз.</p>
+<p><img src="images/pages_desc.png" class="img-fluid"></p>
+<section id="контроль-2-балла" class="level3" data-number="8.2.1">
+<h3 data-number="8.2.1" class="anchored" data-anchor-id="контроль-2-балла"><span class="header-section-number">8.2.1</span> ⭐ Контроль (2 балла)</h3>
+<ul class="task-list">
+<li><label><input type="checkbox">создать привязанный к вашему аккаунту сайт на GitHub Pages</label></li>
+<li><label><input type="checkbox">отредактировать поля Description и Website.</label></li>
 </ul>
-<p>Уже на этапе планирования исследования очень важно продумать, как вы будете его документировать. Важно помнить, что код пишется не только для машин, но и для людей, поэтому стоит документировать не только то, <em>что</em> вы делали, но и <em>почему</em>. R дает для этого множество возможностей, главная из которых – это <a href="https://rmarkdown.rstudio.com/">Markdown</a>.</p>
 </section>
-<section id="markdown" class="level2" data-number="7.2">
-<h2 data-number="7.2" class="anchored" data-anchor-id="markdown"><span class="header-section-number">7.2</span> Markdown</h2>
+</section>
+<section id="редактируем-yaml" class="level2" data-number="8.3">
+<h2 data-number="8.3" class="anchored" data-anchor-id="редактируем-yaml"><span class="header-section-number">8.3</span> Редактируем YAML</h2>
+<p>YAML (с расширением <code>.yml</code>) — это формат, используемый для конфигурационных файлов и хранения структурированных данных, отличающийся более простым синтаксисом на основе отступов.</p>
+<p>К основным параметрам документа относятся <code>format</code>, <code>title</code>, <code>subtitle</code>, <code>date</code>, <code>date-format</code>, <code>author</code>, <code>abstract</code>, <code>lang</code>, <code>toc</code>, <code>number-sections</code> и другие.</p>
+<p>Список готовых тем для оформления: <a href="https://quarto.org/docs/output-formats/html-themes.html" class="uri">https://quarto.org/docs/output-formats/html-themes.html</a></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>project<span class="sc">:</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  type<span class="sc">:</span> website</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  output<span class="sc">-</span>dir<span class="sc">:</span> docs</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>website<span class="sc">:</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  title<span class="sc">:</span> <span class="st">"Мой великолепный проект"</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  navbar<span class="sc">:</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    search<span class="sc">:</span> true</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    left<span class="sc">:</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>      <span class="sc">-</span> href<span class="sc">:</span> index.qmd</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>        text<span class="sc">:</span> Текст</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>      <span class="sc">-</span> href<span class="sc">:</span> about.qmd</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>        text<span class="sc">:</span> О проекте</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>format<span class="sc">:</span></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>  html<span class="sc">:</span></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>    theme<span class="sc">:</span> </span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>     <span class="sc">-</span> journal</span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>    fontsize<span class="sc">:</span> <span class="st">"14pt"</span></span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Для просмотра изменений в терминале введите <code>quarto preview</code>.</p>
+<section id="контроль-2-балла-1" class="level3" data-number="8.3.1">
+<h3 data-number="8.3.1" class="anchored" data-anchor-id="контроль-2-балла-1"><span class="header-section-number">8.3.1</span> ⭐ Контроль (2 балла)</h3>
+<ul class="task-list">
+<li><label><input type="checkbox">поменяли название сайта и страниц (в оглавлении)</label></li>
+<li><label><input type="checkbox">поменяли оформление</label></li>
+</ul>
+</section>
+</section>
+<section id="markdown" class="level2" data-number="8.4">
+<h2 data-number="8.4" class="anchored" data-anchor-id="markdown"><span class="header-section-number">8.4</span> Markdown</h2>
 <p>Markdown – это облегчённый язык разметки. Он позволяет создавать документы разного формата – не только HTML (веб-страницы), но и PDF и Word. Markdown дает возможность создания полностью воспроизводимых документов, сочетающих код и поясняющий текст. Этот язык используется для создания сайтов, статей, книг, презентаций, отчетов, дашбордов и т.п. Этот курс написан с использованием Markdown.</p>
-<p>Чтобы начать работать с документами .rmd, нужен пакет <code>rmarkdown</code>; в RStudio он уже предустановлен. Создание нового документа .rmd происходит <a href="https://docs.posit.co/how-to-guides/rsc/publish-rmd/">из меню</a>.</p>
-<p>По умолчанию документ .rmd снабжен шапкой yaml. Она не обязательна. Здесь содержатся данные об авторе, времени создания, формате, сведения о файле с библиографией и т.п.</p>
-<pre><code>---
-title: "Demo"
-author: "My name"
-date: "2025-10-01"
-output: html_document
----</code></pre>
-<p>Также в документе .rmd скорее всего будет простой текст и блоки кода. Чтобы “сшить” html (pdf, doc), достаточно нажать кнопку <code>knit</code> либо запустить в консоли код: <code>rmarkdown::render("Demo.Rmd")</code>. После этого в рабочей директории появится новый файл (html, pdf, или doc), которым можно поделиться с коллегами, грантодателями или друзьями.</p>
-</section>
-<section id="quarto" class="level2" data-number="7.3">
-<h2 data-number="7.3" class="anchored" data-anchor-id="quarto"><span class="header-section-number">7.3</span> Quarto</h2>
-<p>Работать с маркдауном мы будем, используя издательскую систему <a href="https://quarto.org/">Quarto</a> с открытым исходным кодом. Она позволяет создавать и публиковать статьи, презентации, информационные панели, веб-сайты, блоги и книги в HTML, PDF, MS Word, ePub и других форматах. В общем, обычный Markdown тоже позволяет все это делать, но чуть сложнее. Quarto объединяет различные пакеты из экосистемы R Markdown воедино и значительно упрощает работу с ними. Подробнее см. практическое руководство “<a href="https://quarto-tdg.org/">Quarto: The Definitive Guide</a>”.</p>
-<div class="callout callout-style-default callout-warning no-icon callout-titled">
+<p>Язык Markdown можно использовать в файлах с раширением <code>.qmd</code> или <code>.rmd</code>. Два таких файла были автоматически добавлены при создании проекта. Можно добавить новые или переменовать те, что есть. Не забывайте прописать новые файлы в <code>_quarto.yml</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">file.rename</span>(<span class="st">"about.qmd"</span>, <span class="st">"analysis.qmd"</span>)</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="callout callout-style-default callout-note no-icon callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Задание
+На заметку
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Создайте новый <code>.qmd</code> документ. Потренируйтесь запускать код и сшивать документ в <code>.html</code>, <code>.pdf</code>, <code>.docx</code>.</p>
+<p>Один из файлов обязательно должен называться <code>index.qmd</code>. Без этого волшебство не работает.</p>
 </div>
 </div>
-<p>Для <code>.pdf</code> может понадобиться <a href="https://bookdown.org/yihui/rmarkdown-cookbook/install-latex.html">установка</a> LaTeX.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages("tinytex")</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>tinytex<span class="sc">::</span><span class="fu">install_tinytex</span>()</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co"># to uninstall TinyTeX, run</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># tinytex::uninstall_tinytex()</span></span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Можно указать сразу несколько форматов для файла, как показано <a href="https://quarto.org/docs/get-started/authoring/rstudio.html">здесь</a>, и “сшить” их одновременно:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>quarto<span class="sc">::</span><span class="fu">quarto_render</span>(</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"untitled.qmd"</span>, </span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">output_format =</span> <span class="fu">c</span>(<span class="st">"pdf"</span>, <span class="st">"html"</span>, <span class="st">"docx"</span>)</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
-<section id="шапка-yaml" class="level2" data-number="7.4">
-<h2 data-number="7.4" class="anchored" data-anchor-id="шапка-yaml"><span class="header-section-number">7.4</span> Шапка YAML</h2>
-<p>Основные параметры документа хранятся в YAML-шапке. К ним относятся <code>format</code>, <code>title</code>, <code>subtitle</code>, <code>date</code>, <code>date-format</code>, <code>author</code>, <code>abstract</code>, <code>lang</code>, <code>toc</code>, <code>number-sections</code> и другие.</p>
-<p>Попробуйте изменить шапку своего <code>.qmd</code>-документа и заново его сшить. Сравните с предыдущей версией.</p>
-<pre><code>---
-title: "Заголовок"
-subtitle: "Подзаголовок"
-format: html
-author: locusclassicus
-date: today
-date-format: D.MM.YYYY
-abstract: Значенье бублика нам непонятно.
-lang: ru
-toc: true
-number-sections: true
----
-</code></pre>
-<p>Поле <code>execute</code> позволяет <a href="https://quarto.org/docs/computations/execution-options.html">задать</a> параметры всех фрагментов кода в документе, например:</p>
-<pre><code>---
-execute:
-  echo: false
-  fig-width: 9
----
-  </code></pre>
-<p>Но для отдельных кусков кода эти настройки можно поменять:</p>
-<pre><code>```
-#| echo: true
-
-sqrt(16)
-```</code></pre>
-<p>Параметр <code>df-print</code> позволяет <a href="https://agricolamz.github.io/daR4hs/9_introduction_to_quarto.html">выбрать</a> один из возможных способов отображения датафреймов:</p>
-<ul>
-<li>default — стандартный, как в консоли;</li>
-<li>tibble — стандартный, как в консоли, но в формате tibble;</li>
-<li>kable — минималистичный вариант, подходит для всех видов документов;</li>
-<li>paged — интерактивная таблица, подходит для html страниц.</li>
+<section id="контроль-1-балл" class="level3" data-number="8.4.1">
+<h3 data-number="8.4.1" class="anchored" data-anchor-id="контроль-1-балл"><span class="header-section-number">8.4.1</span> ⭐ Контроль (1 балл)</h3>
+<ul class="task-list">
+<li><label><input type="checkbox">переименуйте файл <code>about.qmd</code> в <code>analysis.qmd</code>, обновите список страниц в <code>_quarto.yml</code>.</label></li>
 </ul>
 </section>
-<section id="синтаксис-markdown" class="level2" data-number="7.5">
-<h2 data-number="7.5" class="anchored" data-anchor-id="синтаксис-markdown"><span class="header-section-number">7.5</span> Синтаксис Markdown</h2>
-<section id="заголовки" class="level3" data-number="7.5.1">
-<h3 data-number="7.5.1" class="anchored" data-anchor-id="заголовки"><span class="header-section-number">7.5.1</span> Заголовки</h3>
+<section id="заголовки" class="level3" data-number="8.4.2">
+<h3 data-number="8.4.2" class="anchored" data-anchor-id="заголовки"><span class="header-section-number">8.4.2</span> Заголовки</h3>
 <p>Заголовки разного уровня задаются при помощи <a href="https://www.markdownguide.org/basic-syntax/">решетки</a>:</p>
 <pre><code># Заголовок первого уровня
 ## Заголовок второго уровня
@@ -428,8 +409,8 @@ sqrt(16)
 #### Заголовок четвёртого уровня</code></pre>
 <p>Пример заголовка третьего уровня:</p>
 </section>
-<section id="форматирование" class="level3" data-number="7.5.2">
-<h3 data-number="7.5.2" class="anchored" data-anchor-id="форматирование"><span class="header-section-number">7.5.2</span> Форматирование</h3>
+<section id="форматирование" class="level3" data-number="8.4.3">
+<h3 data-number="8.4.3" class="anchored" data-anchor-id="форматирование"><span class="header-section-number">8.4.3</span> Форматирование</h3>
 <pre><code>*курсив*  
 _курсив_
 
@@ -449,8 +430,8 @@ ___полужирный курсив___
 <p><del>зачеркнутый</del></p>
 <p><mark>выделение</mark></p>
 </section>
-<section id="списки" class="level3" data-number="7.5.3">
-<h3 data-number="7.5.3" class="anchored" data-anchor-id="списки"><span class="header-section-number">7.5.3</span> Списки</h3>
+<section id="списки" class="level3" data-number="8.4.4">
+<h3 data-number="8.4.4" class="anchored" data-anchor-id="списки"><span class="header-section-number">8.4.4</span> Списки</h3>
 <p>Нумерованный список</p>
 <pre><code>1. Пункт первый
 2. Пункт второй
@@ -493,31 +474,27 @@ ___полужирный курсив___
 <li>Пункт не знаю какой.</li>
 </ol>
 </section>
-<section id="ссылки" class="level3" data-number="7.5.4">
-<h3 data-number="7.5.4" class="anchored" data-anchor-id="ссылки"><span class="header-section-number">7.5.4</span> Ссылки</h3>
+<section id="ссылки" class="level3" data-number="8.4.5">
+<h3 data-number="8.4.5" class="anchored" data-anchor-id="ссылки"><span class="header-section-number">8.4.5</span> Ссылки</h3>
 <pre><code>[Текст ссылки](http://antibarbari.ru/)</code></pre>
 <p>Пример:</p>
 <p><a href="http://antibarbari.ru/">Текст ссылки</a></p>
 </section>
-<section id="изображения" class="level3" data-number="7.5.5">
-<h3 data-number="7.5.5" class="anchored" data-anchor-id="изображения"><span class="header-section-number">7.5.5</span> Изображения</h3>
+<section id="изображения" class="level3" data-number="8.4.6">
+<h3 data-number="8.4.6" class="anchored" data-anchor-id="изображения"><span class="header-section-number">8.4.6</span> Изображения</h3>
 <pre><code>![Текст описания](https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/Holbein-erasmus.jpg/548px-Holbein-erasmus.jpg)</code></pre>
 <p>Пример:</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/Holbein-erasmus.jpg/548px-Holbein-erasmus.jpg" class="img-fluid figure-img"></p>
+<p><img src="https://realworlddatascience.net/applied-insights/tutorials/posts/2023/12/12/images/s9.png" class="img-fluid figure-img"></p>
 <figcaption>Моя картинка</figcaption>
 </figure>
 </div>
-<p>Два нюанса:</p>
-<ul>
-<li>можно давать ссылки на локальные файлы (то есть такие файлы, которые хранятся на компьютере), но имейте в виду, что такой код не будет работать у другого пользователя;</li>
-<li>изображения можно вставлять, пользуясь непосредственно разметкой html.</li>
-</ul>
+<p>Изображения можно вставлять, пользуясь непосредственно разметкой html.</p>
 <pre><code>&lt;img src="images/my_image.jpg" width=40%&gt;</code></pre>
 </section>
-<section id="блоки-кода" class="level3" data-number="7.5.6">
-<h3 data-number="7.5.6" class="anchored" data-anchor-id="блоки-кода"><span class="header-section-number">7.5.6</span> Блоки кода</h3>
+<section id="блоки-кода" class="level3" data-number="8.4.7">
+<h3 data-number="8.4.7" class="anchored" data-anchor-id="блоки-кода"><span class="header-section-number">8.4.7</span> Блоки кода</h3>
 <p>Можно вставлять <code>непосредственно в текст</code>; для этого код выделяют одинарным обратным апострофом (грависом). Но чаще код дают отдельным блоком. Эти блоки можно именовать; тогда в случае ошибки будет сразу понятно, где она <a href="https://r4ds.had.co.nz/r-markdown.html#chunk-name">случилась</a>.</p>
 <pre><code>```{}
 some code here
@@ -533,8 +510,8 @@ some code here
 <li><code>error = TRUE</code> “сшивание” продолжается, даже если этот блок вернул ошибку.</li>
 </ul>
 </section>
-<section id="цитаты" class="level3" data-number="7.5.7">
-<h3 data-number="7.5.7" class="anchored" data-anchor-id="цитаты"><span class="header-section-number">7.5.7</span> Цитаты</h3>
+<section id="цитаты" class="level3" data-number="8.4.8">
+<h3 data-number="8.4.8" class="anchored" data-anchor-id="цитаты"><span class="header-section-number">8.4.8</span> Цитаты</h3>
 <pre><code>&gt; Omnia praeclara rara.</code></pre>
 <p>Пример:</p>
 <blockquote class="blockquote">
@@ -550,124 +527,8 @@ some code here
 <p>— Cicero</p>
 </blockquote>
 </section>
-<section id="разделители" class="level3" data-number="7.5.8">
-<h3 data-number="7.5.8" class="anchored" data-anchor-id="разделители"><span class="header-section-number">7.5.8</span> Разделители</h3>
-<p>Чтобы создать горизонтальную линию, можно использовать <code>---</code>, <code>***</code> или <code>___</code>.</p>
-<p>Пример:</p>
-<hr>
-</section>
-<section id="таблицы" class="level3" data-number="7.5.9">
-<h3 data-number="7.5.9" class="anchored" data-anchor-id="таблицы"><span class="header-section-number">7.5.9</span> Таблицы</h3>
-<p>Таблицы можно задать вручную при помощи дефисов <code>-</code> и вертикальных линий <code>|</code>; идеальная точность при этом не нужна. Перед таблицей обязательно оставляйте пустую строку, иначе волшебство не сработает.</p>
-<pre><code>
-| Фрукты   | Калории  |
-| -----  | ---- |
-| Яблоко   | 52  |
-| Апельсин | 47  |</code></pre>
-<p>Пример:</p>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th>Фрукты</th>
-<th>Калории</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Яблоко</td>
-<td>52</td>
-</tr>
-<tr class="even">
-<td>Апельсин</td>
-<td>47</td>
-</tr>
-</tbody>
-</table>
-<p>По умолчанию Markdown распечатывает таблицы так, как они бы выглядели в консоли.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">"iris"</span>)</span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(iris)</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div data-pagedtable="false">
-  <script data-pagedtable-source="" type="application/json">
-{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["Sepal.Length"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["Sepal.Width"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["Petal.Length"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["Petal.Width"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["Species"],"name":[5],"type":["fct"],"align":["left"]}],"data":[{"1":"5.1","2":"3.5","3":"1.4","4":"0.2","5":"setosa","_rn_":"1"},{"1":"4.9","2":"3.0","3":"1.4","4":"0.2","5":"setosa","_rn_":"2"},{"1":"4.7","2":"3.2","3":"1.3","4":"0.2","5":"setosa","_rn_":"3"},{"1":"4.6","2":"3.1","3":"1.5","4":"0.2","5":"setosa","_rn_":"4"},{"1":"5.0","2":"3.6","3":"1.4","4":"0.2","5":"setosa","_rn_":"5"},{"1":"5.4","2":"3.9","3":"1.7","4":"0.4","5":"setosa","_rn_":"6"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
-  </script>
-</div>
-</div>
-</div>
-<p>Для дополнительного форматирования можно использовать функцию <code>knitr::kable()</code>:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(iris[<span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>, ], <span class="at">caption =</span> <span class="st">"Таблица knitr"</span>)</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<table class="caption-top table table-sm table-striped small">
-<caption>Таблица knitr</caption>
-<thead>
-<tr class="header">
-<th style="text-align: right;">Sepal.Length</th>
-<th style="text-align: right;">Sepal.Width</th>
-<th style="text-align: right;">Petal.Length</th>
-<th style="text-align: right;">Petal.Width</th>
-<th style="text-align: left;">Species</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: right;">5.1</td>
-<td style="text-align: right;">3.5</td>
-<td style="text-align: right;">1.4</td>
-<td style="text-align: right;">0.2</td>
-<td style="text-align: left;">setosa</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">4.9</td>
-<td style="text-align: right;">3.0</td>
-<td style="text-align: right;">1.4</td>
-<td style="text-align: right;">0.2</td>
-<td style="text-align: left;">setosa</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">4.7</td>
-<td style="text-align: right;">3.2</td>
-<td style="text-align: right;">1.3</td>
-<td style="text-align: right;">0.2</td>
-<td style="text-align: left;">setosa</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">4.6</td>
-<td style="text-align: right;">3.1</td>
-<td style="text-align: right;">1.5</td>
-<td style="text-align: right;">0.2</td>
-<td style="text-align: left;">setosa</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">5.0</td>
-<td style="text-align: right;">3.6</td>
-<td style="text-align: right;">1.4</td>
-<td style="text-align: right;">0.2</td>
-<td style="text-align: left;">setosa</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">5.4</td>
-<td style="text-align: right;">3.9</td>
-<td style="text-align: right;">1.7</td>
-<td style="text-align: right;">0.4</td>
-<td style="text-align: left;">setosa</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-<p>Интерактивную таблицу можно создать так:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>DT<span class="sc">::</span><span class="fu">datatable</span>(iris[<span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>,])</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div class="datatables html-widget html-fill-item" id="htmlwidget-c43dca306ecdb395dac8" style="width:100%;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-c43dca306ecdb395dac8">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4","5","6"],[5.1,4.9,4.7,4.6,5,5.4],[3.5,3,3.2,3.1,3.6,3.9],[1.4,1.4,1.3,1.5,1.4,1.7],[0.2,0.2,0.2,0.2,0.2,0.4],["setosa","setosa","setosa","setosa","setosa","setosa"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>Sepal.Length<\/th>\n      <th>Sepal.Width<\/th>\n      <th>Petal.Length<\/th>\n      <th>Petal.Width<\/th>\n      <th>Species<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[1,2,3,4]},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"Sepal.Length","targets":1},{"name":"Sepal.Width","targets":2},{"name":"Petal.Length","targets":3},{"name":"Petal.Width","targets":4},{"name":"Species","targets":5}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
-</div>
-</div>
-</section>
-<section id="id" class="level3" data-number="7.5.10">
-<h3 data-number="7.5.10" class="anchored" data-anchor-id="id"><span class="header-section-number">7.5.10</span> Чек-листы</h3>
+<section id="id" class="level3" data-number="8.4.9">
+<h3 data-number="8.4.9" class="anchored" data-anchor-id="id"><span class="header-section-number">8.4.9</span> Чек-листы</h3>
 <pre><code>- [x] Таблицы
 - [ ] Графики</code></pre>
 <p>Пример:</p>
@@ -676,64 +537,87 @@ some code here
 <li><label><input type="checkbox">Графики</label></li>
 </ul>
 </section>
-<section id="внутренние-ссылки" class="level3" data-number="7.5.11">
-<h3 data-number="7.5.11" class="anchored" data-anchor-id="внутренние-ссылки"><span class="header-section-number">7.5.11</span> Внутренние ссылки</h3>
-<p>Удобны для навигации по документу. К названию любого раздела можно добавить <code>{#id}</code>.</p>
-<pre><code>[Вернуться к чек-листам](#id)</code></pre>
-<p>Пример:</p>
-<p><a href="#id">Вернуться к чек-листам</a></p>
-</section>
-<section id="графики" class="level3" data-number="7.5.12">
-<h3 data-number="7.5.12" class="anchored" data-anchor-id="графики"><span class="header-section-number">7.5.12</span> Графики</h3>
+<section id="графики" class="level3" data-number="8.4.10">
+<h3 data-number="8.4.10" class="anchored" data-anchor-id="графики"><span class="header-section-number">8.4.10</span> Графики</h3>
 <p>Markdown позволяет встраивать любые графики.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Sepal.Length, <span class="at">y =</span> Petal.Length, <span class="at">col =</span> Species), <span class="at">data =</span> iris) <span class="sc">+</span></span>
-<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">show.legend =</span> F)</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'ggplot2' was built under R version 4.5.2</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Координаты для "ёлки" (три треугольника)</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>tree <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">x =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">2</span>, <span class="dv">0</span>, <span class="dv">2</span>,   <span class="sc">-</span><span class="fl">1.5</span>, <span class="dv">0</span>, <span class="fl">1.5</span>,   <span class="sc">-</span><span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span>),</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">y =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">4</span>, <span class="dv">0</span>,    <span class="dv">1</span>, <span class="dv">5</span>, <span class="dv">1</span>,       <span class="fl">2.2</span>, <span class="dv">6</span>, <span class="fl">2.2</span>),</span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">group =</span> <span class="fu">rep</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, <span class="at">each=</span><span class="dv">3</span>)</span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Координаты ствола</span></span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>trunk <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">x =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="fl">0.5</span>, <span class="sc">-</span><span class="fl">0.5</span>, <span class="fl">0.5</span>, <span class="fl">0.5</span>),</span>
+<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">y =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="sc">-</span><span class="fl">0.8</span>, <span class="sc">-</span><span class="fl">0.8</span>, <span class="dv">0</span>)</span>
+<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb20-13"><a href="#cb20-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-14"><a href="#cb20-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Снежинки</span></span>
+<span id="cb20-15"><a href="#cb20-15" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb20-16"><a href="#cb20-16" aria-hidden="true" tabindex="-1"></a>snow <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb20-17"><a href="#cb20-17" aria-hidden="true" tabindex="-1"></a>  <span class="at">x =</span> <span class="fu">runif</span>(<span class="dv">80</span>, <span class="sc">-</span><span class="fl">3.5</span>, <span class="fl">3.5</span>),</span>
+<span id="cb20-18"><a href="#cb20-18" aria-hidden="true" tabindex="-1"></a>  <span class="at">y =</span> <span class="fu">runif</span>(<span class="dv">80</span>, <span class="fl">0.5</span>, <span class="dv">7</span>)</span>
+<span id="cb20-19"><a href="#cb20-19" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb20-20"><a href="#cb20-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-21"><a href="#cb20-21" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb20-22"><a href="#cb20-22" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Ёлка</span></span>
+<span id="cb20-23"><a href="#cb20-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_polygon</span>(<span class="at">data=</span>tree, <span class="fu">aes</span>(<span class="at">x=</span>x, <span class="at">y=</span>y, <span class="at">group=</span>group), <span class="at">fill=</span><span class="st">"darkgreen"</span>, <span class="at">color=</span><span class="st">"forestgreen"</span>) <span class="sc">+</span></span>
+<span id="cb20-24"><a href="#cb20-24" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Ствол</span></span>
+<span id="cb20-25"><a href="#cb20-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_polygon</span>(<span class="at">data=</span>trunk, <span class="fu">aes</span>(<span class="at">x=</span>x, <span class="at">y=</span>y), <span class="at">fill=</span><span class="st">"saddlebrown"</span>) <span class="sc">+</span></span>
+<span id="cb20-26"><a href="#cb20-26" aria-hidden="true" tabindex="-1"></a>  <span class="co"># "Звезда" (точка)</span></span>
+<span id="cb20-27"><a href="#cb20-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x=</span><span class="dv">0</span>, <span class="at">y=</span><span class="fl">6.7</span>), <span class="at">color=</span><span class="st">"gold"</span>, <span class="at">size=</span><span class="dv">9</span>, <span class="at">shape=</span><span class="dv">8</span>) <span class="sc">+</span></span>
+<span id="cb20-28"><a href="#cb20-28" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Снежинки</span></span>
+<span id="cb20-29"><a href="#cb20-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data=</span>snow, <span class="fu">aes</span>(<span class="at">x=</span>x, <span class="at">y=</span>y), <span class="at">color=</span><span class="st">"white"</span>, <span class="at">size=</span><span class="dv">2</span>, <span class="at">alpha=</span><span class="fl">0.7</span>, <span class="at">shape=</span><span class="dv">42</span>) <span class="sc">+</span></span>
+<span id="cb20-30"><a href="#cb20-30" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Поздравительный текст</span></span>
+<span id="cb20-31"><a href="#cb20-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">"text"</span>, <span class="at">x=</span><span class="dv">0</span>, <span class="at">y=</span><span class="dv">8</span>, <span class="at">label=</span><span class="st">"Merry Christmas!"</span>, <span class="at">family=</span><span class="st">"serif"</span>, <span class="at">color=</span><span class="st">"red"</span>, <span class="at">size=</span><span class="dv">8</span>, <span class="at">fontface=</span><span class="st">"bold"</span>) <span class="sc">+</span></span>
+<span id="cb20-32"><a href="#cb20-32" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Украшения на ёлке (игрушки)</span></span>
+<span id="cb20-33"><a href="#cb20-33" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="sc">-</span><span class="fl">0.5</span>, <span class="fl">0.3</span>, <span class="sc">-</span><span class="fl">1.3</span>, <span class="fl">1.2</span>), </span>
+<span id="cb20-34"><a href="#cb20-34" aria-hidden="true" tabindex="-1"></a>                 <span class="at">y =</span> <span class="fu">c</span>(<span class="fl">2.8</span>, <span class="fl">3.7</span>, <span class="fl">4.8</span>, <span class="fl">1.5</span>, <span class="dv">2</span>)), </span>
+<span id="cb20-35"><a href="#cb20-35" aria-hidden="true" tabindex="-1"></a>                 <span class="at">color =</span> <span class="fu">c</span>(<span class="st">"red"</span>, <span class="st">"gold"</span>, <span class="st">"blue"</span>, <span class="st">"orange"</span>, <span class="st">"magenta"</span>), <span class="at">size =</span> <span class="dv">5</span>) <span class="sc">+</span></span>
+<span id="cb20-36"><a href="#cb20-36" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Внешний вид</span></span>
+<span id="cb20-37"><a href="#cb20-37" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_fixed</span>() <span class="sc">+</span></span>
+<span id="cb20-38"><a href="#cb20-38" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_void</span>() <span class="sc">+</span></span>
+<span id="cb20-39"><a href="#cb20-39" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">plot.background =</span> <span class="fu">element_rect</span>(<span class="at">fill=</span><span class="st">"#114D78"</span>, <span class="at">color=</span><span class="cn">NA</span>))</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="share_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="share_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 </div>
-<p>Для интерактивных графиков понадобится пакет <code>plotly</code>:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(plotly)</span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_ly</span>(<span class="at">data=</span>iris, <span class="at">x =</span> <span class="sc">~</span>Sepal.Length, <span class="at">y =</span> <span class="sc">~</span>Petal.Length, <span class="at">color =</span> <span class="sc">~</span>Species)</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div class="plotly html-widget html-fill-item" id="htmlwidget-08b2ef22ed9b3ec69612" style="width:100%;height:464px;"></div>
-<script type="application/json" data-for="htmlwidget-08b2ef22ed9b3ec69612">{"x":{"visdat":{"b11666f18ad1":["function () ","plotlyVisDat"]},"cur_data":"b11666f18ad1","attrs":{"b11666f18ad1":{"x":{},"y":{},"color":{},"alpha_stroke":1,"sizes":[10,100],"spans":[1,20]}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"xaxis":{"domain":[0,1],"automargin":true,"title":"Sepal.Length"},"yaxis":{"domain":[0,1],"automargin":true,"title":"Petal.Length"},"hovermode":"closest","showlegend":true},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"data":[{"x":[5.0999999999999996,4.9000000000000004,4.7000000000000002,4.5999999999999996,5,5.4000000000000004,4.5999999999999996,5,4.4000000000000004,4.9000000000000004,5.4000000000000004,4.7999999999999998,4.7999999999999998,4.2999999999999998,5.7999999999999998,5.7000000000000002,5.4000000000000004,5.0999999999999996,5.7000000000000002,5.0999999999999996,5.4000000000000004,5.0999999999999996,4.5999999999999996,5.0999999999999996,4.7999999999999998,5,5,5.2000000000000002,5.2000000000000002,4.7000000000000002,4.7999999999999998,5.4000000000000004,5.2000000000000002,5.5,4.9000000000000004,5,5.5,4.9000000000000004,4.4000000000000004,5.0999999999999996,5,4.5,4.4000000000000004,5,5.0999999999999996,4.7999999999999998,5.0999999999999996,4.5999999999999996,5.2999999999999998,5],"y":[1.3999999999999999,1.3999999999999999,1.3,1.5,1.3999999999999999,1.7,1.3999999999999999,1.5,1.3999999999999999,1.5,1.5,1.6000000000000001,1.3999999999999999,1.1000000000000001,1.2,1.5,1.3,1.3999999999999999,1.7,1.5,1.7,1.5,1,1.7,1.8999999999999999,1.6000000000000001,1.6000000000000001,1.5,1.3999999999999999,1.6000000000000001,1.6000000000000001,1.5,1.5,1.3999999999999999,1.5,1.2,1.3,1.3999999999999999,1.3,1.5,1.3,1.3,1.3,1.6000000000000001,1.8999999999999999,1.3999999999999999,1.6000000000000001,1.3999999999999999,1.5,1.3999999999999999],"type":"scatter","mode":"markers","name":"setosa","marker":{"color":"rgba(102,194,165,1)","line":{"color":"rgba(102,194,165,1)"}},"textfont":{"color":"rgba(102,194,165,1)"},"error_y":{"color":"rgba(102,194,165,1)"},"error_x":{"color":"rgba(102,194,165,1)"},"line":{"color":"rgba(102,194,165,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":[7,6.4000000000000004,6.9000000000000004,5.5,6.5,5.7000000000000002,6.2999999999999998,4.9000000000000004,6.5999999999999996,5.2000000000000002,5,5.9000000000000004,6,6.0999999999999996,5.5999999999999996,6.7000000000000002,5.5999999999999996,5.7999999999999998,6.2000000000000002,5.5999999999999996,5.9000000000000004,6.0999999999999996,6.2999999999999998,6.0999999999999996,6.4000000000000004,6.5999999999999996,6.7999999999999998,6.7000000000000002,6,5.7000000000000002,5.5,5.5,5.7999999999999998,6,5.4000000000000004,6,6.7000000000000002,6.2999999999999998,5.5999999999999996,5.5,5.5,6.0999999999999996,5.7999999999999998,5,5.5999999999999996,5.7000000000000002,5.7000000000000002,6.2000000000000002,5.0999999999999996,5.7000000000000002],"y":[4.7000000000000002,4.5,4.9000000000000004,4,4.5999999999999996,4.5,4.7000000000000002,3.2999999999999998,4.5999999999999996,3.8999999999999999,3.5,4.2000000000000002,4,4.7000000000000002,3.6000000000000001,4.4000000000000004,4.5,4.0999999999999996,4.5,3.8999999999999999,4.7999999999999998,4,4.9000000000000004,4.7000000000000002,4.2999999999999998,4.4000000000000004,4.7999999999999998,5,4.5,3.5,3.7999999999999998,3.7000000000000002,3.8999999999999999,5.0999999999999996,4.5,4.5,4.7000000000000002,4.4000000000000004,4.0999999999999996,4,4.4000000000000004,4.5999999999999996,4,3.2999999999999998,4.2000000000000002,4.2000000000000002,4.2000000000000002,4.2999999999999998,3,4.0999999999999996],"type":"scatter","mode":"markers","name":"versicolor","marker":{"color":"rgba(252,141,98,1)","line":{"color":"rgba(252,141,98,1)"}},"textfont":{"color":"rgba(252,141,98,1)"},"error_y":{"color":"rgba(252,141,98,1)"},"error_x":{"color":"rgba(252,141,98,1)"},"line":{"color":"rgba(252,141,98,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":[6.2999999999999998,5.7999999999999998,7.0999999999999996,6.2999999999999998,6.5,7.5999999999999996,4.9000000000000004,7.2999999999999998,6.7000000000000002,7.2000000000000002,6.5,6.4000000000000004,6.7999999999999998,5.7000000000000002,5.7999999999999998,6.4000000000000004,6.5,7.7000000000000002,7.7000000000000002,6,6.9000000000000004,5.5999999999999996,7.7000000000000002,6.2999999999999998,6.7000000000000002,7.2000000000000002,6.2000000000000002,6.0999999999999996,6.4000000000000004,7.2000000000000002,7.4000000000000004,7.9000000000000004,6.4000000000000004,6.2999999999999998,6.0999999999999996,7.7000000000000002,6.2999999999999998,6.4000000000000004,6,6.9000000000000004,6.7000000000000002,6.9000000000000004,5.7999999999999998,6.7999999999999998,6.7000000000000002,6.7000000000000002,6.2999999999999998,6.5,6.2000000000000002,5.9000000000000004],"y":[6,5.0999999999999996,5.9000000000000004,5.5999999999999996,5.7999999999999998,6.5999999999999996,4.5,6.2999999999999998,5.7999999999999998,6.0999999999999996,5.0999999999999996,5.2999999999999998,5.5,5,5.0999999999999996,5.2999999999999998,5.5,6.7000000000000002,6.9000000000000004,5,5.7000000000000002,4.9000000000000004,6.7000000000000002,4.9000000000000004,5.7000000000000002,6,4.7999999999999998,4.9000000000000004,5.5999999999999996,5.7999999999999998,6.0999999999999996,6.4000000000000004,5.5999999999999996,5.0999999999999996,5.5999999999999996,6.0999999999999996,5.5999999999999996,5.5,4.7999999999999998,5.4000000000000004,5.5999999999999996,5.0999999999999996,5.0999999999999996,5.9000000000000004,5.7000000000000002,5.2000000000000002,5,5.2000000000000002,5.4000000000000004,5.0999999999999996],"type":"scatter","mode":"markers","name":"virginica","marker":{"color":"rgba(141,160,203,1)","line":{"color":"rgba(141,160,203,1)"}},"textfont":{"color":"rgba(141,160,203,1)"},"error_y":{"color":"rgba(141,160,203,1)"},"error_x":{"color":"rgba(141,160,203,1)"},"line":{"color":"rgba(141,160,203,1)"},"xaxis":"x","yaxis":"y","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+<div class="callout callout-style-default callout-note no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+На заметку
 </div>
 </div>
+<div class="callout-body-container callout-body">
 <p>Подробное руководство по созданию интерактивных графиков можно найти на сайте https://plotly.com/r/.</p>
-</section>
-<section id="математические-формулы" class="level3" data-number="7.5.13">
-<h3 data-number="7.5.13" class="anchored" data-anchor-id="математические-формулы"><span class="header-section-number">7.5.13</span> Математические формулы</h3>
-<p>Пишутся с использованием синтаксиса LaTeX, о котором можно прочитать подробнее <a href="https://ru.wikibooks.org/wiki/%D0%9C%D0%B0%D1%82%D0%B5%D0%BC%D0%B0%D1%82%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%B8%D0%B5_%D1%84%D0%BE%D1%80%D0%BC%D1%83%D0%BB%D1%8B_%D0%B2_LaTeX">здесь</a>.</p>
-<p>Формулы заключаются в одинарный $, если пишутся в строку, и в двойной $$, если отдельным блоком.</p>
-<pre><code>\cos (2\theta) = \cos^2 \theta - \sin^2 \theta</code></pre>
-<p>Вот так это выглядит в тексте: <span class="math inline">\(\cos (2\theta) = \cos^2 \theta - \sin^2 \theta\)</span>.</p>
-<p>А вот так – блоком:</p>
-<p><span class="math display">\[\cos (2\theta) = \cos^2 \theta - \sin^2 \theta\]</span></p>
-</section>
-<section id="смайлы" class="level3" data-number="7.5.14">
-<h3 data-number="7.5.14" class="anchored" data-anchor-id="смайлы"><span class="header-section-number">7.5.14</span> Смайлы</h3>
-<p>Удобнее вставлять через визуальный редактор (“шестеренка” &gt; Use Visual Editor), но можно и без него:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># devtools::install_github("hadley/emo")</span></span>
-<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(emo)</span>
-<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>emo<span class="sc">::</span><span class="fu">ji</span>(<span class="st">"apple"</span>)</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>🍎 </code></pre>
 </div>
 </div>
-<p>Код можно <a href="https://github.com/hadley/emo">записать в строку</a>, тогда смайл появится в тексте: 💀.</p>
+</section>
+<section id="контроль-4-балла" class="level3" data-number="8.4.11">
+<h3 data-number="8.4.11" class="anchored" data-anchor-id="контроль-4-балла"><span class="header-section-number">8.4.11</span> ⭐ Контроль (4 балла)</h3>
+<ul class="task-list">
+<li><label><input type="checkbox">добавлен блок кода</label></li>
+<li><label><input type="checkbox">добавлен график</label></li>
+<li><label><input type="checkbox">добавлено изображение и внешняя ссылка</label></li>
+<li><label><input type="checkbox">использованы заголовки разного уровня и форматирование</label></li>
+</ul>
 </section>
 </section>
-<section id="библиография" class="level2" data-number="7.6">
-<h2 data-number="7.6" class="anchored" data-anchor-id="библиография"><span class="header-section-number">7.6</span> Библиография</h2>
+<section id="библиография" class="level2" data-number="8.5">
+<h2 data-number="8.5" class="anchored" data-anchor-id="библиография"><span class="header-section-number">8.5</span> Библиография</h2>
 <p>Markdown позволяет добавлять библиографию в формате BibTeX. BibTeX — программное обеспечение для создания форматированных списков библиографии; обычно используется совместно с LaTeX’ом. Многие сайты, например GoogleScholar, позволяют экспортировать библиографические записи в формате BibTeX. При необходимости запись можно исправить вручную.</p>
 <p>Каждая запись имеет следующую форму.</p>
 <pre><code>@book{winter2020,
@@ -744,7 +628,7 @@ some code here
 }</code></pre>
 <p>Здесь <code>book</code> — тип записи («книга»), <code>winter2020</code> — метка-идентификатор записи, дальше список полей со значениями.</p>
 <p>Одна запись описывает ровно одну публикацию статью, книгу, диссертацию, и т. д. Подробнее о типах записей можно посмотреть <a href="https://ru.wikipedia.org/wiki/BibTeX">вот здесь</a>.</p>
-<p>Подобные записи хранятся в текстовом файле с расширением <code>.bib</code>. Чтобы привязать библиографию, нужно указать имя файла в шапке yaml.</p>
+<p>Подобные записи хранятся в текстовом файле с расширением <code>.bib</code>. Чтобы привязать библиографию, нужно указать имя файла в файле yml.</p>
 <pre><code>---
 bibliography: bibliography.bib
 ---</code></pre>
@@ -759,28 +643,20 @@ bibliography: references.bib
 csl: archiv-fur-geschichte-der-philosophie.csl
 ---</code></pre>
 <p>Найти необходимый csl-файл можно, например, в <a href="https://www.zotero.org/styles/">репозитории стилей Zotero</a>.</p>
-</section>
-<section id="публикация-html" class="level2" data-number="7.7">
-<h2 data-number="7.7" class="anchored" data-anchor-id="публикация-html"><span class="header-section-number">7.7</span> Публикация html</h2>
-<p>Для публикации на RPubs понадобится установить пакеты <code>packrat</code>, <code>rsconnect</code>.</p>
-<p>При публикации страницы на <a href="https://rpubs.com/" class="uri">https://rpubs.com/</a> следует добавить в шапку две строчки:</p>
-<pre><code>
----
-embed-resources: true
-standalone: true
----
-</code></pre>
-<p>Это позволит корректно отобразить локальные фото, графики и сохранит оформление.</p>
+<section id="контроль-1-балл-1" class="level3" data-number="8.5.1">
+<h3 data-number="8.5.1" class="anchored" data-anchor-id="контроль-1-балл-1"><span class="header-section-number">8.5.1</span> ⭐ Контроль (1 балл)</h3>
+<ul class="task-list">
+<li><label><input type="checkbox">добавьте в документ ссылку на литературу</label></li>
+<li><label><input type="checkbox">измените стиль цитирования</label></li>
+</ul>
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
 <div id="ref-wickham2016" class="csl-entry" role="listitem">
 Wickham, Hadley, и Garrett Grolemund. 2016. <em><span>R for Data Science</span></em>. O’Reilly. <a href="https://r4ds.had.co.nz/index.html">https://r4ds.had.co.nz/index.html</a>.
 </div>
-<div id="ref-winter2020" class="csl-entry" role="listitem">
-Winter, Bodo. 2020. <em><span>Statistics for Linguists: An Introduction Using R</span></em>. Routledge.
 </div>
-</div>
+</section>
 </section>
 
 </main> <!-- /main -->
@@ -1409,8 +1285,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./llm.html" class="pagination-link" aria-label="Добавление разметки с LLM">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Добавление разметки с LLM</span></span>
+      <a href="./llm.html" class="pagination-link" aria-label="Работа с LLM">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Работа с LLM</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
