@@ -121,8 +121,16 @@ div.csl-indent {
     "search-label": "Поиск"
   }
 }</script>
-<link href="site_libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet">
-<script src="site_libs/pagedtable-1.1/js/pagedtable.js"></script>
+<link href="site_libs/htmltools-fill-0.5.8.1/fill.css" rel="stylesheet">
+<script src="site_libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
+<link href="site_libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet">
+<script src="site_libs/datatables-binding-0.33/datatables.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<link href="site_libs/dt-core-1.13.6/css/jquery.dataTables.min.css" rel="stylesheet">
+<link href="site_libs/dt-core-1.13.6/css/jquery.dataTables.extra.css" rel="stylesheet">
+<script src="site_libs/dt-core-1.13.6/js/jquery.dataTables.min.js"></script>
+<link href="site_libs/crosstalk-1.2.1/css/crosstalk.min.css" rel="stylesheet">
+<script src="site_libs/crosstalk-1.2.1/js/crosstalk.min.js"></script>
 
 
 <link rel="stylesheet" href="include/webex.css">
@@ -246,8 +254,9 @@ div.csl-indent {
   <li><a href="#блоки-кода" id="toc-блоки-кода" class="nav-link" data-scroll-target="#блоки-кода"><span class="header-section-number">8.4.7</span> Блоки кода</a></li>
   <li><a href="#цитаты" id="toc-цитаты" class="nav-link" data-scroll-target="#цитаты"><span class="header-section-number">8.4.8</span> Цитаты</a></li>
   <li><a href="#id" id="toc-id" class="nav-link" data-scroll-target="#id"><span class="header-section-number">8.4.9</span> Чек-листы</a></li>
-  <li><a href="#графики" id="toc-графики" class="nav-link" data-scroll-target="#графики"><span class="header-section-number">8.4.10</span> Графики</a></li>
-  <li><a href="#контроль-4-балла" id="toc-контроль-4-балла" class="nav-link" data-scroll-target="#контроль-4-балла"><span class="header-section-number">8.4.11</span> ⭐ Контроль (4 балла)</a></li>
+  <li><a href="#таблицы" id="toc-таблицы" class="nav-link" data-scroll-target="#таблицы"><span class="header-section-number">8.4.10</span> Таблицы</a></li>
+  <li><a href="#графики" id="toc-графики" class="nav-link" data-scroll-target="#графики"><span class="header-section-number">8.4.11</span> Графики</a></li>
+  <li><a href="#контроль-4-балла" id="toc-контроль-4-балла" class="nav-link" data-scroll-target="#контроль-4-балла"><span class="header-section-number">8.4.12</span> ⭐ Контроль (4 балла)</a></li>
   </ul></li>
   <li><a href="#библиография" id="toc-библиография" class="nav-link" data-scroll-target="#библиография"><span class="header-section-number">8.5</span> Библиография</a>
   <ul class="collapse">
@@ -537,57 +546,797 @@ some code here
 <li><label><input type="checkbox">Графики</label></li>
 </ul>
 </section>
-<section id="графики" class="level3" data-number="8.4.10">
-<h3 data-number="8.4.10" class="anchored" data-anchor-id="графики"><span class="header-section-number">8.4.10</span> Графики</h3>
+<section id="таблицы" class="level3" data-number="8.4.10">
+<h3 data-number="8.4.10" class="anchored" data-anchor-id="таблицы"><span class="header-section-number">8.4.10</span> Таблицы</h3>
+<ol type="1">
+<li>Используйте <code>knitr::kable()</code> для простых таблиц.</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(openintro)</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Loading required package: airports</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Loading required package: cherryblossom</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Loading required package: usdata</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>possum <span class="ot">&lt;-</span>  possum</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>possum <span class="sc">|&gt;</span> </span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">10</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>  knitr<span class="sc">::</span><span class="fu">kable</span>(<span class="at">caption =</span> <span class="st">"Опоссумы, они такие"</span>) </span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<caption>Опоссумы, они такие</caption>
+<thead>
+<tr class="header">
+<th style="text-align: right;">site</th>
+<th style="text-align: left;">pop</th>
+<th style="text-align: left;">sex</th>
+<th style="text-align: right;">age</th>
+<th style="text-align: right;">head_l</th>
+<th style="text-align: right;">skull_w</th>
+<th style="text-align: right;">total_l</th>
+<th style="text-align: right;">tail_l</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">Vic</td>
+<td style="text-align: left;">m</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">94.1</td>
+<td style="text-align: right;">60.4</td>
+<td style="text-align: right;">89.0</td>
+<td style="text-align: right;">36.0</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">Vic</td>
+<td style="text-align: left;">f</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">92.5</td>
+<td style="text-align: right;">57.6</td>
+<td style="text-align: right;">91.5</td>
+<td style="text-align: right;">36.5</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">Vic</td>
+<td style="text-align: left;">f</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">94.0</td>
+<td style="text-align: right;">60.0</td>
+<td style="text-align: right;">95.5</td>
+<td style="text-align: right;">39.0</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">Vic</td>
+<td style="text-align: left;">f</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">93.2</td>
+<td style="text-align: right;">57.1</td>
+<td style="text-align: right;">92.0</td>
+<td style="text-align: right;">38.0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">Vic</td>
+<td style="text-align: left;">f</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">91.5</td>
+<td style="text-align: right;">56.3</td>
+<td style="text-align: right;">85.5</td>
+<td style="text-align: right;">36.0</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">Vic</td>
+<td style="text-align: left;">f</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">93.1</td>
+<td style="text-align: right;">54.8</td>
+<td style="text-align: right;">90.5</td>
+<td style="text-align: right;">35.5</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">Vic</td>
+<td style="text-align: left;">m</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">95.3</td>
+<td style="text-align: right;">58.2</td>
+<td style="text-align: right;">89.5</td>
+<td style="text-align: right;">36.0</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">Vic</td>
+<td style="text-align: left;">f</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">94.8</td>
+<td style="text-align: right;">57.6</td>
+<td style="text-align: right;">91.0</td>
+<td style="text-align: right;">37.0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">Vic</td>
+<td style="text-align: left;">f</td>
+<td style="text-align: right;">9</td>
+<td style="text-align: right;">93.4</td>
+<td style="text-align: right;">56.3</td>
+<td style="text-align: right;">91.5</td>
+<td style="text-align: right;">37.0</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">Vic</td>
+<td style="text-align: left;">f</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">91.8</td>
+<td style="text-align: right;">58.0</td>
+<td style="text-align: right;">89.5</td>
+<td style="text-align: right;">37.5</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>Плюсы: просто и быстро, неплохо смотрится, автоматическая адаптация под html/pdf/word. Минусы: нельзя листать, годится только для небольших таблиц</p>
+<ol start="2" type="1">
+<li>Используйте пакет <code>{DT}</code> для интерактивных и прокручиваемых таблиц.</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(DT)</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="fu">datatable</span>(possum)</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="datatables html-widget html-fill-item" id="htmlwidget-2ced78acf46e016e879d" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-2ced78acf46e016e879d">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31","32","33","34","35","36","37","38","39","40","41","42","43","44","45","46","47","48","49","50","51","52","53","54","55","56","57","58","59","60","61","62","63","64","65","66","67","68","69","70","71","72","73","74","75","76","77","78","79","80","81","82","83","84","85","86","87","88","89","90","91","92","93","94","95","96","97","98","99","100","101","102","103","104"],[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,2,2,2,2,2,2,2,2,2,2,2,2,3,3,3,3,3,3,3,4,4,4,4,4,4,4,5,5,5,5,5,5,5,5,5,5,5,5,5,6,6,6,6,6,6,6,6,6,6,6,6,6,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7],["Vic","Vic","Vic","Vic","Vic","Vic","Vic","Vic","Vic","Vic","Vic","Vic","Vic","Vic","Vic","Vic","Vic","Vic","Vic","Vic","Vic","Vic","Vic","Vic","Vic","Vic","Vic","Vic","Vic","Vic","Vic","Vic","Vic","Vic","Vic","Vic","Vic","Vic","Vic","Vic","Vic","Vic","Vic","Vic","Vic","Vic","other","other","other","other","other","other","other","other","other","other","other","other","other","other","other","other","other","other","other","other","other","other","other","other","other","other","other","other","other","other","other","other","other","other","other","other","other","other","other","other","other","other","other","other","other","other","other","other","other","other","other","other","other","other","other","other","other","other"],["m","f","f","f","f","f","m","f","f","f","f","f","m","m","m","m","f","m","f","f","f","m","f","m","m","m","f","m","f","f","m","f","m","m","m","m","f","m","f","f","f","m","f","m","m","m","m","m","m","f","f","m","f","m","m","m","f","m","m","f","m","f","f","f","f","f","m","m","m","f","m","m","m","f","m","m","m","m","m","m","m","f","f","m","m","f","m","f","m","m","m","m","m","m","m","m","m","m","f","m","m","f","m","f"],[8,6,6,6,2,1,2,6,9,6,9,5,5,3,5,4,1,2,5,4,3,3,4,2,3,7,2,4,3,2,3,4,3,2,4,7,2,7,1,3,5,3,2,null,3,null,2,5,4,5,5,6,3,7,2,3,4,3,2,2,7,3,6,3,5,3,4,5,5,7,6,1,1,4,6,5,6,1,1,1,3,4,3,3,3,3,2,2,6,3,3,2,3,7,4,4,3,5,3,1,1,6,4,3],[94.09999999999999,92.5,94,93.2,91.5,93.09999999999999,95.3,94.8,93.40000000000001,91.8,93.3,94.90000000000001,95.09999999999999,95.40000000000001,92.90000000000001,91.59999999999999,94.7,93.5,94.40000000000001,94.8,95.90000000000001,96.3,92.5,94.40000000000001,95.8,96,90.5,93.8,92.8,92.09999999999999,92.8,94.3,91.40000000000001,90.59999999999999,94.40000000000001,93.3,89.3,92.40000000000001,84.7,91,88.40000000000001,85.3,90,85.09999999999999,90.7,91.40000000000001,90.09999999999999,98.59999999999999,95.40000000000001,91.59999999999999,95.59999999999999,97.59999999999999,93.09999999999999,96.90000000000001,103.1,99.90000000000001,95.09999999999999,94.5,102.5,91.3,95.7,91.3,92,96.90000000000001,93.5,90.40000000000001,93.3,94.09999999999999,98,91.90000000000001,92.8,85.90000000000001,82.5,88.7,93.8,92.40000000000001,93.59999999999999,86.5,85.8,86.7,90.59999999999999,86,90,88.40000000000001,89.5,88.2,98.5,89.59999999999999,97.7,92.59999999999999,97.8,90.7,89.2,91.8,91.59999999999999,94.8,91,93.2,93.3,89.5,88.59999999999999,92.40000000000001,91.5,93.59999999999999],[60.4,57.6,60,57.1,56.3,54.8,58.2,57.6,56.3,58,57.2,55.6,59.9,57.6,57.6,56,67.7,55.7,55.4,56.3,58.1,58.5,56.1,54.9,58.5,59,54.5,56.8,56,54.4,54.1,56.7,54.6,55.7,57.9,59.3,54.8,56,51.5,55,57,54.1,55.5,51.5,55.9,54.4,54.8,63.2,59.2,56.4,59.6,61,58.1,63,63.2,61.5,59.4,64.2,62.8,57.7,59,58,56.4,56.5,57.4,55.8,57.6,56,55.6,56.4,57.6,52.4,52.3,52,58.1,56.8,56.2,51,50,52.6,56,54,53.8,54.6,56.2,53.2,60.7,58,58.4,54.6,59.6,56.3,54,57.6,56.6,55.7,53.1,68.59999999999999,56.2,56,54.7,55,55.2,59.9],[89,91.5,95.5,92,85.5,90.5,89.5,91,91.5,89.5,89.5,92,89.5,91.5,85.5,86,89.5,90,90.5,89,96.5,91,89,84,91.5,90,85,87,88,84,93,94,89,85.5,85,88,82.5,80.5,75,84.5,83,77,81,76,81,84,89,85,85,88,85,93.5,91,91.5,92.5,93.7,93,91,96,88,86,90.5,88.5,89.5,88.5,86,85,88.5,88,87,90,80.5,82,83,89,89,84,81,81,84,85.5,82,81.5,80.5,92,86.5,93,87.5,84.5,85,89,85,82,84,88.5,83,86,84,86.5,81.5,82.5,89,82.5,89],[36,36.5,39,38,36,35.5,36,37,37,37.5,39,35.5,36,36,34,34.5,36.5,36,35,38,39.5,39.5,36,34,35.5,36,35,34.5,35,33.5,37,39,37,36.5,35.5,35,35,35.5,34,36,36.5,32,32,35.5,34,35,37.5,34,37,38,36,40,38,43,38,38,41,39,40,39,38,39,38,38.5,38,36.5,36.5,38,37.5,38,40,35,36.5,38,38,41,36,36.5,36.5,38,38,36.5,36,36,40.5,38.5,41.5,38,35,38.5,38,37,38,35.5,37.5,38,38,35,38.5,36.5,39,38,36.5,40]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>site<\/th>\n      <th>pop<\/th>\n      <th>sex<\/th>\n      <th>age<\/th>\n      <th>head_l<\/th>\n      <th>skull_w<\/th>\n      <th>total_l<\/th>\n      <th>tail_l<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[1,4,5,6,7,8]},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"site","targets":1},{"name":"pop","targets":2},{"name":"sex","targets":3},{"name":"age","targets":4},{"name":"head_l","targets":5},{"name":"skull_w","targets":6},{"name":"total_l","targets":7},{"name":"tail_l","targets":8}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+<p>Минусы: Код будет работать только при выводе в html.<br>
+Плюсы: Самый лучший способ для больших таблиц и демонстрации данных</p>
+<ol start="3" type="1">
+<li>Используйте <code>{gt}</code> для стильных таблиц (но без прокрутки).</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gt)</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>possum <span class="sc">|&gt;</span> </span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a> <span class="fu">head</span>(<span class="dv">10</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>() <span class="sc">|&gt;</span></span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_caption</span>(<span class="st">"Опоссумы лучше всех"</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>  gt<span class="sc">::</span><span class="fu">opt_stylize</span>(<span class="at">style =</span> <span class="dv">2</span>)</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="smdnmannrs" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#smdnmannrs table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#smdnmannrs thead, #smdnmannrs tbody, #smdnmannrs tfoot, #smdnmannrs tr, #smdnmannrs td, #smdnmannrs th {
+  border-style: none;
+}
+
+#smdnmannrs p {
+  margin: 0;
+  padding: 0;
+}
+
+#smdnmannrs .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 3px;
+  border-top-color: #D5D5D5;
+  border-right-style: solid;
+  border-right-width: 3px;
+  border-right-color: #D5D5D5;
+  border-bottom-style: solid;
+  border-bottom-width: 3px;
+  border-bottom-color: #D5D5D5;
+  border-left-style: solid;
+  border-left-width: 3px;
+  border-left-color: #D5D5D5;
+}
+
+#smdnmannrs .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#smdnmannrs .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#smdnmannrs .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#smdnmannrs .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#smdnmannrs .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D5D5D5;
+}
+
+#smdnmannrs .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D5D5D5;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D5D5D5;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#smdnmannrs .gt_col_heading {
+  color: #FFFFFF;
+  background-color: #004D80;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#smdnmannrs .gt_column_spanner_outer {
+  color: #FFFFFF;
+  background-color: #004D80;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#smdnmannrs .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#smdnmannrs .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#smdnmannrs .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D5D5D5;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#smdnmannrs .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#smdnmannrs .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D5D5D5;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D5D5D5;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#smdnmannrs .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D5D5D5;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D5D5D5;
+  vertical-align: middle;
+}
+
+#smdnmannrs .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#smdnmannrs .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#smdnmannrs .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #89D3FE;
+  border-left-style: solid;
+  border-left-width: 1px;
+  border-left-color: #89D3FE;
+  border-right-style: solid;
+  border-right-width: 1px;
+  border-right-color: #89D3FE;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#smdnmannrs .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #5F5F5F;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#smdnmannrs .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#smdnmannrs .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#smdnmannrs .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#smdnmannrs .gt_summary_row {
+  color: #333333;
+  background-color: #89D3FE;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#smdnmannrs .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D5D5D5;
+}
+
+#smdnmannrs .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#smdnmannrs .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D5D5D5;
+}
+
+#smdnmannrs .gt_grand_summary_row {
+  color: #FFFFFF;
+  background-color: #00A1FF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#smdnmannrs .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D5D5D5;
+}
+
+#smdnmannrs .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D5D5D5;
+}
+
+#smdnmannrs .gt_striped {
+  background-color: #F4F4F4;
+}
+
+#smdnmannrs .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D5D5D5;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D5D5D5;
+}
+
+#smdnmannrs .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#smdnmannrs .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#smdnmannrs .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#smdnmannrs .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#smdnmannrs .gt_left {
+  text-align: left;
+}
+
+#smdnmannrs .gt_center {
+  text-align: center;
+}
+
+#smdnmannrs .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#smdnmannrs .gt_font_normal {
+  font-weight: normal;
+}
+
+#smdnmannrs .gt_font_bold {
+  font-weight: bold;
+}
+
+#smdnmannrs .gt_font_italic {
+  font-style: italic;
+}
+
+#smdnmannrs .gt_super {
+  font-size: 65%;
+}
+
+#smdnmannrs .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#smdnmannrs .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#smdnmannrs .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#smdnmannrs .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#smdnmannrs .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#smdnmannrs .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#smdnmannrs .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#smdnmannrs .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#smdnmannrs div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+
+<table class="gt_table caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<caption>Опоссумы лучше всех</caption>
+<thead>
+<tr class="gt_col_headings header">
+<th id="site" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">site</th>
+<th id="pop" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">pop</th>
+<th id="sex" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">sex</th>
+<th id="age" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">age</th>
+<th id="head_l" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">head_l</th>
+<th id="skull_w" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">skull_w</th>
+<th id="total_l" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">total_l</th>
+<th id="tail_l" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">tail_l</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_right" headers="site">1</td>
+<td class="gt_row gt_center" headers="pop">Vic</td>
+<td class="gt_row gt_center" headers="sex">m</td>
+<td class="gt_row gt_right" headers="age">8</td>
+<td class="gt_row gt_right" headers="head_l">94.1</td>
+<td class="gt_row gt_right" headers="skull_w">60.4</td>
+<td class="gt_row gt_right" headers="total_l">89.0</td>
+<td class="gt_row gt_right" headers="tail_l">36.0</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_right gt_striped" headers="site">1</td>
+<td class="gt_row gt_center gt_striped" headers="pop">Vic</td>
+<td class="gt_row gt_center gt_striped" headers="sex">f</td>
+<td class="gt_row gt_right gt_striped" headers="age">6</td>
+<td class="gt_row gt_right gt_striped" headers="head_l">92.5</td>
+<td class="gt_row gt_right gt_striped" headers="skull_w">57.6</td>
+<td class="gt_row gt_right gt_striped" headers="total_l">91.5</td>
+<td class="gt_row gt_right gt_striped" headers="tail_l">36.5</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_right" headers="site">1</td>
+<td class="gt_row gt_center" headers="pop">Vic</td>
+<td class="gt_row gt_center" headers="sex">f</td>
+<td class="gt_row gt_right" headers="age">6</td>
+<td class="gt_row gt_right" headers="head_l">94.0</td>
+<td class="gt_row gt_right" headers="skull_w">60.0</td>
+<td class="gt_row gt_right" headers="total_l">95.5</td>
+<td class="gt_row gt_right" headers="tail_l">39.0</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_right gt_striped" headers="site">1</td>
+<td class="gt_row gt_center gt_striped" headers="pop">Vic</td>
+<td class="gt_row gt_center gt_striped" headers="sex">f</td>
+<td class="gt_row gt_right gt_striped" headers="age">6</td>
+<td class="gt_row gt_right gt_striped" headers="head_l">93.2</td>
+<td class="gt_row gt_right gt_striped" headers="skull_w">57.1</td>
+<td class="gt_row gt_right gt_striped" headers="total_l">92.0</td>
+<td class="gt_row gt_right gt_striped" headers="tail_l">38.0</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_right" headers="site">1</td>
+<td class="gt_row gt_center" headers="pop">Vic</td>
+<td class="gt_row gt_center" headers="sex">f</td>
+<td class="gt_row gt_right" headers="age">2</td>
+<td class="gt_row gt_right" headers="head_l">91.5</td>
+<td class="gt_row gt_right" headers="skull_w">56.3</td>
+<td class="gt_row gt_right" headers="total_l">85.5</td>
+<td class="gt_row gt_right" headers="tail_l">36.0</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_right gt_striped" headers="site">1</td>
+<td class="gt_row gt_center gt_striped" headers="pop">Vic</td>
+<td class="gt_row gt_center gt_striped" headers="sex">f</td>
+<td class="gt_row gt_right gt_striped" headers="age">1</td>
+<td class="gt_row gt_right gt_striped" headers="head_l">93.1</td>
+<td class="gt_row gt_right gt_striped" headers="skull_w">54.8</td>
+<td class="gt_row gt_right gt_striped" headers="total_l">90.5</td>
+<td class="gt_row gt_right gt_striped" headers="tail_l">35.5</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_right" headers="site">1</td>
+<td class="gt_row gt_center" headers="pop">Vic</td>
+<td class="gt_row gt_center" headers="sex">m</td>
+<td class="gt_row gt_right" headers="age">2</td>
+<td class="gt_row gt_right" headers="head_l">95.3</td>
+<td class="gt_row gt_right" headers="skull_w">58.2</td>
+<td class="gt_row gt_right" headers="total_l">89.5</td>
+<td class="gt_row gt_right" headers="tail_l">36.0</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_right gt_striped" headers="site">1</td>
+<td class="gt_row gt_center gt_striped" headers="pop">Vic</td>
+<td class="gt_row gt_center gt_striped" headers="sex">f</td>
+<td class="gt_row gt_right gt_striped" headers="age">6</td>
+<td class="gt_row gt_right gt_striped" headers="head_l">94.8</td>
+<td class="gt_row gt_right gt_striped" headers="skull_w">57.6</td>
+<td class="gt_row gt_right gt_striped" headers="total_l">91.0</td>
+<td class="gt_row gt_right gt_striped" headers="tail_l">37.0</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_right" headers="site">1</td>
+<td class="gt_row gt_center" headers="pop">Vic</td>
+<td class="gt_row gt_center" headers="sex">f</td>
+<td class="gt_row gt_right" headers="age">9</td>
+<td class="gt_row gt_right" headers="head_l">93.4</td>
+<td class="gt_row gt_right" headers="skull_w">56.3</td>
+<td class="gt_row gt_right" headers="total_l">91.5</td>
+<td class="gt_row gt_right" headers="tail_l">37.0</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_right gt_striped" headers="site">1</td>
+<td class="gt_row gt_center gt_striped" headers="pop">Vic</td>
+<td class="gt_row gt_center gt_striped" headers="sex">f</td>
+<td class="gt_row gt_right gt_striped" headers="age">6</td>
+<td class="gt_row gt_right gt_striped" headers="head_l">91.8</td>
+<td class="gt_row gt_right gt_striped" headers="skull_w">58.0</td>
+<td class="gt_row gt_right gt_striped" headers="total_l">89.5</td>
+<td class="gt_row gt_right gt_striped" headers="tail_l">37.5</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<p>Плюсы: очень красивые, настраиваемые таблицы<br>
+Минусы: только для небольших таблиц (нет листания/прокрутки).</p>
+</section>
+<section id="графики" class="level3" data-number="8.4.11">
+<h3 data-number="8.4.11" class="anchored" data-anchor-id="графики"><span class="header-section-number">8.4.11</span> Графики</h3>
 <p>Markdown позволяет встраивать любые графики.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Warning: package 'ggplot2' was built under R version 4.5.2</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Координаты для "ёлки" (три треугольника)</span></span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>tree <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">x =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">2</span>, <span class="dv">0</span>, <span class="dv">2</span>,   <span class="sc">-</span><span class="fl">1.5</span>, <span class="dv">0</span>, <span class="fl">1.5</span>,   <span class="sc">-</span><span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span>),</span>
-<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">y =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">4</span>, <span class="dv">0</span>,    <span class="dv">1</span>, <span class="dv">5</span>, <span class="dv">1</span>,       <span class="fl">2.2</span>, <span class="dv">6</span>, <span class="fl">2.2</span>),</span>
-<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">group =</span> <span class="fu">rep</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, <span class="at">each=</span><span class="dv">3</span>)</span>
-<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Координаты ствола</span></span>
-<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>trunk <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">x =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="fl">0.5</span>, <span class="sc">-</span><span class="fl">0.5</span>, <span class="fl">0.5</span>, <span class="fl">0.5</span>),</span>
-<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">y =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="sc">-</span><span class="fl">0.8</span>, <span class="sc">-</span><span class="fl">0.8</span>, <span class="dv">0</span>)</span>
-<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb20-13"><a href="#cb20-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-14"><a href="#cb20-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Снежинки</span></span>
-<span id="cb20-15"><a href="#cb20-15" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
-<span id="cb20-16"><a href="#cb20-16" aria-hidden="true" tabindex="-1"></a>snow <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb20-17"><a href="#cb20-17" aria-hidden="true" tabindex="-1"></a>  <span class="at">x =</span> <span class="fu">runif</span>(<span class="dv">80</span>, <span class="sc">-</span><span class="fl">3.5</span>, <span class="fl">3.5</span>),</span>
-<span id="cb20-18"><a href="#cb20-18" aria-hidden="true" tabindex="-1"></a>  <span class="at">y =</span> <span class="fu">runif</span>(<span class="dv">80</span>, <span class="fl">0.5</span>, <span class="dv">7</span>)</span>
-<span id="cb20-19"><a href="#cb20-19" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb20-20"><a href="#cb20-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-21"><a href="#cb20-21" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
-<span id="cb20-22"><a href="#cb20-22" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Ёлка</span></span>
-<span id="cb20-23"><a href="#cb20-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_polygon</span>(<span class="at">data=</span>tree, <span class="fu">aes</span>(<span class="at">x=</span>x, <span class="at">y=</span>y, <span class="at">group=</span>group), <span class="at">fill=</span><span class="st">"darkgreen"</span>, <span class="at">color=</span><span class="st">"forestgreen"</span>) <span class="sc">+</span></span>
-<span id="cb20-24"><a href="#cb20-24" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Ствол</span></span>
-<span id="cb20-25"><a href="#cb20-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_polygon</span>(<span class="at">data=</span>trunk, <span class="fu">aes</span>(<span class="at">x=</span>x, <span class="at">y=</span>y), <span class="at">fill=</span><span class="st">"saddlebrown"</span>) <span class="sc">+</span></span>
-<span id="cb20-26"><a href="#cb20-26" aria-hidden="true" tabindex="-1"></a>  <span class="co"># "Звезда" (точка)</span></span>
-<span id="cb20-27"><a href="#cb20-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x=</span><span class="dv">0</span>, <span class="at">y=</span><span class="fl">6.7</span>), <span class="at">color=</span><span class="st">"gold"</span>, <span class="at">size=</span><span class="dv">9</span>, <span class="at">shape=</span><span class="dv">8</span>) <span class="sc">+</span></span>
-<span id="cb20-28"><a href="#cb20-28" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Снежинки</span></span>
-<span id="cb20-29"><a href="#cb20-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data=</span>snow, <span class="fu">aes</span>(<span class="at">x=</span>x, <span class="at">y=</span>y), <span class="at">color=</span><span class="st">"white"</span>, <span class="at">size=</span><span class="dv">2</span>, <span class="at">alpha=</span><span class="fl">0.7</span>, <span class="at">shape=</span><span class="dv">42</span>) <span class="sc">+</span></span>
-<span id="cb20-30"><a href="#cb20-30" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Поздравительный текст</span></span>
-<span id="cb20-31"><a href="#cb20-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">"text"</span>, <span class="at">x=</span><span class="dv">0</span>, <span class="at">y=</span><span class="dv">8</span>, <span class="at">label=</span><span class="st">"Merry Christmas!"</span>, <span class="at">family=</span><span class="st">"serif"</span>, <span class="at">color=</span><span class="st">"red"</span>, <span class="at">size=</span><span class="dv">8</span>, <span class="at">fontface=</span><span class="st">"bold"</span>) <span class="sc">+</span></span>
-<span id="cb20-32"><a href="#cb20-32" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Украшения на ёлке (игрушки)</span></span>
-<span id="cb20-33"><a href="#cb20-33" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="sc">-</span><span class="fl">0.5</span>, <span class="fl">0.3</span>, <span class="sc">-</span><span class="fl">1.3</span>, <span class="fl">1.2</span>), </span>
-<span id="cb20-34"><a href="#cb20-34" aria-hidden="true" tabindex="-1"></a>                 <span class="at">y =</span> <span class="fu">c</span>(<span class="fl">2.8</span>, <span class="fl">3.7</span>, <span class="fl">4.8</span>, <span class="fl">1.5</span>, <span class="dv">2</span>)), </span>
-<span id="cb20-35"><a href="#cb20-35" aria-hidden="true" tabindex="-1"></a>                 <span class="at">color =</span> <span class="fu">c</span>(<span class="st">"red"</span>, <span class="st">"gold"</span>, <span class="st">"blue"</span>, <span class="st">"orange"</span>, <span class="st">"magenta"</span>), <span class="at">size =</span> <span class="dv">5</span>) <span class="sc">+</span></span>
-<span id="cb20-36"><a href="#cb20-36" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Внешний вид</span></span>
-<span id="cb20-37"><a href="#cb20-37" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_fixed</span>() <span class="sc">+</span></span>
-<span id="cb20-38"><a href="#cb20-38" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_void</span>() <span class="sc">+</span></span>
-<span id="cb20-39"><a href="#cb20-39" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">plot.background =</span> <span class="fu">element_rect</span>(<span class="at">fill=</span><span class="st">"#114D78"</span>, <span class="at">color=</span><span class="cn">NA</span>))</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Координаты для "ёлки" (три треугольника)</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>tree <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">x =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">2</span>, <span class="dv">0</span>, <span class="dv">2</span>,   <span class="sc">-</span><span class="fl">1.5</span>, <span class="dv">0</span>, <span class="fl">1.5</span>,   <span class="sc">-</span><span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span>),</span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">y =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">4</span>, <span class="dv">0</span>,    <span class="dv">1</span>, <span class="dv">5</span>, <span class="dv">1</span>,       <span class="fl">2.2</span>, <span class="dv">6</span>, <span class="fl">2.2</span>),</span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">group =</span> <span class="fu">rep</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, <span class="at">each=</span><span class="dv">3</span>)</span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Координаты ствола</span></span>
+<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a>trunk <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">x =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="fl">0.5</span>, <span class="sc">-</span><span class="fl">0.5</span>, <span class="fl">0.5</span>, <span class="fl">0.5</span>),</span>
+<span id="cb27-11"><a href="#cb27-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">y =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="sc">-</span><span class="fl">0.8</span>, <span class="sc">-</span><span class="fl">0.8</span>, <span class="dv">0</span>)</span>
+<span id="cb27-12"><a href="#cb27-12" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb27-13"><a href="#cb27-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-14"><a href="#cb27-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Снежинки</span></span>
+<span id="cb27-15"><a href="#cb27-15" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb27-16"><a href="#cb27-16" aria-hidden="true" tabindex="-1"></a>snow <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb27-17"><a href="#cb27-17" aria-hidden="true" tabindex="-1"></a>  <span class="at">x =</span> <span class="fu">runif</span>(<span class="dv">80</span>, <span class="sc">-</span><span class="fl">3.5</span>, <span class="fl">3.5</span>),</span>
+<span id="cb27-18"><a href="#cb27-18" aria-hidden="true" tabindex="-1"></a>  <span class="at">y =</span> <span class="fu">runif</span>(<span class="dv">80</span>, <span class="fl">0.5</span>, <span class="dv">7</span>)</span>
+<span id="cb27-19"><a href="#cb27-19" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb27-20"><a href="#cb27-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-21"><a href="#cb27-21" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb27-22"><a href="#cb27-22" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Ёлка</span></span>
+<span id="cb27-23"><a href="#cb27-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_polygon</span>(<span class="at">data=</span>tree, <span class="fu">aes</span>(<span class="at">x=</span>x, <span class="at">y=</span>y, <span class="at">group=</span>group), <span class="at">fill=</span><span class="st">"darkgreen"</span>, <span class="at">color=</span><span class="st">"forestgreen"</span>) <span class="sc">+</span></span>
+<span id="cb27-24"><a href="#cb27-24" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Ствол</span></span>
+<span id="cb27-25"><a href="#cb27-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_polygon</span>(<span class="at">data=</span>trunk, <span class="fu">aes</span>(<span class="at">x=</span>x, <span class="at">y=</span>y), <span class="at">fill=</span><span class="st">"saddlebrown"</span>) <span class="sc">+</span></span>
+<span id="cb27-26"><a href="#cb27-26" aria-hidden="true" tabindex="-1"></a>  <span class="co"># "Звезда" (точка)</span></span>
+<span id="cb27-27"><a href="#cb27-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x=</span><span class="dv">0</span>, <span class="at">y=</span><span class="fl">6.7</span>), <span class="at">color=</span><span class="st">"gold"</span>, <span class="at">size=</span><span class="dv">9</span>, <span class="at">shape=</span><span class="dv">8</span>) <span class="sc">+</span></span>
+<span id="cb27-28"><a href="#cb27-28" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Снежинки</span></span>
+<span id="cb27-29"><a href="#cb27-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data=</span>snow, <span class="fu">aes</span>(<span class="at">x=</span>x, <span class="at">y=</span>y), <span class="at">color=</span><span class="st">"white"</span>, <span class="at">size=</span><span class="dv">2</span>, <span class="at">alpha=</span><span class="fl">0.7</span>, <span class="at">shape=</span><span class="dv">42</span>) <span class="sc">+</span></span>
+<span id="cb27-30"><a href="#cb27-30" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Поздравительный текст</span></span>
+<span id="cb27-31"><a href="#cb27-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">"text"</span>, <span class="at">x=</span><span class="dv">0</span>, <span class="at">y=</span><span class="dv">8</span>, <span class="at">label=</span><span class="st">"Merry Christmas!"</span>, <span class="at">family=</span><span class="st">"serif"</span>, <span class="at">color=</span><span class="st">"red"</span>, <span class="at">size=</span><span class="dv">8</span>, <span class="at">fontface=</span><span class="st">"bold"</span>) <span class="sc">+</span></span>
+<span id="cb27-32"><a href="#cb27-32" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Украшения на ёлке (игрушки)</span></span>
+<span id="cb27-33"><a href="#cb27-33" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="sc">-</span><span class="fl">0.5</span>, <span class="fl">0.3</span>, <span class="sc">-</span><span class="fl">1.3</span>, <span class="fl">1.2</span>), </span>
+<span id="cb27-34"><a href="#cb27-34" aria-hidden="true" tabindex="-1"></a>                 <span class="at">y =</span> <span class="fu">c</span>(<span class="fl">2.8</span>, <span class="fl">3.7</span>, <span class="fl">4.8</span>, <span class="fl">1.5</span>, <span class="dv">2</span>)), </span>
+<span id="cb27-35"><a href="#cb27-35" aria-hidden="true" tabindex="-1"></a>                 <span class="at">color =</span> <span class="fu">c</span>(<span class="st">"red"</span>, <span class="st">"gold"</span>, <span class="st">"blue"</span>, <span class="st">"orange"</span>, <span class="st">"magenta"</span>), <span class="at">size =</span> <span class="dv">5</span>) <span class="sc">+</span></span>
+<span id="cb27-36"><a href="#cb27-36" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Внешний вид</span></span>
+<span id="cb27-37"><a href="#cb27-37" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_fixed</span>() <span class="sc">+</span></span>
+<span id="cb27-38"><a href="#cb27-38" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_void</span>() <span class="sc">+</span></span>
+<span id="cb27-39"><a href="#cb27-39" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">plot.background =</span> <span class="fu">element_rect</span>(<span class="at">fill=</span><span class="st">"#114D78"</span>, <span class="at">color=</span><span class="cn">NA</span>))</span></code><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="share_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="share_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -606,11 +1355,11 @@ some code here
 </div>
 </div>
 </section>
-<section id="контроль-4-балла" class="level3" data-number="8.4.11">
-<h3 data-number="8.4.11" class="anchored" data-anchor-id="контроль-4-балла"><span class="header-section-number">8.4.11</span> ⭐ Контроль (4 балла)</h3>
+<section id="контроль-4-балла" class="level3" data-number="8.4.12">
+<h3 data-number="8.4.12" class="anchored" data-anchor-id="контроль-4-балла"><span class="header-section-number">8.4.12</span> ⭐ Контроль (4 балла)</h3>
 <ul class="task-list">
-<li><label><input type="checkbox">добавлен блок кода</label></li>
-<li><label><input type="checkbox">добавлен график</label></li>
+<li><label><input type="checkbox">добавлена таблица (код виден)</label></li>
+<li><label><input type="checkbox">добавлен график (код скрыт)</label></li>
 <li><label><input type="checkbox">добавлено изображение и внешняя ссылка</label></li>
 <li><label><input type="checkbox">использованы заголовки разного уровня и форматирование</label></li>
 </ul>
